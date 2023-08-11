@@ -18,4 +18,4 @@ before_build:
   - call "%VS_HOME%\Community\VC\Auxiliary\Build\vcvars32.bat"
 
 build_script:
-  - call ci\appveyor.bat
+  - call .\ci\appveyor.bat
