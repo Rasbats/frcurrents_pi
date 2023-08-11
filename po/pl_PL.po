@@ -1,0 +1,740 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: grib_pi 2.2.1111\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"PO-Revision-Date: 2010-11-28 17:53+0100\n"
+"Last-Translator: Piotr Carlson <pjotrc@interia.pl>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+#
+#
+#, fuzzy
+msgid "/Settings/tcurrent"
+msgstr "Prędkość prądu, w."
+#
+msgid "???"
+msgstr ""
+#
+msgid "About Tidal Arrows"
+msgstr ""
+#
+msgid "About these Tidal Arrows"
+msgstr ""
+#
+msgid "Choose Date/Time"
+msgstr ""
+#
+msgid "Display tidal direction"
+msgstr ""
+#
+msgid "Display tidal rates (knots)"
+msgstr ""
+#
+msgid "Fill Colour"
+msgstr ""
+#
+msgid "HARMONIC"
+msgstr ""
+#
+msgid "HW"
+msgstr ""
+#
+msgid "HW +6"
+msgstr ""
+#
+msgid "HW -6"
+msgstr ""
+#
+msgid "HW+1"
+msgstr ""
+#
+msgid "HW+2"
+msgstr ""
+#
+msgid "HW+3"
+msgstr ""
+#
+msgid "HW+4"
+msgstr ""
+#
+msgid "HW+5"
+msgstr ""
+#
+msgid "HW+6"
+msgstr ""
+#
+msgid "HW-1"
+msgstr ""
+#
+msgid "HW-2"
+msgstr ""
+#
+msgid "HW-3"
+msgstr ""
+#
+msgid "HW-4"
+msgstr ""
+#
+msgid "HW-5"
+msgstr ""
+#
+msgid "HW-6"
+msgstr ""
+#
+msgid "High Water"
+msgstr ""
+#
+msgid "LOC"
+msgstr ""
+#
+msgid "LW"
+msgstr ""
+#
+msgid "Next"
+msgstr ""
+#
+msgid "No Tidal Data"
+msgstr ""
+#
+msgid "No tidal data"
+msgstr ""
+#
+msgid "No tidal data for this port"
+msgstr ""
+#
+msgid "No tidal data found"
+msgstr ""
+#
+msgid "None"
+msgstr ""
+#
+msgid "Now"
+msgstr ""
+#
+msgid "Please choose a new date"
+msgstr ""
+#
+msgid "Port finder"
+msgstr ""
+#
+msgid "Port not found"
+msgstr ""
+#
+#
+#
+#, fuzzy
+msgid "Preferences"
+msgstr "Preferencje GRIB"
+#
+msgid "Previous"
+msgstr ""
+#
+msgid "Select High Water"
+msgstr ""
+#
+msgid "Standard Port"
+msgstr ""
+#
+#
+#, fuzzy
+msgid "Tidal Current Control"
+msgstr "Ustawienia wyświetlania GRIB"
+#
+msgid "Tidal Data"
+msgstr ""
+#
+msgid ""
+"Tidal Data for UKHO Tidal Diamonds\n"
+"--------------------------------------------------------------\n"
+"The standard OpenCPN distribution has tidal data for the\n"
+"following ports, which this plugin uses:\n"
+"\n"
+"PLYMOUTH (DEVONPORT)\n"
+"PORTSMOUTH\n"
+"DOVER\n"
+"SHEERNESS\n"
+"LOWESTOFT\n"
+"IMMINGHAM\n"
+"LEITH\n"
+"ABERDEEN\n"
+"WICK\n"
+"LERWICK\n"
+"ULLAPOOL\n"
+"LIVERPOOL (GLADSTONE DOCK)\n"
+"HOLYHEAD\n"
+"MILFORD HAVEN\n"
+"PORT OF BRISTOL (AVONMOUTH)\n"
+"ST. HELIER\n"
+"\n"
+"Use this data with caution.\n"
+"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
+"Stream Atlases. This is based on the average range for the day\n"
+msgstr ""
+#
+msgid "UTC"
+msgstr ""
+#
+msgid "Using Tide/Current data from:  "
+msgstr ""
+#
+#
+#, fuzzy
+msgid "tcurrent"
+msgstr "Prędkość prądu, w."
+#
+#
+#, fuzzy
+msgid "tcurrent PlugIn for OpenCPN"
+msgstr "Wtyczka do wyświetlania GRIB w OpenCPN"
+#
+msgid ""
+"tcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n"
+"\n"
+"\t\t\t   "
+msgstr ""
+#
+msgid "tcurrent Settings"
+msgstr ""
+#
+#
+#, fuzzy
+msgid "tcurrentPort"
+msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "tcurrentUseDirection"
+msgstr "Preferencje GRIB"
+#
+msgid "tcurrentUseFillColour"
+msgstr ""
+#
+#
+#, fuzzy
+msgid "tcurrentUseRate"
+msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Colors"
+#~ msgstr "&Zamknij"
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Current"
+#~ msgstr "Prędkość prądu, w."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Data Display Preferences"
+#~ msgstr "Preferencje GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "GRIB"
+#~ msgstr "GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "GRIB File Directory"
+#~ msgstr "Katalog plików GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Grib"
+#~ msgstr "Grib"
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view invisible overlays:"
+#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć HTSGW"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
+#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć SEATEMP"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
+#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć OCEAN CURRENT"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
+#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć OCEAN CURRENT"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
+#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć SEATEMP"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
+#~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć CRAIN"
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Pressure"
+#~ msgstr "Ciśnienie, mbar"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Pressure (MSL)"
+#~ msgstr "Ciśnienie, mbar"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Sea Temp"
+#~ msgstr "Temp. powierzchni morza, C"
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Select a tcurrent file"
+#~ msgstr "Wybierz katalog GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Show GRIB icon"
+#~ msgstr "Pokaż ikonę GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Sign.Wave Height"
+#~ msgstr "Wysokość fali znacznej, m"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Use High Definition Graphics"
+#~ msgstr "Użyj grafili wysokuej rozdzielczości"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
+#~ msgstr "UWAGA: Dane GRIB QuickScat są sprzed %d godzin."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Wind Direction(10m)"
+#~ msgstr "Kierunek wiatru"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Wind Speed and Direction(10m)"
+#~ msgstr "Kierunek wiatru"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Wind Speed(10m)"
+#~ msgstr "Prędkość wiatru, w."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Wind Speed, Kts."
+#~ msgstr "Prędkość wiatru, w."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "tcdata"
+#~ msgstr "Dane GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid ""
+#~ "tcurrent PlugIn for OpenCPN\n"
+#~ "Provides basic tcurrent file overlay capabilities for several tcurrent "
+#~ "file types.\n"
+#~ "\n"
+#~ "Supported tcurrent file types include:\n"
+#~ "- wind direction and speed\n"
+#~ "- significant wave height\n"
+#~ "- sea surface temperature\n"
+#~ "- surface current direction and speed."
+#~ msgstr ""
+#~ "Wtyczka do wyświetlania GRIB w OpenCPN\n"
+#~ "Umożliwia podstawowe funkcje dla kilku rodzajów danych GRIB.\n"
+#~ "\n"
+#~ "Wśród wyświetlanych danych znajdują się:\n"
+#~ "- kierunek i prędkośc wiatru\n"
+#~ "- wysokośc fali znacznej\n"
+#~ "- temperatura wody powierzchniowej\n"
+#~ "- kierunek i prędkość prądu powierzchniowego."

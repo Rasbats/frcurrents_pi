@@ -1,0 +1,2174 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenCPN version 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"PO-Revision-Date: 2013-10-20 22:24+0100\n"
+"Last-Translator: Anders Arnell <anders.arnell@bredband.net>\n"
+"Language-Team: AB Torsk & Bäver <anders.arnell@bredband.net>\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+#
+#, fuzzy
+msgid "/Settings/tcurrent"
+msgstr "Ström"
+#
+msgid "???"
+msgstr ""
+#
+msgid "About Tidal Arrows"
+msgstr ""
+#
+msgid "About these Tidal Arrows"
+msgstr ""
+#
+msgid "Choose Date/Time"
+msgstr ""
+#
+msgid "Display tidal direction"
+msgstr ""
+#
+msgid "Display tidal rates (knots)"
+msgstr ""
+#
+msgid "Fill Colour"
+msgstr ""
+#
+msgid "HARMONIC"
+msgstr ""
+#
+msgid "HW"
+msgstr ""
+#
+msgid "HW +6"
+msgstr ""
+#
+msgid "HW -6"
+msgstr ""
+#
+msgid "HW+1"
+msgstr ""
+#
+msgid "HW+2"
+msgstr ""
+#
+msgid "HW+3"
+msgstr ""
+#
+msgid "HW+4"
+msgstr ""
+#
+msgid "HW+5"
+msgstr ""
+#
+msgid "HW+6"
+msgstr ""
+#
+msgid "HW-1"
+msgstr ""
+#
+msgid "HW-2"
+msgstr ""
+#
+msgid "HW-3"
+msgstr ""
+#
+msgid "HW-4"
+msgstr ""
+#
+msgid "HW-5"
+msgstr ""
+#
+msgid "HW-6"
+msgstr ""
+#
+msgid "High Water"
+msgstr ""
+#
+msgid "LOC"
+msgstr ""
+#
+msgid "LW"
+msgstr ""
+#
+msgid "Next"
+msgstr "Nästa"
+#
+msgid "No Tidal Data"
+msgstr ""
+#
+msgid "No tidal data"
+msgstr ""
+#
+msgid "No tidal data for this port"
+msgstr ""
+#
+msgid "No tidal data found"
+msgstr ""
+#
+msgid "None"
+msgstr ""
+#
+msgid "Now"
+msgstr "Nu"
+#
+msgid "Please choose a new date"
+msgstr ""
+#
+msgid "Port finder"
+msgstr ""
+#
+msgid "Port not found"
+msgstr ""
+#
+#
+#, fuzzy
+msgid "Preferences"
+msgstr "GRIB Inställningar"
+#
+msgid "Previous"
+msgstr "Föregående"
+#
+msgid "Select High Water"
+msgstr ""
+#
+msgid "Standard Port"
+msgstr ""
+#
+#, fuzzy
+msgid "Tidal Current Control"
+msgstr "GRIB Visningskontroll"
+#
+msgid "Tidal Data"
+msgstr ""
+#
+msgid ""
+"Tidal Data for UKHO Tidal Diamonds\n"
+"--------------------------------------------------------------\n"
+"The standard OpenCPN distribution has tidal data for the\n"
+"following ports, which this plugin uses:\n"
+"\n"
+"PLYMOUTH (DEVONPORT)\n"
+"PORTSMOUTH\n"
+"DOVER\n"
+"SHEERNESS\n"
+"LOWESTOFT\n"
+"IMMINGHAM\n"
+"LEITH\n"
+"ABERDEEN\n"
+"WICK\n"
+"LERWICK\n"
+"ULLAPOOL\n"
+"LIVERPOOL (GLADSTONE DOCK)\n"
+"HOLYHEAD\n"
+"MILFORD HAVEN\n"
+"PORT OF BRISTOL (AVONMOUTH)\n"
+"ST. HELIER\n"
+"\n"
+"Use this data with caution.\n"
+"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
+"Stream Atlases. This is based on the average range for the day\n"
+msgstr ""
+#
+#
+#
+msgid "UTC"
+msgstr "UTC"
+#
+msgid "Using Tide/Current data from:  "
+msgstr ""
+#
+#, fuzzy
+msgid "tcurrent"
+msgstr "Ström"
+#
+#, fuzzy
+msgid "tcurrent PlugIn for OpenCPN"
+msgstr "GRIB-modul för OpenCPN"
+#
+msgid ""
+"tcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n"
+"\n"
+"\t\t\t   "
+msgstr ""
+#
+#, fuzzy
+msgid "tcurrent Settings"
+msgstr "Grib-inställningar"
+#
+#, fuzzy
+msgid "tcurrentPort"
+msgstr "Ström"
+#
+#, fuzzy
+msgid "tcurrentUseDirection"
+msgstr "Grib-inställningar"
+#
+msgid "tcurrentUseFillColour"
+msgstr ""
+#
+#, fuzzy
+msgid "tcurrentUseRate"
+msgstr "Ström"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid " (Dup)"
+#~ msgstr " (Dup)"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid " (Max size )"
+#~ msgstr " (Max storlek)"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid " Mo )"
+#~ msgstr " MB)"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "( Max "
+#~ msgstr "( Max "
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "0.2"
+#~ msgstr "0.2"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "0.5"
+#~ msgstr "0.5"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "0.8"
+#~ msgstr "0.8"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "1"
+#~ msgstr "1"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "1.6"
+#~ msgstr "1.6"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "12"
+#~ msgstr "12"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "2"
+#~ msgstr "2"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "24"
+#~ msgstr "24"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "3"
+#~ msgstr "3"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "4"
+#~ msgstr "4"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "5"
+#~ msgstr "5"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "6"
+#~ msgstr "6"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "7"
+#~ msgstr "7"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "8"
+#~ msgstr "8"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Action"
+#~ msgstr "Åtgärd"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Air Temp"
+#~ msgstr "Lufttemp"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Air Temperature"
+#~ msgstr "Lufttemperatur"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Air Temperature(2m)"
+#~ msgstr "Lufttemperatur(2m)"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "AirTemp"
+#~ msgstr "Lufttemp"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "AirTemperature"
+#~ msgstr "Lufttemperatur"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Barbed Arrows"
+#~ msgstr "Pilar med hakar"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid ""
+#~ "Before sending an email to Zytcurrent you have to enter your Login and "
+#~ "Code.\n"
+#~ "Please visit www.zytcurrent.org/ and follow instructions..."
+#~ msgstr ""
+#~ "Innan du skickar epost till Zygrib måste du ange dina "
+#~ "inloggningsuppgifter.\n"
+#~ "Besök www.zygrib.org/ och läs instruktion..."
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Building Isobar map"
+#~ msgstr "Skapar isobar-karta"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "COAMPS"
+#~ msgstr "COAMPS"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Celcius"
+#~ msgstr "Celcius"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Cloud"
+#~ msgstr "Moln"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Cloud Cover"
+#~ msgstr "Molntäcke"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "CloudCover"
+#~ msgstr "Molntäcke"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Clouds Cover"
+#~ msgstr "Molntäcke"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Colors"
+#~ msgstr "Färger"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Copy First Cumulative Missing Record"
+#~ msgstr "Kopiera första ökande information som saknas"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Copy Missing Wave Records"
+#~ msgstr "Kopiera saknad våginformation"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Current"
+#~ msgstr "Ström"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Current(Surf.)"
+#~ msgstr "Ström(ytan)"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Data Display Preferences"
+#~ msgstr "GRIB Inställningar"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Data available in the selected forecast model"
+#~ msgstr "Tillgängliga data i den valda prognosmodellen"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Days"
+#~ msgstr "Dagar"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Deg"
+#~ msgstr "Grader"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Direction Arrows"
+#~ msgstr "Riktningspilar"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Display"
+#~ msgstr "Visa"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Display Iso CAPE"
+#~ msgstr "Visa Isobarer"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Display Iso Temp. Lines"
+#~ msgstr "Visa Iso templinjer"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Display Isobars"
+#~ msgstr "Visa Isobarer"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Display Isotachs"
+#~ msgstr "Visa Isobarer"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Display Isotherms"
+#~ msgstr "Visa Isobarer"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Error"
+#~ msgstr "Fel"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Error:  Can't read this File!"
+#~ msgstr "Fel: Filen är inte läsbar!"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Error:  File does not exist!"
+#~ msgstr "Fel: Filen finns inte!"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Error:  No valid data in this file!"
+#~ msgstr "Fel: Filen är inte läsbar!"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Estimated File Size"
+#~ msgstr "Beräknad filstorlek"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Fahrenheit"
+#~ msgstr "Fahrenheit"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Failed to send mail message"
+#~ msgstr "Mislyckades att skicka epost"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Feet"
+#~ msgstr "Fot"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Forecast Model "
+#~ msgstr "Prognosmodell"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "GFS"
+#~ msgstr "GFS"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "GRIB"
+#~ msgstr "GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "GRIB File Directory"
+#~ msgstr "GRIB Filkatalog"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Generic"
+#~ msgstr "Generell"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Get this Code in zytcurrent's forum ( This is not your password! )"
+#~ msgstr "Hämta din kod i Zygrib's forum (Detta är inte ditt lösenord!)"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Grib"
+#~ msgstr "Grib"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Hours"
+#~ msgstr "Timmar"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Inches"
+#~ msgstr "Tum"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Interpolate between tcurrents"
+#~ msgstr "Interpolera mellan grib"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Interval"
+#~ msgstr "Intervall"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "IsoBars"
+#~ msgstr "Isobar"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "KPH"
+#~ msgstr "km/t"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Knots"
+#~ msgstr "Knop"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Load File Options"
+#~ msgstr "Inställningar för laddning av fil"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Load the Last Opened File"
+#~ msgstr "Ladda den senast öppnade filen"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Load the More Recent File in Directory"
+#~ msgstr "Ladda nyare fil i katalogen"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Local Time"
+#~ msgstr "Lokal tid"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Login you use to connect to Zygrib's forum"
+#~ msgstr "Inloggning som du använder för att ansluta till Zygrib's forum"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Loop Mode"
+#~ msgstr "Återuppspelning"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "M/S"
+#~ msgstr "m/s"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "MAIL Error: MAPI32.DLL is not installed or invalid on this computer!"
+#~ msgstr "Epostfel: Mapi är inte installerat eller saknas på datorn!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "MPH"
+#~ msgstr "mph"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Mail"
+#~ msgstr "Epost"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Mail To "
+#~ msgstr "Epost Till"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Meters"
+#~ msgstr "Meter"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "MilliBars"
+#~ msgstr "MilliBar"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Millimeters"
+#~ msgstr "Millimeter"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "MyLabel"
+#~ msgstr "Egen beteckning"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "N/A"
+#~ msgstr "Saknas"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Numbers"
+#~ msgstr "Nummer"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Open File"
+#~ msgstr "Öppna fil"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "OpenCpn failed to logon! Please verify your eMail environment"
+#~ msgstr "OpenCpn kunde inte logga in! Kontrollera din epostinställning"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Overlay Transparency"
+#~ msgstr "Transparent väderinformation"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "OverlayMap"
+#~ msgstr "överlagrad karta"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Parameters"
+#~ msgstr "Parametrar"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Percentage"
+#~ msgstr "Procent"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Period"
+#~ msgstr "Period"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Play"
+#~ msgstr "Spela upp"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view invisible overlays:"
+#~ msgstr "Zooma ut eller öka skalan för att visa GRIB "
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
+#~ msgstr "Zooma ut eller öka skalan för att visa GRIB yttemperatur"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
+#~ msgstr "Zooma ut eller öka skalan för att visa GRIB regninformation"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
+#~ msgstr "Zooma ut eller öka skalan för att visa GRIB regninformation"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
+#~ msgstr "Zooma ut eller öka skalan för att visa GRIB yttemperatur"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
+#~ msgstr "Zooma ut eller öka skalan för att visa GRIB regninformation"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Precipitation"
+#~ msgstr "Nederbörd"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Pressure"
+#~ msgstr "Lufttryck"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Pressure (MSL)"
+#~ msgstr "Lufttryck, mBar"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Profile"
+#~ msgstr "Profil"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Quickscat"
+#~ msgstr "Quickscat"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "RTOFS"
+#~ msgstr "RTOFS"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Rain"
+#~ msgstr "Regn"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Rainfall"
+#~ msgstr "Regn"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Range"
+#~ msgstr "Avstånd"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Ref : "
+#~ msgstr "Ref : "
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Request"
+#~ msgstr "Hämta"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Request Pofile"
+#~ msgstr "Begär Pofil"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid ""
+#~ "Request can't be sent. Please verify your email systeme parameters.\n"
+#~ "You should also have a look at your log file.\n"
+#~ "Save or Cancel to finish..."
+#~ msgstr ""
+#~ "Din begäran kan inte skickas. Kontrollera dina epostinställningar.\n"
+#~ "Kontrollera också din loggfil.\n"
+#~ "Spara eller Avbryt för att avsluta..."
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Resolution"
+#~ msgstr "Upplösning"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Saildocs"
+#~ msgstr "Saildocs"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Save"
+#~ msgstr "Spara"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Sea Temp"
+#~ msgstr "Vattentemperatur"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Sea Temperature"
+#~ msgstr "Vattentemperatur"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Sea Temperature(surf.)"
+#~ msgstr "Vattentemperatur(ytan)"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "SeaTemp"
+#~ msgstr "Vattentemp"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "SeaTemperature"
+#~ msgstr "Vattentemperatur"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Select a tcurrent file"
+#~ msgstr "Välj en GRIB-fil"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Send"
+#~ msgstr "Skicka"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Settings"
+#~ msgstr "Inställningar"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Show GRIB icon"
+#~ msgstr "Aktivera GRIB-ikon"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Show metres/sec for Wind Speed"
+#~ msgstr "Visa m/s för vindstyrka"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Sign.Wave Height"
+#~ msgstr "Signifikant våghöjd, m"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Size"
+#~ msgstr "Storlek"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Slices per Update"
+#~ msgstr "Antal delar/uppdatering"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Slices per hour"
+#~ msgstr "Antal delar/timme"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Spacing"
+#~ msgstr "Avstånd"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Start Options"
+#~ msgstr "Tidsinställningar"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Stop"
+#~ msgstr "Stopp"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid ""
+#~ "The file size limit is overcome!\n"
+#~ "You can zoom in and/or change parameters..."
+#~ msgstr ""
+#~ "Gränsen för filstorlek har överskridits!\n"
+#~ "Du kan zooma in och/eller ändra parametrar..."
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid ""
+#~ "This file contains data for particular time intervals but you have chosen "
+#~ "to display different intervals.\n"
+#~ "Please consider that the values will be interpolated."
+#~ msgstr ""
+#~ "Den här filen innehåller data för vissa tider och du har valt att visa "
+#~ "data för andra tider.\n"
+#~ "Tänk på att dessa värden kommer att interpoleras."
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Time Options"
+#~ msgstr "Tidsinställningar"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Time Range"
+#~ msgstr "Avstånd"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Units"
+#~ msgstr "Enhet"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Updates per Second"
+#~ msgstr "Uppdateringar/sekund"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Use Gradual Colors"
+#~ msgstr "Använd gradvisa färger"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Use High Definition Graphics"
+#~ msgstr "Använd högupplöst grafik"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "WW3-GLOBAL"
+#~ msgstr "WW3-GLOBAL"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "WW3-MEDIT"
+#~ msgstr "WW3-MEDIT"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Warning!"
+#~ msgstr "Varning"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Warning:  Empty directory!"
+#~ msgstr "Varning: Katalogen är tom!"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Wave"
+#~ msgstr "Våghöjd"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Waves"
+#~ msgstr "Våghöjd"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "WavesModel"
+#~ msgstr "Vågmodell"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Wind"
+#~ msgstr "Vind"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Wind Direction(10m)"
+#~ msgstr "Vindriktning"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Wind Gust"
+#~ msgstr "Vindby"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Wind Scat"
+#~ msgstr "Vind Scat"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Wind Speed and Direction(10m)"
+#~ msgstr "Vindriktning"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Wind Speed(10m)"
+#~ msgstr "Vindstyrka, m/s."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "WindGust"
+#~ msgstr "Vindby"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Write and send eMail request"
+#~ msgstr "Spara och skicka inställningar för GRIB-begäran"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your request is ready. An email is prepared in your email environment. \n"
+#~ "You have just to verify and send it...\n"
+#~ "Save or Cancel to finish...or Continue..."
+#~ msgstr ""
+#~ "Din förfrågan är klar. Ett epostmeddelande har skapats i din epostlåda.\n"
+#~ "Klicka 'Sänd' för att skicka meddelandet.\n"
+#~ "Spara eller Avbryt för att fortsätta... eller nya parametrar för ett nytt "
+#~ "meddelande"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your request was sent \n"
+#~ "(if your system has an MTA configured and is able to send email).\n"
+#~ "Save or Cancel to finish...or Continue..."
+#~ msgstr ""
+#~ "Din förfrågan skickades\n"
+#~ "(oditt system har en konfigurerad MTA och möjligheten att skicka epost).\n"
+#~ "Spara eller Avbryt för att fortsätta... eller nya parametrar för ett nytt "
+#~ "meddelande"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Zone"
+#~ msgstr "Zone"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "ZyGrib"
+#~ msgstr "ZyGrib"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "eMail error"
+#~ msgstr "epostfel"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "km/h"
+#~ msgstr "km/t"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "m/s"
+#~ msgstr "m/s"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "mmHG"
+#~ msgstr "mmHG"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "mph"
+#~ msgstr "mph"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "playback"
+#~ msgstr "Spela upp"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "size"
+#~ msgstr "storlek"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "tcdata"
+#~ msgstr "data"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "tcurrent Data at Cursor"
+#~ msgstr "GRIB-data vid markör"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid ""
+#~ "tcurrent PlugIn for OpenCPN\n"
+#~ "Provides basic tcurrent file overlay capabilities for several tcurrent "
+#~ "file types.\n"
+#~ "\n"
+#~ "Supported tcurrent file types include:\n"
+#~ "- wind direction and speed\n"
+#~ "- significant wave height\n"
+#~ "- sea surface temperature\n"
+#~ "- surface current direction and speed."
+#~ msgstr ""
+#~ "GRIB-modul för OpenCPN\n"
+#~ "Visar överlagrad GRIB-information för ett flertal filtyper.\n"
+#~ "\n"
+#~ "Stöd för GRIB-information inkluderar:\n"
+#~ "- vindriktning och hastighet\n"
+#~ "- signifikant våghöjd\n"
+#~ "- ytvattentemperatur\n"
+#~ "-  strömhastighet och riktning"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "tcurrent Preferences"
+#~ msgstr "GRIB Inställningar"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "zytcurrent Code"
+#~ msgstr "Ditt ZyGrib lösenord"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "zytcurrent Login"
+#~ msgstr "Ditt ZyGrib användarnamn"

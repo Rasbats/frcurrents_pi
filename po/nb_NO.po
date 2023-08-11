@@ -1,0 +1,1542 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenCPN 3.3.1006\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"PO-Revision-Date: 2013-10-14 23:57+0100\n"
+"Last-Translator: Frode Lynum <post@opencpn.kb-h.com>\n"
+"Language-Team: OpenCPN Norge <post@opencpn.kb-h.com>\n"
+"Language: Norsk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+#
+#, fuzzy
+msgid "/Settings/tcurrent"
+msgstr "Strøm"
+#
+msgid "???"
+msgstr ""
+#
+msgid "About Tidal Arrows"
+msgstr ""
+#
+msgid "About these Tidal Arrows"
+msgstr ""
+#
+msgid "Choose Date/Time"
+msgstr ""
+#
+msgid "Display tidal direction"
+msgstr ""
+#
+msgid "Display tidal rates (knots)"
+msgstr ""
+#
+msgid "Fill Colour"
+msgstr ""
+#
+msgid "HARMONIC"
+msgstr ""
+#
+msgid "HW"
+msgstr ""
+#
+msgid "HW +6"
+msgstr ""
+#
+msgid "HW -6"
+msgstr ""
+#
+msgid "HW+1"
+msgstr ""
+#
+msgid "HW+2"
+msgstr ""
+#
+msgid "HW+3"
+msgstr ""
+#
+msgid "HW+4"
+msgstr ""
+#
+msgid "HW+5"
+msgstr ""
+#
+msgid "HW+6"
+msgstr ""
+#
+msgid "HW-1"
+msgstr ""
+#
+msgid "HW-2"
+msgstr ""
+#
+msgid "HW-3"
+msgstr ""
+#
+msgid "HW-4"
+msgstr ""
+#
+msgid "HW-5"
+msgstr ""
+#
+msgid "HW-6"
+msgstr ""
+#
+msgid "High Water"
+msgstr ""
+#
+msgid "LOC"
+msgstr ""
+#
+msgid "LW"
+msgstr ""
+#
+msgid "Next"
+msgstr "Neste"
+#
+msgid "No Tidal Data"
+msgstr ""
+#
+msgid "No tidal data"
+msgstr ""
+#
+msgid "No tidal data for this port"
+msgstr ""
+#
+msgid "No tidal data found"
+msgstr ""
+#
+msgid "None"
+msgstr ""
+#
+msgid "Now"
+msgstr "Nå"
+#
+msgid "Please choose a new date"
+msgstr ""
+#
+msgid "Port finder"
+msgstr ""
+#
+msgid "Port not found"
+msgstr ""
+#
+#
+#, fuzzy
+msgid "Preferences"
+msgstr "GRIB alternativer"
+#
+msgid "Previous"
+msgstr "Forrige"
+#
+msgid "Select High Water"
+msgstr ""
+#
+msgid "Standard Port"
+msgstr ""
+#
+#, fuzzy
+msgid "Tidal Current Control"
+msgstr "GRIB visningskontroll"
+#
+msgid "Tidal Data"
+msgstr ""
+#
+msgid ""
+"Tidal Data for UKHO Tidal Diamonds\n"
+"--------------------------------------------------------------\n"
+"The standard OpenCPN distribution has tidal data for the\n"
+"following ports, which this plugin uses:\n"
+"\n"
+"PLYMOUTH (DEVONPORT)\n"
+"PORTSMOUTH\n"
+"DOVER\n"
+"SHEERNESS\n"
+"LOWESTOFT\n"
+"IMMINGHAM\n"
+"LEITH\n"
+"ABERDEEN\n"
+"WICK\n"
+"LERWICK\n"
+"ULLAPOOL\n"
+"LIVERPOOL (GLADSTONE DOCK)\n"
+"HOLYHEAD\n"
+"MILFORD HAVEN\n"
+"PORT OF BRISTOL (AVONMOUTH)\n"
+"ST. HELIER\n"
+"\n"
+"Use this data with caution.\n"
+"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
+"\n"
+"--------------------------------------------------------------------\n"
+"\n"
+"Note: 1 Rates shown are for a position corresponding to the centre\n"
+"of the base of the arrow. Tidal rate is shown as knots.\n"
+"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
+"Stream Atlases. This is based on the average range for the day\n"
+msgstr ""
+#
+#
+#
+msgid "UTC"
+msgstr "UTC"
+#
+msgid "Using Tide/Current data from:  "
+msgstr ""
+#
+#, fuzzy
+msgid "tcurrent"
+msgstr "Strøm"
+#
+#, fuzzy
+msgid "tcurrent PlugIn for OpenCPN"
+msgstr "GRIB utvidelse for OpenCPN"
+#
+msgid ""
+"tcurrent PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n"
+"\n"
+"\t\t\t   "
+msgstr ""
+#
+#, fuzzy
+msgid "tcurrent Settings"
+msgstr "GRIB innstillinger"
+#
+#, fuzzy
+msgid "tcurrentPort"
+msgstr "Strøm"
+#
+#, fuzzy
+msgid "tcurrentUseDirection"
+msgstr "GRIB innstillinger"
+#
+msgid "tcurrentUseFillColour"
+msgstr ""
+#
+#, fuzzy
+msgid "tcurrentUseRate"
+msgstr "Strøm"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid " (Dup)"
+#~ msgstr " (Dup)"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Action"
+#~ msgstr "Utfør"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Air Temp"
+#~ msgstr "Luft temp"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Air Temperature(2m)"
+#~ msgstr "Luft temperatur"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Barbed Arrows"
+#~ msgstr "Spisse piler"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Building Isobar map"
+#~ msgstr "Bygger isobarkart"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Celcius"
+#~ msgstr "Celcius"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Cloud"
+#~ msgstr "Sky"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Cloud Cover"
+#~ msgstr "Skydekke"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Colors"
+#~ msgstr "Farger"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Copy First Cumulative Missing Record"
+#~ msgstr "Kopier første manglende kumulative registrering"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Copy Missing Wave Records"
+#~ msgstr "Kopier manglende bølgeregistrering"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Current"
+#~ msgstr "Strøm"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Data Display Preferences"
+#~ msgstr "GRIB innstillinger"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Days"
+#~ msgstr "Dager"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Deg"
+#~ msgstr " Gra"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Direction Arrows"
+#~ msgstr "Retningspiler"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Display"
+#~ msgstr "Vis"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Display Iso CAPE"
+#~ msgstr "Vis"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Display Isobars"
+#~ msgstr "Vis"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Display Isotachs"
+#~ msgstr "Vis"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Error"
+#~ msgstr "Feil"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Error:  Can't read this File!"
+#~ msgstr "Feil: Kan ikke lese filen!"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Error:  File does not exist!"
+#~ msgstr "Feil: Filen eksisterer ikke"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Error:  No valid data in this file!"
+#~ msgstr "Feil: Kan ikke lese filen!"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Fahrenheit"
+#~ msgstr "Fahrenheit"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Failed to send mail message"
+#~ msgstr "Kunne ikke sende epost melding"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Feet"
+#~ msgstr "Fot"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "GRIB"
+#~ msgstr "GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "GRIB File Directory"
+#~ msgstr "GRIB fil katalog"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Generic"
+#~ msgstr "Generisk"
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Grib"
+#~ msgstr "GRIB"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Inches"
+#~ msgstr "Tommer"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Interpolate between tcurrents"
+#~ msgstr "Interpoler mellom GRIB'er"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Interval"
+#~ msgstr "Intervall"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "IsoBars"
+#~ msgstr "Isobarer"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "KPH"
+#~ msgstr "KMT"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Knots"
+#~ msgstr "Knop"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Local Time"
+#~ msgstr "Lokaltid"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Loop Mode"
+#~ msgstr "Gjentaknings modus"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "M/S"
+#~ msgstr "M/S"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "MAIL Error: MAPI32.DLL is not installed or invalid on this computer!"
+#~ msgstr "Mapi er ikke installert eller virker ikke på denne maskinen"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "MPH"
+#~ msgstr "MPT"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Mail"
+#~ msgstr "epost"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Mail To "
+#~ msgstr "epost til"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Meters"
+#~ msgstr "Meter"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "MilliBars"
+#~ msgstr "Millibar"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Millimeters"
+#~ msgstr "Millimeter"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "MyLabel"
+#~ msgstr "MittMerke"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "N/A"
+#~ msgstr "N/A"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Numbers"
+#~ msgstr "Nummer"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Open File"
+#~ msgstr "Åpne fil"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "OpenCpn failed to logon! Please verify your eMail environment"
+#~ msgstr "OpenCPN klarte ikke å logge inn! Vennligst sjekk ditt epost system"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Overlay Transparency"
+#~ msgstr "Overleggskart"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "OverlayMap"
+#~ msgstr "Overleggskart"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Parameters"
+#~ msgstr "Parametre"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Percentage"
+#~ msgstr "Prosentvis"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Period"
+#~ msgstr "Periode"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Play"
+#~ msgstr "Spill"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view invisible overlays:"
+#~ msgstr "Vennligst Zoom ut eller Skaler ut for å vise skjulte "
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
+#~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte SJØTEMP GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
+#~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte SJØSTRØM GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
+#~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte SJØSTRØM GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
+#~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte SJØTEMP GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
+#~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte CRAIN GRIB"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Precipitation"
+#~ msgstr "Nedbør"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Pressure"
+#~ msgstr "Trykk"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Pressure (MSL)"
+#~ msgstr "Lufttrykk, mb"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Quickscat"
+#~ msgstr "Quickscat"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Rainfall"
+#~ msgstr "Regn"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Range"
+#~ msgstr "Rekkevidde"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Ref : "
+#~ msgstr "Ref : "
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Request"
+#~ msgstr "Forespørsel"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Request Pofile"
+#~ msgstr "Forespør profil"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Resolution"
+#~ msgstr "Oppløsning"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Sea Temp"
+#~ msgstr "Sjøtemp"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Sea Temperature(surf.)"
+#~ msgstr "Havtemperatur"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "SeaTemp"
+#~ msgstr "Havtemp"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Select a tcurrent file"
+#~ msgstr "Velg en GRIB fil"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Send"
+#~ msgstr "Send"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Settings"
+#~ msgstr "Innstillinger"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Show GRIB icon"
+#~ msgstr "Vis GRIB ikon"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Sign.Wave Height"
+#~ msgstr "Signifikant bølgehøyde, m"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Size"
+#~ msgstr "Størrelse"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Slices per Update"
+#~ msgstr "Stykker per oppdatering"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Slices per hour"
+#~ msgstr "Stykker per time"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Spacing"
+#~ msgstr "Mellomrom"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Stop"
+#~ msgstr "Stopp"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Time Range"
+#~ msgstr "Rekkevidde"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Units"
+#~ msgstr "Enheter"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Updates per Second"
+#~ msgstr "Oppdateringer per sekund"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Use Gradual Colors"
+#~ msgstr "Bruk gradiente farger"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Use High Definition Graphics"
+#~ msgstr "Benytt HD grafikk"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
+#~ msgstr "ADVARSEL:  QuickSCAT GRIB data er %d timer gammel."
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Waves"
+#~ msgstr "Bølge"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "WavesModel"
+#~ msgstr "Modell"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Wind"
+#~ msgstr "Vind"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Wind Direction(10m)"
+#~ msgstr "Vindretning"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Wind Gust"
+#~ msgstr "Vindkast"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Wind Scat"
+#~ msgstr "Vindscat"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Wind Speed and Direction(10m)"
+#~ msgstr "Vindretning"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "Wind Speed(10m)"
+#~ msgstr "Vindhastighet, Knop"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your request is ready. An email is prepared in your email environment. \n"
+#~ "You have just to verify and send it...\n"
+#~ "Save or Cancel to finish...or Continue..."
+#~ msgstr ""
+#~ "Din forespørsel er klar. En epost er klargjort i din epostleser.\n"
+#~ "Du trenger kun å klikke 'send' for å sende den.\n"
+#~ "OK for å gå videre..."
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid ""
+#~ "Your request was sent \n"
+#~ "(if your system has an MTA configured and is able to send email).\n"
+#~ "Save or Cancel to finish...or Continue..."
+#~ msgstr ""
+#~ "Din forespørsel ble sendt (hvis ditt system har en MTA konfigurert og kan "
+#~ "sende epost).\n"
+#~ "OK for å gå videre..."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "Zone"
+#~ msgstr "Sone"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "eMail error"
+#~ msgstr "epost feil"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "mmHG"
+#~ msgstr "mmHG"
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "playback"
+#~ msgstr "avspilling"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "tcdata"
+#~ msgstr " data"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "tcurrent Data at Cursor"
+#~ msgstr "GRIB data ved kursor"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid ""
+#~ "tcurrent PlugIn for OpenCPN\n"
+#~ "Provides basic tcurrent file overlay capabilities for several tcurrent "
+#~ "file types.\n"
+#~ "\n"
+#~ "Supported tcurrent file types include:\n"
+#~ "- wind direction and speed\n"
+#~ "- significant wave height\n"
+#~ "- sea surface temperature\n"
+#~ "- surface current direction and speed."
+#~ msgstr ""
+#~ "GRIB utvidelse for OpenCPN\n"
+#~ "Gir enkel GRIBfil overlegg mulighet for flere typer GRIB filer.\n"
+#~ "\n"
+#~ "Støttede GRIB filer inkluderer:\n"
+#~ "- Vindretning og fart\n"
+#~ "- Signifikant bølgehøyde\n"
+#~ "- Sjøoverflate temperatur\n"
+#~ "- Overflate strøm, retning og fart."
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "tcurrent Preferences"
+#~ msgstr "GRIB innstillinger"
