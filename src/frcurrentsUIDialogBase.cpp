@@ -141,9 +141,9 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	bSizerMain->Add( bSizer5, 0, wxEXPAND, 5 );
 
 	wxStaticBoxSizer* sbSizer61;
-	sbSizer61 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tide Harmonics IDX File") ), wxVERTICAL );
+	sbSizer61 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tide Harmonics IDX Directory") ), wxVERTICAL );
 
-	m_button7 = new wxButton( sbSizer61->GetStaticBox(), wxID_ANY, _("Select File"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button7 = new wxButton( sbSizer61->GetStaticBox(), wxID_ANY, _("Select Directory"), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer61->Add( m_button7, 0, wxALL, 5 );
 
 	m_dirPicker1 = new wxTextCtrl( sbSizer61->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
