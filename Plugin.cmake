@@ -63,8 +63,6 @@ set(SRC
             src/icons.cpp
             src/tcmgr.cpp
             src/tcmgr.h
-            src/tcSample.xml
-
             src/tinyxml.h
             src/tinyxml.cpp
             src/tinyxmlparser.cpp
