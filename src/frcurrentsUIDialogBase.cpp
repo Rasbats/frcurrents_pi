@@ -16,8 +16,30 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	wxBoxSizer* bSizerMain;
 	bSizerMain = new wxBoxSizer( wxVERTICAL );
 
+	wxStaticBoxSizer* sbSizer71;
+	sbSizer71 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Area") ), wxHORIZONTAL );
+
+	wxString m_choiceAreaChoices[] = { _("557"), _("558"), _("559"), _("560"), _("561"), _("562"), _("563"), _("564"), _("564") };
+	int m_choiceAreaNChoices = sizeof( m_choiceAreaChoices ) / sizeof( wxString );
+	m_choiceArea = new wxChoice( sbSizer71->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceAreaNChoices, m_choiceAreaChoices, 0 );
+	m_choiceArea->SetSelection( 0 );
+	m_choiceArea->SetToolTip( _("Select tidal area") );
+
+	sbSizer71->Add( m_choiceArea, 0, wxALL, 5 );
+
+
+	sbSizer71->Add( 0, 0, 1, wxEXPAND, 5 );
+
+	m_button8 = new wxButton( sbSizer71->GetStaticBox(), wxID_ANY, _("Help - Areas"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button8->SetFont( wxFont( 10, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Arial") ) );
+
+	sbSizer71->Add( m_button8, 0, wxALL, 5 );
+
+
+	bSizerMain->Add( sbSizer71, 0, wxEXPAND, 5 );
+
 	wxStaticBoxSizer* sbSizer6;
-	sbSizer6 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Standard Port") ), wxVERTICAL );
+	sbSizer6 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Standard Ports") ), wxVERTICAL );
 
 	wxArrayString m_choice1Choices;
 	m_choice1 = new wxChoice( sbSizer6->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice1Choices, 0 );

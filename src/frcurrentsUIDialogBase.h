@@ -16,15 +16,15 @@
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
+#include <wx/button.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
+#include <wx/icon.h>
 #include <wx/sizer.h>
 #include <wx/statbox.h>
 #include <wx/datectrl.h>
 #include <wx/dateevt.h>
 #include <wx/textctrl.h>
-#include <wx/button.h>
-#include <wx/bitmap.h>
-#include <wx/image.h>
-#include <wx/icon.h>
 #include <wx/bmpbuttn.h>
 #include <wx/stattext.h>
 #include <wx/statline.h>
@@ -45,6 +45,7 @@ class frcurrentsUIDialogBase : public wxDialog
 	private:
 
 	protected:
+		wxButton* m_button8;
 		wxDatePickerCtrl* m_datePicker1;
 		wxButton* m_button55;
 		wxChoice* m_choice2;
@@ -80,6 +81,7 @@ class frcurrentsUIDialogBase : public wxDialog
 
 
 	public:
+		wxChoice* m_choiceArea;
 		wxChoice* m_choice1;
 		wxTextCtrl* m_textCtrlCoefficient;
 		wxTextCtrl* m_dirPicker1;
