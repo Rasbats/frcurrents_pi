@@ -43,7 +43,18 @@
     <BMVE>1.5</BMVE>
     <IDX>PAIMPOL, France</IDX>
   </Table1>
-     <Table1>
+    <Table1>
+    <PORT_NUMBER>563</PORT_NUMBER>
+    <PORT_NAME>ROSCOFF, France</PORT_NAME>
+    <LAT>48.718694</LAT>
+    <LON>-3.965694</LON>
+    <PMVE>8.9</PMVE>
+    <PMME>7.1</PMME>
+    <BMME>3.4</BMME>
+    <BMVE>1.3</BMVE>
+    <IDX>ROSCOFF, France</IDX>
+  </Table1>
+    <Table1>
     <PORT_NUMBER>564</PORT_NUMBER>
     <PORT_NAME>CHERBOURG, France</PORT_NAME>
     <LAT>49.651167</LAT>
@@ -64,16 +75,5 @@
     <BMME>2.0</BMME>
     <BMVE>0.9</BMVE>
     <IDX>CONCARNEAU, France</IDX>
-  </Table1>
-    <Table1>
-    <PORT_NUMBER>0012</PORT_NUMBER>
-    <PORT_NAME>CHERBOURG, France</PORT_NAME>
-    <LAT>49.649998</LAT>
-    <LON>-1.63330</LON>
-    <PMVE>6.45</PMVE>
-    <PMME>5.1</PMME>
-    <BMME>2.60</BMME>
-    <BMVE>1.15</BMVE>
-    <IDX>CHERBOURG, France</IDX>
   </Table1>
 </DocumentElement>
