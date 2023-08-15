@@ -1699,8 +1699,7 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
 			input.GetFile()->Close();
 			//wxMessageBox(filePort);
 			if (filePort == tidePort) {
-				ParseCurrentsFile(shareLocn);
-				return;
+				ParseCurrentsFile(shareLocn);				
 			}
     }
 }

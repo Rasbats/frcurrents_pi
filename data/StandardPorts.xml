@@ -11,6 +11,17 @@
     <IDX>SAINT-MALO, France</IDX>
   </Table1>
     <Table1>
+    <PORT_NUMBER>562</PORT_NUMBER>
+    <PORT_NAME>PAIMPOL, France</PORT_NAME>
+    <LAT>48.790333</LAT>
+    <LON>-2.955333</LON>
+    <PMVE>10.95</PMVE>
+    <PMME>8.45</PMME>
+    <BMME>4.0</BMME>
+    <BMVE>1.5</BMVE>
+    <IDX>PAIMPOL, France</IDX>
+  </Table1>
+    <Table1>
     <PORT_NUMBER>557</PORT_NUMBER>
     <PORT_NAME>CALAIS, France</PORT_NAME>
     <LAT>50.946698</LAT>
