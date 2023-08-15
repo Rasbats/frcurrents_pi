@@ -184,7 +184,7 @@ public:
 	wxString         g_SData_Locn;
 	TCMgr           *ptcmgr;
 	 wxString m_FolderSelected;
-
+	 double m_coeff;
 
 private:
     void OnClose( wxCloseEvent& event );
@@ -198,37 +198,43 @@ private:
 	void SetCorrectHWSelection();
 	void OnDateSelChanged(wxDateEvent& event);
 	void OnPortChanged(wxCommandEvent& event);
+	void OnPortListed();
 	void SetDateForNowButton();
 	
 	wxString FindPortXMLUsingChoice(wxString inPortName);
-	int  FindPortIDUsingChoice(wxString inPortName);
+	
+	int FindPortIDUsingChoice(wxString inPortName);
+	int FindTidePortUsingChoice(wxString inAreaNumber);
+
 	void OnSelectData(wxCommandEvent& event);
-  void LoadTCMFile();
+	void LoadTCMFile();
 	void LoadHarmonics();
 	int  FindPortID(wxString myPort);
 	bool LoadStandardPorts();
 	bool OpenXML();
-  void OnXML(wxCommandEvent& event);
-  void OnFile(wxCommandEvent& event);
-  void OnFileNames(wxCommandEvent& event); 
-	void GetCurrentsData();
+	void OnXML(wxCommandEvent& event);
+	void OnFile(wxCommandEvent& event);
+	void OnAreaHelp(wxCommandEvent& event);
+	void OnAreaSelected(wxCommandEvent& event);
+	void OnFileNames(wxCommandEvent& event); 
+	void GetCurrentsData(wxString areaFolder);
 	void ParseCurrentsFile(wxString infile); 
-  void ParseCurrentsVE(wxString inCurrents);
-  void ParseCurrentsME(wxString inCurrents);
+	void ParseCurrentsVE(wxString inCurrents);
+	void ParseCurrentsME(wxString inCurrents);
 	
 	void OnChooseTideButton(wxCommandEvent& event);
 	void OnPrev( wxCommandEvent& event );
-  void OnNext( wxCommandEvent& event );
+    void OnNext( wxCommandEvent& event );
 	void About(wxCommandEvent& event);
 	// Time/HW
 	int myPortCode;
 	void SetTimeFactors();
 	bool btc_valid;
-  int m_stationOffset_mins;
-  int m_diff_mins;
-  wxString m_stz;
-  int m_t_graphday_GMT;
-  wxDateTime m_graphday;
+	int m_stationOffset_mins;
+	int m_diff_mins;
+	wxString m_stz;
+	int m_t_graphday_GMT;
+	wxDateTime m_graphday;
 	int m_tzoneDisplay;
 
 	//

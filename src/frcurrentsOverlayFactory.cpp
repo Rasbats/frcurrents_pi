@@ -439,11 +439,17 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 
 					mDecLon = mLon.Mid(1, 1);
 					mBitLon = mLon.Mid(2);
+				}else {
+				    mDecLon = mLon.Mid(0, 1);
+					mBitLon = mLon.Mid(1);
 				}
 				mDecLon.ToDouble(&decValue1);
 				mBitLon.ToDouble(&value);
-
-				lonF = -1 * (decValue1 + value/60);
+				if (mLon.Mid(0, 1) == "-") {
+					lonF = -1 * (decValue1 + value / 60);
+				}else {
+					lonF = (decValue1 + value / 60);
+				}
 
 				wxString showlon = wxString::Format("%f", lonF);
         //wxMessageBox(showlon);
@@ -496,11 +502,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 					int mm_per_knot = 10;
 					float current_draw_scaler = mm_per_knot * m_pix_per_mm * 100 / 100.0;
 
-					double coefficient = m_dlg.CalcCoefficient(m_dlg.myRange);
-
-					wxString coeff = wxString::Format("%2.0f", coefficient);
-					m_dlg.m_textCtrlCoefficient->SetValue("   Coeff: " + coeff);
-
+					double coefficient = m_dlg.m_coeff;
 
 					myCurrent = m_dlg.CalcCurrent(95,45,m_spdSpring/10,m_spdNeap/10,coefficient);
 					if (myCurrent == 0 || myCurrent < 0)

@@ -44,9 +44,9 @@
      inkscape:window-height="786"
      id="namedview94"
      showgrid="false"
-     inkscape:zoom="24.544922"
-     inkscape:cx="12"
-     inkscape:cy="14.027851"
+     inkscape:zoom="15.316607"
+     inkscape:cx="16.247423"
+     inkscape:cy="11.416306"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -289,42 +289,6 @@
       </feComponentTransfer>
     </filter>
   </defs>
-  <g
-     id="Document"
-     font-size="16"
-     style="font-size:16px;font-family:'Times New Roman';fill:none;stroke:#000000"
-     transform="translate(0.07627119,18.076271)">
-    <g
-       id="Spread"
-       transform="translate(0,-18)">
-      <g
-         id="Layer 1">
-        <path
-           d="m 25.057,9.418 h 24 v -24 h -24 v 24"
-           id="path81"
-           inkscape:connector-curvature="0"
-           style="stroke:none" />
-        <path
-           d="m 33.471,-1.769 c 0,2.241 1.88,4.06 4.196,4.06 2.316,0 4.196,-1.819 4.196,-4.06 0,-2.241 -1.88,-4.06 -4.196,-4.06 -2.316,0 -4.196,1.819 -4.196,4.06 z"
-           stroke-miterlimit="79.8403193612775"
-           id="path83"
-           inkscape:connector-curvature="0"
-           style="fill:#800000;fill-opacity:0;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:79.84031677;stroke-opacity:0.85097997;marker-start:none;marker-end:none" />
-        <path
-           d="M 18.001,0 V 18.001 H 0 V 0 Z"
-           stroke-miterlimit="79.8403193612775"
-           id="path85"
-           inkscape:connector-curvature="0"
-           style="fill:#282828;stroke:none;stroke-width:0.75;stroke-linejoin:miter;stroke-miterlimit:79.84031677;marker-start:none;marker-end:none" />
-        <path
-           d="m 4.9,1.848 -3.045,3.042 8.57,8.582 -0.903,0.901 6.624,1.779 -1.772,-6.627 -0.906,0.904 z"
-           stroke-miterlimit="79.8403193612775"
-           id="path87"
-           inkscape:connector-curvature="0"
-           style="stroke:#b4b4b4;stroke-width:0.75;stroke-linejoin:miter;stroke-miterlimit:79.84031677;marker-start:none;marker-end:none" />
-      </g>
-    </g>
-  </g>
   <text
      xml:space="preserve"
      style="font-size:14px;line-height:1.25;fill:#282828;stroke-width:0.37575001"
@@ -369,15 +333,40 @@
        x="9.8696585"
        y="11.120927"
        style="stroke-width:0.37575001" /></text>
+  <path
+     style="fill:#282828;fill-opacity:1;stroke-width:0.03270959"
+     d=""
+     id="path3785"
+     inkscape:connector-curvature="0"
+     transform="scale(0.75)" />
+  <path
+     transform="scale(0.75)"
+     inkscape:connector-curvature="0"
+     id="path3793"
+     d=""
+     style="fill:#282828;fill-opacity:1;stroke-width:0.03270959" />
+  <rect
+     style="fill:#1a1a1a;fill-opacity:1;stroke-width:0.37575001"
+     id="rect3795"
+     width="18.166555"
+     height="18.11759"
+     x="-0.04896646"
+     y="-0.019657155" />
+  <path
+     d="m 4.9094337,2.0828802 -3.0449999,3.0419999 8.5699992,8.5819999 -0.9029997,0.901 6.6239997,1.779 -1.772,-6.6270002 -0.906,0.9040002 z"
+     stroke-miterlimit="79.8403193612775"
+     id="path87"
+     inkscape:connector-curvature="0"
+     style="font-size:16px;font-family:'Times New Roman';fill:none;stroke:#b4b4b4;stroke-width:0.75;stroke-linejoin:miter;stroke-miterlimit:79.84031677;marker-start:none;marker-end:none" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#b4b4b4;fill-opacity:1;stroke-width:0.37575001"
-     x="8.7085228"
-     y="5.2886133"
-     id="text3778"><tspan
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#f9f9f9;fill-opacity:1;stroke-width:0.37575001"
+     x="5.924942"
+     y="8.5984402"
+     id="text3805"><tspan
        sodipodi:role="line"
-       id="tspan3776"
-       x="8.7085228"
-       y="5.2886133"
-       style="fill:#b4b4b4;fill-opacity:1;stroke-width:0.37575001">FR</tspan></text>
+       id="tspan3803"
+       x="5.924942"
+       y="8.5984402"
+       style="font-size:8px;fill:#f9f9f9;stroke-width:0.37575001">FR</tspan></text>
 </svg>

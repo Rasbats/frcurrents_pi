@@ -180,7 +180,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow *parent, frcurrents_pi *ppi)
 	m_choice1->SetStringSelection(m_PortSelected);  // from opencpn.ini
    
 	OpenFile();	// Set up variables
-	OnStartSetupHW(); // Set up the HW control and information text controls
+	//OnStartSetupHW(); // Set up the HW control and information text controls
 }
 
 frcurrentsUIDialog::~frcurrentsUIDialog()
@@ -194,7 +194,7 @@ frcurrentsUIDialog::~frcurrentsUIDialog()
 		pConf->Write ( _ ( "frcurrentsUseDirection" ), m_bUseDirection );
 		pConf->Write ( _ ( "frcurrentsUseFillColour" ), m_bUseFillColour );
 
-		int c = m_choice1->GetSelection();
+		int c = m_choice1->GetCurrentSelection();
 		wxString myP = m_choice1->GetString(c);
 		pConf->Write ( _ ( "frcurrentsPort" ), myP );  
 		pConf->Write ( _ ( "frcurrentsFolder" ), m_FolderSelected);
@@ -293,11 +293,14 @@ void frcurrentsUIDialog::OnStartSetupHW()
 {
    	
 	sbSizer7->Show(false);
-	int m = m_choice1->GetSelection();
+	
+	int ma = m_choiceArea->GetCurrentSelection();
+	wxString sa = m_choiceArea->GetString(ma);
+
+	int m = m_choice1->GetCurrentSelection();
 	wxString s = m_choice1->GetString(m);
+	//wxMessageBox(s);
 	m_portXML = FindPortXMLUsingChoice(s);
-
-
 
 	if (m_portXML ==  _T(""))
 	{
@@ -319,7 +322,7 @@ void frcurrentsUIDialog::OnStartSetupHW()
 	else
 	{
 	  CalcHW(i);
-		GetCurrentsData();
+		GetCurrentsData(sa);
 		SetCorrectHWSelection();
 		myDateSelection = m_choice2->GetSelection();	
 		wxString st_mydate = m_choice2->GetString(myDateSelection);
@@ -330,6 +333,9 @@ void frcurrentsUIDialog::OnStartSetupHW()
 		m_staticText2->SetLabel(displayDate);
 		m_staticText211->SetLabel(_("High Water"));
 		button_id = 6;
+
+		//TODO add CalcCoefficient
+
 		return;
 	}			
 						
@@ -462,7 +468,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event)
 	//    Clear the Choice ListBox
 	m_choice2->Clear();
 
-	int m = m_choice1->GetSelection();
+	int m = m_choice1->GetCurrentSelection();
 	wxString s = m_choice1->GetString(m);
 
 	int i = FindPortIDUsingChoice(s);
@@ -473,7 +479,10 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event)
 		return;
 	}
 	CalcHW(i);
-	GetCurrentsData();
+	m_coeff = CalcCoefficient(myRange);
+	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
+	m_textCtrlCoefficient->SetValue(s_coeff);
+	GetCurrentsData(s);
 	SetCorrectHWSelection();
 
 	RequestRefresh(pParent);
@@ -485,29 +494,59 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event)
 	m_staticText2->SetLabel(_T("  "));
 	m_staticText211->SetLabel(_T("  "));
 
-	int m = m_choice1->GetSelection();
-	wxString s = m_choice1->GetString(m);
+	int ma = m_choiceArea->GetCurrentSelection();
+	wxString sa = m_choiceArea->GetString(ma);
 
-	 int i = FindPortIDUsingChoice(s);
-	 if (i == 0)
-	 {		 
-		 m_choice2->Clear();
-		 wxMessageBox(_("No tidal data found"),_("Tidal Data"));
-		 return;
-	 }
-	 else
-	 {   
-		CalcHW(i);
-		GetCurrentsData();
-		SetCorrectHWSelection();
-	 }
+	int m = m_choice1->GetCurrentSelection();
+	wxString s = m_choice1->GetString(m);
+	//wxMessageBox(s);
+    int i = FindPortIDUsingChoice(s);
+	CalcHW(i);
+
+	m_coeff = CalcCoefficient(myRange);
+	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
+	m_textCtrlCoefficient->SetValue(s_coeff);
+
+	GetCurrentsData(sa);
+	SetCorrectHWSelection();
+	 
 }
+
+void frcurrentsUIDialog::OnPortListed()
+{	 
+	 
+	m_staticText2->SetLabel(_T("  "));
+	m_staticText211->SetLabel(_T("  "));
+
+	int ma = m_choiceArea->GetCurrentSelection();
+	wxString sa = m_choiceArea->GetString(ma);
+
+
+	int m = m_choice1->GetCurrentSelection();
+	wxString s = m_choice1->GetString(m);
+	//wxMessageBox(s);
+    int i = FindPortIDUsingChoice(s);
+	CalcHW(i);
+
+	m_coeff = CalcCoefficient(myRange);
+	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
+	m_textCtrlCoefficient->SetValue(s_coeff);
+
+	GetCurrentsData(sa);
+	SetCorrectHWSelection();
+	 
+}
+
 
 
 void frcurrentsUIDialog::SetDateForNowButton()
 {
 	wxDateTime this_now = wxDateTime::Now();
     m_datePicker1->SetValue(this_now);
+
+	int ma = m_choiceArea->GetCurrentSelection();
+	wxString sa = m_choiceArea->GetString(ma);
+
 
 	int m = m_choice1->GetSelection();
 	wxString string = m_choice1->GetString(m);
@@ -536,8 +575,13 @@ void frcurrentsUIDialog::SetDateForNowButton()
 	else
 	{
         		    		
-	CalcHW(id);	
-	GetCurrentsData();
+	CalcHW(id);
+
+	m_coeff = CalcCoefficient(myRange);
+	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
+	m_textCtrlCoefficient->SetValue(s_coeff);
+
+	GetCurrentsData(sa);
 	int i, c, s, t, t1, t2, t10, t20;
 	wxDateTime d1,d2, d10, d20;
 
@@ -594,7 +638,12 @@ void frcurrentsUIDialog::SetDateForNowButton()
 			myDate.Add(myOneDay);
 			m_datePicker1->SetValue(myDate);
 			CalcHW(id);
-			GetCurrentsData();
+
+			m_coeff = CalcCoefficient(myRange);
+			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
+			m_textCtrlCoefficient->SetValue(s_coeff);
+
+			GetCurrentsData(sa);
 			m_choice2->SetSelection(0);
 			return;
 		}
@@ -605,7 +654,12 @@ void frcurrentsUIDialog::SetDateForNowButton()
 			myDate.Subtract(myOneDay);
 			m_datePicker1->SetValue(myDate);
 			CalcHW(id);
-			GetCurrentsData();
+
+			m_coeff = CalcCoefficient(myRange);
+			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
+			m_textCtrlCoefficient->SetValue(s_coeff);
+
+			GetCurrentsData(sa);
 			c = m_choice2->GetCount();
 			m_choice2->SetSelection(c-1);
 			return;
@@ -675,7 +729,8 @@ wxString frcurrentsUIDialog::FindPortXMLUsingChoice(wxString inPortName)
 
 			if (myPortTides.m_portName == s)
 			{
-				return myPortTides.m_portID;						
+				
+				return myPortTides.m_IDX;						
 			}
 
 			i++;
@@ -684,34 +739,58 @@ wxString frcurrentsUIDialog::FindPortXMLUsingChoice(wxString inPortName)
 		return _T("");
 }
 
+int frcurrentsUIDialog::FindTidePortUsingChoice(wxString inAreaNumber){
+	
+	int i;	
+	wxString s = inAreaNumber;
+	PortTides myPortTides;
+
+	m_choice1->Clear();
+
+	i = 0;
+	for(std::vector<StandardPort>::iterator it = my_ports.begin();  it != my_ports.end(); it++){
+           
+		myPortTides.m_portID = (*it).PORT_NUMBER; 
+		myPortTides.m_portName = (*it).PORT_NAME; 
+		myPortTides.m_IDX = (*it).IDX; 
+
+		if (myPortTides.m_portID == s) {
+			//wxMessageBox(myPortTides.m_portName);
+			m_choice1->Append(myPortTides.m_portName);
+		}
+		i++;
+	}
+	m_choice1->SetSelection(0);
+	RequestRefresh(pParent);
+    return 0;
+		
+}
+
 int frcurrentsUIDialog::FindPortIDUsingChoice(wxString inPortName)
 {
 	int i;	
 	wxString s = inPortName;
 	PortTides myPortTides;
-
+//wxMessageBox(inPortName);
 	i = 0;
-		for(std::vector<StandardPort>::iterator it = my_ports.begin();  it != my_ports.end(); it++){
-           
-			myPortTides.m_portID = (*it).PORT_NUMBER; 
-			myPortTides.m_portName = (*it).PORT_NAME; 
-			myPortTides.m_portLat = (*it).LAT; 
-			myPortTides.m_portLon = (*it).LON; 
+	for (std::vector<StandardPort>::iterator it = my_ports.begin(); it != my_ports.end(); it++) {
 
-			myPortTides.m_IDX = (*it).IDX; 
-			//wxMessageBox(myPortTides.m_IDX);
-			if (myPortTides.m_portName == s){
-				
-				//
-				return FindPortID(myPortTides.m_portName);
-                                
-			} else {
-               wxMessageBox("port not found");
-							 return 0;
-            }
-			
-			i++;
+
+		myPortTides.m_portID = (*it).PORT_NUMBER;
+		myPortTides.m_portName = (*it).PORT_NAME;
+		myPortTides.m_portLat = (*it).LAT;
+		myPortTides.m_portLon = (*it).LON;
+
+		myPortTides.m_IDX = (*it).IDX;
+		//wxMessageBox(myPortTides.m_portName);
+		if (myPortTides.m_portName == s) {
+			//wxMessageBox(myPortTides.m_portName, "in findPortID");
+			i = FindPortID(myPortTides.m_portName);
+			return i;
 		}
+	}				
+                                
+
   return 0;
 }
 
@@ -797,17 +876,18 @@ void frcurrentsUIDialog::LoadTCMFile()
     TCDir.Append(wxFileName::GetPathSeparator());
     wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
 
-	wxString default_tcdata0 = TCDir + _T("harmonics-dwf-20210110-free.tcd");
+//	wxString default_tcdata0 = TCDir + _T("harmonics-dwf-20210110-free.tcd");
 	wxString default_tcdata1 = TCDir + "HARMONIC.IDX";
 	wxLogMessage(default_tcdata1);
 
-	if (!TideCurrentDataSet.GetCount()) {
-		TideCurrentDataSet.Add(default_tcdata0);
+	//if (!TideCurrentDataSet.GetCount()) {
+		//TideCurrentDataSet.Add(default_tcdata0);
 		TideCurrentDataSet.Add(default_tcdata1);
-	}
+	//}
+	/*
 	else{
 		wxMessageBox("Cannot add TideCurrentDataSet");
-	}
+	}*/
 }
 
 int frcurrentsUIDialog::FindPortID(wxString myPort)
@@ -815,7 +895,7 @@ int frcurrentsUIDialog::FindPortID(wxString myPort)
             			
 	//int c = ptcmgr->Get_max_IDX();
 	//wxString mystring = wxString::Format("%i", c);
-	//wxMessageBox(mystring);
+	//wxMessageBox(myPort);
 
 	const IDX_entry* pIDX;
 	for (int i = 1; i < ptcmgr->Get_max_IDX() + 1; i++) {
@@ -825,6 +905,8 @@ int frcurrentsUIDialog::FindPortID(wxString myPort)
 		//wxString mystring = wxString::FromUTF8(&name);
 		if (locnx == myPort) {
 			//wxMessageBox(locnx);
+			wxString ind = wxString::Format("%i", i);
+			//wxMessageBox(ind, "index");
 			return i;
 		}
 
@@ -919,110 +1001,111 @@ void frcurrentsUIDialog::CalcHW(int PortCode){
 	const IDX_entry *pIDX = ptcmgr->GetIDX_entry ( PortCode );
 
 	//if (strchr("Tt", pIDX->IDX_type)) 
-		m_plot_type = TIDE_PLOT;
+	m_plot_type = TIDE_PLOT;
 
 	// Establish the inital drawing day as today
     m_graphday = m_datePicker1->GetValue();
-        //Get the timezone of the station
-        int h = m_stationOffset_mins;
-				h /= 60;
-		m_stz.Printf(_T("Z %+03d"), h);
-		m_staticText1->SetLabel(m_stz);
-		//
-		float dir;
-		float tcmax, tcmin;
-    tcmax = -10;
-    tcmin = 10;
-    float val = -100;
-		int list_index = 0 ;
-		int array_index = 0;
-		wxString sHWLW = _T("");
-		int e = 0;
-		double myLW, myHW;
-    bool wt = false;
+    //Get the timezone of the station
+    int h = m_stationOffset_mins;
+			h /= 60;
+	m_stz.Printf(_T("Z %+03d"), h);
+	m_staticText1->SetLabel(m_stz);
+	//
+	float dir;
+	float tcmax, tcmin;
+	tcmax = -10;
+	tcmin = 10;
+	float val = -100;
+	int list_index = 0 ;
+	int array_index = 0;
+	wxString sHWLW = _T("");
+	int e = 0;
+	double myLW, myHW;
+	bool wt = false;
 	bool gotHW = false;
 	Station_Data* pmsd;
-		int i;
-		float tcv[26];
-    time_t tt_tcv[26];
-		myHeightHW = 0;
-		myHeightLW = 0;
+	int i;
+	float tcv[26];
+	time_t tt_tcv[26];
+	myHeightHW = 0;
+	myHeightLW = 0;
 
-		  // The tide/current modules calculate values based on PC local time
-      // We want UTC, so adjust accordingly
-      int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
+	// The tide/current modules calculate values based on PC local time
+    // We want UTC, so adjust accordingly
+    int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
 
-      // get tide flow sens ( flood or ebb ? )
-      ptcmgr->GetTideFlowSens(tt_localtz, BACKWARD_TEN_MINUTES_STEP,
-                              pIDX->IDX_rec_num, tcv[0], val, wt);
-      //if (m_tzoneDisplay == 0)
-			tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
+    // get tide flow sens ( flood or ebb ? )
+    ptcmgr->GetTideFlowSens(tt_localtz, BACKWARD_TEN_MINUTES_STEP,
+                            pIDX->IDX_rec_num, tcv[0], val, wt);
+    //if (m_tzoneDisplay == 0)
+	tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
 
-			for (i = 0; i < 26; i++) {
-				int tt = tt_localtz + (i * FORWARD_ONE_HOUR_STEP);
+	for (i = 0; i < 26; i++) {
+		int tt = tt_localtz + (i * FORWARD_ONE_HOUR_STEP);
 
-				ptcmgr->GetTideOrCurrent(tt, pIDX->IDX_rec_num, tcv[i], dir);
-				tt_tcv[i] = tt;  // store the corresponding time_t value
-				if (tcv[i] > tcmax) tcmax = tcv[i];
+		ptcmgr->GetTideOrCurrent(tt, pIDX->IDX_rec_num, tcv[i], dir);
+		tt_tcv[i] = tt;  // store the corresponding time_t value
+		if (tcv[i] > tcmax) tcmax = tcv[i];
 
-				if (tcv[i] < tcmin) tcmin = tcv[i];
-				if (TIDE_PLOT == m_plot_type) {
-					if (!((tcv[i] > val) == wt) && (i > 0))  // if tide flow sense change
-					{
-						float tcvalue;  // look backward for HW or LW
-						time_t tctime;
-						ptcmgr->GetHightOrLowTide(tt, BACKWARD_TEN_MINUTES_STEP,
-							BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
-							pIDX->IDX_rec_num, tcvalue, tctime);
-						if (tctime > tt_localtz) {  // Only show events visible in graphic
-							// presently shown
-							wxDateTime tcd;           // write date
-							wxString s, s1, s2;
-							tcd.Set(tctime - (m_diff_mins * 60));
+		if (tcv[i] < tcmin) tcmin = tcv[i];
+		if (TIDE_PLOT == m_plot_type) {
+			if (!((tcv[i] > val) == wt) && (i > 0))  // if tide flow sense change
+			{
+				float tcvalue;  // look backward for HW or LW
+				time_t tctime;
+				ptcmgr->GetHightOrLowTide(tt, BACKWARD_TEN_MINUTES_STEP,
+					BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
+					pIDX->IDX_rec_num, tcvalue, tctime);
+				if (tctime > tt_localtz) {  // Only show events visible in graphic
+					// presently shown
+					wxDateTime tcd;           // write date
+					wxString s, s1, s2;
+					tcd.Set(tctime - (m_diff_mins * 60));
 
-							//if (m_tzoneDisplay == 0)  // LMT @ Station
-							tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
-							s2 = tcd.Format ( _T( "%A %d %B %Y"));
-							s.Printf(tcd.Format(_T("%H:%M  ")));
-							s1.Printf(_T("%05.2f "), tcvalue);  // write value
-							s.Append(s1);
-							pmsd = pIDX->pref_sta_data;  // write unit
-							if (pmsd) s.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
-							s.Append(_T("   "));
+					//if (m_tzoneDisplay == 0)  // LMT @ Station
+					tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
+					s2 = tcd.Format ( _T( "%A %d %B %Y"));
+					s.Printf(tcd.Format(_T("%H:%M  ")));
+					s1.Printf(_T("%05.2f "), tcvalue);  // write value
+					s.Append(s1);
+					pmsd = pIDX->pref_sta_data;  // write unit
+					if (pmsd) s.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
+					s.Append(_T("   "));
 							
-							(wt) ? sHWLW = "HW" : sHWLW = "LW";  // write HW or LT		
-              // Fill the array with tide data
-							euTC[array_index][0] = s2 + _T(" ") + s;													  													
-							euTC[array_index][1] = s1;
-							euTC[array_index][2] = wxString(pmsd->units_abbrv ,wxConvUTF8);
-							euTC[array_index][3] = sHWLW;
+					(wt) ? sHWLW = "HW" : sHWLW = "LW";  // write HW or LT		
+					// Fill the array with tide data
+					euTC[array_index][0] = s2 + _T(" ") + s;													  													
+					euTC[array_index][1] = s1;
+					euTC[array_index][2] = wxString(pmsd->units_abbrv ,wxConvUTF8);
+					euTC[array_index][3] = sHWLW;
 
-							if (euTC[array_index][3] == "LW") 
-							{
-								if(gotHW) myLW = tcvalue;
-							}
-													  
-							if (euTC[array_index][3] == "HW") 
-							{
-								gotHW = true;
-								myHW = tcvalue;
-								myHeightHW = myHW;
-								myHeightLW = myLW;
-								myRange = myHW - myLW;
-
-								m_choice2->Insert(euTC[array_index][0],list_index); 
-								// nearestHW for the now button
-								nearestHW[e] = euTC[array_index][0];
-								e++;														
-								list_index++;
-							}  
-						}
-						array_index++;
-						wt = !wt;  // change tide flow sens
+					if (euTC[array_index][3] == "LW") 
+					{
+						if(gotHW) myLW = tcvalue;
 					}
-					val = tcv[i];
+													  
+					if (euTC[array_index][3] == "HW") 
+					{
+						gotHW = true;
+						myHW = tcvalue;
+						myHeightHW = myHW;
+						myHeightLW = myLW;
+
+						myRange = myHW - myLW; //Used for CalcCoefficient
+
+						m_choice2->Insert(euTC[array_index][0],list_index); 
+						// nearestHW for the now button
+						nearestHW[e] = euTC[array_index][0];
+						e++;														
+						list_index++;
+					}  
 				}
+				array_index++;
+				wt = !wt;  // change tide flow sens
 			}
+			val = tcv[i];
+		}
+	}			
 }
 
 double frcurrentsUIDialog::CalcCurrent(double VE, double ME, double spRate, double npRate, double coefficient)
@@ -1050,30 +1133,30 @@ double frcurrentsUIDialog::CalcCoefficient(double m_rangeOnDay)
 {
 	int m = m_choice1->GetSelection();
 	wxString s = m_choice1->GetString(m);
-  StandardPort myCPort = PopulatePortTides(s);
-  wxString getvalue;
+	StandardPort myCPort = PopulatePortTides(s);
+	wxString getvalue;
 	double PMVE, PMME, BMVE, BMME;
-  double value;
+	double value;
 
-  getvalue = myCPort.BMME;
-  //wxMessageBox(myCPort.BMME, "BMME testing");
+	getvalue = myCPort.BMME;
+	//wxMessageBox(myCPort.BMME, "BMME testing");
 	getvalue.ToDouble(&value);
-  BMME = value;
+	BMME = value;
 
 	getvalue = myCPort.BMVE;
 	//wxMessageBox(myCPort.BMVE, "BMVE testing");
-  getvalue.ToDouble(&value);
-  BMVE = value;
+	getvalue.ToDouble(&value);
+	BMVE = value;
 
 	getvalue = myCPort.PMME;
 	//wxMessageBox(myCPort.PMME, "PMME testing");
-  getvalue.ToDouble(&value);
-  PMME = value;
+	getvalue.ToDouble(&value);
+	PMME = value;
 	
 	getvalue = myCPort.PMVE;
 	//wxMessageBox(myCPort.PMVE, "PMVE testing");
-  getvalue.ToDouble(&value);
-  PMVE = value;
+	getvalue.ToDouble(&value);
+	PMVE = value;
 
 	double x; 
 	double U;
@@ -1289,14 +1372,14 @@ bool frcurrentsUIDialog::LoadStandardPorts()
 			int c = my_ports.size();
 		//	wxString s = wxString::Format("%i", c);
 		//	wxMessageBox(s);
-
+/*
 	for(std::vector<StandardPort>::iterator it = my_ports.begin();  it != my_ports.end(); it++)
 	{           
 			wxPortName[i][1] = (*it).PORT_NAME;
 			m_choice1->Append(wxPortName[i][1]);
 			i++;
-	}	
-	m_choice1->SetSelection( 0 );
+	}	*/
+	//m_choice1->SetSelection( 0 );
     return true;
 }
 
@@ -1435,7 +1518,7 @@ void frcurrentsUIDialog::OnXML(wxCommandEvent& event)
     fn.SetFullName("json.xml");
 
     wxString shareLocn = fn.GetFullPath();
-    wxMessageBox(shareLocn);
+    //wxMessageBox(shareLocn);
 
     TiXmlDocument doc;
     int i = 0;
@@ -1482,7 +1565,24 @@ void frcurrentsUIDialog::OnXML(wxCommandEvent& event)
 
 }
 
+void frcurrentsUIDialog::OnAreaHelp(wxCommandEvent& event){
 
+	wxMessageBox("Not yet implemented");
+
+}
+
+void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
+
+	int a = 0;
+	int an = 0;
+	a = m_choiceArea->GetSelection();
+	wxString s = m_choiceArea->GetString(a);	
+
+	FindTidePortUsingChoice(s);
+
+	OnPortListed();
+
+}
 void frcurrentsUIDialog::OnFile(wxCommandEvent& event) {
 
     wxFileName fn;
@@ -1532,14 +1632,15 @@ void frcurrentsUIDialog::OnFileNames(wxCommandEvent& event)
  myCoefficient = CalcCoefficient(Range);  
 	
  wxString out = wxString::Format("%f", myCoefficient);
- wxMessageBox(out);
+ //wxMessageBox(out);
 
 //	GetCurrents("562", "GOLFE_NORMAND_BRETON_562");
 }
 
-void frcurrentsUIDialog::GetCurrentsData()
+void frcurrentsUIDialog::GetCurrentsData(wxString areaFolder)
 {
-	GetCurrents("562", "GOLFE_NORMAND_BRETON_562");
+	wxString area = areaFolder;
+	GetCurrents(area, "");
 }
 
 
@@ -1567,20 +1668,41 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
         cont = dir.GetNext(&ffilename);
     }
 
-		wxString result;
-my_positions.clear();
+	wxString result;
+	my_positions.clear();
+	int linenum = 0;
+
+	int p = m_choice1->GetCurrentSelection();		// Get the port selected
+	wxString s = m_choice1->GetString(p);
+
+	int t = 0;
+	wxString token[2];
+	wxStringTokenizer tokenizer(s.Trim(), ",");
+	while (tokenizer.HasMoreTokens()) {
+		token[t] = tokenizer.GetNextToken();
+		t++;
+	}
+	wxString tidePort = token[0];
+	wxString filePort;
+	//wxMessageBox(tidePort);
+
     for (int i = 0; i < filenames.size(); i++) {
         result = filenames.Item(i);
        // wxMessageBox(result);
         //if (result == filename) {
             wxString shareLocn = fn.GetFullPath() + fn.GetPathSeparator() + result;   
 			      //wxMessageBox(shareLocn);
-				  
-            ParseCurrentsFile(shareLocn);
-        //}
+			wxFileInputStream input(shareLocn);
+			wxTextInputStream text(input);
+			wxString line = text.ReadLine();
+			filePort = line.MakeUpper().Trim();
+			input.GetFile()->Close();
+			//wxMessageBox(filePort);
+			if (filePort == tidePort) {
+				ParseCurrentsFile(shareLocn);
+				return;
+			}
     }
-
-
 }
 
 void frcurrentsUIDialog::ParseCurrentsFile(wxString infile) { 
@@ -1918,6 +2040,10 @@ void frcurrentsUIDialog::OnPrev( wxCommandEvent& event )
 	
 	button_id = back_id;
 
+	int ma = m_choiceArea->GetCurrentSelection();
+	wxString sa = m_choiceArea->GetString(ma);
+
+
 	myDateSelection = m_choice2->GetSelection();
 	st_mydate = m_choice2->GetString(myDateSelection);
 	
@@ -1945,7 +2071,12 @@ void frcurrentsUIDialog::OnPrev( wxCommandEvent& event )
 			int f = FindPortIDUsingChoice(s);
 			
 			CalcHW(f);
-			GetCurrentsData();
+
+			m_coeff = CalcCoefficient(myRange);
+			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
+			m_textCtrlCoefficient->SetValue(s_coeff);
+
+			GetCurrentsData(sa);
 			c = m_choice2->GetCount();
 			m_myChoice = c-1;
 			m_choice2->SetSelection(m_myChoice);
@@ -2032,6 +2163,9 @@ void frcurrentsUIDialog::OnNext( wxCommandEvent& event )
 
 	// Test if we have gone beyond the current list of HW.
 	//
+	int ma = m_choiceArea->GetCurrentSelection();
+	wxString sa = m_choiceArea->GetString(ma);
+
 	int c = m_choice2->GetCount();
 	myDateSelection = m_choice2->GetSelection();
 	st_mydate = m_choice2->GetString(myDateSelection);
@@ -2062,8 +2196,13 @@ void frcurrentsUIDialog::OnNext( wxCommandEvent& event )
 			m_portXML = FindPortXMLUsingChoice(s);
 			int f = FindPortIDUsingChoice(s);
 			
-			CalcHW(f);			
-			GetCurrentsData();
+			CalcHW(f);	
+
+			m_coeff = CalcCoefficient(myRange);
+			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
+			m_textCtrlCoefficient->SetValue(s_coeff);
+
+			GetCurrentsData(sa);
 			m_myChoice = 0;
 			m_choice2->SetSelection(m_myChoice);
 		}
