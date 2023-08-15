@@ -1706,7 +1706,6 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
 
 void frcurrentsUIDialog::ParseCurrentsFile(wxString infile) { 
 	//wxMessageBox(infile);
-	
 	int linenum = 0;
 	int line2 = 2;
 	int line3 = 3;
@@ -1723,7 +1722,7 @@ void frcurrentsUIDialog::ParseCurrentsFile(wxString infile) {
 //			wxString show10 = wxString::Format("%i", linenum);
 //			wxMessageBox(show10);
 			s = 0;
-			wxStringTokenizer tokenizer(line.Trim(), " ");        
+			wxStringTokenizer tokenizer(line.Trim());        
 			while (tokenizer.HasMoreTokens()) {
 				token[s] = tokenizer.GetNextToken();
 				s++;

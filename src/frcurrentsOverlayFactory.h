@@ -27,6 +27,7 @@
 #include <map>
 #include <wx/string.h>
 #include "tcmgr.h"
+#include "wx/tokenzr.h"
 
 
 using namespace std;

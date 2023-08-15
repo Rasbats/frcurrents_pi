@@ -402,6 +402,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 		   wxString mDecLat;
 
 		   wxString mLon;
+		   wxString mFirstLon;
 		   wxString mBitLon;
 		   wxString mDecLon;
 
@@ -436,12 +437,23 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 				m_len = mLon.Len();
 				
 				if (mLon.Mid(0, 1) == "-") {
-
-					mDecLon = mLon.Mid(1, 1);
-					mBitLon = mLon.Mid(2);
+					if (mLon.length() == 6 || mLon.length() == 7) {
+						mDecLon = "0";
+						mBitLon = mLon.Mid(1);
+					}
+					else {
+						mDecLon = mLon.Mid(1, 1);
+						mBitLon = mLon.Mid(2);
+					}
 				}else {
-				    mDecLon = mLon.Mid(0, 1);
-					mBitLon = mLon.Mid(1);
+					if (mLon.length() == 5 || mLon.length() == 6) {
+						mDecLon = "0";
+						mBitLon = mLon;
+					}
+					else {
+						mDecLon = mLon.Mid(0, 1);
+						mBitLon = mLon.Mid(1);
+					}
 				}
 				mDecLon.ToDouble(&decValue1);
 				mBitLon.ToDouble(&value);

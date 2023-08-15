@@ -1,5 +1,27 @@
 ﻿<DocumentElement>
     <Table1>
+    <PORT_NUMBER>557</PORT_NUMBER>
+    <PORT_NAME>CALAIS, France</PORT_NAME>
+    <LAT>50.946698</LAT>
+    <LON>-1.850000</LON>
+    <PMVE>7.3</PMVE>
+    <PMME>6.05</PMME>
+    <BMME>2.05</BMME>
+    <BMVE>0.8</BMVE>
+    <IDX>CALAIS, France</IDX>
+  </Table1>
+    <Table1>
+    <PORT_NUMBER>557</PORT_NUMBER>
+    <PORT_NAME>BOULOGNE-SUR-MER, France</PORT_NAME>
+    <LAT>50.72745</LAT>
+    <LON>1.5777</LON>
+    <PMVE>9.0</PMVE>
+    <PMME>7.3</PMME>
+    <BMME>2.7</BMME>
+    <BMVE>1.15</BMVE>
+    <IDX>BOULOGNE-SUR-MER, France</IDX>
+  </Table1>
+    <Table1>
     <PORT_NUMBER>562</PORT_NUMBER>
     <PORT_NAME>SAINT-MALO, France</PORT_NAME>
     <LAT>48.633297</LAT>
@@ -21,27 +43,16 @@
     <BMVE>1.5</BMVE>
     <IDX>PAIMPOL, France</IDX>
   </Table1>
-    <Table1>
-    <PORT_NUMBER>557</PORT_NUMBER>
-    <PORT_NAME>CALAIS, France</PORT_NAME>
-    <LAT>50.946698</LAT>
-    <LON>-1.850000</LON>
-    <PMVE>7.3</PMVE>
-    <PMME>6.05</PMME>
-    <BMME>2.05</BMME>
-    <BMVE>0.8</BMVE>
-    <IDX>CALAIS, France</IDX>
-  </Table1>
-    <Table1>
-    <PORT_NUMBER>557</PORT_NUMBER>
-    <PORT_NAME>BOULOGNE-SUR-MER, France</PORT_NAME>
-    <LAT>50.72745</LAT>
-    <LON>1.5777</LON>
-    <PMVE>9.0</PMVE>
-    <PMME>7.3</PMME>
-    <BMME>2.7</BMME>
+     <Table1>
+    <PORT_NUMBER>564</PORT_NUMBER>
+    <PORT_NAME>CHERBOURG, France</PORT_NAME>
+    <LAT>49.651167</LAT>
+    <LON>-1.6355</LON>
+    <PMVE>6.45</PMVE>
+    <PMME>5,1</PMME>
+    <BMME>2.6</BMME>
     <BMVE>1.15</BMVE>
-    <IDX>BOULOGNE-SUR-MER, France</IDX>
+    <IDX>CHERBOURG, France</IDX>
   </Table1>
     <Table1>
     <PORT_NUMBER>0011</PORT_NUMBER>
