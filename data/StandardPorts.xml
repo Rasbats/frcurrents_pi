@@ -1,5 +1,5 @@
 ﻿<DocumentElement>
-   <Table1> 
+   <Table1>
   <PORT_NUMBER>557</PORT_NUMBER>
     <PORT_NAME>CALAIS, France</PORT_NAME>
     <LAT>50.946698</LAT>
@@ -20,7 +20,7 @@
     <BMME>1.5</BMME>
     <BMVE>0.6</BMVE>
     <IDX>DUNKERQUE, France</IDX>
-  </Table1>	   
+  </Table1>
     <Table1>
     <PORT_NUMBER>557</PORT_NUMBER>
     <PORT_NAME>BOULOGNE-SUR-MER, France</PORT_NAME>
@@ -45,15 +45,15 @@
   </Table1>
       <Table1>
     <PORT_NUMBER>558</PORT_NUMBER>
-    <PORT_NAME>PORT-TUDY, France</PORT_NAME>
+    <PORT_NAME>ILE de GROIX (Port Tudy), France</PORT_NAME>
     <LAT>47.39</LAT>
     <LON>-3.27</LON>
     <PMVE>5.2</PMVE>
     <PMME>4.15</PMME>
     <BMME>2.10</BMME>
     <BMVE>0.95</BMVE>
-    <IDX>PORT-TUDY, France</IDX>
-  </Table1>  
+    <IDX>ILE de GROIX (Port Tudy), France</IDX>
+  </Table1>
          <Table1>
     <PORT_NUMBER>558</PORT_NUMBER>
     <PORT_NAME>PORT-NAVALO, France</PORT_NAME>
@@ -64,7 +64,7 @@
     <BMME>1.9</BMME>
     <BMVE>0.7</BMVE>
     <IDX>PORT-NAVALO, France</IDX>
-  </Table1> 
+  </Table1>
       <Table1>
     <PORT_NUMBER>559</PORT_NUMBER>
     <PORT_NAME>LES SABLES-D'OLONNE, France</PORT_NAME>
@@ -75,7 +75,7 @@
     <BMME>2.15</BMME>
     <BMVE>0.85</BMVE>
     <IDX>LES SABLES-D'OLONNE, France</IDX>
-  </Table1> 
+  </Table1>
       <Table1>
     <PORT_NUMBER>559</PORT_NUMBER>
     <PORT_NAME>LA ROCHELLE - LA PALLICE, France</PORT_NAME>
@@ -86,7 +86,7 @@
     <BMME>2.50</BMME>
     <BMVE>1.0</BMVE>
     <IDX>LA ROCHELLE - LA PALLICE, France</IDX>
-  </Table1> 
+  </Table1>
          <Table1>
     <PORT_NUMBER>559</PORT_NUMBER>
     <PORT_NAME>SAINT-NAZAIRE, France</PORT_NAME>
@@ -97,7 +97,7 @@
     <BMME>2.25</BMME>
     <BMVE>0.85</BMVE>
     <IDX>SAINT-NAZAIRE, France</IDX>
-  </Table1>   
+  </Table1>
        <Table1>
     <PORT_NUMBER>559</PORT_NUMBER>
     <PORT_NAME>POINTE DE GRAVE, France</PORT_NAME>
@@ -108,7 +108,7 @@
     <BMME>2.10</BMME>
     <BMVE>1.10</BMVE>
     <IDX>POINTE DE GRAVE, France</IDX>
-  </Table1>   
+  </Table1>
        <Table1>
     <PORT_NUMBER>560</PORT_NUMBER>
     <PORT_NAME>BREST, France</PORT_NAME>
@@ -119,7 +119,7 @@
     <BMME>2.70</BMME>
     <BMVE>1.15</BMVE>
     <IDX>BREST, France</IDX>
-  </Table1> 
+  </Table1>
       <Table1>
     <PORT_NUMBER>561</PORT_NUMBER>
     <PORT_NAME>CHERBOURG, France</PORT_NAME>
@@ -141,8 +141,8 @@
     <BMME>2.95</BMME>
     <BMVE>1.25</BMVE>
     <IDX>LE HAVRE, France</IDX>
-  </Table1>  
-	<Table1>
+  </Table1>
+    <Table1>
     <PORT_NUMBER>562</PORT_NUMBER>
     <PORT_NAME>SAINT-MALO, France</PORT_NAME>
     <LAT>48.633297</LAT>
