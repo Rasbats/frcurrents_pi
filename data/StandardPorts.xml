@@ -1,6 +1,6 @@
 ﻿<DocumentElement>
-    <Table1>
-    <PORT_NUMBER>557</PORT_NUMBER>
+   <Table1> 
+  <PORT_NUMBER>557</PORT_NUMBER>
     <PORT_NAME>CALAIS, France</PORT_NAME>
     <LAT>50.946698</LAT>
     <LON>-1.850000</LON>
@@ -10,6 +10,17 @@
     <BMVE>0.8</BMVE>
     <IDX>CALAIS, France</IDX>
   </Table1>
+      <Table1>
+    <PORT_NUMBER>557</PORT_NUMBER>
+    <PORT_NAME>DUNKERQUE, France</PORT_NAME>
+    <LAT>51.039995</LAT>
+    <LON>2.346700</LON>
+    <PMVE>6.05</PMVE>
+    <PMME>5.0</PMME>
+    <BMME>1.5</BMME>
+    <BMVE>0.6</BMVE>
+    <IDX>DUNKERQUE, France</IDX>
+  </Table1>	   
     <Table1>
     <PORT_NUMBER>557</PORT_NUMBER>
     <PORT_NAME>BOULOGNE-SUR-MER, France</PORT_NAME>
@@ -21,7 +32,117 @@
     <BMVE>1.15</BMVE>
     <IDX>BOULOGNE-SUR-MER, France</IDX>
   </Table1>
-    <Table1>
+      <Table1>
+    <PORT_NUMBER>558</PORT_NUMBER>
+    <PORT_NAME>CONCARNEAU, France</PORT_NAME>
+    <LAT>47.875500</LAT>
+    <LON>-3.92070</LON>
+    <PMVE>5.1</PMVE>
+    <PMME>4.0</PMME>
+    <BMME>2.0</BMME>
+    <BMVE>0.9</BMVE>
+    <IDX>CONCARNEAU, France</IDX>
+  </Table1>
+      <Table1>
+    <PORT_NUMBER>558</PORT_NUMBER>
+    <PORT_NAME>PORT-TUDY, France</PORT_NAME>
+    <LAT>47.39</LAT>
+    <LON>-3.27</LON>
+    <PMVE>5.2</PMVE>
+    <PMME>4.15</PMME>
+    <BMME>2.10</BMME>
+    <BMVE>0.95</BMVE>
+    <IDX>PORT-TUDY, France</IDX>
+  </Table1>  
+         <Table1>
+    <PORT_NUMBER>558</PORT_NUMBER>
+    <PORT_NAME>PORT-NAVALO, France</PORT_NAME>
+    <LAT>47.55300</LAT>
+    <LON>-2.90520</LON>
+    <PMVE>05.05</PMVE>
+    <PMME>4.0</PMME>
+    <BMME>1.9</BMME>
+    <BMVE>0.7</BMVE>
+    <IDX>PORT-NAVALO, France</IDX>
+  </Table1> 
+      <Table1>
+    <PORT_NUMBER>559</PORT_NUMBER>
+    <PORT_NAME>LES SABLES-D'OLONNE, France</PORT_NAME>
+    <LAT>46.50</LAT>
+    <LON>-1.80</LON>
+    <PMVE>05.35</PMVE>
+    <PMME>4.30</PMME>
+    <BMME>2.15</BMME>
+    <BMVE>0.85</BMVE>
+    <IDX>LES SABLES-D'OLONNE, France</IDX>
+  </Table1> 
+      <Table1>
+    <PORT_NUMBER>559</PORT_NUMBER>
+    <PORT_NAME>LA ROCHELLE - LA PALLICE, France</PORT_NAME>
+    <LAT>46.166695</LAT>
+    <LON>-1.21670</LON>
+    <PMVE>6.10</PMVE>
+    <PMME>4.95</PMME>
+    <BMME>2.50</BMME>
+    <BMVE>1.0</BMVE>
+    <IDX>LA ROCHELLE - LA PALLICE, France</IDX>
+  </Table1> 
+         <Table1>
+    <PORT_NUMBER>559</PORT_NUMBER>
+    <PORT_NAME>SAINT-NAZAIRE, France</PORT_NAME>
+    <LAT>47.277400</LAT>
+    <LON>-2.21700</LON>
+    <PMVE>5.90</PMVE>
+    <PMME>4.70</PMME>
+    <BMME>2.25</BMME>
+    <BMVE>0.85</BMVE>
+    <IDX>SAINT-NAZAIRE, France</IDX>
+  </Table1>   
+       <Table1>
+    <PORT_NUMBER>559</PORT_NUMBER>
+    <PORT_NAME>POINTE DE GRAVE, France</PORT_NAME>
+    <LAT>45.566700</LAT>
+    <LON>-1.06670</LON>
+    <PMVE>5.30</PMVE>
+    <PMME>4.35</PMME>
+    <BMME>2.10</BMME>
+    <BMVE>1.10</BMVE>
+    <IDX>POINTE DE GRAVE, France</IDX>
+  </Table1>   
+       <Table1>
+    <PORT_NUMBER>560</PORT_NUMBER>
+    <PORT_NAME>BREST, France</PORT_NAME>
+    <LAT>48.383297</LAT>
+    <LON>-4.50</LON>
+    <PMVE>7.05</PMVE>
+    <PMME>5.50</PMME>
+    <BMME>2.70</BMME>
+    <BMVE>1.15</BMVE>
+    <IDX>BREST, France</IDX>
+  </Table1> 
+      <Table1>
+    <PORT_NUMBER>561</PORT_NUMBER>
+    <PORT_NAME>CHERBOURG, France</PORT_NAME>
+    <LAT>49.649998</LAT>
+    <LON>-1.63330</LON>
+    <PMVE>6.45</PMVE>
+    <PMME>5.10</PMME>
+    <BMME>2.60</BMME>
+    <BMVE>1.15</BMVE>
+    <IDX>CHERBOURG, France</IDX>
+  </Table1>
+      <Table1>
+    <PORT_NUMBER>561</PORT_NUMBER>
+    <PORT_NAME>LE HAVRE, France</PORT_NAME>
+    <LAT>49.4833</LAT>
+    <LON>0.1167</LON>
+    <PMVE>8.00</PMVE>
+    <PMME>6.70</PMME>
+    <BMME>2.95</BMME>
+    <BMVE>1.25</BMVE>
+    <IDX>LE HAVRE, France</IDX>
+  </Table1>  
+	<Table1>
     <PORT_NUMBER>562</PORT_NUMBER>
     <PORT_NAME>SAINT-MALO, France</PORT_NAME>
     <LAT>48.633297</LAT>
@@ -46,34 +167,34 @@
     <Table1>
     <PORT_NUMBER>563</PORT_NUMBER>
     <PORT_NAME>ROSCOFF, France</PORT_NAME>
-    <LAT>48.718694</LAT>
-    <LON>-3.965694</LON>
-    <PMVE>8.9</PMVE>
-    <PMME>7.1</PMME>
-    <BMME>3.4</BMME>
-    <BMVE>1.3</BMVE>
+    <LAT>48.716698</LAT>
+    <LON>-3.97670</LON>
+    <PMVE>8.90</PMVE>
+    <PMME>7.10</PMME>
+    <BMME>3.40</BMME>
+    <BMVE>1.30</BMVE>
     <IDX>ROSCOFF, France</IDX>
   </Table1>
-    <Table1>
+      <Table1>
     <PORT_NUMBER>564</PORT_NUMBER>
     <PORT_NAME>CHERBOURG, France</PORT_NAME>
-    <LAT>49.651167</LAT>
-    <LON>-1.6355</LON>
+    <LAT>49.649998</LAT>
+    <LON>-1.63330</LON>
     <PMVE>6.45</PMVE>
-    <PMME>5,1</PMME>
-    <BMME>2.6</BMME>
+    <PMME>5.10</PMME>
+    <BMME>2.60</BMME>
     <BMVE>1.15</BMVE>
     <IDX>CHERBOURG, France</IDX>
   </Table1>
-    <Table1>
-    <PORT_NUMBER>0011</PORT_NUMBER>
+      <Table1>
+    <PORT_NUMBER>565</PORT_NUMBER>
     <PORT_NAME>CONCARNEAU, France</PORT_NAME>
     <LAT>47.875500</LAT>
     <LON>-3.92070</LON>
-    <PMVE>5.1</PMVE>
-    <PMME>4.0</PMME>
-    <BMME>2.0</BMME>
-    <BMVE>0.9</BMVE>
+    <PMVE>5.10</PMVE>
+    <PMME>4.00</PMME>
+    <BMME>2.00</BMME>
+    <BMVE>0.90</BMVE>
     <IDX>CONCARNEAU, France</IDX>
   </Table1>
 </DocumentElement>

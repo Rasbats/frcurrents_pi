@@ -19,7 +19,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	wxStaticBoxSizer* sbSizer71;
 	sbSizer71 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Area") ), wxHORIZONTAL );
 
-	wxString m_choiceAreaChoices[] = { _("557"), _("558"), _("559"), _("560"), _("561"), _("562"), _("563"), _("564") };
+	wxString m_choiceAreaChoices[] = { _("557"), _("558"), _("559"), _("560"), _("561"), _("562"), _("563"), _("564"), _("565") };
 	int m_choiceAreaNChoices = sizeof( m_choiceAreaChoices ) / sizeof( wxString );
 	m_choiceArea = new wxChoice( sbSizer71->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceAreaNChoices, m_choiceAreaChoices, 0 );
 	m_choiceArea->SetSelection( 0 );
