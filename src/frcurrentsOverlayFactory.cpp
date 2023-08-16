@@ -517,6 +517,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 					double coefficient = m_dlg.m_coeff;
 
 					myCurrent = m_dlg.CalcCurrent(95,45,m_spdSpring/10,m_spdNeap/10,coefficient);
+					if (isnan(myCurrent)) myCurrent = 0.0;
 					if (myCurrent == 0 || myCurrent < 0)
 						myCurrent = 00.001;
 

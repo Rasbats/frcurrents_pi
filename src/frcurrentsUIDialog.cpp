@@ -1114,6 +1114,7 @@ double frcurrentsUIDialog::CalcCurrent(double VE, double ME, double spRate, doub
 	m = (VE - ME) / (spRate - npRate);
 	c = 95 - (m * spRate);
 	x = (coefficient - c) / m;
+	if (isnan(x)) x = 0.01;
 	return x;
 
 	/*
@@ -1748,7 +1749,9 @@ void frcurrentsUIDialog::ParseCurrentsFile(wxString infile) {
 
 				testPosition.spDir[z] = vectorAngle(PMVEns[z], PMVEew[z]);
 				testPosition.spRate[z] = vectorSize(PMVEew[z], PMVEns[z]);
-
+				if (isnan(testPosition.spRate[z])) {
+					testPosition.spRate[z] = 0.01;
+				}
 			}
 		}
 		if (linenum == line4) {
@@ -1763,6 +1766,9 @@ void frcurrentsUIDialog::ParseCurrentsFile(wxString infile) {
 			for (int z = 0; z <13; z++){
 				testPosition.npDir[z] = vectorAngle(PMMEns[z], PMMEew[z]);
 				testPosition.npRate[z] = vectorSize(PMMEew[z], PMMEns[z]);
+				if (isnan(testPosition.npRate[z])) {
+					testPosition.npRate[z] = .01;
+				}
 			}
 			my_positions.push_back(testPosition);
 
