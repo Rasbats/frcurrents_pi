@@ -57,6 +57,43 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin* p)
 
 #include "icons.h"
 
+/**
+ * Load a icon, possibly using SVG
+ * Parameters
+ *  - api_name: Argument to GetPluginDataDir()
+ *  - icon_name: Base name of icon living in data/ directory. When using
+ *    SVG icon_name.svg is used, otherwise icon_name.png
+ */
+
+static wxBitmap load_plugin(const char* icon_name, const char* api_name) {
+    wxBitmap bitmap; 
+    wxFileName fn;
+    auto path = GetPluginDataDir(api_name);
+    fn.SetPath(path);
+    fn.AppendDir("data");
+    fn.SetName(icon_name);
+#ifdef ocpnUSE_SVG
+    wxLogDebug("Loading SVG icon");
+    fn.SetExt("svg");
+    const static int ICON_SIZE = 48;  // FIXME: Needs size from GUI 
+    bitmap = GetBitmapFromSVGFile(fn.GetFullPath(), ICON_SIZE, ICON_SIZE);
+#else
+    wxLogDebug("Loading png icon");
+    fn.SetExt("png");
+    path = fn.GetFullPath();
+    if (!wxImage::CanRead(path)) {
+        wxLogDebug("Initiating image handlers.");
+        wxInitAllImageHandlers();
+    }
+    wxImage panelIcon(path);
+    bitmap = wxBitmap(panelIcon);
+#endif
+    wxLogDebug("Icon loaded, result: %s", bitmap.IsOk() ? "ok" : "fail");
+    return bitmap;
+}
+
+
+
 
 //---------------------------------------------------------------------------------------------------------
 //
@@ -70,31 +107,7 @@ frcurrents_pi::frcurrents_pi(void *ppimgr)
       // Create the PlugIn icons
       initialize_images();
 
-	  wxFileName fn;
-      wxString tmp_path;
-
-      tmp_path = GetPluginDataDir("frcurrents_pi");
-      fn.SetPath(tmp_path);
-      fn.AppendDir(_T("data"));
-      fn.SetFullName("frcurrents_panel_icon.png");
-
-      wxString shareLocn = fn.GetFullPath();
-
-      wxInitAllImageHandlers();
-
-      wxLogDebug(wxString("Using icon path: ") + shareLocn);
-      if (!wxImage::CanRead(shareLocn)) {
-          wxLogDebug("Initiating image handlers.");
-          wxInitAllImageHandlers();
-      }
-
-      wxImage panelIcon(shareLocn);
-
-      if (panelIcon.IsOk())
-          m_panelBitmap = wxBitmap(panelIcon);
-      else
-          wxLogMessage(_("frcurrents panel icon has NOT been loaded"));
-
+	  m_panelBitmap = load_plugin("frcurrents_panel_icon", "frcurrents_pi");
 
 
       m_bShowfrcurrents = false;
@@ -117,7 +130,7 @@ int frcurrents_pi::Init(void)
       m_frcurrents_dialog_sy = 400;
       m_pfrcurrentsDialog = NULL;
       m_pfrcurrentsOverlayFactory = NULL;
-			m_bfrcurrentsShowIcon = true;
+	  m_bfrcurrentsShowIcon = true;
 
       ::wxDisplaySize(&m_display_width, &m_display_height);
 
@@ -135,7 +148,7 @@ int frcurrents_pi::Init(void)
       if (m_bfrcurrentsShowIcon) {
 #ifdef ocpnUSE_SVG
           m_leftclick_tool_id = InsertPlugInToolSVG(_T( "frcurrents" ),
-              _svg_frcurrents, _svg_frcurrents_rollover,
+              _svg_frcurrents, _svg_frcurrents,
               _svg_frcurrents_toggled, wxITEM_CHECK, _("frcurrents"), _T( "" ),
               NULL, frcurrents_TOOL_POSITION, 0, this);
 #else
@@ -194,10 +207,7 @@ int frcurrents_pi::GetPlugInVersionMinor()
       return PLUGIN_VERSION_MINOR;
 }
 
-wxBitmap *frcurrents_pi::GetPlugInBitmap()
-{
-      return _img_frcurrents_pi;
-}
+wxBitmap* frcurrents_pi::GetPlugInBitmap() { return &m_panelBitmap; }
 
 wxString frcurrents_pi::GetCommonName()
 {
