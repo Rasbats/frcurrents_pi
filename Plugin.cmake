@@ -27,6 +27,8 @@ set(OCPN_RELEASE_REPO
     "Default repository for tagged builds not matching 'beta'"
 )
 
+option(ocpnUSE_SVG "Use SVG graphics" ON)
+
 
 #
 #
@@ -95,6 +97,11 @@ set(PKG_API_LIB api-16)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
 macro(late_init)
   # Perform initialization after the PACKAGE_NAME library, compilers
   # and ocpn::api is available.
+    if (ocpnUSE_SVG)
+    target_compile_definitions(${PACKAGE_NAME} PUBLIC OTCURRENT_USE_SVG)
+  endif ()
+
+  add_definitions(-DocpnUSE_GL)
 
   if (QT_ANDROID)
     add_definitions(-DUSE_ANDROID_GLES2)
