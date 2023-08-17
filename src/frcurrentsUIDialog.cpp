@@ -180,7 +180,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow *parent, frcurrents_pi *ppi)
 	m_choice1->SetStringSelection(m_PortSelected);  // from opencpn.ini
    
 	OpenFile();	// Set up variables
-	//OnStartSetupHW(); // Set up the HW control and information text controls
+	OnStartSetupHW(); // Set up the HW control and information text controls
 }
 
 frcurrentsUIDialog::~frcurrentsUIDialog()
@@ -291,53 +291,15 @@ void frcurrentsUIDialog::OpenFile(bool newestFile)
 
 void frcurrentsUIDialog::OnStartSetupHW()
 {
-   	
-	sbSizer7->Show(false);
-	
-	int ma = m_choiceArea->GetCurrentSelection();
-	wxString sa = m_choiceArea->GetString(ma);
+	int a = 0;
+	int an = 0;
+	a = m_choiceArea->GetSelection();
+	wxString s = m_choiceArea->GetString(a);	
 
-	int m = m_choice1->GetCurrentSelection();
-	wxString s = m_choice1->GetString(m);
-	//wxMessageBox(s);
-	m_portXML = FindPortXMLUsingChoice(s);
+	FindTidePortUsingChoice(s);
 
-	if (m_portXML ==  _T(""))
-	{
-		wxMessageBox(_("Port not found"), _("Port finder"));
-		return;	
-	}
+	OnPortListed();
 
-	int i = FindPortIDUsingChoice(s);
-	wxString m2 = wxString::Format("%i", i);
-	//wxMessageBox(m2);
-	if (i == 0)
-	{
-		wxMessageBox(_("#1 No tidal data"));
-		m_staticText2->SetLabel(_T(""));
-		m_staticText211->SetLabel(_("High Water"));
-		button_id = 6;
-		return;
-	}
-	else
-	{
-	  CalcHW(i);
-		GetCurrentsData(sa);
-		SetCorrectHWSelection();
-		myDateSelection = m_choice2->GetSelection();	
-		wxString st_mydate = m_choice2->GetString(myDateSelection);
-		m_dt.ParseDateTime(st_mydate);
-		m_ts = wxTimeSpan::Hours(0) ;
-		wxString displayDate = m_dt.Format("%a %d %b %Y %H:%M ");
-		m_myChoice = myDateSelection;
-		m_staticText2->SetLabel(displayDate);
-		m_staticText211->SetLabel(_("High Water"));
-		button_id = 6;
-
-		//TODO add CalcCoefficient
-
-		return;
-	}			
 						
 }
 
