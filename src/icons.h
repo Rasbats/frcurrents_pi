@@ -15,6 +15,7 @@ extern wxBitmap *_img_Clock;
 
 #ifdef ocpnUSE_SVG
 extern wxString _svg_frcurrents;
+extern wxString _svg_frcurrents_rollover;
 extern wxString _svg_frcurrents_toggled;
 #endif
 

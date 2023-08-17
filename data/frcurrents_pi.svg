@@ -44,8 +44,8 @@
      inkscape:window-height="786"
      id="namedview94"
      showgrid="false"
-     inkscape:zoom="38.231687"
-     inkscape:cx="13.226369"
+     inkscape:zoom="15.316607"
+     inkscape:cx="16.247423"
      inkscape:cy="11.416306"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -352,15 +352,21 @@
      height="18.11759"
      x="-0.04896646"
      y="-0.019657155" />
+  <path
+     d="m 4.9094337,2.0828802 -3.0449999,3.0419999 8.5699992,8.5819999 -0.9029997,0.901 6.6239997,1.779 -1.772,-6.6270002 -0.906,0.9040002 z"
+     stroke-miterlimit="79.8403193612775"
+     id="path87"
+     inkscape:connector-curvature="0"
+     style="font-size:16px;font-family:'Times New Roman';fill:none;stroke:#b4b4b4;stroke-width:0.75;stroke-linejoin:miter;stroke-miterlimit:79.84031677;marker-start:none;marker-end:none" />
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#f9f9f9;fill-opacity:1;stroke-width:0.37575001"
-     x="4.3751802"
-     y="12.345332"
+     x="5.924942"
+     y="8.5984402"
      id="text3805"><tspan
        sodipodi:role="line"
        id="tspan3803"
-       x="4.3751802"
-       y="12.345332"
+       x="5.924942"
+       y="8.5984402"
        style="font-size:8px;fill:#f9f9f9;stroke-width:0.37575001">FR</tspan></text>
 </svg>
