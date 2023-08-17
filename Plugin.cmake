@@ -98,7 +98,7 @@ macro(late_init)
   # Perform initialization after the PACKAGE_NAME library, compilers
   # and ocpn::api is available.
     if (ocpnUSE_SVG)
-    target_compile_definitions(${PACKAGE_NAME} PUBLIC OTCURRENT_USE_SVG)
+    target_compile_definitions(${PACKAGE_NAME} PUBLIC ocpnUSE_SVG)
   endif ()
 
   add_definitions(-DocpnUSE_GL)
