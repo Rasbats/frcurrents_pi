@@ -9,15 +9,17 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   stroke-width="0.501"
+   stroke-linejoin="bevel"
+   fill-rule="evenodd"
    version="1.1"
    overflow="visible"
-   width="32pt"
-   height="32pt"
-   viewBox="0 0 32 32"
+   width="18pt"
+   height="18pt"
+   viewBox="0 0 18 18"
    id="svg92"
    sodipodi:docname="frcurrents_pi.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   style="overflow:visible;fill-rule:evenodd;stroke-width:0.50099999;stroke-linejoin:bevel">
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
   <metadata
      id="metadata96">
     <rdf:RDF>
@@ -26,7 +28,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -40,17 +41,16 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1073"
-     inkscape:window-height="944"
+     inkscape:window-height="786"
      id="namedview94"
      showgrid="false"
-     inkscape:zoom="5.28752"
-     inkscape:cx="1.468264"
-     inkscape:cy="49.301773"
+     inkscape:zoom="38.231687"
+     inkscape:cx="13.226369"
+     inkscape:cy="11.416306"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg92"
-     units="px" />
+     inkscape:current-layer="svg92" />
   <defs
      id="defs79">
     <marker
@@ -60,17 +60,15 @@
        markerWidth="1"
        markerHeight="1"
        overflow="visible"
-       orient="auto"
-       style="overflow:visible">
+       orient="auto">
       <!-- REF_ARROW_STRAIGHT (-2) -->
       <g
-         transform="scale(0.00925926)"
+         transform="scale(0.0092592592)"
          id="g4">
         <!-- 1/108 -->
         <path
-           d="M -9,54 V -54 L 117,0 Z"
-           id="path2"
-           inkscape:connector-curvature="0" />
+           d="M -9 54 L -9 -54 L 117 0 z"
+           id="path2" />
       </g>
     </marker>
     <marker
@@ -80,16 +78,14 @@
        markerWidth="1"
        markerHeight="1"
        overflow="visible"
-       orient="auto"
-       style="overflow:visible">
+       orient="auto">
       <!-- REF_ARROW_ANGLED -->
       <g
-         transform="scale(0.00925926)"
+         transform="scale(0.0092592592)"
          id="g9">
         <path
-           d="M -27,54 -9,0 -27,-54 135,0 Z"
-           id="path7"
-           inkscape:connector-curvature="0" />
+           d="M -27 54 L -9 0 L -27 -54 L 135 0 z"
+           id="path7" />
       </g>
     </marker>
     <marker
@@ -99,16 +95,14 @@
        markerWidth="1"
        markerHeight="1"
        overflow="visible"
-       orient="auto"
-       style="overflow:visible">
+       orient="auto">
       <!-- REF_ARROW_ROUNDED -->
       <g
-         transform="scale(0.00925926)"
+         transform="scale(0.0092592592)"
          id="g14">
         <path
-           d="m -9,0 v -45 c 0,-6.708 11.808,-11.58 18,-9 l 108,45 c 3.916,1.631 9,4.758 9,9 0,4.242 -5.084,7.369 -9,9 L 9,54 C 2.808,56.58 -9,51.708 -9,45 Z"
-           id="path12"
-           inkscape:connector-curvature="0" />
+           d="M -9,0 L -9,-45 C -9,-51.708 2.808,-56.580 9,-54 L 117,-9 C 120.916,-7.369 126.000,-4.242 126,0 C 126,4.242 120.916,7.369 117,9 L 9,54 C 2.808,56.580 -9,51.708 -9,45 z"
+           id="path12" />
       </g>
     </marker>
     <marker
@@ -118,16 +112,14 @@
        markerWidth="1"
        markerHeight="1"
        overflow="visible"
-       orient="auto"
-       style="overflow:visible">
+       orient="auto">
       <!-- REF_ARROW_SPOT -->
       <g
-         transform="scale(0.00925926)"
+         transform="scale(0.0092592592)"
          id="g19">
         <path
-           d="M -54,0 C -54,29.807 -29.807,54 0,54 29.807,54 54,29.807 54,0 54,-29.807 29.807,-54 0,-54 -29.807,-54 -54,-29.807 -54,0 Z"
-           id="path17"
-           inkscape:connector-curvature="0" />
+           d="M -54, 0 C -54,29.807 -29.807,54 0,54 C 29.807,54 54,29.807 54,0 C 54,-29.807 29.807,-54 0,-54 C -29.807,-54 -54,-29.807 -54,0 z"
+           id="path17" />
       </g>
     </marker>
     <marker
@@ -137,16 +129,14 @@
        markerWidth="1"
        markerHeight="1"
        overflow="visible"
-       orient="auto"
-       style="overflow:visible">
+       orient="auto">
       <!-- REF_ARROW_DIAMOND -->
       <g
-         transform="scale(0.00925926)"
+         transform="scale(0.0092592592)"
          id="g24">
         <path
-           d="M -63,0 0,63 63,0 0,-63 Z"
-           id="path22"
-           inkscape:connector-curvature="0" />
+           d="M -63,0 L 0,63 L 63,0 L 0,-63 z"
+           id="path22" />
       </g>
     </marker>
     <marker
@@ -156,16 +146,14 @@
        markerWidth="1"
        markerHeight="1"
        overflow="visible"
-       orient="auto"
-       style="overflow:visible">
+       orient="auto">
       <!-- REF_ARROW_FEATHER -->
       <g
-         transform="scale(0.00925926)"
+         transform="scale(0.0092592592)"
          id="g29">
         <path
-           d="m 18,-54 h 90 L 63,0 108,54 H 18 L -36,0 Z"
-           id="path27"
-           inkscape:connector-curvature="0" />
+           d="M 18,-54 L 108,-54 L 63,0 L 108,54 L 18, 54 L -36,0 z"
+           id="path27" />
       </g>
     </marker>
     <marker
@@ -175,16 +163,14 @@
        markerWidth="1"
        markerHeight="1"
        overflow="visible"
-       orient="auto"
-       style="overflow:visible">
+       orient="auto">
       <!-- REF_ARROW_FEATHER2 -->
       <g
-         transform="scale(0.00925926)"
+         transform="scale(0.0092592592)"
          id="g34">
         <path
-           d="m -36,0 54,-54 h 36 l -36,36 h 9 l 36,-36 h 36 l -36,36 h 9 l 36,-36 h 36 L 90,0 144,54 H 108 L 72,18 H 63 L 99,54 H 63 L 27,18 H 18 L 54,54 H 18 Z"
-           id="path32"
-           inkscape:connector-curvature="0" />
+           d="M -36,0 L 18,-54 L 54,-54 L 18,-18 L 27,-18 L 63,-54 L 99,-54 L 63,-18 L 72,-18 L 108,-54 L 144,-54 L 90,0 L 144,54 L 108,54 L 72,18 L 63,18 L 99,54 L 63,54 L 27,18 L 18,18 L 54,54 L 18,54 z"
+           id="path32" />
       </g>
     </marker>
     <marker
@@ -194,16 +180,14 @@
        markerWidth="1"
        markerHeight="1"
        overflow="visible"
-       orient="auto"
-       style="overflow:visible">
+       orient="auto">
       <!-- REF_ARROW_HOLLOWDIAMOND -->
       <g
-         transform="scale(0.00925926)"
+         transform="scale(0.0092592592)"
          id="g39">
         <path
-           d="M 0,45 -45,0 0,-45 45,0 Z M 0,63 -63,0 0,-63 63,0 Z"
-           id="path37"
-           inkscape:connector-curvature="0" />
+           d="M 0,45 L -45,0 L 0, -45 L 45, 0 z M 0, 63 L-63, 0 L 0, -63 L 63, 0 z"
+           id="path37" />
       </g>
     </marker>
     <filter
@@ -305,95 +289,78 @@
       </feComponentTransfer>
     </filter>
   </defs>
-  <rect
-     style="fill:#000000;fill-opacity:1;stroke-width:0.66754323"
-     id="rect67"
-     width="32.408546"
-     height="32.547043"
-     x="-0.27699611"
-     y="-0.13155083" />
   <text
      xml:space="preserve"
      style="font-size:14px;line-height:1.25;fill:#282828;stroke-width:0.37575001"
      x="10.755789"
-     y="19.96085"
+     y="5.9608498"
      id="text3762"><tspan
        sodipodi:role="line"
        id="tspan3760"
        x="10.755789"
-       y="32.347569"
+       y="18.347569"
        style="stroke-width:0.37575001" /></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#282828;stroke-width:0.37575001"
+     style="font-size:8px;line-height:1.25;fill:#282828;stroke-width:0.37575001;-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"
      x="10.603008"
-     y="19.410837"
+     y="5.4108377"
      id="text3766"><tspan
        sodipodi:role="line"
        id="tspan3764"
        x="10.603008"
-       y="26.616873"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.37575001" /></text>
+       y="12.488962"
+       style="stroke-width:0.37575001;-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;" /></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;stroke-width:0.37575001"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;stroke-width:0.37575001;"
      x="11.122463"
-     y="19.991405"
+     y="5.9914064"
      id="text3770"><tspan
        sodipodi:role="line"
        id="tspan3768"
        x="11.122463"
-       y="25.395933"
-       style="font-size:6px;fill:#ffffff;stroke-width:0.37575001" /></text>
+       y="13.197442"
+       style="fill:#ffffff;stroke-width:0.37575001;font-size:6px;" /></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;stroke-width:0.37575001"
      x="9.8696585"
-     y="19.7164"
+     y="5.7164001"
      id="text3774"><tspan
        sodipodi:role="line"
        id="tspan3772"
        x="9.8696585"
-       y="25.120926"
+       y="11.120927"
        style="stroke-width:0.37575001" /></text>
-  <rect
-     style="fill:#b3b3b3;fill-opacity:1;stroke-width:0.37574998"
-     id="rect71"
-     width="21.051704"
-     height="4.0164437"
-     x="8.872014"
-     y="-0.18454178"
-     transform="rotate(43.245955)"
-     inkscape:transform-center-x="-2.6314632"
-     inkscape:transform-center-y="-0.5539932" />
   <path
-     sodipodi:type="star"
-     style="fill:#b3b3b3;fill-opacity:1;stroke-width:0.37574998"
-     id="path73"
-     sodipodi:sides="3"
-     sodipodi:cx="23.821665"
-     sodipodi:cy="23.136126"
-     sodipodi:r1="6.6101665"
-     sodipodi:r2="3.3050833"
-     sodipodi:arg1="2.5870267"
-     sodipodi:arg2="3.6342243"
-     inkscape:flatsided="false"
-     inkscape:rounded="0"
-     inkscape:randomized="0"
-     d="m 18.20217,26.61687 2.707415,-5.043871 2.707414,-5.043871 3.014413,4.866626 3.014413,4.866625 -5.721828,0.177245 z"
-     inkscape:transform-center-x="0.77629666"
-     inkscape:transform-center-y="-0.93401819"
-     transform="rotate(15.358817,21.978796,18.74621)" />
+     style="fill:#282828;fill-opacity:1;stroke-width:0.03270959"
+     d=""
+     id="path3785"
+     inkscape:connector-curvature="0"
+     transform="scale(0.75)" />
+  <path
+     transform="scale(0.75)"
+     inkscape:connector-curvature="0"
+     id="path3793"
+     d=""
+     style="fill:#282828;fill-opacity:1;stroke-width:0.03270959" />
+  <rect
+     style="fill:#1a1a1a;fill-opacity:1;stroke-width:0.37575001"
+     id="rect3795"
+     width="18.166555"
+     height="18.11759"
+     x="-0.04896646"
+     y="-0.019657155" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.26283073px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#b4b4b4;fill-opacity:1;stroke-width:0.76795977"
-     x="16.515181"
-     y="12.397534"
-     id="text3778"
-     transform="scale(0.90172485,1.1089857)"><tspan
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#f9f9f9;fill-opacity:1;stroke-width:0.37575001"
+     x="4.3751802"
+     y="12.345332"
+     id="text3805"><tspan
        sodipodi:role="line"
-       id="tspan3776"
-       x="16.515181"
-       y="12.397534"
-       style="fill:#b4b4b4;fill-opacity:1;stroke-width:0.76795977">FR</tspan></text>
+       id="tspan3803"
+       x="4.3751802"
+       y="12.345332"
+       style="font-size:8px;fill:#f9f9f9;stroke-width:0.37575001">FR</tspan></text>
 </svg>
