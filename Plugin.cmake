@@ -27,9 +27,6 @@ set(OCPN_RELEASE_REPO
     "Default repository for tagged builds not matching 'beta'"
 )
 
-option(ocpnUSE_SVG "Use SVG graphics" ON)
-
-
 #
 #
 # -------  Plugin setup --------
@@ -40,7 +37,7 @@ set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME frcurrents)    # Dialogs, installer artifacts, ...
 set(PLUGIN_API_NAME frcurrents) # As of GetCommonName() in plugin API
-set(PKG_SUMMARY "UK Currents")
+set(PKG_SUMMARY "French Tidal Currents")
 set(PKG_DESCRIPTION [=[
 Shows UK Currents.
 ]=])
@@ -97,11 +94,6 @@ set(PKG_API_LIB api-16)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
 macro(late_init)
   # Perform initialization after the PACKAGE_NAME library, compilers
   # and ocpn::api is available.
-    if (ocpnUSE_SVG)
-    target_compile_definitions(${PACKAGE_NAME} PUBLIC OTCURRENT_USE_SVG)
-  endif ()
-
-  add_definitions(-DocpnUSE_GL)
 
   if (QT_ANDROID)
     add_definitions(-DUSE_ANDROID_GLES2)
