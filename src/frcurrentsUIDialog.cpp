@@ -151,7 +151,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow *parent, frcurrents_pi *ppi)
         pConf->SetPath ( _ ( "/PlugIns/frcurrents" ) );
 
 		pConf->Read ( _ ( "frcurrentsUseRate" ), &m_bUseRate );
-    pConf->Read ( _ ( "frcurrentsUseDirection" ), &m_bUseDirection);
+		pConf->Read ( _ ( "frcurrentsUseDirection" ), &m_bUseDirection);
 		pConf->Read ( _ ( "frcurrentsUseFillColour" ), &m_bUseFillColour);
 		pConf->Read ( _ ( "frcurrentsPort" ), &m_PortSelected);
 		pConf->Read ( _ ( "frcurrentsFolder" ), &m_FolderSelected);
@@ -732,6 +732,14 @@ StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName)
 		i++;
 	}	
 	return myCPort;
+}
+
+void frcurrentsUIDialog::OnInformation(wxCommandEvent& event) {
+	wxString s = wxFileName::GetPathSeparator();
+	wxString infolocation = GetPluginDataDir("frcurrents_pi")
+		+ s + "data" + s + "Information" + s + "frcurrentsInformation.html";
+	bool m_bFound = wxLaunchDefaultBrowser("file://" + infolocation);
+	if (!m_bFound) wxMessageBox("No Information Found", "Internet Browser");
 }
 
 wxString frcurrentsUIDialog::FindPortXMLUsingChoice(wxString inPortName)

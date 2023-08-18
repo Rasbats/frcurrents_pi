@@ -33,7 +33,6 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-
 ///////////////////////////////////////////////////////////////////////////////
 /// Class frcurrentsUIDialogBase
 ///////////////////////////////////////////////////////////////////////////////
@@ -65,7 +64,7 @@ class frcurrentsUIDialogBase : public wxDialog
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnSize( wxSizeEvent& event ) { event.Skip(); }
 		virtual void OnAreaSelected( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnAreaHelp( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnInformation( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnPortChanged( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDateSelChanged( wxDateEvent& event ) { event.Skip(); }
 		virtual void About( wxCommandEvent& event ) { event.Skip(); }

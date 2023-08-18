@@ -202,6 +202,7 @@ private:
 	void OnPortListed();
 	void SetDateForNowButton();
 	
+	void OnInformation(wxCommandEvent& event);
 	wxString FindPortXMLUsingChoice(wxString inPortName);
 	
 	int FindPortIDUsingChoice(wxString inPortName);
