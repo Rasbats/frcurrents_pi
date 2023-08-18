@@ -195,6 +195,7 @@ private:
 	void OnNow( wxCommandEvent& event );
 
 	void CalcHW(int PortCode);
+	void SetNow();
 	void SetCorrectHWSelection();
 	void OnDateSelChanged(wxDateEvent& event);
 	void OnPortChanged(wxCommandEvent& event);

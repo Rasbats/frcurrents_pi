@@ -300,6 +300,8 @@ void frcurrentsUIDialog::OnStartSetupHW()
 
 	OnPortListed();
 
+	SetNow();
+
 						
 }
 
@@ -354,6 +356,60 @@ void frcurrentsUIDialog::OnNow( wxCommandEvent& event )
 		}
 
 	RequestRefresh(pParent);
+}
+
+void frcurrentsUIDialog::SetNow(){
+
+		SetDateForNowButton();
+
+		button_id = 6 + CalcHoursFromHWNow();
+		if ( button_id == 13)
+		{
+			button_id = 12;
+		}
+		if ( button_id == -1)
+		{
+			button_id = 0;
+		}
+
+		m_staticText2->SetLabel(label_array[button_id]);
+		
+		wxDateTime this_now = wxDateTime::Now();
+		wxString s0 = this_now.Format( _T( "%a %d %b %Y"));
+		wxString s1 = this_now.Format(_T("%H:%M"));			
+		wxString s2 = s0 + _T(" ") + s1;			
+						
+		m_staticText211->SetLabel(s2);
+
+		SetCorrectHWSelection();
+		
+		m_myChoice = m_choice2->GetSelection();
+
+		switch (button_id) {  // And make the label depending HW+6, HW-6 etc
+		case 0:
+			{
+				next_id = 1;
+				back_id = 12;
+				m_myChoice--;
+				break;
+			}
+		case 12:
+			{
+				next_id = 0;
+				back_id = 11;
+				m_myChoice++;
+				break;
+			}
+
+		default:
+			{
+				next_id = button_id + 1;
+				back_id = button_id - 1;			    
+			}
+		}
+
+	RequestRefresh(pParent);
+
 }
 
 void frcurrentsUIDialog::SetCorrectHWSelection()
@@ -471,6 +527,8 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event)
 
 	GetCurrentsData(sa);
 	SetCorrectHWSelection();
+
+	SetNow();
 	 
 }
 
@@ -1544,6 +1602,8 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
 	FindTidePortUsingChoice(s);
 
 	OnPortListed();
+
+	SetNow();
 
 }
 void frcurrentsUIDialog::OnFile(wxCommandEvent& event) {
