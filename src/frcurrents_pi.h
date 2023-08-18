@@ -38,6 +38,7 @@
 #include "frcurrentsOverlayFactory.h"
 #include "frcurrentsUIDialog.h"
 #include "pidc.h"
+#include "wx/string.h"
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition

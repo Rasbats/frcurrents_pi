@@ -26,10 +26,6 @@ set(OCPN_RELEASE_REPO
     CACHE STRING
     "Default repository for tagged builds not matching 'beta'"
 )
-
-option(ocpnUSE_SVG "Use SVG graphics" ON)
-
-
 #
 #
 # -------  Plugin setup --------
@@ -97,9 +93,6 @@ set(PKG_API_LIB api-16)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
 macro(late_init)
   # Perform initialization after the PACKAGE_NAME library, compilers
   # and ocpn::api is available.
-    if (ocpnUSE_SVG)
-    target_compile_definitions(${PACKAGE_NAME} PUBLIC ocpnUSE_SVG)
-  endif ()
 
   add_definitions(-DocpnUSE_GL)
 
@@ -121,4 +114,5 @@ macro(add_plugin_libraries)
   # The wxsvg library enables SVG overall in the plugin
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/wxsvg")
   target_link_libraries(${PACKAGE_NAME} ocpn::wxsvg)
+
 endmacro ()
