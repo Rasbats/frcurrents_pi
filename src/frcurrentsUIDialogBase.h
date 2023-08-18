@@ -77,7 +77,7 @@ class frcurrentsUIDialogBase : public wxDialog
 		wxTextCtrl* m_textCtrlCoefficient;
 		wxTextCtrl* m_dirPicker1;
 
-		frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
+		frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("French Tidal Streams"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
 
 		~frcurrentsUIDialogBase();
 

@@ -28,6 +28,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -44,8 +45,8 @@
      inkscape:window-height="786"
      id="namedview94"
      showgrid="false"
-     inkscape:zoom="15.316607"
-     inkscape:cx="16.247423"
+     inkscape:zoom="38.231687"
+     inkscape:cx="13.226369"
      inkscape:cy="11.416306"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -361,12 +362,12 @@
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#f9f9f9;fill-opacity:1;stroke-width:0.37575001"
-     x="5.924942"
-     y="8.5984402"
+     x="2.9431221"
+     y="8.9515505"
      id="text3805"><tspan
        sodipodi:role="line"
        id="tspan3803"
-       x="5.924942"
-       y="8.5984402"
+       x="2.9431221"
+       y="8.9515505"
        style="font-size:8px;fill:#f9f9f9;stroke-width:0.37575001">FR</tspan></text>
 </svg>

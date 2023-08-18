@@ -127,9 +127,9 @@ static wxString TToString( const wxDateTime date_time, const int time_zone )
     t.MakeFromTimezone( wxDateTime::UTC );
     if( t.IsDST() ) t.Subtract( wxTimeSpan( 1, 0, 0, 0 ) );
     switch( time_zone ) {
-        case 0: return t.Format( _T(" %a %d-%b-%Y  %H:%M "), wxDateTime::Local ) + _("LOC");//:%S
+        case 0: return t.Format(" %a %d-%b-%Y  %H:%M ", wxDateTime::Local ) + "LOC";//:%S
         case 1:
-        default: return t.Format( _T(" %a %d-%b-%Y %H:%M  "), wxDateTime::UTC ) + _("UTC");
+        default: return t.Format(" %a %d-%b-%Y %H:%M  ", wxDateTime::UTC ) + "UTC";
     }
 }
 /*
@@ -148,13 +148,13 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow *parent, frcurrents_pi *ppi)
 		    wxFileConfig *pConf = GetOCPNConfigObject();
 
     if(pConf) {
-        pConf->SetPath ( _ ( "/PlugIns/frcurrents" ) );
+        pConf->SetPath ("/PlugIns/frcurrents");
 
-		pConf->Read ( _ ( "frcurrentsUseRate" ), &m_bUseRate );
-		pConf->Read ( _ ( "frcurrentsUseDirection" ), &m_bUseDirection);
-		pConf->Read ( _ ( "frcurrentsUseFillColour" ), &m_bUseFillColour);
-		pConf->Read ( _ ( "frcurrentsPort" ), &m_PortSelected);
-		pConf->Read ( _ ( "frcurrentsFolder" ), &m_FolderSelected);
+		pConf->Read ("frcurrentsUseRate", &m_bUseRate );
+		pConf->Read ("frcurrentsUseDirection", &m_bUseDirection);
+		pConf->Read ("frcurrentsUseFillColour", &m_bUseFillColour);
+		pConf->Read ("frcurrentsPort", &m_PortSelected);
+		pConf->Read ("frcurrentsFolder", &m_FolderSelected);
 
     }
 
@@ -188,16 +188,16 @@ frcurrentsUIDialog::~frcurrentsUIDialog()
     wxFileConfig *pConf = GetOCPNConfigObject();;
 
     if(pConf) {
-        pConf->SetPath ( _ ( "/PlugIns/frcurrents" ) );
+        pConf->SetPath ("/PlugIns/frcurrents");
 
-		pConf->Write ( _ ( "frcurrentsUseRate" ), m_bUseRate );
-		pConf->Write ( _ ( "frcurrentsUseDirection" ), m_bUseDirection );
-		pConf->Write ( _ ( "frcurrentsUseFillColour" ), m_bUseFillColour );
+		pConf->Write ("frcurrentsUseRate", m_bUseRate );
+		pConf->Write ("frcurrentsUseDirection", m_bUseDirection );
+		pConf->Write ("frcurrentsUseFillColour", m_bUseFillColour );
 
 		int c = m_choice1->GetCurrentSelection();
 		wxString myP = m_choice1->GetString(c);
-		pConf->Write ( _ ( "frcurrentsPort" ), myP );  
-		pConf->Write ( _ ( "frcurrentsFolder" ), m_FolderSelected);
+		pConf->Write ("frcurrentsPort", myP );  
+		pConf->Write ("frcurrentsFolder", m_FolderSelected);
 
     }
 }
