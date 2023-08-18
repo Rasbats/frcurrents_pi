@@ -69,8 +69,12 @@ class piDC;
 #define NUM_CURRENT_ARROW_POINTS 9
 static wxPoint CurrentArrowArray[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -10 ),
         wxPoint( 55, -10 ), wxPoint( 55, -25 ), wxPoint( 100, 0 ), wxPoint( 55, 25 ), wxPoint( 55,
-                10 ), wxPoint( 0, 10 ), wxPoint( 0, 0 )
-                                                             };
+                10 ), wxPoint( 0, 10 ), wxPoint( 0, 0 )};
+
+static wxPoint CurrentArrowArray2[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -5 ),
+        wxPoint( 30, -5 ), wxPoint( 30, -12 ), wxPoint( 50, 0 ), wxPoint( 30, 12 ), wxPoint( 30,
+                5 ), wxPoint( 0, 5 ), wxPoint( 0, 0 )};
+
 static int texture_format;
 static bool glQueried = false;
 
@@ -229,8 +233,8 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
 
     // Move to the first point
 
-    float xt = CurrentArrowArray[0].x;
-    float yt = CurrentArrowArray[0].y;
+    float xt = CurrentArrowArray2[0].x;
+    float yt = CurrentArrowArray2[0].y;
 
     float xp = ( xt * cos_rot ) - ( yt * sin_rot );
     float yp = ( xt * sin_rot ) + ( yt * cos_rot );
@@ -245,8 +249,8 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
 
     // Walk thru the point list
     for( int ip = 1; ip < NUM_CURRENT_ARROW_POINTS; ip++ ) {
-        xt = CurrentArrowArray[ip].x;
-        yt = CurrentArrowArray[ip].y;
+        xt = CurrentArrowArray2[ip].x;
+        yt = CurrentArrowArray2[ip].y;
 
         float xp = ( xt * cos_rot ) - ( yt * sin_rot );
         float yp = ( xt * sin_rot ) + ( yt * cos_rot );
