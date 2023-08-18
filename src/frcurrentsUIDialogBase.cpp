@@ -174,23 +174,6 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	bSizerMain->Add( sbSizer61, 1, wxEXPAND, 5 );
 
-	sbSizer7 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tests") ), wxHORIZONTAL );
-
-	m_bXML = new wxBitmapButton( sbSizer7->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize( -1,-1 ), wxBU_AUTODRAW|0 );
-	m_bXML->SetToolTip( _("XML") );
-	m_bXML->SetMinSize( wxSize( 40,40 ) );
-
-	sbSizer7->Add( m_bXML, 0, wxALL, 5 );
-
-	m_button51 = new wxButton( sbSizer7->GetStaticBox(), wxID_ANY, _("Read File"), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer7->Add( m_button51, 0, wxALL, 5 );
-
-	m_button61 = new wxButton( sbSizer7->GetStaticBox(), wxID_ANY, _("Load filenames"), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer7->Add( m_button61, 0, wxALL, 5 );
-
-
-	bSizerMain->Add( sbSizer7, 0, wxEXPAND, 5 );
-
 
 	this->SetSizer( bSizerMain );
 	this->Layout();
@@ -213,9 +196,6 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button6->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button7->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnSelectData ), NULL, this );
-	m_bXML->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnXML ), NULL, this );
-	m_button51->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnFile ), NULL, this );
-	m_button61->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnFileNames ), NULL, this );
 }
 
 frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
@@ -235,9 +215,6 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
 	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button6->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button7->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnSelectData ), NULL, this );
-	m_bXML->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnXML ), NULL, this );
-	m_button51->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnFile ), NULL, this );
-	m_button61->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnFileNames ), NULL, this );
 
 }
 

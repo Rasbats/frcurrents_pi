@@ -300,9 +300,7 @@ void frcurrentsUIDialog::OnStartSetupHW()
 
 	OnPortListed();
 
-	SetNow();
-
-						
+	SetNow();						
 }
 
 void frcurrentsUIDialog::OnNow( wxCommandEvent& event )
@@ -526,10 +524,12 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event)
 	m_textCtrlCoefficient->SetValue(s_coeff);
 
 	GetCurrentsData(sa);
+
 	SetCorrectHWSelection();
 
+	JumpToPort();
+	
 	SetNow();
-	 
 }
 
 void frcurrentsUIDialog::OnPortListed()
@@ -1187,6 +1187,14 @@ double frcurrentsUIDialog::CalcCoefficient(double m_rangeOnDay)
 	getvalue.ToDouble(&value);
 	PMVE = value;
 
+	getvalue = myCPort.LAT;
+	getvalue.ToDouble(&value);
+	m_jumpLat = value;
+
+	getvalue = myCPort.LON;
+	getvalue.ToDouble(&value);
+	m_jumpLon = value;
+
 	double x; 
 	double U;
 
@@ -1197,6 +1205,10 @@ double frcurrentsUIDialog::CalcCoefficient(double m_rangeOnDay)
 	
 }
 
+void frcurrentsUIDialog::JumpToPort(){
+
+    JumpToPosition(m_jumpLat, m_jumpLon, m_vp->view_scale_ppm);
+}
 
 int frcurrentsUIDialog::CalcHoursFromHWNow()
 {
@@ -1536,70 +1548,6 @@ bool frcurrentsUIDialog::OpenXML()
 
 }
 
-void frcurrentsUIDialog::OnXML(wxCommandEvent& event)
-{
-    wxFileName fn;
-    wxString tmp_path;
-
-    tmp_path = GetPluginDataDir("frcurrents_pi");
-    fn.SetPath(tmp_path);
-    fn.AppendDir(_T("data"));
-    fn.SetFullName("json.xml");
-
-    wxString shareLocn = fn.GetFullPath();
-    //wxMessageBox(shareLocn);
-
-    TiXmlDocument doc;
-    int i = 0;
-    wxString test;
-
-    doc.LoadFile(shareLocn);
-
-    if (!doc.LoadFile(shareLocn.mb_str())) {
-                wxMessageBox(_("Failed to load file: ") + shareLocn);
-    }
-
-    TiXmlElement* root = doc.RootElement();
-
-    for (TiXmlElement* e = root->FirstChildElement(); e;
-         e = e->NextSiblingElement(), i++) {
-
-                for (TiXmlElement* f = e->FirstChildElement(); f;
-                     f = f->NextSiblingElement()) { 
-					if (!strcmp(f->Value(), "LONGITUDE")) {
-						test = wxString::FromUTF8(f->GetText());
-                         
-                    }
-                    if (!strcmp(f->Value(), "BMME")) {
-                        test = wxString::FromUTF8(f->GetText());
-						myPort.BMME = test;
-                    }
-					if (!strcmp(f->Value(), "BMVE")) {
-                        test = wxString::FromUTF8(f->GetText());
-                        myPort.BMVE = test;
-					}
-                                        if (!strcmp(f->Value(), "PMME")) {
-                        test = wxString::FromUTF8(f->GetText());
-                        myPort.PMME = test;
-                                        }
-                                        if (!strcmp(f->Value(), "PMVE")) {
-                        test = wxString::FromUTF8(f->GetText());
-                        myPort.PMVE = test;
-                    }
-				
-				}
-    }
-
-
-
-}
-
-void frcurrentsUIDialog::OnAreaHelp(wxCommandEvent& event){
-
-	wxMessageBox("Not yet implemented");
-
-}
-
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
 
 	int a = 0;
@@ -1611,61 +1559,10 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
 
 	OnPortListed();
 
+	JumpToPort();
+
 	SetNow();
 
-}
-void frcurrentsUIDialog::OnFile(wxCommandEvent& event) {
-
-    wxFileName fn;
-    wxString tmp_path;
-
-    tmp_path = GetPluginDataDir("frcurrents_pi");
-    fn.SetPath(tmp_path);
-    fn.AppendDir(_T("data"));
-    fn.SetFullName("BOULOGNE_557");
-
-    wxString shareLocn = fn.GetFullPath();
-    int linenum = 0;
-	
-	wxFileInputStream input(shareLocn);
-    wxTextInputStream text(input, "\x09", wxConvUTF8);
-    while (input.IsOk() && !input.Eof()) {
-        linenum++;
-        wxString line = text.ReadLine();
-        if (linenum == 3) {
-            //wxMessageBox(line);
-            ParseCurrentsVE(line);
-        }
-		if (linenum == 4) {
-            //wxMessageBox(line);
-            ParseCurrentsME(line);
-        }
-
-        // do something with the string
-    }
-
-}
-
-void frcurrentsUIDialog::OnFileNames(wxCommandEvent& event)
-{
-  wxString value;
-  /*
-	wxTextEntryDialog dialog4(this, "Range");
-	if (dialog4.ShowModal() == wxID_OK) {
-		value = dialog4.GetValue(); 
-		value.ToDouble(&Range);
-	}
-*/
-  double Range = myHeightHW - myHeightLW;
-	double myCoefficient;
-
-            
- myCoefficient = CalcCoefficient(Range);  
-	
- wxString out = wxString::Format("%f", myCoefficient);
- //wxMessageBox(out);
-
-//	GetCurrents("562", "GOLFE_NORMAND_BRETON_562");
 }
 
 void frcurrentsUIDialog::GetCurrentsData(wxString areaFolder)
@@ -1673,7 +1570,6 @@ void frcurrentsUIDialog::GetCurrentsData(wxString areaFolder)
 	wxString area = areaFolder;
 	GetCurrents(area, "");
 }
-
 
 void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
     wxArrayString filenames;

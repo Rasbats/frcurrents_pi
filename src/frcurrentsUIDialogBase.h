@@ -32,7 +32,6 @@
 #include <wx/checkbox.h>
 
 ///////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
 /// Class frcurrentsUIDialogBase
 ///////////////////////////////////////////////////////////////////////////////
@@ -56,9 +55,6 @@ class frcurrentsUIDialogBase : public wxDialog
 		wxStaticText* m_staticText211;
 		wxStaticLine* m_staticline1;
 		wxButton* m_button7;
-		wxBitmapButton* m_bXML;
-		wxButton* m_button51;
-		wxButton* m_button61;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
@@ -73,9 +69,6 @@ class frcurrentsUIDialogBase : public wxDialog
 		virtual void OnNext( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnChooseTideButton( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnSelectData( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnXML( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnFile( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnFileNames( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
@@ -83,7 +76,6 @@ class frcurrentsUIDialogBase : public wxDialog
 		wxChoice* m_choice1;
 		wxTextCtrl* m_textCtrlCoefficient;
 		wxTextCtrl* m_dirPicker1;
-		wxStaticBoxSizer* sbSizer7;
 
 		frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
 

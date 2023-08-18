@@ -2,8 +2,8 @@
    <Table1>
   <PORT_NUMBER>557</PORT_NUMBER>
     <PORT_NAME>CALAIS, France</PORT_NAME>
-    <LAT>50.946698</LAT>
-    <LON>-1.850000</LON>
+    <LAT>50.969333</LAT>
+    <LON>1.8675</LON>
     <PMVE>7.3</PMVE>
     <PMME>6.05</PMME>
     <BMME>2.05</BMME>
@@ -46,8 +46,8 @@
       <Table1>
     <PORT_NUMBER>558</PORT_NUMBER>
     <PORT_NAME>ILE de GROIX (Port Tudy), France</PORT_NAME>
-    <LAT>47.39</LAT>
-    <LON>-3.27</LON>
+    <LAT>47.644583</LAT>
+    <LON>-3.4</LON>
     <PMVE>5.2</PMVE>
     <PMME>4.15</PMME>
     <BMME>2.10</BMME>
@@ -189,8 +189,8 @@
       <Table1>
     <PORT_NUMBER>565</PORT_NUMBER>
     <PORT_NAME>CONCARNEAU, France</PORT_NAME>
-    <LAT>47.875500</LAT>
-    <LON>-3.92070</LON>
+    <LAT>47.2</LAT>
+    <LON>-5.0</LON>
     <PMVE>5.10</PMVE>
     <PMME>4.00</PMME>
     <BMME>2.00</BMME>

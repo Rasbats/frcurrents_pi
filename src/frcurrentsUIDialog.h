@@ -178,13 +178,14 @@ public:
 	bool m_bUseFillColour;
 
 	wxString m_PortSelected;
-  wxArrayString TideCurrentDataSet;
-  wxString* pTC_Dir;
-  vector<SHOMport> portLines; 
+	wxArrayString TideCurrentDataSet;
+	wxString* pTC_Dir;
+	vector<SHOMport> portLines; 
 	wxString         g_SData_Locn;
 	TCMgr           *ptcmgr;
-	 wxString m_FolderSelected;
-	 double m_coeff;
+	wxString m_FolderSelected;
+	double m_coeff;
+	double m_jumpLat, m_jumpLon;
 
 private:
     void OnClose( wxCloseEvent& event );
@@ -214,11 +215,7 @@ private:
 	int  FindPortID(wxString myPort);
 	bool LoadStandardPorts();
 	bool OpenXML();
-	void OnXML(wxCommandEvent& event);
-	void OnFile(wxCommandEvent& event);
-	void OnAreaHelp(wxCommandEvent& event);
 	void OnAreaSelected(wxCommandEvent& event);
-	void OnFileNames(wxCommandEvent& event); 
 	void GetCurrentsData(wxString areaFolder);
 	void ParseCurrentsFile(wxString infile); 
 	void ParseCurrentsVE(wxString inCurrents);
@@ -264,7 +261,7 @@ private:
 	wxDateTime m_dt;
 	wxTimeSpan  m_ts;
 	int m_plot_type;
-
+	void JumpToPort();
 
 	bool isNowButton;
 
