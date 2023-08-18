@@ -42,7 +42,6 @@ class frcurrentsUIDialogBase : public wxDialog
 	protected:
 		wxButton* m_button8;
 		wxDatePickerCtrl* m_datePicker1;
-		wxButton* m_button55;
 		wxChoice* m_choice2;
 		wxBitmapButton* m_bpNow;
 		wxStaticText* m_staticText1;
@@ -63,7 +62,6 @@ class frcurrentsUIDialogBase : public wxDialog
 		virtual void OnInformation( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnPortChanged( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDateSelChanged( wxDateEvent& event ) { event.Skip(); }
-		virtual void About( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnNow( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnPrev( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnNext( wxCommandEvent& event ) { event.Skip(); }

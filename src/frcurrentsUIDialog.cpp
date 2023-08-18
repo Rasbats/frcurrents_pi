@@ -497,7 +497,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event)
 	CalcHW(i);
 	m_coeff = CalcCoefficient(myRange);
 	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-	m_textCtrlCoefficient->SetValue(s_coeff);
+	m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 	GetCurrentsData(s);
 	SetCorrectHWSelection();
 
@@ -521,7 +521,7 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event)
 
 	m_coeff = CalcCoefficient(myRange);
 	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-	m_textCtrlCoefficient->SetValue(s_coeff);
+	m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
 	GetCurrentsData(sa);
 
@@ -550,7 +550,7 @@ void frcurrentsUIDialog::OnPortListed()
 
 	m_coeff = CalcCoefficient(myRange);
 	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-	m_textCtrlCoefficient->SetValue(s_coeff);
+	m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
 	GetCurrentsData(sa);
 	SetCorrectHWSelection();
@@ -599,7 +599,7 @@ void frcurrentsUIDialog::SetDateForNowButton()
 
 	m_coeff = CalcCoefficient(myRange);
 	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-	m_textCtrlCoefficient->SetValue(s_coeff);
+	m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
 	GetCurrentsData(sa);
 	int i, c, s, t, t1, t2, t10, t20;
@@ -2009,7 +2009,7 @@ void frcurrentsUIDialog::OnPrev( wxCommandEvent& event )
 
 			m_coeff = CalcCoefficient(myRange);
 			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-			m_textCtrlCoefficient->SetValue(s_coeff);
+			m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
 			GetCurrentsData(sa);
 			c = m_choice2->GetCount();
@@ -2135,7 +2135,7 @@ void frcurrentsUIDialog::OnNext( wxCommandEvent& event )
 
 			m_coeff = CalcCoefficient(myRange);
 			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-			m_textCtrlCoefficient->SetValue(s_coeff);
+			m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
 			GetCurrentsData(sa);
 			m_myChoice = 0;
