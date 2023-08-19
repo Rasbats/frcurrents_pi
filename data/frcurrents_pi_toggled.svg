@@ -28,6 +28,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -44,13 +45,13 @@
      inkscape:window-height="820"
      id="namedview94"
      showgrid="false"
-     inkscape:zoom="25.850911"
-     inkscape:cx="12"
+     inkscape:zoom="12.013677"
+     inkscape:cx="10.300461"
      inkscape:cy="12"
      inkscape:window-x="831"
      inkscape:window-y="86"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg92" />
+     inkscape:current-layer="Layer 1" />
   <defs
      id="defs79">
     <marker
@@ -290,50 +291,42 @@
     </filter>
   </defs>
   <g
-     id="Document"
-     font-size="16"
      style="font-size:16px;font-family:'Times New Roman';fill:none;stroke:#000000"
-     transform="translate(0,18)">
+     transform="matrix(1,0,0,1.0056549,0.12485769,-0.25877697)"
+     id="Spread">
     <g
-       id="Spread"
-       transform="translate(0,-18)">
-      <g
-         id="Layer 1">
-        <path
-           d="m 25.057,9.418 h 24 v -24 h -24 v 24"
-           id="path81"
-           inkscape:connector-curvature="0"
-           style="stroke:none" />
-        <path
-           d="m 33.471,-1.769 c 0,2.241 1.88,4.06 4.196,4.06 2.316,0 4.196,-1.819 4.196,-4.06 0,-2.241 -1.88,-4.06 -4.196,-4.06 -2.316,0 -4.196,1.819 -4.196,4.06 z"
-           stroke-miterlimit="79.8403193612775"
-           id="path83"
-           inkscape:connector-curvature="0"
-           style="fill:#800000;fill-opacity:0;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:79.84031677;stroke-opacity:0.85097997;marker-start:none;marker-end:none" />
-        <path
-           d="M 18.001,0 V 18.001 H 0 V 0 Z"
-           stroke-miterlimit="79.8403193612775"
-           id="path85"
-           inkscape:connector-curvature="0"
-           style="fill:#898989;stroke:none;stroke-width:0.75;stroke-linejoin:miter;stroke-miterlimit:79.84031677;marker-start:none;marker-end:none" />
-        <path
-           d="m 4.9,1.848 -3.045,3.042 8.57,8.582 -0.903,0.901 6.624,1.779 -1.772,-6.627 -0.906,0.904 z"
-           stroke-miterlimit="79.8403193612775"
-           id="path87"
-           inkscape:connector-curvature="0"
-           style="stroke:#b4b4b4;stroke-width:0.75;stroke-linejoin:miter;stroke-miterlimit:79.84031677;marker-start:none;marker-end:none" />
-      </g>
+       id="Layer 1"
+       transform="translate(0.18728654)">
+      <path
+         style="fill:#800000;fill-opacity:0;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:79.84031677;stroke-opacity:0.85097997;marker-start:none;marker-end:none"
+         inkscape:connector-curvature="0"
+         id="path83"
+         stroke-miterlimit="79.8403193612775"
+         d="m 33.471,-1.769 c 0,2.241 1.88,4.06 4.196,4.06 2.316,0 4.196,-1.819 4.196,-4.06 0,-2.241 -1.88,-4.06 -4.196,-4.06 -2.316,0 -4.196,1.819 -4.196,4.06 z" />
+      <path
+         style="fill:#898989;stroke:none;stroke-width:0.75;stroke-linejoin:miter;stroke-miterlimit:79.84031677;marker-start:none;marker-end:none"
+         inkscape:connector-curvature="0"
+         id="path85"
+         stroke-miterlimit="79.8403193612775"
+         d="M 17.688855,0.28025619 V 18.281256 H -0.31214466 V 0.28025619 Z" />
+      <path
+         style="stroke:#b4b4b4;stroke-width:0.60814387;stroke-linejoin:miter;stroke-miterlimit:79.84031677;marker-start:none;marker-end:none"
+         inkscape:connector-curvature="0"
+         id="path87"
+         stroke-miterlimit="79.8403193612775"
+         d="m 3.3964547,5.7431245 -2.51575668,2.4208509 7.08047118,6.8296326 -0.746052,0.717024 5.4727008,1.415744 -1.464014,-5.273826 -0.74853,0.719411 z" />
     </g>
   </g>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#b4b4b4;fill-opacity:1;stroke-width:0.37575001"
-     x="9.4045486"
-     y="5.1179543"
-     id="text3762"><tspan
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.56198025px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#b4b4b4;fill-opacity:1;stroke-width:0.53619403"
+     x="6.4662547"
+     y="6.9304471"
+     id="text3762"
+     transform="scale(0.97396876,1.026727)"><tspan
        sodipodi:role="line"
        id="tspan3760"
-       x="9.4045486"
-       y="5.1179543"
-       style="fill:#b4b4b4;fill-opacity:1;stroke-width:0.37575001">FR</tspan></text>
+       x="6.4662547"
+       y="6.9304471"
+       style="fill:#b4b4b4;fill-opacity:1;stroke-width:0.53619403">FR</tspan></text>
 </svg>

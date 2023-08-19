@@ -1,0 +1,115 @@
+= frcurrents
+
+image:frcurrents_pi.png[]
+
+The plugin uses SHOM tidal current information to display the tidal currents in French coastal areas. Tide times are calculated using non-OpenCPN
+harmonics downloaded from the Internet when the plugin is first installed.
+
+== Installation
+
+The plugin is available in the catalog.
+
+image:managed_plugin.png[]
+
+* Open the OpenCPN Options by clicking on the cogwheel icon in the main toolbar
+
+* Navigate to the Plugins tab
+
+* Update the plugin catalog using the button on the bottom
+
+* Find the frcurrents tile in the list of available plugins and click on it
+
+* In the presented dialog click the Install button
+
+* Enable the plugin using the checkbox
+
+* Apply/Ok
+
+== Links
+
+* Source: https://github.com/Rasbats/frcurrents_pi[Github Repository]
+* Forum:
+https://www.cruisersforum.com/forums/f134/frcurrents_pi-french-tidal-currents-278764.html[Cruiser's Forum frcurrents plugin thread]
+
+== Preparation
+
+Download the tidal harmonics produced by Merak56. The latest version is V10.
+
+http://opencpn.shoreline.fr/__OpenCPN_5_PC/3_Essentiel/E_61_Les_marees/E_61_Marees.htm 
+
+Extract the files to a suitable location on your computer.
+
+== Using the plugin
+
+Click the icon in the toolbar.
+
+image:1.jpg[]
+
+The plugin dialog appears.
+
+image:2.jpg[]
+
+SHOM provides the tidal current data for several different areas. Clicking the *Information* button will start your Internet Browser and display those areas.
+The tidal reference ports for times/heights of high water are listed for each area.
+
+image:3.jpg[]
+
+Link the Merak56 harmonics to the plugin using the *Select Directory* button. Browse for the directory where you extracted the V10 harmonics and press *Select Folder*.
+
+image:4.jpg[]
+
+The default area, when the plugin is started, is area 557 and the reference port Calais. If you navigate to this area of the chart you will find the tidal current arrows for the present time (computer).
+
+image:5.jpg[]
+
+If the reference port is changed the chart is centred on that port and the tidal arrows associated with that port are shown.
+
+image:6.jpg[]
+
+The dialog shows the coefficient used to calculate the rate of the tidal current. This can be compared with the predictions made by SHOM to gauge the accuracy of the rates. Small variations are to be expected.
+
+image:7.jpg[]
+
+The date and hours before/after high water are shown in the dialog.
+
+image:8.jpg[]
+
+Using the buttons in the dialog the time of the predictions can be chosen.
+
+image:9.jpg[]
+
+== Preferences
+
+* Open the OpenCPN Options by clicking on the cogwheel icon in the main toolbar
+
+* Navigate to the Plugins tab
+
+* Select the frcurrents plugin line in the catalog
+
+* Select *Preferences*
+
+Examples of preference changes are shown here:
+
+image:10.jpg[]
+
+image:11.jpg[]
+
+image:12.jpg[]
+
+image:13.jpg[]
+
+== Warnings
+
+SHOM uses low water as the reference for tidal current data for two ports, Le Havre and La Rochelle. The plugin is not able to show the tidal arrows for these ports at present.
+
+== Enhancements or problems
+
+Please report these by raising an issue in the github repository:
+
+https://github.com/Rasbats/frcurrents_pi[https://github.com/Rasbats/frcurrents_pi]
+
+
+
+
+
+
