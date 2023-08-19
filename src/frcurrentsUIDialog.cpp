@@ -1614,6 +1614,11 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
 	if (tidePort == "ILE de GROIX (Port Tudy)"){
 		tidePort = "PORT-TUDY";
 	}
+	if (tidePort == "LES SABLES-D'OLONNE"){
+		tidePort = "LES SABLES D'OLONNE";
+	}
+
+
 
 	wxString filePort;
 	//wxMessageBox(tidePort);
