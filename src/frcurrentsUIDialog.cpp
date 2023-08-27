@@ -153,8 +153,24 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow *parent, frcurrents_pi *ppi)
 		pConf->Read ("frcurrentsUseRate", &m_bUseRate );
 		pConf->Read ("frcurrentsUseDirection", &m_bUseDirection);
 		pConf->Read ("frcurrentsUseFillColour", &m_bUseFillColour);
+		pConf->Read(_T("frcurrentsUseHighResolution"), &m_bUseHighRes);
+
+		pConf->Read ( _T( "frcurrentsUseArrowStyle" ), &m_UseArrowStyle);
+
 		pConf->Read ("frcurrentsPort", &m_PortSelected);
 		pConf->Read ("frcurrentsFolder", &m_FolderSelected);
+
+		pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
+		pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
+		pConf->Read( _T("VColour2"), &myVColour[2], myVColour[2] );
+		pConf->Read( _T("VColour3"), &myVColour[3], myVColour[3] );
+		pConf->Read( _T("VColour4"), &myVColour[4], myVColour[4] );
+		
+		myUseColour[0] = myVColour[0];
+		myUseColour[1] = myVColour[1];
+		myUseColour[2] = myVColour[2];
+		myUseColour[3] = myVColour[3];
+		myUseColour[4] = myVColour[4];
 
     }
 
@@ -192,7 +208,16 @@ frcurrentsUIDialog::~frcurrentsUIDialog()
 
 		pConf->Write ("frcurrentsUseRate", m_bUseRate );
 		pConf->Write ("frcurrentsUseDirection", m_bUseDirection );
+		pConf->Write(_T("frcurrentsUseHighResolution"), m_bUseHighRes);
 		pConf->Write ("frcurrentsUseFillColour", m_bUseFillColour );
+
+		pConf->Write ( _T ( "frcurrentsUseArrowStyle" ), m_UseArrowStyle);
+
+		pConf->Write( _T("VColour0"), myVColour[0] );
+		pConf->Write( _T("VColour1"), myVColour[1] );
+		pConf->Write( _T("VColour2"), myVColour[2] );
+		pConf->Write( _T("VColour3"), myVColour[3] );
+		pConf->Write( _T("VColour4"), myVColour[4] );
 
 		int c = m_choice1->GetCurrentSelection();
 		wxString myP = m_choice1->GetString(c);
@@ -233,7 +258,7 @@ void frcurrentsUIDialog::OnMove( wxMoveEvent& event )
 
     event.Skip();
 }
-
+/*
 void frcurrentsUIDialog::OnSize( wxSizeEvent& event )
 {
     //    Record the dialog size
@@ -242,13 +267,15 @@ void frcurrentsUIDialog::OnSize( wxSizeEvent& event )
     pPlugIn->SetfrcurrentsDialogSizeY( p.y );
 
     event.Skip();
-}
+}*/
 
 void frcurrentsUIDialog::OpenFile(bool newestFile)
 {
 	m_bUseRate = pPlugIn->GetCopyRate();
 	m_bUseDirection = pPlugIn->GetCopyDirection();
+	m_bUseHighRes = pPlugIn->GetCopyResolution();
 	m_bUseFillColour = pPlugIn->GetCopyColour();
+	m_UseArrowStyle = pPlugIn->GetCopyArrowStyle();
 
 	if (m_FolderSelected == wxEmptyString) {
 #ifndef __OCPN__ANDROID__

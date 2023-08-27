@@ -62,6 +62,7 @@
 #include <wx/wfstream.h>
 #include <cmath>
 #include <wx/numdlg.h>
+#include <wx/window.h>
 
 using namespace std;
 
@@ -149,6 +150,15 @@ public:
     void SetViewPort( PlugIn_ViewPort *vp );
 	PlugIn_ViewPort *vp;
 
+	bool m_bUseRate;    
+	bool m_bUseDirection; 
+	bool m_bUseHighRes;
+	bool m_bUseFillColour;
+	int m_UseArrowStyle;
+
+	wxString myUseColour[5];
+
+
 	vector<Position> my_positions;
 	vector<StandardPort> my_ports;
 	wxString wxPortName[100][5];
@@ -172,11 +182,6 @@ public:
 	wxString nearestHW[8];
 	int round(double c);
 
-
-	bool m_bUseRate;    
-	bool m_bUseDirection; 
-	bool m_bUseFillColour;
-
 	wxString m_PortSelected;
 	wxArrayString TideCurrentDataSet;
 	wxString* pTC_Dir;
@@ -190,7 +195,7 @@ public:
 private:
     void OnClose( wxCloseEvent& event );
     void OnMove( wxMoveEvent& event );
-    void OnSize( wxSizeEvent& event );
+    //void OnSize( wxSizeEvent& event );
 
 	void OnStartSetupHW();
 	void OnNow( wxCommandEvent& event );
@@ -242,6 +247,15 @@ private:
     frcurrents_pi *pPlugIn;
 
     PlugIn_ViewPort  *m_vp;
+
+	    // preference data
+    bool              m_bfrcurrentsUseHiDef;
+    bool              m_bfrcurrentsUseGradualColors;
+	bool              m_bCopyUseRate;
+    bool              m_bCopyUseDirection;
+	bool			  m_bCopyUseHighRes;
+
+
     int m_lastdatatype;
 
     double m_cursor_lat, m_cursor_lon;

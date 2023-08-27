@@ -183,6 +183,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	// Connect Events
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( frcurrentsUIDialogBase::OnClose ) );
+	this->Connect( wxEVT_MOVE, wxMoveEventHandler( frcurrentsUIDialogBase::OnMove ) );
 	this->Connect( wxEVT_SIZE, wxSizeEventHandler( frcurrentsUIDialogBase::OnSize ) );
 	m_choiceArea->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnAreaSelected ), NULL, this );
 	m_button8->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnInformation ), NULL, this );
@@ -201,6 +202,7 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
 {
 	// Disconnect Events
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( frcurrentsUIDialogBase::OnClose ) );
+	this->Disconnect( wxEVT_MOVE, wxMoveEventHandler( frcurrentsUIDialogBase::OnMove ) );
 	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( frcurrentsUIDialogBase::OnSize ) );
 	m_choiceArea->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnAreaSelected ), NULL, this );
 	m_button8->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnInformation ), NULL, this );
@@ -235,8 +237,102 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	m_cbFillColour = new wxCheckBox( this, wxID_ANY, _("Fill Colour"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizerCheckboxes->Add( m_cbFillColour, 0, wxALL, 5 );
 
+	m_cbUseHighRes = new wxCheckBox( this, wxID_ANY, _("High Resolution Display"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizerCheckboxes->Add( m_cbUseHighRes, 0, wxALL, 5 );
+
 
 	bSizerMain->Add( bSizerCheckboxes, 0, wxALL|wxEXPAND, 5 );
+
+	wxBoxSizer* bSizer4;
+	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
+
+	wxStaticBoxSizer* sbSizerColours;
+	sbSizerColours = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Current Arrow Colour") ), wxVERTICAL );
+
+	wxFlexGridSizer* fgSizerColours;
+	fgSizerColours = new wxFlexGridSizer( 0, 2, 0, 0 );
+	fgSizerColours->AddGrowableCol( 1 );
+	fgSizerColours->SetFlexibleDirection( wxBOTH );
+	fgSizerColours->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+
+	staticTextLess05 = new wxStaticText( sbSizerColours->GetStaticBox(), wxID_ANY, _("      < 0.5 knots"), wxDefaultPosition, wxDefaultSize, 0 );
+	staticTextLess05->Wrap( -1 );
+	fgSizerColours->Add( staticTextLess05, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+
+	myColourPicker0 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	fgSizerColours->Add( myColourPicker0, 1, wxALL|wxEXPAND, 5 );
+
+	staticText0515 = new wxStaticText( sbSizerColours->GetStaticBox(), wxID_ANY, _(">= 0.5 and < 1.5"), wxDefaultPosition, wxDefaultSize, 0 );
+	staticText0515->Wrap( -1 );
+	fgSizerColours->Add( staticText0515, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+
+	myColourPicker1 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	fgSizerColours->Add( myColourPicker1, 1, wxALL|wxEXPAND, 5 );
+
+	staticText1525  = new wxStaticText( sbSizerColours->GetStaticBox(), wxID_ANY, _(">= 1.5 and < 2.5"), wxDefaultPosition, wxDefaultSize, 0 );
+	staticText1525 ->Wrap( -1 );
+	fgSizerColours->Add( staticText1525 , 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+
+	myColourPicker2 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	fgSizerColours->Add( myColourPicker2, 1, wxALL|wxEXPAND, 5 );
+
+	staticText2535 = new wxStaticText( sbSizerColours->GetStaticBox(), wxID_ANY, _(">= 2.5 and < 3.5"), wxDefaultPosition, wxDefaultSize, 0 );
+	staticText2535->Wrap( -1 );
+	fgSizerColours->Add( staticText2535, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+
+	myColourPicker3 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	fgSizerColours->Add( myColourPicker3, 1, wxALL|wxEXPAND, 5 );
+
+	m_staticTextMore35 = new wxStaticText( sbSizerColours->GetStaticBox(), wxID_ANY, _(">= 3.5 knots    "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextMore35->Wrap( -1 );
+	fgSizerColours->Add( m_staticTextMore35, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+
+	myColourPicker4 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
+	fgSizerColours->Add( myColourPicker4, 1, wxALL|wxEXPAND, 5 );
+
+
+	sbSizerColours->Add( fgSizerColours, 1, wxEXPAND, 5 );
+
+
+	bSizer4->Add( sbSizerColours, 1, wxALL|wxEXPAND, 5 );
+
+	wxStaticBoxSizer* sbSizer5;
+	sbSizer5 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Arrow Style") ), wxVERTICAL );
+
+	wxFlexGridSizer* fgSizer2;
+	fgSizer2 = new wxFlexGridSizer( 0, 2, 0, 0 );
+	fgSizer2->AddGrowableCol( 1 );
+	fgSizer2->SetFlexibleDirection( wxBOTH );
+	fgSizer2->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
+
+	m_staticText8 = new wxStaticText( sbSizer5->GetStaticBox(), wxID_ANY, _("Options:   "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText8->Wrap( -1 );
+	fgSizer2->Add( m_staticText8, 0, wxALL, 5 );
+
+	wxString m_cStyleChoices[] = { _("1"), _("2"), _("3") };
+	int m_cStyleNChoices = sizeof( m_cStyleChoices ) / sizeof( wxString );
+	m_cStyle = new wxChoice( sbSizer5->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_cStyleNChoices, m_cStyleChoices, 0 );
+	m_cStyle->SetSelection( 0 );
+	fgSizer2->Add( m_cStyle, 0, wxALL|wxEXPAND, 5 );
+
+
+	sbSizer5->Add( fgSizer2, 0, wxEXPAND, 5 );
+
+	wxStaticBoxSizer* sbSizer11;
+	sbSizer11 = new wxStaticBoxSizer( new wxStaticBox( sbSizer5->GetStaticBox(), wxID_ANY, _("Arrow Options") ), wxVERTICAL );
+
+	m_staticText13 = new wxStaticText( sbSizer11->GetStaticBox(), wxID_ANY, _("1: Normal\n2: Small \n3: Normal length, \n    narrow width"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText13->Wrap( -1 );
+	sbSizer11->Add( m_staticText13, 0, wxALL|wxEXPAND, 5 );
+
+
+	sbSizer5->Add( sbSizer11, 0, wxEXPAND, 5 );
+
+
+	bSizer4->Add( sbSizer5, 1, wxALL|wxEXPAND, 5 );
+
+
+	bSizerMain->Add( bSizer4, 1, wxEXPAND, 5 );
 
 	m_sdbSizerButtons = new wxStdDialogButtonSizer();
 	m_sdbSizerButtonsOK = new wxButton( this, wxID_OK );
@@ -252,8 +348,14 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	this->Layout();
 
 	this->Centre( wxBOTH );
+
+	// Connect Events
+	m_cStyle->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsPreferencesDialogBase::OnChoice ), NULL, this );
 }
 
 frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase()
 {
+	// Disconnect Events
+	m_cStyle->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsPreferencesDialogBase::OnChoice ), NULL, this );
+
 }

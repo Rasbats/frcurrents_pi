@@ -37,6 +37,8 @@
 
 #include "frcurrents_pi.h"
 
+wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),  _T("rgb(253, 184, 19)"),  _T("rgb(248, 128, 64)"),  _T("rgb(248, 0, 0)")};
+
 // the class factories, used to create and destroy instances of the PlugIn
 
 extern "C" DECL_EXP opencpn_plugin* create_pi(void *ppimgr)
@@ -114,13 +116,13 @@ int frcurrents_pi::Init(void)
       AddLocaleCatalog( _T("opencpn-frcurrents_pi") );
 
       // Set some default private member parameters
-      m_frcurrents_dialog_x = 0;
-      m_frcurrents_dialog_y = 0;
+      m_frcurrents_dialog_x = 40;
+      m_frcurrents_dialog_y = 80;
       m_frcurrents_dialog_sx = 200;
       m_frcurrents_dialog_sy = 400;
       m_pfrcurrentsDialog = NULL;
       m_pfrcurrentsOverlayFactory = NULL;
-			m_bfrcurrentsShowIcon = true;
+	  m_bfrcurrentsShowIcon = true;
 
       ::wxDisplaySize(&m_display_width, &m_display_height);
 
@@ -237,44 +239,94 @@ void frcurrents_pi::ShowPreferencesDialog( wxWindow* parent )
     Pref->m_cbUseRate->SetValue(m_bCopyUseRate);
     Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
 	Pref->m_cbFillColour->SetValue(m_bfrcurrentsUseHiDef);
+	Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
+
+	wxColour myC0 = wxColour(myVColour[0]);
+	Pref->myColourPicker0->SetColour(myC0);
+    
+	wxColour myC1 = wxColour(myVColour[1]);
+	Pref->myColourPicker1->SetColour(myC1);
+
+	wxColour myC2 = wxColour(myVColour[2]);
+	Pref->myColourPicker2->SetColour(myC2);
+
+	wxColour myC3 = wxColour(myVColour[3]);
+	Pref->myColourPicker3->SetColour(myC3);
+
+	wxColour myC4 = wxColour(myVColour[4]);
+	Pref->myColourPicker4->SetColour(myC4);
+
+	Pref->m_cStyle->SetSelection(m_CopyArrowStyle);
+
 
  if( Pref->ShowModal() == wxID_OK ) {
 
 	 //bool copyFillColour = true;
 
+	 myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
+	 myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
+	 myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
+	 myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
+	 myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
 
-     bool copyrate = Pref->m_cbUseRate->GetValue();
+
+	 bool copyrate = Pref->m_cbUseRate->GetValue();
      bool copydirection = Pref->m_cbUseDirection->GetValue();
-	 bool FillColour = Pref->m_cbFillColour->GetValue();
+	 bool copyresolution = Pref->m_cbUseHighRes->GetValue();
 
-		 if (m_bfrcurrentsUseHiDef != FillColour){		 
-			 m_bfrcurrentsUseHiDef = FillColour;
-		 }
-	 
-        if( m_bCopyUseRate != copyrate || m_bCopyUseDirection != copydirection ) {
-             m_bCopyUseRate = copyrate;
-             m_bCopyUseDirection = copydirection;           
-         }
+	 bool FillColour = Pref->m_cbFillColour->GetValue();
+	 int ArrowStyle = Pref->m_cStyle->GetSelection();
+
+	if (m_bCopyUseRate != copyrate) {
+		m_bCopyUseRate = copyrate;
+	}
+
+	if (m_bCopyUseDirection != copydirection) {
+		m_bCopyUseDirection = copydirection;
+	}
+
+	if (m_bCopyUseHighRes != copyresolution) {
+		m_bCopyUseHighRes = copyresolution;
+	}
+
+	if (m_bfrcurrentsUseHiDef != FillColour){
+		m_bfrcurrentsUseHiDef = FillColour;
+	}
+	
+	if (m_CopyArrowStyle != ArrowStyle){
+		m_CopyArrowStyle = ArrowStyle;
+	}
 
 		
-         if(m_pfrcurrentsDialog )
-		 {
-			 m_pfrcurrentsDialog->OpenFile(true);
-			 m_pfrcurrentsDialog->m_bUseRate = m_bCopyUseRate;
-			 m_pfrcurrentsDialog->m_bUseDirection = m_bCopyUseDirection;	
-			 m_pfrcurrentsDialog->m_bUseFillColour = m_bfrcurrentsUseHiDef;
-		 }
+    if(m_pfrcurrentsDialog )
+	{
+		m_pfrcurrentsDialog->m_bUseRate = m_bCopyUseRate;
+		m_pfrcurrentsDialog->m_bUseDirection = m_bCopyUseDirection; 
+		m_pfrcurrentsDialog->m_bUseHighRes = m_bCopyUseHighRes;	
+		m_pfrcurrentsDialog->m_bUseFillColour = m_bfrcurrentsUseHiDef;
+		m_pfrcurrentsDialog->m_UseArrowStyle = m_CopyArrowStyle;	
 
-		 if (m_pfrcurrentsOverlayFactory)
-		 {
-			 m_pfrcurrentsOverlayFactory->m_bShowRate = m_bCopyUseRate;
-			 m_pfrcurrentsOverlayFactory->m_bShowDirection = m_bCopyUseDirection;
-			 m_pfrcurrentsOverlayFactory->m_bShowFillColour = m_bfrcurrentsUseHiDef;
-		 }
+		m_pfrcurrentsDialog->myUseColour[0] = myVColour[0];
+ 		m_pfrcurrentsDialog->myUseColour[1] = myVColour[1];
+ 		m_pfrcurrentsDialog->myUseColour[2] = myVColour[2];
+ 		m_pfrcurrentsDialog->myUseColour[3] = myVColour[3];
+ 		m_pfrcurrentsDialog->myUseColour[4] = myVColour[4];			 
+	}
 
-         SaveConfig();
-     }
+	if (m_pfrcurrentsOverlayFactory)
+	{
+		m_pfrcurrentsOverlayFactory->m_bShowRate = m_bCopyUseRate;
+		m_pfrcurrentsOverlayFactory->m_bShowDirection = m_bCopyUseDirection;
+		m_pfrcurrentsOverlayFactory->m_bShowFillColour = m_bfrcurrentsUseHiDef;
+		m_pfrcurrentsOverlayFactory->m_bHighResolution = m_bCopyUseHighRes;
+		m_pfrcurrentsOverlayFactory->m_ShowArrowStyle = m_CopyArrowStyle;
 
+
+	}
+
+        SaveConfig();
+		RequestRefresh(m_parent_window); // refresh main window
+	}
 	
 }
 
@@ -287,6 +339,7 @@ void frcurrents_pi::OnToolbarToolCallback(int id)
 		m_pfrcurrentsDialog = new frcurrentsUIDialog(m_parent_window, this);
         wxPoint p = wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y);
         m_pfrcurrentsDialog->Move(p);
+		m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx, m_frcurrents_dialog_sy);
 
         // Create the drawing factory
         m_pfrcurrentsOverlayFactory = new frcurrentsOverlayFactory( *m_pfrcurrentsDialog );
@@ -298,46 +351,8 @@ void frcurrents_pi::OnToolbarToolCallback(int id)
 
     m_pfrcurrentsDialog->Fit();
     m_pfrcurrentsDialog->OpenFile(true);
-      // Qualify the frcurrents dialog position
-            //bool b_reset_pos = false;
-/*
-#ifdef __WXMSW__
-        //  Support MultiMonitor setups which an allow negative window positions.
-        //  If the requested window does not intersect any installed monitor,
-        //  then default to simple primary monitor positioning.
-            RECT frame_title_rect;
-            frame_title_rect.left =   m_frcurrents_dialog_x;
-            frame_title_rect.top =    m_frcurrents_dialog_y;
-            frame_title_rect.right =  m_frcurrents_dialog_x + m_frcurrents_dialog_sx;
-            frame_title_rect.bottom = m_frcurrents_dialog_y + 30;
 
-
-            if(NULL == MonitorFromRect(&frame_title_rect, MONITOR_DEFAULTTONULL))
-                  b_reset_pos = true;
-#else
-       //    Make sure drag bar (title bar) of window on Client Area of screen, with a little slop...
-            wxRect window_title_rect;                    // conservative estimate
-            window_title_rect.x = m_frcurrents_dialog_x;
-            window_title_rect.y = m_frcurrents_dialog_y;
-            window_title_rect.width = m_frcurrents_dialog_sx;
-            window_title_rect.height = 30;
-
-            wxRect ClientRect = wxGetClientDisplayRect();
-            ClientRect.Deflate(60, 60);      // Prevent the new window from being too close to the edge
-            if(!ClientRect.Intersects(window_title_rect))
-                  b_reset_pos = true;
-
-#endif
-
-            if(b_reset_pos)
-            {
-                  m_frcurrents_dialog_x = 20;
-                  m_frcurrents_dialog_y = 170;
-                  m_frcurrents_dialog_sx = 300;
-                  m_frcurrents_dialog_sy = 540;
-            }
-*/
-      //Toggle frcurrents overlay display
+	  //Toggle frcurrents overlay display
       m_bShowfrcurrents = !m_bShowfrcurrents;
 
       //    Toggle dialog?
@@ -353,6 +368,7 @@ void frcurrents_pi::OnToolbarToolCallback(int id)
       // to actual status to ensure correct status upon toolbar rebuild
       SetToolbarItemState( m_leftclick_tool_id, m_bShowfrcurrents );
 
+	  // Capture dialog position
       wxPoint p = m_pfrcurrentsDialog->GetPosition();
       wxRect r = m_pfrcurrentsDialog->GetRect();
       SetfrcurrentsDialogX(p.x);
@@ -370,6 +386,14 @@ void frcurrents_pi::OnfrcurrentsDialogClose()
 
     m_pfrcurrentsDialog->Hide();
     //if(m_pfrcurrentsDialog->pReq_Dialog) m_pfrcurrentsDialog->pReq_Dialog->Hide();
+
+	// Capture dialog position
+    wxPoint p = m_pfrcurrentsDialog->GetPosition();
+    wxRect r = m_pfrcurrentsDialog->GetRect();
+    SetfrcurrentsDialogX(p.x);
+    SetfrcurrentsDialogY(p.y);
+    SetfrcurrentsDialogSizeX(r.GetWidth());
+    SetfrcurrentsDialogSizeY(r.GetHeight());
 
     SaveConfig();
 
@@ -421,18 +445,31 @@ bool frcurrents_pi::LoadConfig(void)
 
     pConf->SetPath ( _T( "/PlugIns/frcurrents" ) );
 
-	  m_bCopyUseRate = pConf->Read ( _T ( "frcurrentsUseRate" ),1);
+	m_bCopyUseRate = pConf->Read ( _T ( "frcurrentsUseRate" ),1);
     m_bCopyUseDirection = pConf->Read ( _T ( "frcurrentsUseDirection" ), 1);
-	  m_bfrcurrentsUseHiDef = pConf->Read ( _T ( "frcurrentsUseFillColour" ), 1);
-	  m_CopyFolderSelected = pConf->Read ( _T( "frcurrentsFolder" ), "");	
+	m_bCopyUseHighRes = pConf->Read(_T("frcurrentsUseHighResolution"), 1);
+	m_bfrcurrentsUseHiDef = pConf->Read ( _T( "frcurrentsUseFillColour" ), 1);
+
+	m_CopyArrowStyle = pConf->Read ( _T( "frcurrentsUseArrowStyle" ), 1);
+
+	m_CopyFolderSelected = pConf->Read ( _T( "frcurrentsFolder" ), "");	
 
     m_frcurrents_dialog_sx = pConf->Read ( _T ( "frcurrentsDialogSizeX" ), 300L );
     m_frcurrents_dialog_sy = pConf->Read ( _T ( "frcurrentsDialogSizeY" ), 540L );
     m_frcurrents_dialog_x =  pConf->Read ( _T ( "frcurrentsDialogPosX" ), 20L );
     m_frcurrents_dialog_y =  pConf->Read ( _T ( "frcurrentsDialogPosY" ), 170L );
 
+	if ((m_frcurrents_dialog_x < 0) || (m_frcurrents_dialog_x > m_display_width))
+            m_frcurrents_dialog_x = 40;
+    if ((m_frcurrents_dialog_y < 0) || (m_frcurrents_dialog_y > m_display_height))
+            m_frcurrents_dialog_y = 140;
 
 
+    pConf->Read( _T("VColour0"), &myVColour[0], myVColour[0] );
+    pConf->Read( _T("VColour1"), &myVColour[1], myVColour[1] );
+	pConf->Read( _T("VColour2"), &myVColour[2], myVColour[2] );
+	pConf->Read( _T("VColour3"), &myVColour[3], myVColour[3] );
+	pConf->Read( _T("VColour4"), &myVColour[4], myVColour[4] );
 	
     return true;
 }
@@ -441,21 +478,32 @@ bool frcurrents_pi::SaveConfig(void)
 {
     wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 
-    if(!pConf)
-        return false;
+    if(pConf){
 
-    pConf->SetPath ( _T( "/PlugIns/frcurrents" ) );
-    pConf->Write ( _T ( "frcurrentsUseRate" ), m_bCopyUseRate );
-    pConf->Write ( _T ( "frcurrentsUseDirection" ), m_bCopyUseDirection );
-	pConf->Write ( _T ( "frcurrentsUseFillColour" ), m_bfrcurrentsUseHiDef );
-	pConf->Write ( _T( "frcurrentsFolder" ), m_CopyFolderSelected); 
+		pConf->SetPath ( _T( "/PlugIns/frcurrents" ) );
+		pConf->Write ( _T ( "frcurrentsUseRate" ), m_bCopyUseRate );
+		pConf->Write ( _T ( "frcurrentsUseDirection" ), m_bCopyUseDirection );
+		pConf->Write(_T("frcurrentsUseHighResolution"), m_bCopyUseHighRes);
+		pConf->Write ( _T ( "frcurrentsUseFillColour" ), m_bfrcurrentsUseHiDef );
 
-    pConf->Write ( _T ( "frcurrentsDialogSizeX" ),  m_frcurrents_dialog_sx );
-    pConf->Write ( _T ( "frcurrentsDialogSizeY" ),  m_frcurrents_dialog_sy );
-    pConf->Write ( _T ( "frcurrentsDialogPosX" ),   m_frcurrents_dialog_x );
-    pConf->Write ( _T ( "frcurrentsDialogPosY" ),   m_frcurrents_dialog_y );
+		pConf->Write ( _T ( "frcurrentsUseArrowStyle" ), m_CopyArrowStyle);
 
-	
+		pConf->Write ( _T( "frcurrentsFolder" ), m_CopyFolderSelected); 
+
+		pConf->Write ( _T ( "frcurrentsDialogSizeX" ),  m_frcurrents_dialog_sx );
+		pConf->Write ( _T ( "frcurrentsDialogSizeY" ),  m_frcurrents_dialog_sy );
+		pConf->Write ( _T ( "frcurrentsDialogPosX" ),   m_frcurrents_dialog_x );
+		pConf->Write ( _T ( "frcurrentsDialogPosY" ),   m_frcurrents_dialog_y );
+
+		pConf->Write( _T("VColour0"), myVColour[0] );
+		pConf->Write( _T("VColour1"), myVColour[1] );
+		pConf->Write( _T("VColour2"), myVColour[2] );
+		pConf->Write( _T("VColour3"), myVColour[3] );
+		pConf->Write( _T("VColour4"), myVColour[4] );
+
+		return true;
+
+	}else
     return true;
 }
 

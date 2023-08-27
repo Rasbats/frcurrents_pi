@@ -106,6 +106,7 @@ public:
     bool              m_bShowDirection;
     bool              m_bHighResolution;
     bool              m_bShowFillColour;
+	int				  m_ShowArrowStyle;
     wxDateTime        m_dtUseNew;
     wxColour m_text_color;
         std::map < double , wxImage > m_labelCache;
@@ -120,11 +121,13 @@ public:
 private:
 
     bool inGL;
+	wxPoint myArrowArray[9];
+
 
     bool DoRenderfrcurrentsOverlay( PlugIn_ViewPort *vp );
     void RenderMyArrows(PlugIn_ViewPort *vp );
-		int m_fromHW;
-
+	int m_fromHW;
+	void GetArrowStyle(int my_style);
     wxColour GetSpeedColour(double my_speed);
 
     bool drawCurrentArrow(int x, int y, double rot_angle, double scale, double rate );

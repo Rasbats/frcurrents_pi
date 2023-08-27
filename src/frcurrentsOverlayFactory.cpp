@@ -67,12 +67,16 @@ class wxBoundingBox;
 class piDC;
 
 #define NUM_CURRENT_ARROW_POINTS 9
-static wxPoint CurrentArrowArray[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -10 ),
+static wxPoint CurrentArrowArray1[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -10 ),
         wxPoint( 55, -10 ), wxPoint( 55, -25 ), wxPoint( 100, 0 ), wxPoint( 55, 25 ), wxPoint( 55,
                 10 ), wxPoint( 0, 10 ), wxPoint( 0, 0 )};
 
 static wxPoint CurrentArrowArray2[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -5 ),
         wxPoint( 30, -5 ), wxPoint( 30, -12 ), wxPoint( 50, 0 ), wxPoint( 30, 12 ), wxPoint( 30,
+                5 ), wxPoint( 0, 5 ), wxPoint( 0, 0 )};
+
+static wxPoint CurrentArrowArray3[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -5 ),
+        wxPoint( 75, -5 ), wxPoint( 55, -15 ), wxPoint( 100, 0 ), wxPoint( 55, 15 ), wxPoint( 75,
                 5 ), wxPoint( 0, 5 ), wxPoint( 0, 0 )};
 
 static int texture_format;
@@ -131,8 +135,11 @@ frcurrentsOverlayFactory::frcurrentsOverlayFactory( frcurrentsUIDialog &dlg )
     m_last_vp_scale = 0.;
     m_bShowRate = m_dlg.m_bUseRate;
     m_bShowDirection = m_dlg.m_bUseDirection;
-    m_bShowFillColour = m_dlg.m_bUseFillColour;
+	m_bHighResolution = m_dlg.m_bUseHighRes;
 
+    m_bShowFillColour = m_dlg.m_bUseFillColour;
+	m_ShowArrowStyle = m_dlg.m_UseArrowStyle;	
+	
 }
 
 frcurrentsOverlayFactory::~frcurrentsOverlayFactory()
@@ -188,14 +195,53 @@ void frcurrentsOverlayFactory::DrawLine( double x1, double y1, double x2, double
     //wxMessageBox("here");
 }
 
+void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
+	switch (my_style){		
+		case 0:
+		myArrowArray[0] = wxPoint( 0, 0 );
+		myArrowArray[1] = wxPoint( 0, -10 );
+		myArrowArray[2] = wxPoint( 55, -10 );
+		myArrowArray[3] = wxPoint( 55, -25 );
+		myArrowArray[4] = wxPoint( 100, 0 );
+		myArrowArray[5] = wxPoint( 55, 25 );
+		myArrowArray[6] = wxPoint( 55, 10 );
+		myArrowArray[7] = wxPoint( 0, 10 );
+		myArrowArray[8] = wxPoint( 0, 0 );
+		break;
+
+		case 1:
+		myArrowArray[0] = wxPoint( 0, 0 );
+		myArrowArray[1] = wxPoint(0, -5);
+		myArrowArray[2] = wxPoint( 30, -5 );
+		myArrowArray[3] = wxPoint( 30, -12 );
+		myArrowArray[4] = wxPoint( 50, 0 );
+		myArrowArray[5] = wxPoint( 30, 12 );
+		myArrowArray[6] = wxPoint( 30, 5 );
+		myArrowArray[7] = wxPoint( 0, 5 );
+		myArrowArray[8] = wxPoint( 0, 0 );
+		break;
+
+		case 2:
+		myArrowArray[0] = wxPoint( 0, 0 );
+		myArrowArray[1] = wxPoint( 0, -5 );
+		myArrowArray[2] = wxPoint( 75, -5 );
+		myArrowArray[3] = wxPoint( 55, -15 );
+		myArrowArray[4] = wxPoint( 100, 0 );
+		myArrowArray[5] = wxPoint( 55, 15 );
+		myArrowArray[6] = wxPoint( 75, 5 );
+		myArrowArray[7] = wxPoint( 0, 5 );
+		myArrowArray[8] = wxPoint( 0, 0 );
+		break;
+	} 
+}
 
 wxColour frcurrentsOverlayFactory::GetSpeedColour(double my_speed){
 
-  wxColour c_blue = wxColour(127, 0, 255);
-	wxColour c_green = wxColour(0, 166, 80);
-	wxColour c_yellow_orange = wxColour(253, 184, 19);
-	wxColour c_orange = wxColour(248, 128, 64);
-	wxColour c_red = wxColour(248, 0, 0);
+	wxColour c_blue = wxColour(m_dlg.myUseColour[0]);						//127, 0, 255);
+	wxColour c_green = wxColour(m_dlg.myUseColour[1]);						//0, 166, 80);
+	wxColour c_yellow_orange = wxColour(m_dlg.myUseColour[2]);				//253, 184, 19);
+	wxColour c_orange = wxColour(m_dlg.myUseColour[3]); 					//248, 128, 64);
+	wxColour c_red = wxColour(m_dlg.myUseColour[4]);						//248, 0, 0);
 
 	if (my_speed < 0.5){ return c_blue;}
 	if ((my_speed >= 0.5) && (my_speed < 1.5)){ return c_green;}
@@ -211,6 +257,7 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
 {
     double m_rate = fabs(rate);
 
+	GetArrowStyle(m_ShowArrowStyle);
 
     wxColour colour;
     colour = GetSpeedColour( m_rate );
@@ -233,8 +280,8 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
 
     // Move to the first point
 
-    float xt = CurrentArrowArray2[0].x;
-    float yt = CurrentArrowArray2[0].y;
+    float xt = myArrowArray[0].x;
+    float yt = myArrowArray[0].y;
 
     float xp = ( xt * cos_rot ) - ( yt * sin_rot );
     float yp = ( xt * sin_rot ) + ( yt * cos_rot );
@@ -249,8 +296,8 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
 
     // Walk thru the point list
     for( int ip = 1; ip < NUM_CURRENT_ARROW_POINTS; ip++ ) {
-        xt = CurrentArrowArray2[ip].x;
-        yt = CurrentArrowArray2[ip].y;
+        xt = myArrowArray[ip].x;
+        yt = myArrowArray[ip].y;
 
         float xp = ( xt * cos_rot ) - ( yt * sin_rot );
         float yp = ( xt * sin_rot ) + ( yt * cos_rot );
@@ -395,7 +442,6 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 		   double myX, myY;
 		   myX = 50;
      	   myY = 0;
-		   m_bHighResolution = false;
 		   vector<Position>m_new = m_dlg.my_positions;
 			
 		   double value,  decValue; 
@@ -607,7 +653,13 @@ void frcurrentsOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, 
     wxDateTime yn = wxDateTime::Now();
     time_t myTimeNow = yn.GetTicks();
 
-    wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+    wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+
+	#ifdef __WXMSW__  // for Windows hi-def screens
+		double factor = (double)(GetOCPNCanvasWindow()->ToDIP(100)) / 100.;
+		font.Scale(1. / factor);
+	#endif
+
     m_dc->SetFont(font);
     wxRect myRect = BBox->rv_rect;
 

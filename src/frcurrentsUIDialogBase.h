@@ -30,6 +30,7 @@
 #include <wx/statline.h>
 #include <wx/dialog.h>
 #include <wx/checkbox.h>
+#include <wx/clrpicker.h>
 
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -57,6 +58,7 @@ class frcurrentsUIDialogBase : public wxDialog
 
 		// Virtual event handlers, override them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
+		virtual void OnMove( wxMoveEvent& event ) { event.Skip(); }
 		virtual void OnSize( wxSizeEvent& event ) { event.Skip(); }
 		virtual void OnAreaSelected( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnInformation( wxCommandEvent& event ) { event.Skip(); }
@@ -87,18 +89,36 @@ class frcurrentsUIDialogBase : public wxDialog
 class frcurrentsPreferencesDialogBase : public wxDialog
 {
 	private:
+		wxStaticText* staticTextLess05;
+		wxStaticText* staticText0515;
+		wxStaticText* staticText1525 ;
+		wxStaticText* staticText2535;
+		wxStaticText* m_staticTextMore35;
 
 	protected:
+		wxStaticText* m_staticText8;
+		wxStaticText* m_staticText13;
 		wxStdDialogButtonSizer* m_sdbSizerButtons;
 		wxButton* m_sdbSizerButtonsOK;
 		wxButton* m_sdbSizerButtonsCancel;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void OnChoice( wxCommandEvent& event ) { event.Skip(); }
+
 
 	public:
 		wxCheckBox* m_cbUseRate;
 		wxCheckBox* m_cbUseDirection;
 		wxCheckBox* m_cbFillColour;
+		wxCheckBox* m_cbUseHighRes;
+		wxColourPickerCtrl* myColourPicker0;
+		wxColourPickerCtrl* myColourPicker1;
+		wxColourPickerCtrl* myColourPicker2;
+		wxColourPickerCtrl* myColourPicker3;
+		wxColourPickerCtrl* myColourPicker4;
+		wxChoice* m_cStyle;
 
-		frcurrentsPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 235,442 ), long style = wxCAPTION );
+		frcurrentsPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 398,442 ), long style = wxCAPTION );
 
 		~frcurrentsPreferencesDialogBase();
 

@@ -46,6 +46,7 @@
 
 #include "config.h"
 
+extern wxString myVColour[5]; 
 
 #define frcurrents_TOOL_POSITION    -1          // Request default positioning of toolbar tool
 
@@ -89,17 +90,19 @@ public:
 
       bool GetCopyRate() { return  m_bCopyUseRate; }
       bool GetCopyDirection() { return  m_bCopyUseDirection; }
+	  bool GetCopyResolution() { return  m_bCopyUseHighRes; }
 	  bool GetCopyColour() { return m_bfrcurrentsUseHiDef ; }
-		 wxString GetFolderSelected() {return m_CopyFolderSelected;}
+	  int GetCopyArrowStyle() { return  m_CopyArrowStyle; }
+
+
+	  wxString GetFolderSelected() {return m_CopyFolderSelected;}
      // wxString GetCopyPort() { return  m_bCopyusePort; }
       frcurrentsOverlayFactory *GetfrcurrentsOverlayFactory(){ return m_pfrcurrentsOverlayFactory; }
 	  
-     // wxString         myPort;
-	 //wxString SetPort(){ return myPort;}
-	 // wxString myNewPort; 
-	 // void SetKMLDir(wxString KML_dir){ m_KML_dir = KML_dir;};
-			wxString          m_CopyFolderSelected;
+	  wxString          m_CopyFolderSelected;
 
+      int m_frcurrents_dialog_x, m_frcurrents_dialog_y;
+      int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
 
 private:
       bool LoadConfig(void);
@@ -113,12 +116,7 @@ private:
 
       int              m_display_width, m_display_height;
       int              m_leftclick_tool_id;
-
-      int              m_frcurrents_dialog_x, m_frcurrents_dialog_y;
-      int              m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
-
 	  
-
 	  //wxString myPort;
 
 	 // int myNewPort; 
@@ -135,9 +133,10 @@ private:
       bool              m_bfrcurrentsUseGradualColors;
 	  bool              m_bCopyUseRate;
       bool              m_bCopyUseDirection;
+	  bool				m_bCopyUseHighRes;
+	  int               m_CopyArrowStyle;
 
       int              m_bTimeZone;
- 			
    
       int              m_bStartOptions;
       wxString         m_RequestConfig;
