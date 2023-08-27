@@ -342,12 +342,8 @@ void frcurrents_pi::OnToolbarToolCallback(int id)
         // Create the drawing factory
         m_pfrcurrentsOverlayFactory = new frcurrentsOverlayFactory( *m_pfrcurrentsDialog );
         m_pfrcurrentsOverlayFactory->SetParentSize( m_display_width, m_display_height);
-		
-		m_pfrcurrentsDialog->Show();
-        
+		        
     }
-
-    m_pfrcurrentsDialog->Fit();
 
 	  //Toggle frcurrents overlay display
       m_bShowfrcurrents = !m_bShowfrcurrents;

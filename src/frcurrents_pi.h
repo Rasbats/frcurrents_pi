@@ -39,6 +39,7 @@
 #include "frcurrentsUIDialog.h"
 #include "pidc.h"
 #include "wx/string.h"
+#include <wx/window.h>
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition

@@ -62,7 +62,6 @@
 #include <wx/wfstream.h>
 #include <cmath>
 #include <wx/numdlg.h>
-#include <wx/window.h>
 
 using namespace std;
 
