@@ -179,7 +179,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow *parent, frcurrents_pi *ppi)
     m_bpNext->SetBitmap(wxBitmap( next1 ));
     m_bpNow->SetBitmap(*_img_Clock );
 
-		ptcmgr = NULL;
+	ptcmgr = NULL;
 
     //this->Connect( wxEVT_MOVE, wxMoveEventHandler( frcurrentsUIDialog::OnMove ) );
 
@@ -187,8 +187,8 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow *parent, frcurrents_pi *ppi)
 
     //Fit();
     //SetMinSize( GetBestSize() );
-			m_dirPicker1->SetValue(m_FolderSelected);
-
+	m_dirPicker1->SetValue(m_FolderSelected);
+	m_bOnStart = false;
 
 	LoadStandardPorts();  // From StandardPorts.xml Load the port choice control    
 	LoadTCMFile();
@@ -277,24 +277,6 @@ void frcurrentsUIDialog::OpenFile(bool newestFile)
 	m_bUseFillColour = pPlugIn->GetCopyColour();
 	m_UseArrowStyle = pPlugIn->GetCopyArrowStyle();
 
-	if (m_FolderSelected == wxEmptyString) {
-#ifndef __OCPN__ANDROID__
-		m_FolderSelected = pPlugIn->GetFolderSelected();
-		m_dirPicker1->SetValue(m_FolderSelected);
-		wxDirDialog* d = new wxDirDialog(this, _("Choose the tcdata directory"),
-			"", 0, wxDefaultPosition);
-		if (d->ShowModal() == wxID_OK)
-		{
-			m_dirPicker1->SetValue(d->GetPath());
-			m_FolderSelected = m_dirPicker1->GetValue();
-		}
-#else
-		wxString tc = "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
-		m_dirPicker1->SetValue(tc);
-		m_FolderSelected = tc;
-
-#endif
-	}
 	button_id = 6; //High Water
 	next_id	= 7;
 	back_id   = 5;
@@ -318,16 +300,15 @@ void frcurrentsUIDialog::OpenFile(bool newestFile)
 
 void frcurrentsUIDialog::OnStartSetupHW()
 {
+	m_bOnStart = true;
 	int a = 0;
 	int an = 0;
 	a = m_choiceArea->GetSelection();
-	wxString s = m_choiceArea->GetString(a);	
+	wxString s = m_choiceArea->GetString(a);
 
 	FindTidePortUsingChoice(s);
-
-	OnPortListed();
-
-	SetNow();						
+	
+	OnPortListed();	
 }
 
 void frcurrentsUIDialog::OnNow( wxCommandEvent& event )
@@ -568,7 +549,6 @@ void frcurrentsUIDialog::OnPortListed()
 	int ma = m_choiceArea->GetCurrentSelection();
 	wxString sa = m_choiceArea->GetString(ma);
 
-
 	int m = m_choice1->GetCurrentSelection();
 	wxString s = m_choice1->GetString(m);
 	//wxMessageBox(s);
@@ -581,6 +561,8 @@ void frcurrentsUIDialog::OnPortListed()
 
 	GetCurrentsData(sa);
 	SetCorrectHWSelection();
+
+	SetNow();
 	 
 }
 
@@ -875,10 +857,6 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event)
 
 void frcurrentsUIDialog::LoadHarmonics()
 {
-  if (TideCurrentDataSet.GetCount() < 1 ){
-		wxMessageBox("No Harmonics/nSelect the directory containing HARMONIC.IDX/n Using the Select File button");
-		return;
-	}
 	
 	if (!ptcmgr) {
     ptcmgr = new TCMgr;
@@ -927,22 +905,44 @@ void frcurrentsUIDialog::LoadHarmonics()
 
 void frcurrentsUIDialog::LoadTCMFile()
 {
-    wxString TCDir = m_FolderSelected;
-    TCDir.Append(wxFileName::GetPathSeparator());
-    wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
+	wxString TCDir = m_FolderSelected;
 
-//	wxString default_tcdata0 = TCDir + _T("harmonics-dwf-20210110-free.tcd");
-	wxString default_tcdata1 = TCDir + "HARMONIC.IDX";
-	wxLogMessage(default_tcdata1);
+	if (TCDir == wxEmptyString) {
+		wxMessageBox("No Harmonics\nSelect the directory containing HARMONIC.IDX\n Using the dialog that follows");
 
-	//if (!TideCurrentDataSet.GetCount()) {
-		//TideCurrentDataSet.Add(default_tcdata0);
+#ifndef __OCPN__ANDROID__
+		TCDir = pPlugIn->GetFolderSelected();
+		m_dirPicker1->SetValue(TCDir);
+		wxDirDialog* d = new wxDirDialog(this, _("Choose the tcdata directory"),
+			"", 0, wxDefaultPosition);
+		if (d->ShowModal() == wxID_OK)
+		{
+			m_dirPicker1->SetValue(d->GetPath());
+			TCDir = m_dirPicker1->GetValue();
+		}
+#else
+		wxString tc = "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
+		m_dirPicker1->SetValue(tc);
+		TCDir = tc;
+
+#endif
+	}
+		TCDir.Append(wxFileName::GetPathSeparator());
+		wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
+
+		//	wxString default_tcdata0 = TCDir + _T("harmonics-dwf-20210110-free.tcd");
+		wxString default_tcdata1 = TCDir + "HARMONIC.IDX";
+		wxLogMessage(default_tcdata1);
+
+		//if (!TideCurrentDataSet.GetCount()) {
+			//TideCurrentDataSet.Add(default_tcdata0);
 		TideCurrentDataSet.Add(default_tcdata1);
-	//}
-	/*
-	else{
-		wxMessageBox("Cannot add TideCurrentDataSet");
-	}*/
+		//}
+		/*
+		else{
+			wxMessageBox("Cannot add TideCurrentDataSet");
+		}*/
+	
 }
 
 int frcurrentsUIDialog::FindPortID(wxString myPort)
@@ -1046,7 +1046,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode){
 	m_choice2->Clear();	
 
 	if (PortCode == 0)
-	{
+	{		
 		wxMessageBox(_("No tidal data for this port"), _("No Tidal Data"));
 		return;
 	}

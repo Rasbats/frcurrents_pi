@@ -334,8 +334,6 @@ void frcurrents_pi::OnToolbarToolCallback(int id)
 {
     if(NULL == m_pfrcurrentsDialog)
     {
-		
-        		
 		m_pfrcurrentsDialog = new frcurrentsUIDialog(m_parent_window, this);
         wxPoint p = wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y);
         m_pfrcurrentsDialog->Move(p);
@@ -345,12 +343,11 @@ void frcurrents_pi::OnToolbarToolCallback(int id)
         m_pfrcurrentsOverlayFactory = new frcurrentsOverlayFactory( *m_pfrcurrentsDialog );
         m_pfrcurrentsOverlayFactory->SetParentSize( m_display_width, m_display_height);
 		
-		 m_pfrcurrentsDialog->Show();
+		m_pfrcurrentsDialog->Show();
         
     }
 
     m_pfrcurrentsDialog->Fit();
-    m_pfrcurrentsDialog->OpenFile(true);
 
 	  //Toggle frcurrents overlay display
       m_bShowfrcurrents = !m_bShowfrcurrents;

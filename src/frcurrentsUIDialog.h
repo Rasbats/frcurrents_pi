@@ -196,7 +196,7 @@ private:
     void OnClose( wxCloseEvent& event );
     void OnMove( wxMoveEvent& event );
     //void OnSize( wxSizeEvent& event );
-
+	bool m_bOnStart;
 	void OnStartSetupHW();
 	void OnNow( wxCommandEvent& event );
 
