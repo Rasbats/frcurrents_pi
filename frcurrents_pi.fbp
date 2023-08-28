@@ -1498,7 +1498,7 @@
             <property name="minimum_size">-1,-1</property>
             <property name="name">frcurrentsPreferencesDialogBase</property>
             <property name="pos"></property>
-            <property name="size">398,442</property>
+            <property name="size">-1,-1</property>
             <property name="style">wxCAPTION</property>
             <property name="subclass"></property>
             <property name="title">Preferences</property>
@@ -1782,7 +1782,7 @@
                 <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
                     <property name="flag">wxEXPAND</property>
-                    <property name="proportion">1</property>
+                    <property name="proportion">0</property>
                     <object class="wxBoxSizer" expanded="1">
                         <property name="minimum_size"></property>
                         <property name="name">bSizer4</property>
@@ -1791,7 +1791,7 @@
                         <object class="sizeritem" expanded="1">
                             <property name="border">5</property>
                             <property name="flag">wxALL|wxEXPAND</property>
-                            <property name="proportion">1</property>
+                            <property name="proportion">0</property>
                             <object class="wxStaticBoxSizer" expanded="1">
                                 <property name="id">wxID_ANY</property>
                                 <property name="label">Tidal Current Arrow Colour</property>
@@ -2443,7 +2443,7 @@
                         <object class="sizeritem" expanded="1">
                             <property name="border">5</property>
                             <property name="flag">wxALL|wxEXPAND</property>
-                            <property name="proportion">1</property>
+                            <property name="proportion">0</property>
                             <object class="wxStaticBoxSizer" expanded="1">
                                 <property name="id">wxID_ANY</property>
                                 <property name="label">Arrow Style</property>
@@ -2531,7 +2531,7 @@
                                         </object>
                                         <object class="sizeritem" expanded="1">
                                             <property name="border">5</property>
-                                            <property name="flag">wxALL|wxEXPAND</property>
+                                            <property name="flag">wxALL</property>
                                             <property name="proportion">0</property>
                                             <object class="wxChoice" expanded="1">
                                                 <property name="BottomDockable">1</property>
@@ -2602,7 +2602,7 @@
                                     <property name="proportion">0</property>
                                     <object class="wxStaticBoxSizer" expanded="1">
                                         <property name="id">wxID_ANY</property>
-                                        <property name="label">Arrow Options</property>
+                                        <property name="label">Arrow Options :</property>
                                         <property name="minimum_size"></property>
                                         <property name="name">sbSizer11</property>
                                         <property name="orient">wxVERTICAL</property>

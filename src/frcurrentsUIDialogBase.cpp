@@ -294,7 +294,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	sbSizerColours->Add( fgSizerColours, 1, wxEXPAND, 5 );
 
 
-	bSizer4->Add( sbSizerColours, 1, wxALL|wxEXPAND, 5 );
+	bSizer4->Add( sbSizerColours, 0, wxALL|wxEXPAND, 5 );
 
 	wxStaticBoxSizer* sbSizer5;
 	sbSizer5 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Arrow Style") ), wxVERTICAL );
@@ -313,13 +313,13 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	int m_cStyleNChoices = sizeof( m_cStyleChoices ) / sizeof( wxString );
 	m_cStyle = new wxChoice( sbSizer5->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_cStyleNChoices, m_cStyleChoices, 0 );
 	m_cStyle->SetSelection( 0 );
-	fgSizer2->Add( m_cStyle, 0, wxALL|wxEXPAND, 5 );
+	fgSizer2->Add( m_cStyle, 0, wxALL, 5 );
 
 
 	sbSizer5->Add( fgSizer2, 0, wxEXPAND, 5 );
 
 	wxStaticBoxSizer* sbSizer11;
-	sbSizer11 = new wxStaticBoxSizer( new wxStaticBox( sbSizer5->GetStaticBox(), wxID_ANY, _("Arrow Options") ), wxVERTICAL );
+	sbSizer11 = new wxStaticBoxSizer( new wxStaticBox( sbSizer5->GetStaticBox(), wxID_ANY, _("Arrow Options :") ), wxVERTICAL );
 
 	m_staticText13 = new wxStaticText( sbSizer11->GetStaticBox(), wxID_ANY, _("1: Normal\n2: Small \n3: Normal length, \n    narrow width"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText13->Wrap( -1 );
@@ -329,10 +329,10 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	sbSizer5->Add( sbSizer11, 0, wxEXPAND, 5 );
 
 
-	bSizer4->Add( sbSizer5, 1, wxALL|wxEXPAND, 5 );
+	bSizer4->Add( sbSizer5, 0, wxALL|wxEXPAND, 5 );
 
 
-	bSizerMain->Add( bSizer4, 1, wxEXPAND, 5 );
+	bSizerMain->Add( bSizer4, 0, wxEXPAND, 5 );
 
 	m_sdbSizerButtons = new wxStdDialogButtonSizer();
 	m_sdbSizerButtonsOK = new wxButton( this, wxID_OK );
@@ -346,6 +346,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 
 	this->SetSizer( bSizerMain );
 	this->Layout();
+	bSizerMain->Fit( this );
 
 	this->Centre( wxBOTH );
 
