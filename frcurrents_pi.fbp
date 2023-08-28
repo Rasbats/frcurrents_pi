@@ -1499,7 +1499,7 @@
             <property name="name">frcurrentsPreferencesDialogBase</property>
             <property name="pos"></property>
             <property name="size">-1,-1</property>
-            <property name="style">wxCAPTION</property>
+            <property name="style">wxCAPTION|wxRESIZE_BORDER</property>
             <property name="subclass"></property>
             <property name="title">Preferences</property>
             <property name="tooltip"></property>
