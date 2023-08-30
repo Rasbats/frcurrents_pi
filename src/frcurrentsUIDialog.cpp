@@ -2113,8 +2113,8 @@ void frcurrentsUIDialog::OnPrev( wxCommandEvent& event )
 	
 	wxDateTime myDate;
 	wxDateSpan myOneDay = wxDateSpan::Days(1);
-	// Test if we have gone beyond the current list of HW.
-	//
+
+	// Test if we have gone beyond the current list of HW.	
 
 	if (m_myChoice < 0)
 	{	
