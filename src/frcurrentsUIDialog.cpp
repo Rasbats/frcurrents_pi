@@ -503,7 +503,8 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event)
 		return;
 	}
 	CalcHW(i);
-	m_coeff = CalcCoefficient(myRange);
+	BrestRange = CalcRange_Brest();
+	m_coeff = CalcCoefficient();
 	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
 	m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 	GetCurrentsData(s);
@@ -526,16 +527,14 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event)
 	//wxMessageBox(s);
     int i = FindPortIDUsingChoice(s);
 	CalcHW(i);
-
-	m_coeff = CalcCoefficient(myRange);
+	BrestRange = CalcRange_Brest();
+	m_coeff = CalcCoefficient();
 	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
 	m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
 	GetCurrentsData(sa);
 
 	SetCorrectHWSelection();
-
-	JumpToPort();
 	
 	SetNow();
 }
@@ -554,8 +553,8 @@ void frcurrentsUIDialog::OnPortListed()
 	//wxMessageBox(s);
     int i = FindPortIDUsingChoice(s);
 	CalcHW(i);
-
-	m_coeff = CalcCoefficient(myRange);
+	BrestRange = CalcRange_Brest();
+	m_coeff = CalcCoefficient();
 	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
 	m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
@@ -605,8 +604,8 @@ void frcurrentsUIDialog::SetDateForNowButton()
 	{
         		    		
 	CalcHW(id);
-
-	m_coeff = CalcCoefficient(myRange);
+	BrestRange = CalcRange_Brest();
+	m_coeff = CalcCoefficient();
 	wxString s_coeff = wxString::Format("%3.0f", m_coeff);
 	m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
@@ -667,8 +666,8 @@ void frcurrentsUIDialog::SetDateForNowButton()
 			myDate.Add(myOneDay);
 			m_datePicker1->SetValue(myDate);
 			CalcHW(id);
-
-			m_coeff = CalcCoefficient(myRange);
+			BrestRange = CalcRange_Brest();
+			m_coeff = CalcCoefficient();
 			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
 			m_textCtrlCoefficient->SetValue(s_coeff);
 
@@ -683,8 +682,8 @@ void frcurrentsUIDialog::SetDateForNowButton()
 			myDate.Subtract(myOneDay);
 			m_datePicker1->SetValue(myDate);
 			CalcHW(id);
-
-			m_coeff = CalcCoefficient(myRange);
+			BrestRange = CalcRange_Brest();
+			m_coeff = CalcCoefficient();
 			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
 			m_textCtrlCoefficient->SetValue(s_coeff);
 
@@ -736,7 +735,17 @@ StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName)
 		myCPort.npRange = dPMME - dBMME;
 
   		if (myCPort.PORT_NAME == s) {
-             return myCPort;
+			wxString getvalue;
+			double value;
+
+			getvalue = myCPort.LAT;
+			getvalue.ToDouble(&value);
+			m_jumpLat = value;
+
+			getvalue = myCPort.LON;
+			getvalue.ToDouble(&value);
+			m_jumpLon = value;
+            return myCPort;
         }	
 		i++;
 	}	
@@ -1042,6 +1051,116 @@ void frcurrentsUIDialog::SetTimeFactors() {
   btc_valid = false;  // Force re-calculation
 }
 
+double frcurrentsUIDialog::CalcRange_Brest(){
+	int BrestID = FindPortID("BREST, France");
+
+	if (BrestID == 0)
+	{		
+		wxMessageBox(_("No tidal data for this port"), _("No Tidal Data"));
+		return 999;
+	}
+	myPortCode = BrestID;
+	SetTimeFactors();
+
+	const IDX_entry *pIDX = ptcmgr->GetIDX_entry ( BrestID );
+
+	//if (strchr("Tt", pIDX->IDX_type)) 
+	m_plot_type = TIDE_PLOT;
+
+	// Establish the inital drawing day as today
+    m_graphday = m_datePicker1->GetValue();
+    //Get the timezone of the station
+    int h = m_stationOffset_mins;
+			h /= 60;
+	//
+	float dir;
+	float tcmax, tcmin;
+	tcmax = -10;
+	tcmin = 10;
+	float val = -100;
+	int list_index = 0 ;
+	int array_index = 0;
+	wxString sHWLW = _T("");
+	int e = 0;
+	double myLW, myHW;
+	bool wt = false;
+	bool gotHW = false;
+	Station_Data* pmsd;
+	int i;
+	float tcv[26];
+	time_t tt_tcv[26];
+	myHeightHW = 0;
+	myHeightLW = 0;
+
+	// The tide/current modules calculate values based on PC local time
+    // We want UTC, so adjust accordingly
+    int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
+
+    // get tide flow sens ( flood or ebb ? )
+    ptcmgr->GetTideFlowSens(tt_localtz, BACKWARD_TEN_MINUTES_STEP,
+                            pIDX->IDX_rec_num, tcv[0], val, wt);
+    //if (m_tzoneDisplay == 0)
+	tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
+
+	for (i = 0; i < 26; i++) {
+		int tt = tt_localtz + (i * FORWARD_ONE_HOUR_STEP);
+
+		ptcmgr->GetTideOrCurrent(tt, pIDX->IDX_rec_num, tcv[i], dir);
+		tt_tcv[i] = tt;  // store the corresponding time_t value
+		if (tcv[i] > tcmax) tcmax = tcv[i];
+
+		if (tcv[i] < tcmin) tcmin = tcv[i];
+		if (TIDE_PLOT == m_plot_type) {
+			if (!((tcv[i] > val) == wt) && (i > 0))  // if tide flow sense change
+			{
+				float tcvalue;  // look backward for HW or LW
+				time_t tctime;
+				ptcmgr->GetHightOrLowTide(tt, BACKWARD_TEN_MINUTES_STEP,
+					BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
+					pIDX->IDX_rec_num, tcvalue, tctime);
+				if (tctime > tt_localtz) {  // Only show events visible in graphic
+					// presently shown
+					wxDateTime tcd;           // write date
+					wxString s, s1, s2;
+					tcd.Set(tctime - (m_diff_mins * 60));
+
+					//if (m_tzoneDisplay == 0)  // LMT @ Station
+					tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
+							
+					(wt) ? sHWLW = "HW" : sHWLW = "LW";  // write HW or LT		
+					// Fill the array with tide data
+					euTC[array_index][3] = sHWLW;
+
+					if (euTC[array_index][3] == "LW") 
+					{
+						if(gotHW) myLW = tcvalue;
+					}
+													  
+					if (euTC[array_index][3] == "HW") 
+					{
+						gotHW = true;
+						myHW = tcvalue;
+						BrestHeightHW = myHW;
+						BrestHeightLW = myLW;
+
+						BrestRange = myHW - myLW; //Used for CalcCoefficient
+
+						// nearestHW for the now button
+						e++;														
+						list_index++;
+					}  
+				}
+				array_index++;
+				wt = !wt;  // change tide flow sens
+			}
+			val = tcv[i];
+		}
+	}
+	//wxString br = wxString::Format("%f", BrestRange);
+	//wxMessageBox(br);
+	return BrestRange;
+}
+
 void frcurrentsUIDialog::CalcHW(int PortCode){
 	m_choice2->Clear();	
 
@@ -1146,7 +1265,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode){
 						myHeightHW = myHW;
 						myHeightLW = myLW;
 
-						myRange = myHW - myLW; //Used for CalcCoefficient
+						myRange = myHW - myLW;
 
 						m_choice2->Insert(euTC[array_index][0],list_index); 
 						// nearestHW for the now button
@@ -1185,49 +1304,29 @@ double frcurrentsUIDialog::CalcCurrent(double VE, double ME, double spRate, doub
 	}*/
 }
 
-double frcurrentsUIDialog::CalcCoefficient(double m_rangeOnDay)
+double frcurrentsUIDialog::CalcCoefficient()
 {
-	int m = m_choice1->GetSelection();
-	wxString s = m_choice1->GetString(m);
-	StandardPort myCPort = PopulatePortTides(s);
-	wxString getvalue;
-	double PMVE, PMME, BMVE, BMME;
-	double value;
-
-	getvalue = myCPort.BMME;
-	//wxMessageBox(myCPort.BMME, "BMME testing");
-	getvalue.ToDouble(&value);
-	BMME = value;
-
-	getvalue = myCPort.BMVE;
-	//wxMessageBox(myCPort.BMVE, "BMVE testing");
-	getvalue.ToDouble(&value);
-	BMVE = value;
-
-	getvalue = myCPort.PMME;
-	//wxMessageBox(myCPort.PMME, "PMME testing");
-	getvalue.ToDouble(&value);
-	PMME = value;
 	
-	getvalue = myCPort.PMVE;
-	//wxMessageBox(myCPort.PMVE, "PMVE testing");
-	getvalue.ToDouble(&value);
-	PMVE = value;
+	double PMVE, PMME, BMVE, BMME;
 
-	getvalue = myCPort.LAT;
-	getvalue.ToDouble(&value);
-	m_jumpLat = value;
 
-	getvalue = myCPort.LON;
-	getvalue.ToDouble(&value);
-	m_jumpLon = value;
+	BMME = 2.70;
+
+
+	BMVE = 1.15;
+
+
+	PMME = 5.50;
+	
+
+	PMVE = 7.05;
 
 	double x; 
 	double U;
 
 	U = 100 * (PMVE - BMVE) / 95;
 
-	x = 100 * (myHeightHW - myHeightLW) / U;
+	x = 100 * (BrestRange) / U;
 	return x;
 	
 }
@@ -1585,8 +1684,6 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
 	FindTidePortUsingChoice(s);
 
 	OnPortListed();
-
-	JumpToPort();
 
 	SetNow();
 
@@ -2038,8 +2135,8 @@ void frcurrentsUIDialog::OnPrev( wxCommandEvent& event )
 			int f = FindPortIDUsingChoice(s);
 			
 			CalcHW(f);
-
-			m_coeff = CalcCoefficient(myRange);
+			BrestRange = CalcRange_Brest();
+			m_coeff = CalcCoefficient();
 			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
 			m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
@@ -2164,8 +2261,8 @@ void frcurrentsUIDialog::OnNext( wxCommandEvent& event )
 			int f = FindPortIDUsingChoice(s);
 			
 			CalcHW(f);	
-
-			m_coeff = CalcCoefficient(myRange);
+			BrestRange = CalcRange_Brest();
+			m_coeff = CalcCoefficient();
 			wxString s_coeff = wxString::Format("%3.0f", m_coeff);
 			m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 

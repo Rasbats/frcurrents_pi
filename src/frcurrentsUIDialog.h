@@ -172,11 +172,14 @@ public:
 	int button_id;
 	wxString m_portXML;
 	double myRange;
-  float myHeightHW;
+	double BrestRange;
+	float myHeightHW;
 	float myHeightLW;
+	float BrestHeightHW;
+	float BrestHeightLW;
 	StandardPort PopulatePortTides(wxString PortName);
 	double CalcCurrent(double VE, double ME, double spRate, double npRate, double coefficient);
-	double CalcCoefficient(double m_rangeOnDay);
+	double CalcCoefficient();
 	int CalcHoursFromHWNow();
 	wxString nearestHW[8];
 	int round(double c);
@@ -200,6 +203,7 @@ private:
 	void OnNow( wxCommandEvent& event );
 
 	void CalcHW(int PortCode);
+	double CalcRange_Brest();
 	void SetNow();
 	void SetCorrectHWSelection();
 	void OnDateSelChanged(wxDateEvent& event);
@@ -231,7 +235,9 @@ private:
 	void About(wxCommandEvent& event);
 	// Time/HW
 	int myPortCode;
+	int BrestID;
 	void SetTimeFactors();
+	void SetTimeFactorsBrest();
 	bool btc_valid;
 	int m_stationOffset_mins;
 	int m_diff_mins;
