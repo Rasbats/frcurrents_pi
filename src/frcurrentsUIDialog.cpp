@@ -1134,7 +1134,7 @@ double frcurrentsUIDialog::CalcRange_Brest(){
 					if (euTC[array_index][3] == "LW") 
 					{							
 						myLW = tcvalue;
-						if (gotHW) {
+						if (gotHW) {  // We use the BM after PM
 							BrestHeightHW = myHW;
 							BrestHeightLW = myLW;
 							BrestRange = myHW - myLW; //Used for CalcCoefficient
@@ -1285,6 +1285,8 @@ void frcurrentsUIDialog::CalcHW(int PortCode){
 
 double frcurrentsUIDialog::CalcCurrent(double VE, double ME, double spRate, double npRate, double coefficient)
 {
+	// y = mx + c
+
 	double m, c, x;
 	m = (VE - ME) / (spRate - npRate);
 	c = 95 - (m * spRate);

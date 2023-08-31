@@ -199,10 +199,7 @@ int frcurrents_pi::GetPlugInVersionMinor()
       return PLUGIN_VERSION_MINOR;
 }
 
-wxBitmap *frcurrents_pi::GetPlugInBitmap()
-{
-      return _img_frcurrents_pi;
-}
+wxBitmap* frcurrents_pi::GetPlugInBitmap() { return &m_panelBitmap; }
 
 wxString frcurrents_pi::GetCommonName()
 {
