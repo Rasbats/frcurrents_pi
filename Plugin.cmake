@@ -36,9 +36,8 @@ set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME frcurrents)    # Dialogs, installer artifacts, ...
 set(PLUGIN_API_NAME frcurrents) # As of GetCommonName() in plugin API
-set(PKG_SUMMARY "UK Currents")
-set(PKG_DESCRIPTION [=[
-Shows UK Currents.
+set(PKG_SUMMARY "French Tidal Currents")
+set(PKG_DESCRIPTION [=[Shows French Tidal Currents.
 ]=])
 
 set(PKG_AUTHOR "Mike Rossiter")
