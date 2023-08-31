@@ -1132,18 +1132,19 @@ double frcurrentsUIDialog::CalcRange_Brest(){
 					euTC[array_index][3] = sHWLW;
 
 					if (euTC[array_index][3] == "LW") 
-					{
-						if(gotHW) myLW = tcvalue;
+					{							
+						myLW = tcvalue;
+						if (gotHW) {
+							BrestHeightHW = myHW;
+							BrestHeightLW = myLW;
+							BrestRange = myHW - myLW; //Used for CalcCoefficient
+						}
 					}
 													  
 					if (euTC[array_index][3] == "HW") 
 					{
 						gotHW = true;
-						myHW = tcvalue;
-						BrestHeightHW = myHW;
-						BrestHeightLW = myLW;
-
-						BrestRange = myHW - myLW; //Used for CalcCoefficient
+						myHW = tcvalue;						
 
 						// nearestHW for the now button
 						e++;														
