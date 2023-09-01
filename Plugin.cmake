@@ -17,12 +17,12 @@ set(OCPN_TEST_REPO
     CACHE STRING "Default repository for untagged builds"
 )
 set(OCPN_BETA_REPO
-    "opencpn/frcurrents-beta"
+    "mike-rossiter/frcurrents-beta"
     CACHE STRING
     "Default repository for tagged builds matching 'beta'"
 )
 set(OCPN_RELEASE_REPO
-    "opencpn/frcurrents-prod"
+    "mike-rossiter/frcurrents-prod"
     CACHE STRING
     "Default repository for tagged builds not matching 'beta'"
 )
@@ -31,7 +31,7 @@ set(OCPN_RELEASE_REPO
 # -------  Plugin setup --------
 #
 set(PKG_NAME frcurrents_pi)
-set(PKG_VERSION  1.0.1)
+set(PKG_VERSION  1.0.2)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME frcurrents)    # Dialogs, installer artifacts, ...
