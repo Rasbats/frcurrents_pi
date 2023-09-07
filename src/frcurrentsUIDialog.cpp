@@ -498,65 +498,6 @@ void frcurrentsUIDialog::SetCorrectHWSelection()
     m_choice2->SetSelection(0);
 }
 
-void frcurrentsUIDialog::SetCorrectHWSelection()
-{
-    int i, c, s, t, t1, t2, t10, t20;
-    wxDateTime d1, d2, d10, d20;
-
-    c = m_choice2->GetCount();
-    wxDateTime myChoiceDates[6], m_dt;
-
-    c = m_choice2->GetCount();
-    for (i = 0; i < c; i++) {
-
-        myChoiceDates[i].ParseDateTime(m_choice2->GetString(i));
-    }
-
-    wxDateTime this_now = wxDateTime::Now();
-    t = this_now.GetTicks();
-
-    for (i = 0; i < c; i++) {
-        d1 = myChoiceDates[i];
-        t1 = d1.GetTicks() - 6 * 60 * 60;
-        d2 = myChoiceDates[i];
-        t2 = d2.GetTicks() + 6 * 60 * 60;
-
-        if ((t > t1) && (t < t2)) {
-            s = i;
-            i = 100;
-            m_choice2->SetSelection(s);
-            return;
-        } else {
-            s = 0;
-        }
-    }
-    // Arrived here because time in between +6/-6
-    for (i = 0; i < c - 1; i++) {
-        d10 = myChoiceDates[i];
-        t10 = d10.GetTicks();
-        d20 = myChoiceDates[i + 1];
-        t20 = d20.GetTicks();
-        if ((t > t10) && (t < t20)) {
-            m_choice2->SetSelection(i);
-            return;
-        }
-    }
-    // Arrived here because date/time outside the day shown on calendar
-    // Date after dateCal
-    wxDateTime datepick = m_datePicker1->GetValue();
-    if (this_now.GetDayOfYear() > datepick.GetDayOfYear()) {
-        m_choice2->SetSelection(c - 1);
-        return;
-    }
-    // Date before dateCal
-    if (this_now.GetDayOfYear() < datepick.GetDayOfYear()) {
-        m_choice2->SetSelection(0);
-        return;
-    }
-    // Default
-    m_choice2->SetSelection(0);
-}
-
 void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event)
 {
     m_staticText2->SetLabel(_T("  "));
