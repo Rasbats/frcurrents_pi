@@ -201,7 +201,10 @@ int frcurrents_pi::GetPlugInVersionMinor()
 
 int GetPlugInVersionPatch() { return PLUGIN_VERSION_PATCH; }
 
+
+
 wxBitmap* frcurrents_pi::GetPlugInBitmap() { return &m_panelBitmap; }
+
 
 wxString frcurrents_pi::GetCommonName()
 {

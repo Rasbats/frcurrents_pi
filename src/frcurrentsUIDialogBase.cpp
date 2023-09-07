@@ -71,8 +71,11 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	bSizerMain->Add( sbSizerDateTime, 0, wxEXPAND, 5 );
 
-	wxStaticBoxSizer* sbSizerFolder;
-	sbSizerFolder = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Select High Water") ), wxVERTICAL );
+	sbSizerFolder = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, wxEmptyString ), wxVERTICAL );
+
+	m_staticTextHW = new wxStaticText( sbSizerFolder->GetStaticBox(), wxID_ANY, _("Select High Water"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticTextHW->Wrap( -1 );
+	sbSizerFolder->Add( m_staticTextHW, 0, wxALL, 5 );
 
 	wxArrayString m_choice2Choices;
 	m_choice2 = new wxChoice( sbSizerFolder->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice2Choices, 0 );

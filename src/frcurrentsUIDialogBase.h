@@ -25,14 +25,15 @@
 #include <wx/datectrl.h>
 #include <wx/dateevt.h>
 #include <wx/textctrl.h>
-#include <wx/bmpbuttn.h>
 #include <wx/stattext.h>
+#include <wx/bmpbuttn.h>
 #include <wx/statline.h>
 #include <wx/dialog.h>
 #include <wx/checkbox.h>
 #include <wx/clrpicker.h>
 
 ///////////////////////////////////////////////////////////////////////////
+
 ///////////////////////////////////////////////////////////////////////////////
 /// Class frcurrentsUIDialogBase
 ///////////////////////////////////////////////////////////////////////////////
@@ -43,6 +44,7 @@ class frcurrentsUIDialogBase : public wxDialog
 	protected:
 		wxButton* m_button8;
 		wxDatePickerCtrl* m_datePicker1;
+		wxStaticText* m_staticTextHW;
 		wxChoice* m_choice2;
 		wxBitmapButton* m_bpNow;
 		wxStaticText* m_staticText1;
@@ -75,6 +77,7 @@ class frcurrentsUIDialogBase : public wxDialog
 		wxChoice* m_choiceArea;
 		wxChoice* m_choice1;
 		wxTextCtrl* m_textCtrlCoefficient;
+		wxStaticBoxSizer* sbSizerFolder;
 		wxTextCtrl* m_dirPicker1;
 
 		frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("French Tidal Streams"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
