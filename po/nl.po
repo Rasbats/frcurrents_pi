@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 3.3.1009\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"POT-Creation-Date: 2023-09-07 12:43+0100\n"
 "PO-Revision-Date: 2013-10-24 17:24+0100\n"
 "Last-Translator: NAV <rider2@kpnmail.nl>\n"
 "Language-Team: rider2@kpnmail.nl\n"
@@ -17,22 +17,98 @@ msgstr ""
 "X-Poedit-Bookmarks: -1,-1,-1,-1,-1,182,-1,-1,-1,-1\n"
 "X-Generator: Poedit 1.5.4\n"
 #
+msgid "      < 0.5 knots"
+msgstr ""
+#
+msgid "   Coeff"
+msgstr ""
+#
+msgid "1"
+msgstr ""
+#
+msgid ""
+"1: Normal\n"
+"2: Small \n"
+"3: Normal length, \n"
+"    narrow width"
+msgstr ""
+#
+msgid "2"
+msgstr ""
+#
+msgid "3"
+msgstr ""
+#
+msgid "557"
+msgstr ""
+#
+msgid "558"
+msgstr ""
+#
+msgid "559"
+msgstr ""
+#
+msgid "560"
+msgstr ""
+#
+msgid "561"
+msgstr ""
+#
+msgid "562"
+msgstr ""
+#
+msgid "563"
+msgstr ""
+#
+msgid "564"
+msgstr ""
+#
+msgid "565"
+msgstr ""
+#
+msgid ">= 0.5 and < 1.5"
+msgstr ""
+#
+msgid ">= 1.5 and < 2.5"
+msgstr ""
+#
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+#
+msgid ">= 3.5 knots    "
+msgstr ""
+#
+#
+#
+#
+#
+#
 #
 #, fuzzy
-msgid "/Settings/tcurrent"
-msgstr "Stroomsnelheid"
+msgid "Arrow Options :"
+msgstr "Tijdopties"
 #
-msgid "???"
+msgid "Arrow Style"
 msgstr ""
 #
-msgid "About Tidal Arrows"
+msgid "Choose Date"
 msgstr ""
 #
-msgid "About these Tidal Arrows"
+msgid "Choose a directory"
 msgstr ""
 #
-msgid "Choose Date/Time"
+msgid "Choose the tcdata directory"
 msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Display date/time"
+msgstr "Toon isobaren"
 #
 msgid "Display tidal direction"
 msgstr ""
@@ -40,10 +116,22 @@ msgstr ""
 msgid "Display tidal rates (knots)"
 msgstr ""
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Failed to load file: "
+msgstr "Kon mailbericht niet versturen"
+#
 msgid "Fill Colour"
 msgstr ""
 #
-msgid "HARMONIC"
+msgid "French Tidal Streams"
 msgstr ""
 #
 msgid "HW"
@@ -91,13 +179,62 @@ msgstr ""
 msgid "HW-6"
 msgstr ""
 #
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "High Resolution Display"
+msgstr "Resolutie"
+#
 msgid "High Water"
 msgstr ""
 #
-msgid "LOC"
+msgid "High Water +-"
 msgstr ""
 #
-msgid "LW"
+msgid "Information"
+msgstr ""
+#
+msgid "LW+1"
+msgstr ""
+#
+msgid "LW+2"
+msgstr ""
+#
+msgid "LW+3"
+msgstr ""
+#
+msgid "LW+4"
+msgstr ""
+#
+msgid "LW+5"
+msgstr ""
+#
+msgid "LW+6"
+msgstr ""
+#
+msgid "LW-1"
+msgstr ""
+#
+msgid "LW-2"
+msgstr ""
+#
+msgid "LW-3"
+msgstr ""
+#
+msgid "LW-4"
+msgstr ""
+#
+msgid "LW-5"
+msgstr ""
+#
+msgid "LW-6"
+msgstr ""
+#
+msgid "Low Water"
 msgstr ""
 #
 msgid "Next"
@@ -112,14 +249,18 @@ msgstr ""
 msgid "No tidal data for this port"
 msgstr ""
 #
-msgid "No tidal data found"
-msgstr ""
-#
-msgid "None"
-msgstr ""
-#
 msgid "Now"
 msgstr "Nu"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Options:   "
+msgstr "Tijdopties"
 #
 msgid "Please choose a new date"
 msgstr ""
@@ -138,98 +279,93 @@ msgstr "Gribvoorkeuren"
 msgid "Previous"
 msgstr "Vorige"
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select Directory"
+msgstr "Map voor GRIB bestand"
+#
 msgid "Select High Water"
 msgstr ""
 #
-msgid "Standard Port"
+msgid "Select tidal area"
+msgstr ""
+#
+msgid "Standard Ports"
+msgstr ""
+#
+msgid "Tidal Area"
 msgstr ""
 #
 #
 #, fuzzy
-msgid "Tidal Current Control"
+msgid "Tidal Current Arrow Colour"
 msgstr "GRIB Weergaveopties"
 #
-msgid "Tidal Data"
-msgstr ""
-#
-msgid ""
-"Tidal Data for UKHO Tidal Diamonds\n"
-"--------------------------------------------------------------\n"
-"The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n"
-"\n"
-"PLYMOUTH (DEVONPORT)\n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK)\n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n"
-"\n"
-"Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
-"\n"
-"--------------------------------------------------------------------\n"
-"\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n"
-"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
-"Stream Atlases. This is based on the average range for the day\n"
+msgid "Tide Harmonics IDX Directory"
 msgstr ""
 #
 #
 #
-msgid "UTC"
-msgstr "UTC"
+#
+#
+#
+#
+#, fuzzy
+msgid "Time Zone"
+msgstr "Periode"
 #
 msgid "Using Tide/Current data from:  "
 msgstr ""
 #
 #
 #, fuzzy
-msgid "tcurrent"
+msgid "frcurrents"
 msgstr "Stroomsnelheid"
 #
 #, fuzzy
-msgid "tcurrent PlugIn for OpenCPN"
+msgid "frcurrents PlugIn for OpenCPN"
 msgstr "GRIB PlugIn voor OpenCPN"
 #
 msgid ""
-"tcurrent PlugIn for OpenCPN\n"
+"frcurrents PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
 msgstr ""
 #
-#, fuzzy
-msgid "tcurrent Settings"
-msgstr "GRIB-instellingen"
-#
-#
-#, fuzzy
-msgid "tcurrentPort"
-msgstr "Stroomsnelheid"
-#
-#, fuzzy
-msgid "tcurrentUseDirection"
-msgstr "GRIB-instellingen"
-#
-msgid "tcurrentUseFillColour"
-msgstr ""
-#
-#
-#, fuzzy
-msgid "tcurrentUseRate"
-msgstr "Stroomsnelheid"
 #
 #
 #
@@ -248,8 +384,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid " (Max size )"
 #~ msgstr " (max. grootte)"
+#
 #
 #
 #
@@ -266,8 +404,16 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "( Max "
 #~ msgstr "( Max "
+#
+#
+#
+#, fuzzy
+#~ msgid "/Settings/tcurrent"
+#~ msgstr "Stroomsnelheid"
+#
 #
 #
 #
@@ -286,8 +432,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Address used to send request eMail. (Mandatory for LINUX)"
 #~ msgstr "Adres voor verzenden e-mailverzoek (verplicht voor LINUX)"
+#
 #
 #
 #
@@ -304,8 +452,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Air Temperature(2m)"
 #~ msgstr "Luchttemp. (2 m)"
+#
 #
 #
 #
@@ -322,8 +472,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Barbed Arrows"
 #~ msgstr "Windpijlen"
+#
 #
 #
 #
@@ -346,8 +498,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Building Isobar map"
 #~ msgstr "Maken van  isobarenkaart ..."
+#
 #
 #
 #
@@ -366,6 +520,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Celsius"
 #~ msgstr "Celsius"
 #
@@ -377,8 +532,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Cloud"
 #~ msgstr "Bewolking"
+#
 #
 #
 #
@@ -418,8 +575,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Colors"
 #~ msgstr "kleuren"
+#
 #
 #
 #
@@ -436,8 +595,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Copy Missing Wave Records"
 #~ msgstr "Kopieer ontbrekende golfgegevens"
+#
 #
 #
 #
@@ -460,9 +621,11 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "GRIB voorkeuren"
+#
 #
 #
 #
@@ -479,8 +642,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Days"
 #~ msgstr "dagen"
+#
 #
 #
 #
@@ -497,6 +662,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Direction Arrows"
 #~ msgstr "Richtingpijlen"
 #
@@ -506,8 +672,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Display"
 #~ msgstr "Toon op scherm"
+#
 #
 #
 #
@@ -526,8 +694,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Display Iso Temp. Lines"
 #~ msgstr "Toon isothermen"
+#
 #
 #
 #
@@ -544,19 +714,11 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Display Isotachs"
 #~ msgstr "Toon isobaren"
 #
-#
-#
-#
-#
-#
-#
-#, fuzzy
-#~ msgid "Display Isotherms"
-#~ msgstr "Toon isobaren"
 #
 #
 #
@@ -575,8 +737,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Error:  Can't read this File!"
 #~ msgstr "Fout: kan bestand niet lezen!"
+#
 #
 #
 #
@@ -593,6 +757,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Error:  No valid data in this file!"
 #~ msgstr "Fout: geen valide gegevens in dit bestand!"
 #
@@ -602,8 +767,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Estimated File Size"
 #~ msgstr "Geschatte bestandsgrootte"
+#
 #
 #
 #
@@ -621,16 +788,6 @@ msgstr "Stroomsnelheid"
 #
 #
 #
-#
-#~ msgid "Failed to send mail message"
-#~ msgstr "Kon mailbericht niet versturen"
-#
-#
-#
-#
-#
-#
-#
 #~ msgid "Feet"
 #~ msgstr "voet"
 #
@@ -640,8 +797,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Forecast Model "
 #~ msgstr "Verwachtingsmodel"
+#
 #
 #
 #
@@ -663,44 +822,9 @@ msgstr "Stroomsnelheid"
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "GRIB File Directory"
-#~ msgstr "Map voor GRIB bestand"
-#
-#
-#
-#
-#
-#
-#
 #~ msgid "Generic"
 #~ msgstr "Generiek"
+#
 #
 #
 #
@@ -719,8 +843,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
 #
 #
 #
@@ -737,8 +863,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Inches"
 #~ msgstr "inch"
+#
 #
 #
 #
@@ -756,8 +884,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Interval"
 #~ msgstr "Interval"
+#
 #
 #
 #
@@ -776,8 +906,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "KPH"
 #~ msgstr "km/u"
+#
 #
 #
 #
@@ -794,8 +926,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Load File Options"
 #~ msgstr "Opties voor laden bestand"
+#
 #
 #
 #
@@ -813,6 +947,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Load the More Recent File in Directory"
 #~ msgstr "Laad het meest recente bestand uit de map"
 #
@@ -822,8 +957,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Local Time"
 #~ msgstr "Lokale tijd"
+#
 #
 #
 #
@@ -842,8 +979,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "M/S"
 #~ msgstr "m/sec"
+#
 #
 #
 #
@@ -863,8 +1002,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "MPH"
 #~ msgstr "mijl/u"
+#
 #
 #
 #
@@ -881,8 +1022,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Mail To "
 #~ msgstr "E-mail aan"
+#
 #
 #
 #
@@ -899,8 +1042,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "MilliBars"
 #~ msgstr "millibar"
+#
 #
 #
 #
@@ -919,8 +1064,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "MyLabel"
 #~ msgstr "MijnLabel"
+#
 #
 #
 #
@@ -937,8 +1084,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Numbers"
 #~ msgstr "Getallen"
+#
 #
 #
 #
@@ -957,6 +1106,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "OpenCpn failed to logon! Please verify your eMail environment"
 #~ msgstr "OpenCPN logon mislukt! Controleer uw e-mail instellingen."
 #
@@ -966,8 +1116,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Overlay Transparency"
 #~ msgstr "Overlay-transparantie"
+#
 #
 #
 #
@@ -986,8 +1138,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Parameters"
 #~ msgstr "Parameters"
+#
 #
 #
 #
@@ -1006,8 +1160,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Period"
 #~ msgstr "Periode"
+#
 #
 #
 #
@@ -1025,9 +1181,11 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view invisible overlays:"
 #~ msgstr "Zoom uit of verklein schaal om niet-zichtbare overlay te zien:"
+#
 #
 #
 #
@@ -1057,9 +1215,11 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
 #~ msgstr "Zoom uit of verklein schaal om onderdrukte CRAIN GRIB te zien."
+#
 #
 #
 #
@@ -1089,9 +1249,11 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
 #~ msgstr "Zoom uit of verklein schaal om onderdrukte SEATEMP GRIB te zien."
+#
 #
 #
 #
@@ -1117,8 +1279,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Precipitation"
 #~ msgstr "Neerslag"
+#
 #
 #
 #
@@ -1142,9 +1306,11 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "luchtdruk (hPa)"
+#
 #
 #
 #
@@ -1163,6 +1329,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Quickscat"
 #~ msgstr "Quickscat"
 #
@@ -1172,8 +1339,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Rainfall"
 #~ msgstr "Neerslag"
+#
 #
 #
 #
@@ -1192,8 +1361,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Ref : "
 #~ msgstr "Ref:"
+#
 #
 #
 #
@@ -1212,8 +1383,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Request Pofile"
 #~ msgstr "Verzoekprofiel"
+#
 #
 #
 #
@@ -1230,14 +1403,6 @@ msgstr "Stroomsnelheid"
 #~ "e-mail parameters en uw logbestand.\n"
 #~ "Opslaan of Afbreken om te beeindigen ..."
 #
-#
-#
-#
-#
-#
-#
-#~ msgid "Resolution"
-#~ msgstr "Resolutie"
 #
 #
 #
@@ -1263,6 +1428,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Sea Temp"
 #~ msgstr "Zeetemp."
 #
@@ -1272,8 +1438,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Sea Temperature(surf.)"
 #~ msgstr "Zeewateroppervl.temp."
+#
 #
 #
 #
@@ -1293,9 +1461,11 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Selecteer een GRIB-bestand"
+#
 #
 #
 #
@@ -1312,6 +1482,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Sender eMail Address"
 #~ msgstr "E-mailadres verzender"
 #
@@ -1321,8 +1492,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Settings"
 #~ msgstr "Instellingen"
+#
 #
 #
 #
@@ -1394,8 +1567,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Show metres/sec for Wind Speed"
 #~ msgstr "Toon windsnelheid in m/sec"
+#
 #
 #
 #
@@ -1419,8 +1594,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Size"
 #~ msgstr "grootte"
+#
 #
 #
 #
@@ -1437,8 +1614,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Slices per hour"
 #~ msgstr "delen per uur"
+#
 #
 #
 #
@@ -1455,18 +1634,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
-#, fuzzy
-#~ msgid "Start Options"
-#~ msgstr "Tijdopties"
-#
-#
-#
-#
-#
-#
 #
 #~ msgid "Stop"
 #~ msgstr "Stop"
+#
 #
 #
 #
@@ -1480,6 +1651,7 @@ msgstr "Stroomsnelheid"
 #~ msgstr ""
 #~ "De limiet voor bestandsgrootte is bereikt!\n"
 #~ "U kunt inzoomen en/of parameters aanpassen ..."
+#
 #
 #
 #
@@ -1503,6 +1675,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "This is your zytcurrent's forum access Login"
 #~ msgstr "Dit is uw login voor het zyGrib-forum"
@@ -1510,20 +1683,9 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#~ msgid "UTC"
+#~ msgstr "UTC"
 #
-#
-#
-#~ msgid "Time Options"
-#~ msgstr "Tijdopties"
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Time Range"
-#~ msgstr "Periode"
 #
 #
 #
@@ -1540,8 +1702,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Updates per Second"
 #~ msgstr "updates per sec"
+#
 #
 #
 #
@@ -1559,8 +1723,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Gebruik hoge grafische resolutie"
+#
 #
 #
 #
@@ -1577,8 +1743,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Warning:  Empty directory!"
 #~ msgstr "Waarschuwing: lege map!"
+#
 #
 #
 #
@@ -1595,6 +1763,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "WavesModel"
 #~ msgstr "Golfmodel"
 #
@@ -1604,8 +1773,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Wind"
 #~ msgstr "Wind"
+#
 #
 #
 #
@@ -1629,6 +1800,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Wind Gust"
 #~ msgstr "Windvlagen"
 #
@@ -1640,8 +1812,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Wind Scat"
 #~ msgstr "Windscat"
+#
 #
 #
 #
@@ -1671,9 +1845,11 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "windsnelheid (m/sec)"
+#
 #
 #
 #
@@ -1690,6 +1866,7 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid ""
 #~ "Your request is ready. An email is prepared in your email environment. \n"
@@ -1699,6 +1876,7 @@ msgstr "Stroomsnelheid"
 #~ "Uw aanvraag staat gereed. Een e-mail is voorbereid.\n"
 #~ "Controleer en verzend deze ...\n"
 #~ "Opslaan of Afbreken om te beeindigen of nieuwe parameters in te voeren ..."
+#
 #
 #
 #
@@ -1724,8 +1902,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "Zone"
 #~ msgstr "Zone"
+#
 #
 #
 #
@@ -1744,8 +1924,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "km/h"
 #~ msgstr "km/u"
+#
 #
 #
 #
@@ -1762,8 +1944,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "mmHG"
 #~ msgstr "mm kwik"
+#
 #
 #
 #
@@ -1780,8 +1964,10 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #~ msgid "playback"
 #~ msgstr "Terugspelen"
+#
 #
 #
 #
@@ -1812,9 +1998,11 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrent Data at Cursor"
 #~ msgstr "GRIB-gegevens bij cursor"
+#
 #
 #
 #
@@ -1864,9 +2052,33 @@ msgstr "Stroomsnelheid"
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrent Preferences"
 #~ msgstr "GRIB voorkeuren"
+#
+#
+#, fuzzy
+#~ msgid "tcurrent Settings"
+#~ msgstr "GRIB-instellingen"
+#
+#
+#
+#, fuzzy
+#~ msgid "tcurrentPort"
+#~ msgstr "Stroomsnelheid"
+#
+#
+#, fuzzy
+#~ msgid "tcurrentUseDirection"
+#~ msgstr "GRIB-instellingen"
+#
+#
+#
+#, fuzzy
+#~ msgid "tcurrentUseRate"
+#~ msgstr "Stroomsnelheid"
+#
 #
 #
 #
@@ -1877,6 +2089,7 @@ msgstr "Stroomsnelheid"
 #, fuzzy
 #~ msgid "zytcurrent Code"
 #~ msgstr "zyGrib code"
+#
 #
 #
 #

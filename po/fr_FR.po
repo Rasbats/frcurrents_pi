@@ -1,0 +1,371 @@
+#: src/frcurrentsUIDialog.cpp:675
+msgid ""
+msgstr ""
+"Project-Id-Version: opencpn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"PO-Revision-Date: 2023-09-11 16:27\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Crowdin-Project: opencpn\n"
+"X-Crowdin-Project-ID: 49843\n"
+"X-Crowdin-Language: fr\n"
+"X-Crowdin-File: /plugins/frcurrents_pi/po/frcurrents_pi.pot\n"
+"X-Crowdin-File-ID: 421\n"
+
+#: src/frcurrentsUIDialog.cpp:288
+msgid "HW-6"
+msgstr "HW-6"
+
+#: src/frcurrentsUIDialog.cpp:289
+msgid "HW-5"
+msgstr "HW-5"
+
+#: src/frcurrentsUIDialog.cpp:290
+msgid "HW-4"
+msgstr "HW-4"
+
+#: src/frcurrentsUIDialog.cpp:291
+msgid "HW-3"
+msgstr "HW-3"
+
+#: src/frcurrentsUIDialog.cpp:292
+msgid "HW-2"
+msgstr "HW-2"
+
+#: src/frcurrentsUIDialog.cpp:293
+msgid "HW-1"
+msgstr "HW-1"
+
+#: src/frcurrentsUIDialog.cpp:294 src/frcurrentsUIDialog.cpp:2303
+msgid "High Water"
+msgstr "Marée haute"
+
+#: src/frcurrentsUIDialog.cpp:295
+msgid "HW+1"
+msgstr "HW+1"
+
+#: src/frcurrentsUIDialog.cpp:296
+msgid "HW+2"
+msgstr "HW+2"
+
+#: src/frcurrentsUIDialog.cpp:297
+msgid "HW+3"
+msgstr "HW+3"
+
+#: src/frcurrentsUIDialog.cpp:298
+msgid "HW+4"
+msgstr "HW+4"
+
+#: src/frcurrentsUIDialog.cpp:299
+msgid "HW+5"
+msgstr "HW+5"
+
+#: src/frcurrentsUIDialog.cpp:300
+msgid "HW+6"
+msgstr "HW+6"
+
+#: src/frcurrentsUIDialog.cpp:302
+msgid "LW-6"
+msgstr "BM-6"
+
+#: src/frcurrentsUIDialog.cpp:303
+msgid "LW-5"
+msgstr "BM-5"
+
+#: src/frcurrentsUIDialog.cpp:304
+msgid "LW-4"
+msgstr "BM-4"
+
+#: src/frcurrentsUIDialog.cpp:305
+msgid "LW-3"
+msgstr "BM-3"
+
+#: src/frcurrentsUIDialog.cpp:306
+msgid "LW-2"
+msgstr "BM-2"
+
+#: src/frcurrentsUIDialog.cpp:307
+msgid "LW-1"
+msgstr "BM-1"
+
+#: src/frcurrentsUIDialog.cpp:308 src/frcurrentsUIDialog.cpp:2301
+msgid "Low Water"
+msgstr "Marée basse"
+
+#: src/frcurrentsUIDialog.cpp:309
+msgid "LW+1"
+msgstr "BM+1"
+
+#: src/frcurrentsUIDialog.cpp:310
+msgid "LW+2"
+msgstr "BM+2"
+
+#: src/frcurrentsUIDialog.cpp:311
+msgid "LW+3"
+msgstr "bm+3"
+
+#: src/frcurrentsUIDialog.cpp:312
+msgid "LW+4"
+msgstr "BM+4"
+
+#: src/frcurrentsUIDialog.cpp:313
+msgid "LW+5"
+msgstr "BM+5"
+
+#: src/frcurrentsUIDialog.cpp:314
+msgid "LW+6"
+msgstr "BM+6"
+
+#: src/frcurrentsUIDialog.cpp:574 src/frcurrentsUIDialog.cpp:673
+msgid "No tidal data"
+msgstr "Données marée abs"
+
+#: src/frcurrentsUIDialog.cpp:666 src/frcurrentsUIDialog.cpp:2290
+msgid "Port not found"
+msgstr "Port inconnu"
+
+#: src/frcurrentsUIDialog.cpp:666 src/frcurrentsUIDialog.cpp:2290
+msgid "Port finder"
+msgstr "Port choisi"
+
+#: src/frcurrentsUIDialog.cpp:937
+msgid "Choose a directory"
+msgstr "Choix repertoire"
+
+#: src/frcurrentsUIDialog.cpp:1017
+msgid "Choose the tcdata directory"
+msgstr "Choisissez le repertoire TCdata"
+
+#: src/frcurrentsUIDialog.cpp:1031
+msgid "Using Tide/Current data from:  "
+msgstr "Usage valeurs Marees/courants de"
+
+#: src/frcurrentsUIDialog.cpp:1154 src/frcurrentsUIDialog.cpp:1267
+#: src/frcurrentsUIDialog.cpp:1392
+msgid "No tidal data for this port"
+msgstr "Pas de valeurs pour ce port"
+
+#: src/frcurrentsUIDialog.cpp:1154 src/frcurrentsUIDialog.cpp:1267
+#: src/frcurrentsUIDialog.cpp:1392
+msgid "No Tidal Data"
+msgstr "Pas de données"
+
+#: src/frcurrentsUIDialog.cpp:1725
+msgid "Failed to load file: "
+msgstr "Erreur Lecture fichier"
+
+#: src/frcurrentsUIDialog.cpp:2544
+msgid "Please choose a new date"
+msgstr "Mettre une nouvelle date"
+
+#: src/frcurrentsUIDialogBase.cpp:20
+msgid "Tidal Area"
+msgstr "Estran"
+
+#: src/frcurrentsUIDialogBase.cpp:22
+msgid "557"
+msgstr "557"
+
+#: src/frcurrentsUIDialogBase.cpp:22
+msgid "558"
+msgstr "558"
+
+#: src/frcurrentsUIDialogBase.cpp:22
+msgid "559"
+msgstr "559"
+
+#: src/frcurrentsUIDialogBase.cpp:22
+msgid "560"
+msgstr "560"
+
+#: src/frcurrentsUIDialogBase.cpp:22
+msgid "561"
+msgstr "561"
+
+#: src/frcurrentsUIDialogBase.cpp:22
+msgid "562"
+msgstr "562"
+
+#: src/frcurrentsUIDialogBase.cpp:22
+msgid "563"
+msgstr "563"
+
+#: src/frcurrentsUIDialogBase.cpp:22
+msgid "564"
+msgstr "564"
+
+#: src/frcurrentsUIDialogBase.cpp:22
+msgid "565"
+msgstr "565"
+
+#: src/frcurrentsUIDialogBase.cpp:26
+msgid "Select tidal area"
+msgstr "Choix de l'estran"
+
+#: src/frcurrentsUIDialogBase.cpp:33
+msgid "Information"
+msgstr "Information"
+
+#: src/frcurrentsUIDialogBase.cpp:42
+msgid "Standard Ports"
+msgstr "Ports references"
+
+#: src/frcurrentsUIDialogBase.cpp:53
+msgid "Choose Date"
+msgstr "choix de date"
+
+#: src/frcurrentsUIDialogBase.cpp:63
+msgid "   Coeff"
+msgstr "Coeff."
+
+#: src/frcurrentsUIDialogBase.cpp:76
+msgid "Select High Water"
+msgstr "Select.  Maree haute"
+
+#: src/frcurrentsUIDialogBase.cpp:92
+msgid "Now"
+msgstr "Maintenant"
+
+#: src/frcurrentsUIDialogBase.cpp:100
+msgid "Time Zone"
+msgstr "heure maree"
+
+#: src/frcurrentsUIDialogBase.cpp:110
+msgid "Previous"
+msgstr "precedent"
+
+#: src/frcurrentsUIDialogBase.cpp:116
+msgid "Next"
+msgstr "suivant"
+
+#: src/frcurrentsUIDialogBase.cpp:130
+msgid "HW"
+msgstr "HW"
+
+#: src/frcurrentsUIDialogBase.cpp:136
+msgid "HW -6"
+msgstr "HW-6"
+
+#: src/frcurrentsUIDialogBase.cpp:142
+msgid "HW +6"
+msgstr "HW+6"
+
+#: src/frcurrentsUIDialogBase.cpp:154
+msgid "Display date/time"
+msgstr "Affichage date/heure"
+
+#: src/frcurrentsUIDialogBase.cpp:158
+msgid "High Water +-"
+msgstr "Maree Haute +"
+
+#: src/frcurrentsUIDialogBase.cpp:169
+msgid "Tide Harmonics IDX Directory"
+msgstr "Dossier du fichier Harmonic idx"
+
+#: src/frcurrentsUIDialogBase.cpp:171
+msgid "Select Directory"
+msgstr "Choix du dossier"
+
+#: src/frcurrentsUIDialogBase.cpp:234
+msgid "Display tidal rates (knots)"
+msgstr "Affichage vitesse courant"
+
+#: src/frcurrentsUIDialogBase.cpp:237
+msgid "Display tidal direction"
+msgstr "Affichage sens courant"
+
+#: src/frcurrentsUIDialogBase.cpp:240
+msgid "Fill Colour"
+msgstr "Choix couleur"
+
+#: src/frcurrentsUIDialogBase.cpp:243
+msgid "High Resolution Display"
+msgstr "Affichage haute résolution"
+
+#: src/frcurrentsUIDialogBase.cpp:253
+msgid "Tidal Current Arrow Colour"
+msgstr "Couleur de la flèche de courant"
+
+#: src/frcurrentsUIDialogBase.cpp:261
+msgid "      < 0.5 knots"
+msgstr "      < 0.5 noeud"
+
+#: src/frcurrentsUIDialogBase.cpp:268
+msgid ">= 0.5 and < 1.5"
+msgstr ">= 0.5 et < 1.5"
+
+#: src/frcurrentsUIDialogBase.cpp:275
+msgid ">= 1.5 and < 2.5"
+msgstr ">= 1.5 et < 2.5"
+
+#: src/frcurrentsUIDialogBase.cpp:282
+msgid ">= 2.5 and < 3.5"
+msgstr ">= 2.5 et < 3.5"
+
+#: src/frcurrentsUIDialogBase.cpp:289
+msgid ">= 3.5 knots    "
+msgstr ">= 3.5 noeuds    "
+
+#: src/frcurrentsUIDialogBase.cpp:303
+msgid "Arrow Style"
+msgstr "Style des flèches"
+
+#: src/frcurrentsUIDialogBase.cpp:311
+msgid "Options:   "
+msgstr "Options:   "
+
+#: src/frcurrentsUIDialogBase.cpp:315
+msgid "1"
+msgstr "1"
+
+#: src/frcurrentsUIDialogBase.cpp:315
+msgid "2"
+msgstr "2"
+
+#: src/frcurrentsUIDialogBase.cpp:315
+msgid "3"
+msgstr "3"
+
+#: src/frcurrentsUIDialogBase.cpp:325
+msgid "Arrow Options :"
+msgstr "Options de Flèche :"
+
+#: src/frcurrentsUIDialogBase.cpp:327
+msgid "1: Normal\n"
+"2: Small \n"
+"3: Normal length, \n"
+"    narrow width"
+msgstr "1: Normal\n"
+"2: Petit \n"
+"3: Longueur normale, \n"
+"    largeur étroite"
+
+#: src/frcurrentsUIDialogBase.h:83
+msgid "French Tidal Streams"
+msgstr "Courants en France"
+
+#: src/frcurrentsUIDialogBase.h:124
+msgid "Preferences"
+msgstr "Préférences"
+
+#: src/frcurrents_pi.cpp:144 src/frcurrents_pi.cpp:148
+msgid "frcurrents"
+msgstr "Courants"
+
+#: src/frcurrents_pi.cpp:217
+msgid "frcurrents PlugIn for OpenCPN"
+msgstr "Extension Courants FR pour OpenCPN"
+
+#: src/frcurrents_pi.cpp:223
+msgid "frcurrents PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+"\t\t\t   "
+msgstr "L'extension Courants FR pour OpenCPN\n"
+"visualise les courants de marées "
+

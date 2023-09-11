@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.2.1207\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 07:09+0100\n"
+"POT-Creation-Date: 2023-09-07 12:43+0100\n"
 "PO-Revision-Date: 2010-12-20 18:23+0200\n"
 "Last-Translator: ΓΙΑΝΝΗΣ <ogog1@otenet.gr>\n"
 "Language-Team: \n"
@@ -16,21 +16,83 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 #
-#
-#, fuzzy
-msgid "/Settings/tcurrent"
-msgstr "Τρέχουσα Ταχύτητα, Kts. "
-#
-msgid "???"
+msgid "      < 0.5 knots"
 msgstr ""
 #
-msgid "About Tidal Arrows"
+msgid "   Coeff"
 msgstr ""
 #
-msgid "About these Tidal Arrows"
+msgid "1"
 msgstr ""
 #
-msgid "Choose Date/Time"
+msgid ""
+"1: Normal\n"
+"2: Small \n"
+"3: Normal length, \n"
+"    narrow width"
+msgstr ""
+#
+msgid "2"
+msgstr ""
+#
+msgid "3"
+msgstr ""
+#
+msgid "557"
+msgstr ""
+#
+msgid "558"
+msgstr ""
+#
+msgid "559"
+msgstr ""
+#
+msgid "560"
+msgstr ""
+#
+msgid "561"
+msgstr ""
+#
+msgid "562"
+msgstr ""
+#
+msgid "563"
+msgstr ""
+#
+msgid "564"
+msgstr ""
+#
+msgid "565"
+msgstr ""
+#
+msgid ">= 0.5 and < 1.5"
+msgstr ""
+#
+msgid ">= 1.5 and < 2.5"
+msgstr ""
+#
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+#
+msgid ">= 3.5 knots    "
+msgstr ""
+#
+msgid "Arrow Options :"
+msgstr ""
+#
+msgid "Arrow Style"
+msgstr ""
+#
+msgid "Choose Date"
+msgstr ""
+#
+msgid "Choose a directory"
+msgstr ""
+#
+msgid "Choose the tcdata directory"
+msgstr ""
+#
+msgid "Display date/time"
 msgstr ""
 #
 msgid "Display tidal direction"
@@ -39,10 +101,13 @@ msgstr ""
 msgid "Display tidal rates (knots)"
 msgstr ""
 #
+msgid "Failed to load file: "
+msgstr ""
+#
 msgid "Fill Colour"
 msgstr ""
 #
-msgid "HARMONIC"
+msgid "French Tidal Streams"
 msgstr ""
 #
 msgid "HW"
@@ -90,13 +155,55 @@ msgstr ""
 msgid "HW-6"
 msgstr ""
 #
+msgid "High Resolution Display"
+msgstr ""
+#
 msgid "High Water"
 msgstr ""
 #
-msgid "LOC"
+msgid "High Water +-"
 msgstr ""
 #
-msgid "LW"
+msgid "Information"
+msgstr ""
+#
+msgid "LW+1"
+msgstr ""
+#
+msgid "LW+2"
+msgstr ""
+#
+msgid "LW+3"
+msgstr ""
+#
+msgid "LW+4"
+msgstr ""
+#
+msgid "LW+5"
+msgstr ""
+#
+msgid "LW+6"
+msgstr ""
+#
+msgid "LW-1"
+msgstr ""
+#
+msgid "LW-2"
+msgstr ""
+#
+msgid "LW-3"
+msgstr ""
+#
+msgid "LW-4"
+msgstr ""
+#
+msgid "LW-5"
+msgstr ""
+#
+msgid "LW-6"
+msgstr ""
+#
+msgid "Low Water"
 msgstr ""
 #
 msgid "Next"
@@ -111,13 +218,10 @@ msgstr ""
 msgid "No tidal data for this port"
 msgstr ""
 #
-msgid "No tidal data found"
-msgstr ""
-#
-msgid "None"
-msgstr ""
-#
 msgid "Now"
+msgstr ""
+#
+msgid "Options:   "
 msgstr ""
 #
 msgid "Please choose a new date"
@@ -138,55 +242,64 @@ msgstr "Ιδιότητες GRIB"
 msgid "Previous"
 msgstr ""
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select Directory"
+msgstr "Φάκελος Αρχείων GRIB"
+#
 msgid "Select High Water"
 msgstr ""
 #
-msgid "Standard Port"
+msgid "Select tidal area"
+msgstr ""
+#
+msgid "Standard Ports"
+msgstr ""
+#
+msgid "Tidal Area"
 msgstr ""
 #
 #
 #, fuzzy
-msgid "Tidal Current Control"
+msgid "Tidal Current Arrow Colour"
 msgstr "Έλεγχος Εμφάνησης GRIB"
 #
-msgid "Tidal Data"
+msgid "Tide Harmonics IDX Directory"
 msgstr ""
 #
-msgid ""
-"Tidal Data for UKHO Tidal Diamonds\n"
-"--------------------------------------------------------------\n"
-"The standard OpenCPN distribution has tidal data for the\n"
-"following ports, which this plugin uses:\n"
-"\n"
-"PLYMOUTH (DEVONPORT)\n"
-"PORTSMOUTH\n"
-"DOVER\n"
-"SHEERNESS\n"
-"LOWESTOFT\n"
-"IMMINGHAM\n"
-"LEITH\n"
-"ABERDEEN\n"
-"WICK\n"
-"LERWICK\n"
-"ULLAPOOL\n"
-"LIVERPOOL (GLADSTONE DOCK)\n"
-"HOLYHEAD\n"
-"MILFORD HAVEN\n"
-"PORT OF BRISTOL (AVONMOUTH)\n"
-"ST. HELIER\n"
-"\n"
-"Use this data with caution.\n"
-"Use in conjunction with UKHO Tidal Stream Atlases and tidal diamonds\n"
-"\n"
-"--------------------------------------------------------------------\n"
-"\n"
-"Note: 1 Rates shown are for a position corresponding to the centre\n"
-"of the base of the arrow. Tidal rate is shown as knots.\n"
-"Note: 2 Rates are calculated by using the method shown in UKHO Tidal\n"
-"Stream Atlases. This is based on the average range for the day\n"
-msgstr ""
-#
-msgid "UTC"
+msgid "Time Zone"
 msgstr ""
 #
 msgid "Using Tide/Current data from:  "
@@ -194,57 +307,27 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "tcurrent"
+msgid "frcurrents"
 msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #, fuzzy
-msgid "tcurrent PlugIn for OpenCPN"
+msgid "frcurrents PlugIn for OpenCPN"
 msgstr "Επιπρόσθετο GRIB για το OpenCPN"
 #
 msgid ""
-"tcurrent PlugIn for OpenCPN\n"
+"frcurrents PlugIn for OpenCPN\n"
 "Provides an overlay of Tidal Current (Stream) Arrows.\n"
 "\n"
 "\t\t\t   "
 msgstr ""
 #
-msgid "tcurrent Settings"
-msgstr ""
 #
 #
 #, fuzzy
-msgid "tcurrentPort"
-msgstr "Τρέχουσα Ταχύτητα, Kts. "
+#~ msgid "/Settings/tcurrent"
+#~ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "tcurrentUseDirection"
-msgstr "Ιδιότητες GRIB"
-#
-msgid "tcurrentUseFillColour"
-msgstr ""
-#
-#
-#, fuzzy
-msgid "tcurrentUseRate"
-msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
@@ -286,9 +369,11 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Τρέχουσα Ταχύτητα, Kts. "
+#
 #
 #
 #
@@ -315,6 +400,7 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
 #
@@ -327,43 +413,9 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "GRIB File Directory"
-#~ msgstr "Φάκελος Αρχείων GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
 #
 #
 #
@@ -387,9 +439,11 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Παρακαλώ μεγένθυνε ή σμίκρυνε για να δείς καλυμμένα SEATEMP GRIB"
+#
 #
 #
 #
@@ -420,10 +474,12 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr ""
 #~ "Παρακαλώ μεγένθυνε ή σμίκρυνε για να δείς καλυμμένα OCEAN CURRENT GRIB"
+#
 #
 #
 #
@@ -451,6 +507,7 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Παρακαλώ μεγένθυνε ή σμίκρυνε για να δείς καλυμμένα CRAIN GRIB"
@@ -462,9 +519,11 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Ατμ. Πίεση, mBar"
+#
 #
 #
 #
@@ -496,6 +555,7 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Θερμοκρασία Επιφανείας, C "
@@ -507,9 +567,11 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Διάλεξε φάκελο αρχείων GRIB"
+#
 #
 #
 #
@@ -558,6 +620,7 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Διακριτό ύψος Κύματος, m(μέτρα) "
@@ -569,8 +632,10 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Χρησιμοποίησε Γραφικά Υψηλής Ευκρίνιας"
+#
 #
 #
 #
@@ -622,9 +687,11 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Διεύθυνση Ανέμου"
+#
 #
 #
 #
@@ -652,9 +719,11 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Ταχύτητα Ανέμου, Kts"
+#
 #
 #
 #
@@ -711,9 +780,11 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "Στοιχεία GRIB"
+#
 #
 #
 #
@@ -742,3 +813,37 @@ msgstr "Τρέχουσα Ταχύτητα, Kts. "
 #~ "-  διακριτό ύψος κύματος\n"
 #~ "-  Θερμοκρασία Επιφανείας\n"
 #~ "-  επίκαιρη επιφανειακή κατεύθυνση και ταχύτητα."
+#
+#
+#
+#, fuzzy
+#~ msgid "tcurrentPort"
+#~ msgstr "Τρέχουσα Ταχύτητα, Kts. "
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+#~ msgid "tcurrentUseDirection"
+#~ msgstr "Ιδιότητες GRIB"
+#
+#
+#
+#, fuzzy
+#~ msgid "tcurrentUseRate"
+#~ msgstr "Τρέχουσα Ταχύτητα, Kts. "
