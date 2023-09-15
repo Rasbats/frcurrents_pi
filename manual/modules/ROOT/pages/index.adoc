@@ -33,11 +33,17 @@ https://www.cruisersforum.com/forums/f134/frcurrents_pi-french-tidal-currents-27
 
 == Preparation
 
-Download the tidal harmonics produced by Merak56. The latest version is V10.
+Download the tidal harmonics based on those by Merak56. The latest version is V10.
 
-http://opencpn.shoreline.fr/__OpenCPN_5_PC/3_Essentiel/E_61_Les_marees/E_61_Marees.htm 
+A .zip file is here:
 
-Extract the files to a suitable location on your computer.
+https://www.schnaps.fr/HarmonicsV10.zip
+
+Or you can use the .rar from here:
+
+https://www.schnaps.fr/Harmonics_V10.rar
+
+Extract the files in the .zip or the .rar to a suitable location on your computer.
 
 == Using the plugin
 
