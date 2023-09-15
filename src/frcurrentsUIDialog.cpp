@@ -1116,7 +1116,7 @@ double frcurrentsUIDialog::CalcRange_Brest()
     float val = -100;
     int list_index = 0;
     int array_index = 0;
-    wxString sHWLW = _T("");
+    wxString sHWLW = "";
     int e = 0;
     double myLW, myHW;
     bool wt = false;
@@ -1231,7 +1231,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode)
     float val = -100;
     int list_index = 0;
     int array_index = 0;
-    wxString sHWLW = _T("");
+    wxString sHWLW = "";
     int e = 0;
     double myLW, myHW;
     bool wt = false;
@@ -1356,7 +1356,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode)
     float val = -100;
     int list_index = 0;
     int array_index = 0;
-    wxString sHWLW = _T("");
+    wxString sHWLW = "";
     int e = 0;
     double myLW, myHW;
     myHW = 0.0;
@@ -1939,10 +1939,10 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename)
     wxString tidePort = token[0];
 
     m_bUseBM = false;
-    m_button5->SetLabel("HW");
-    m_button4->SetLabel("HW-6");
-    m_button6->SetLabel("HW+6");
-    m_staticTextHW->SetLabel("Select High Water");
+    m_button5->SetLabel(_("HW"));
+    m_button4->SetLabel(_("HW-6"));
+    m_button6->SetLabel(_("HW+6"));
+    m_staticTextHW->SetLabel(_("Select High Water"));
 
     if (tidePort == "ILE de GROIX (Port Tudy)") {
         tidePort = "PORT-TUDY";
@@ -1951,17 +1951,17 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename)
     } else if (tidePort == "LE HAVRE") {
         tidePort = "LE HAVRE.BM";
         m_bUseBM = true;
-        m_button5->SetLabel("LW");
-        m_button4->SetLabel("LW-6");
-        m_button6->SetLabel("LW+6");
-        m_staticTextHW->SetLabel("Select Low Water");
+        m_button5->SetLabel(_("LW"));
+        m_button4->SetLabel(_("LW-6"));
+        m_button6->SetLabel(_("LW+6"));
+        m_staticTextHW->SetLabel(_("Select Low Water"));
     } else if (tidePort == "LA ROCHELLE - LA PALLICE") {
         tidePort = "LA_ROCHELLE_BM";
         m_bUseBM = true;
-        m_button5->SetLabel("LW");
-        m_button4->SetLabel("LW-6");
-        m_button6->SetLabel("LW+6");
-        m_staticTextHW->SetLabel("Select Low Water");
+        m_button5->SetLabel(_("LW"));
+        m_button4->SetLabel(_("LW-6"));
+        m_button6->SetLabel(_("LW+6"));
+        m_staticTextHW->SetLabel(_("Select Low Water"));
     }
 
     wxString filePort;
