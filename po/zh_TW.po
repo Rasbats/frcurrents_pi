@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 3.3.814\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: 2013-09-25 15:53+0800\n"
 "Last-Translator: Eddie Pai <eddie.pai@gmail.com>\n"
 "Language-Team: Eddie Pai <eddie.pai@gmail.com>\n"
@@ -186,6 +186,9 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+msgid "LW"
+msgstr ""
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -301,6 +304,9 @@ msgstr "GRIB 檔案目錄"
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -358,14 +364,20 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid " (Dup)"
 #~ msgstr " (Dup)"
+#
+#
 #
 #
 #
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "海流"
+#
+#
 #
 #
 #
@@ -387,8 +399,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Air Temp"
 #~ msgstr "大氣溫度"
+#
+#
 #
 #
 #
@@ -408,6 +424,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Barbed Arrows"
 #~ msgstr "箭頭"
 #
@@ -418,8 +436,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Building Isobar map"
 #~ msgstr "建立等壓線圖"
+#
+#
 #
 #
 #
@@ -442,8 +464,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Cloud"
 #~ msgstr "雲"
+#
+#
 #
 #
 #
@@ -485,6 +511,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Colors"
 #~ msgstr "顏色"
 #
@@ -495,8 +523,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Copy First Cumulative Missing Record"
 #~ msgstr "複製首先累積遺失的記錄"
+#
+#
 #
 #
 #
@@ -516,8 +548,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Current"
 #~ msgstr "海流"
+#
+#
 #
 #
 #
@@ -543,8 +579,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Days"
 #~ msgstr "天"
+#
+#
 #
 #
 #
@@ -565,6 +605,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Direction Arrows"
 #~ msgstr "方向箭頭"
 #
@@ -575,8 +617,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Display"
 #~ msgstr "顯示"
+#
+#
 #
 #
 #
@@ -596,9 +642,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Display Isobars"
 #~ msgstr "顯示"
+#
+#
 #
 #
 #
@@ -620,8 +670,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Error"
 #~ msgstr "錯誤"
+#
+#
 #
 #
 #
@@ -641,8 +695,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Error:  File does not exist!"
 #~ msgstr "錯誤: 檔案不存在!"
+#
+#
 #
 #
 #
@@ -663,8 +721,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Fahrenheit"
 #~ msgstr "華氏"
+#
+#
 #
 #
 #
@@ -687,8 +749,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
+#
+#
 #
 #
 #
@@ -709,6 +775,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
 #
@@ -719,8 +787,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Inches"
 #~ msgstr "英吋"
+#
+#
 #
 #
 #
@@ -741,8 +813,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Interval"
 #~ msgstr "間隔"
+#
+#
 #
 #
 #
@@ -764,8 +840,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "KPH"
 #~ msgstr "每小時公里"
+#
+#
 #
 #
 #
@@ -785,8 +865,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Local Time"
 #~ msgstr "本地時間"
+#
+#
 #
 #
 #
@@ -807,8 +891,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "M/S"
 #~ msgstr "公尺/秒"
+#
+#
 #
 #
 #
@@ -830,8 +918,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "MPH"
 #~ msgstr "每小時英哩"
+#
+#
 #
 #
 #
@@ -853,9 +945,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Mail To "
 #~ msgstr "送郵件給"
+#
+#
 #
 #
 #
@@ -874,8 +970,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "MilliBars"
 #~ msgstr "毫巴"
+#
+#
 #
 #
 #
@@ -896,8 +996,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "MyLabel"
 #~ msgstr "我的標籤"
+#
+#
 #
 #
 #
@@ -916,8 +1020,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Numbers"
 #~ msgstr "Numbers"
+#
+#
 #
 #
 #
@@ -938,8 +1046,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "OpenCpn failed to logon! Please verify your eMail environment"
 #~ msgstr "OpenCPN 登入失敗! 請檢查您的電子郵件設定"
+#
+#
 #
 #
 #
@@ -951,6 +1063,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "Overlay Transparency"
 #~ msgstr "疊圖"
+#
+#
 #
 #
 #
@@ -972,8 +1086,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Parameters"
 #~ msgstr "參數"
+#
+#
 #
 #
 #
@@ -995,6 +1113,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Period"
 #~ msgstr "週期"
 #
@@ -1005,8 +1125,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Play"
 #~ msgstr "播放"
+#
+#
 #
 #
 #
@@ -1032,9 +1156,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "請放大畫面以顯示 suppressed SEATEMP GRIB"
+#
+#
 #
 #
 #
@@ -1066,9 +1194,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "請放大畫面以顯示 suppressed OCEAN CURRENT GRIB"
+#
+#
 #
 #
 #
@@ -1098,9 +1230,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "請放大畫面以顯示 suppressed CRAIN GRIB"
+#
+#
 #
 #
 #
@@ -1122,8 +1258,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Pressure"
 #~ msgstr "氣壓"
+#
+#
 #
 #
 #
@@ -1150,8 +1290,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Quickscat"
 #~ msgstr "Quickscat"
+#
+#
 #
 #
 #
@@ -1163,6 +1307,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "Rainfall"
 #~ msgstr "雨"
+#
+#
 #
 #
 #
@@ -1184,6 +1330,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Ref : "
 #~ msgstr "參考:"
 #
@@ -1194,8 +1342,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Request"
 #~ msgstr "請求"
+#
+#
 #
 #
 #
@@ -1226,8 +1378,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Sea Temp"
 #~ msgstr "海水溫度"
+#
+#
 #
 #
 #
@@ -1249,8 +1405,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "SeaTemp"
 #~ msgstr "海水溫度"
+#
+#
 #
 #
 #
@@ -1272,6 +1432,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Send"
 #~ msgstr "發送"
 #
@@ -1282,8 +1444,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Settings"
 #~ msgstr "設定"
+#
+#
 #
 #
 #
@@ -1334,9 +1500,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Significant波高, m"
+#
+#
 #
 #
 #
@@ -1355,8 +1525,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Slices per Update"
 #~ msgstr "分隔每個更新"
+#
+#
 #
 #
 #
@@ -1375,8 +1549,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Spacing"
 #~ msgstr "間距"
+#
+#
 #
 #
 #
@@ -1392,8 +1570,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "UTC"
 #~ msgstr "UTC"
+#
+#
 #
 #
 #
@@ -1413,6 +1595,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Updates per Second"
 #~ msgstr "每秒更新"
 #
@@ -1423,8 +1607,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use Gradual Colors"
 #~ msgstr "使用漸層顏色"
+#
+#
 #
 #
 #
@@ -1472,8 +1660,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "警告:  QuickScat GRIB 資料為 %d 小時前資料."
+#
+#
 #
 #
 #
@@ -1494,9 +1686,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "WavesModel"
 #~ msgstr "模型"
+#
+#
 #
 #
 #
@@ -1521,9 +1717,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "風向"
+#
+#
 #
 #
 #
@@ -1544,8 +1744,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Scat"
 #~ msgstr "Wind Scat"
+#
+#
 #
 #
 #
@@ -1575,9 +1779,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "風速,  Kts."
+#
+#
 #
 #
 #
@@ -1595,6 +1803,8 @@ msgstr ""
 #~ msgstr ""
 #~ "您的請求電子郵件已準備完成. 按下'發送'鍵來傳送.\n"
 #~ "按OK繼續 ..."
+#
+#
 #
 #
 #
@@ -1623,8 +1833,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Zone"
 #~ msgstr "區域"
+#
+#
 #
 #
 #
@@ -1645,6 +1859,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "mmHG"
 #~ msgstr "毫米水銀柱"
 #
@@ -1655,8 +1871,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "playback"
 #~ msgstr "播放"
+#
+#
 #
 #
 #
@@ -1689,9 +1909,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrent Data at Cursor"
 #~ msgstr "游標位置的 GRIB 資料"
+#
+#
 #
 #
 #
@@ -1744,9 +1968,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrent Preferences"
 #~ msgstr "GRIB 偏好設定"
+#
+#
 #
 #
 #, fuzzy
@@ -1755,14 +1983,20 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "海流"
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "Grib 設定"
+#
+#
 #
 #
 #

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenCPN 3.3.1006\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: 2013-10-14 23:57+0100\n"
 "Last-Translator: Frode Lynum <post@opencpn.kb-h.com>\n"
 "Language-Team: OpenCPN Norge <post@opencpn.kb-h.com>\n"
@@ -184,6 +184,9 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+msgid "LW"
+msgstr ""
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -298,6 +301,9 @@ msgstr "GRIB fil katalog"
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -351,13 +357,19 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid " (Dup)"
 #~ msgstr " (Dup)"
+#
+#
 #
 #
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Strøm"
+#
+#
 #
 #
 #
@@ -378,8 +390,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Air Temp"
 #~ msgstr "Luft temp"
+#
+#
 #
 #
 #
@@ -399,6 +415,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Barbed Arrows"
 #~ msgstr "Spisse piler"
 #
@@ -409,8 +427,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Building Isobar map"
 #~ msgstr "Bygger isobarkart"
+#
+#
 #
 #
 #
@@ -433,8 +455,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Cloud"
 #~ msgstr "Sky"
+#
+#
 #
 #
 #
@@ -475,8 +501,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Colors"
 #~ msgstr "Farger"
+#
+#
 #
 #
 #
@@ -495,6 +525,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Copy Missing Wave Records"
 #~ msgstr "Kopier manglende bølgeregistrering"
 #
@@ -505,8 +537,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Current"
 #~ msgstr "Strøm"
+#
+#
 #
 #
 #
@@ -531,8 +567,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Days"
 #~ msgstr "Dager"
+#
+#
 #
 #
 #
@@ -552,6 +592,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Direction Arrows"
 #~ msgstr "Retningspiler"
 #
@@ -562,8 +604,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Display"
 #~ msgstr "Vis"
+#
+#
 #
 #
 #
@@ -583,9 +629,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Display Isobars"
 #~ msgstr "Vis"
+#
+#
 #
 #
 #
@@ -607,8 +657,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Error"
 #~ msgstr "Feil"
+#
+#
 #
 #
 #
@@ -627,8 +681,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Error:  File does not exist!"
 #~ msgstr "Feil: Filen eksisterer ikke"
+#
+#
 #
 #
 #
@@ -648,8 +706,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Fahrenheit"
 #~ msgstr "Fahrenheit"
+#
+#
 #
 #
 #
@@ -671,8 +733,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
+#
+#
 #
 #
 #
@@ -692,6 +758,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "GRIB"
 #
@@ -702,8 +770,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Inches"
 #~ msgstr "Tommer"
+#
+#
 #
 #
 #
@@ -723,8 +795,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Interval"
 #~ msgstr "Intervall"
+#
+#
 #
 #
 #
@@ -746,8 +822,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "KPH"
 #~ msgstr "KMT"
+#
+#
 #
 #
 #
@@ -766,8 +846,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Local Time"
 #~ msgstr "Lokaltid"
+#
+#
 #
 #
 #
@@ -788,8 +872,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "M/S"
 #~ msgstr "M/S"
+#
+#
 #
 #
 #
@@ -811,8 +899,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "MPH"
 #~ msgstr "MPT"
+#
+#
 #
 #
 #
@@ -832,9 +924,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Mail To "
 #~ msgstr "epost til"
+#
+#
 #
 #
 #
@@ -853,8 +949,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "MilliBars"
 #~ msgstr "Millibar"
+#
+#
 #
 #
 #
@@ -875,8 +975,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "MyLabel"
 #~ msgstr "MittMerke"
+#
+#
 #
 #
 #
@@ -895,8 +999,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Numbers"
 #~ msgstr "Nummer"
+#
+#
 #
 #
 #
@@ -917,8 +1025,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "OpenCpn failed to logon! Please verify your eMail environment"
 #~ msgstr "OpenCPN klarte ikke å logge inn! Vennligst sjekk ditt epost system"
+#
+#
 #
 #
 #
@@ -930,6 +1042,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "Overlay Transparency"
 #~ msgstr "Overleggskart"
+#
+#
 #
 #
 #
@@ -950,8 +1064,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Parameters"
 #~ msgstr "Parametre"
+#
+#
 #
 #
 #
@@ -972,6 +1090,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Period"
 #~ msgstr "Periode"
 #
@@ -982,8 +1102,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Play"
 #~ msgstr "Spill"
+#
+#
 #
 #
 #
@@ -1008,9 +1132,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte SJØTEMP GRIB"
+#
+#
 #
 #
 #
@@ -1042,9 +1170,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte SJØSTRØM GRIB"
+#
+#
 #
 #
 #
@@ -1074,9 +1206,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Vennligst Zoom eller Skaler ut for å vise skjulte CRAIN GRIB"
+#
+#
 #
 #
 #
@@ -1097,8 +1233,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Pressure"
 #~ msgstr "Trykk"
+#
+#
 #
 #
 #
@@ -1125,8 +1265,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Quickscat"
 #~ msgstr "Quickscat"
+#
+#
 #
 #
 #
@@ -1138,6 +1282,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "Rainfall"
 #~ msgstr "Regn"
+#
+#
 #
 #
 #
@@ -1158,6 +1304,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Ref : "
 #~ msgstr "Ref : "
 #
@@ -1168,8 +1316,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Request"
 #~ msgstr "Forespørsel"
+#
+#
 #
 #
 #
@@ -1198,8 +1350,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Sea Temp"
 #~ msgstr "Sjøtemp"
+#
+#
 #
 #
 #
@@ -1221,8 +1377,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "SeaTemp"
 #~ msgstr "Havtemp"
+#
+#
 #
 #
 #
@@ -1242,6 +1402,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Send"
 #~ msgstr "Send"
 #
@@ -1252,8 +1414,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Settings"
 #~ msgstr "Innstillinger"
+#
+#
 #
 #
 #
@@ -1304,9 +1470,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Signifikant bølgehøyde, m"
+#
+#
 #
 #
 #
@@ -1325,8 +1495,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Slices per Update"
 #~ msgstr "Stykker per oppdatering"
+#
+#
 #
 #
 #
@@ -1345,8 +1519,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Spacing"
 #~ msgstr "Mellomrom"
+#
+#
 #
 #
 #
@@ -1361,8 +1539,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "UTC"
 #~ msgstr "UTC"
+#
+#
 #
 #
 #
@@ -1381,6 +1563,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Updates per Second"
 #~ msgstr "Oppdateringer per sekund"
 #
@@ -1391,8 +1575,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use Gradual Colors"
 #~ msgstr "Bruk gradiente farger"
+#
+#
 #
 #
 #
@@ -1439,8 +1627,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "ADVARSEL:  QuickSCAT GRIB data er %d timer gammel."
+#
+#
 #
 #
 #
@@ -1460,6 +1652,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "WavesModel"
 #~ msgstr "Modell"
@@ -1471,8 +1665,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind"
 #~ msgstr "Vind"
+#
+#
 #
 #
 #
@@ -1497,6 +1695,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Gust"
 #~ msgstr "Vindkast"
 #
@@ -1509,8 +1709,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Scat"
 #~ msgstr "Vindscat"
+#
+#
 #
 #
 #
@@ -1540,9 +1744,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Vindhastighet, Knop"
+#
+#
 #
 #
 #
@@ -1560,6 +1768,8 @@ msgstr ""
 #~ "Din forespørsel er klar. En epost er klargjort i din epostleser.\n"
 #~ "Du trenger kun å klikke 'send' for å sende den.\n"
 #~ "OK for å gå videre..."
+#
+#
 #
 #
 #
@@ -1587,8 +1797,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Zone"
 #~ msgstr "Sone"
+#
+#
 #
 #
 #
@@ -1609,6 +1823,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "mmHG"
 #~ msgstr "mmHG"
 #
@@ -1619,8 +1835,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "playback"
 #~ msgstr "avspilling"
+#
+#
 #
 #
 #
@@ -1652,9 +1872,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrent Data at Cursor"
 #~ msgstr "GRIB data ved kursor"
+#
+#
 #
 #
 #
@@ -1706,9 +1930,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrent Preferences"
 #~ msgstr "GRIB innstillinger"
+#
+#
 #
 #
 #, fuzzy
@@ -1716,14 +1944,20 @@ msgstr ""
 #~ msgstr "GRIB innstillinger"
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Strøm"
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "GRIB innstillinger"
+#
+#
 #
 #
 #, fuzzy

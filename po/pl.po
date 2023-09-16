@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: 2010-03-29 20:29+0100\n"
 "Last-Translator: Piotr Carlson <pjotrc@interia.pl>\n"
 "Language-Team: Wladyslaw Stolle <stollew@poczta.onet.pl>\n"
@@ -167,6 +167,9 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+msgid "LW"
+msgstr ""
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -282,6 +285,9 @@ msgstr "Katalog plików GRIB"
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -354,6 +360,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Colors"
 #~ msgstr "Zamknij"
@@ -372,8 +380,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
+#
+#
 #
 #
 #
@@ -407,11 +419,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr ""
 #~ "Proszę zmniejszyć powiększenie lub skalę aby wyświetlić dane GRIB dot."
 #~ "wysokości fali znacznej"
+#
+#
 #
 #
 #
@@ -451,11 +467,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr ""
 #~ "Proszę zmniejszyć powiększenie lub skalę aby wyświetlić dane GRIB dot. "
 #~ "opadów deszczu"
+#
+#
 #
 #
 #
@@ -493,11 +513,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr ""
 #~ "Proszę zmniejszyć powiększenie lub skalę aby wyświetlić dane GRIB dot. "
 #~ "opadów deszczu"
+#
+#
 #
 #
 #
@@ -529,6 +553,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "Ciśnienie, mBar"
@@ -544,9 +570,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Katalog plików GRIB"
+#
+#
 #
 #
 #
@@ -603,6 +633,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Wysokość fali znacznej, m"
@@ -618,8 +650,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Użyj grafiki wysokiej rozdzielczości"
+#
+#
 #
 #
 #
@@ -677,6 +713,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Kierunek wiatru"
@@ -696,9 +734,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Kierunek wiatru"
+#
+#
 #
 #
 #
@@ -756,8 +798,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Speed, Kts."
 #~ msgstr "Prędkość wiatru, w."
+#
+#
 #
 #
 #

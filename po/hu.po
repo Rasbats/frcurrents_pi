@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.6.1718\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: 2012-12-29 13:16+0100\n"
 "Last-Translator: Szabolcs SZIGETI <szigi@ik.bme.hu>\n"
 "Language-Team: \n"
@@ -168,6 +168,9 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+msgid "LW"
+msgstr ""
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -282,6 +285,9 @@ msgstr "GRIB fájl könyvtár"
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -320,9 +326,13 @@ msgid ""
 msgstr ""
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Áramlat sebessége, csomó."
+#
+#
 #
 #
 #
@@ -364,9 +374,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Áramlat sebessége, csomó."
+#
+#
 #
 #
 #
@@ -391,11 +405,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view invisible overlays:"
 #~ msgstr ""
 #~ "Zoomolj, vagy válts nagyobb méretarányra az elnyomott HTSGW GRIB "
 #~ "megjelenítéséhez"
+#
+#
 #
 #
 #
@@ -427,11 +445,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
 #~ msgstr ""
 #~ "Zoomolj, vagy válts nagyobb méretarányra az elnyomott CRAIN GRIB "
 #~ "megjelenítéséhez"
+#
+#
 #
 #
 #
@@ -463,11 +485,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
 #~ msgstr ""
 #~ "Zoomolj, vagy válts nagyobb méretarányra az elnyomott SEATEMP GRIB "
 #~ "megjelenítéséhez"
+#
+#
 #
 #
 #
@@ -494,9 +520,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Légnyomás, mBar"
+#
+#
 #
 #
 #
@@ -529,6 +559,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Tenger felszín hőmérséklete, C"
@@ -540,9 +572,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "GRIB könyvtár kiválasztása"
+#
+#
 #
 #
 #
@@ -615,8 +651,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Show metres/sec for Wind Speed"
 #~ msgstr "Szélsebesség méter/sec-ben mutatása"
+#
+#
 #
 #
 #
@@ -641,8 +681,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Nagyfelbontású grafika használata"
+#
+#
 #
 #
 #
@@ -672,6 +716,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Szél irány"
@@ -688,9 +734,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Szél sebesség, m/s."
+#
+#
 #
 #
 #
@@ -748,9 +798,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "GRIB adat"
+#
+#
 #
 #
 #
@@ -782,6 +836,8 @@ msgstr ""
 #~ "- felszíni áramlás iránya és sebessége."
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Áramlat sebessége, csomó."
@@ -804,9 +860,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "BRIB beállítások"
+#
+#
 #
 #
 #, fuzzy

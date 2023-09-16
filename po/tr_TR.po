@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.0b604\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: 2012-06-03 20:54+0200\n"
 "Last-Translator: Hasan Çetin <boraxtr@yahoo.com>\n"
 "Language-Team: Gunther Pilz <service@opencpn.de>\n"
@@ -170,6 +170,9 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+msgid "LW"
+msgstr ""
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -286,6 +289,9 @@ msgstr "GRIB Dosya Klasörü"
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -328,9 +334,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Akıntı hızı, Kts"
+#
+#
 #
 #
 #
@@ -374,9 +384,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Akıntı hızı, Kts"
+#
+#
 #
 #
 #
@@ -406,6 +420,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
 #
@@ -417,8 +433,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "GRIB"
+#
+#
 #
 #
 #
@@ -449,11 +469,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr ""
 #~ "Zur Anzeige der ausgeblendeten GRIB Wassertemperatur bitte herauszoom oder "
 #~ "Maßstab verkleinern."
+#
+#
 #
 #
 #
@@ -491,11 +515,15 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr ""
 #~ "Zur Anzeige der ausgeblendeten GRIB Ozean-Strömung bitte herauszoom oder "
 #~ "Maßstab verkleinern."
+#
+#
 #
 #
 #
@@ -531,6 +559,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr ""
@@ -546,9 +576,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Basınç, mBar"
+#
+#
 #
 #
 #
@@ -585,6 +619,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Deniz yüzey sıcaklığı, °C"
@@ -598,9 +634,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "GRIB dosyasını seçin"
+#
+#
 #
 #
 #
@@ -655,6 +695,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Belirgin dalga yüksekliği, m"
@@ -668,8 +710,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Yüksek çözünürlükte grafik kullan."
+#
+#
 #
 #
 #
@@ -725,9 +771,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Rüzgar yönü"
+#
+#
 #
 #
 #
@@ -761,9 +811,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Rüzgar hızı, Kts."
+#
+#
 #
 #
 #
@@ -823,9 +877,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "GRIB Verileri"
+#
+#
 #
 #
 #
@@ -858,6 +916,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Akıntı hızı, Kts"
@@ -880,9 +940,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "GRIB Seçenekleri"
+#
+#
 #
 #
 #

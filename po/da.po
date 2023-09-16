@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Open CPN 1.3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ole E. Mikkelsen <oem@live.dk>\n"
 "Language-Team: \n"
@@ -163,6 +163,9 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+msgid "LW"
+msgstr ""
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -277,6 +280,9 @@ msgstr "Meteorologi(GRIB) folder"
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -320,9 +326,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Hastighed, knob"
+#
+#
 #
 #
 #
@@ -368,6 +378,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Hastighed, knob"
@@ -384,8 +396,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB"
 #~ msgstr "Meteorologi(GRIB)"
+#
+#
 #
 #
 #
@@ -414,9 +430,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Zoom eller skaler ud for at se skjult HTSGW GRIB"
+#
+#
 #
 #
 #
@@ -452,9 +472,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Zoom eller skaler ud for at se skjult CRAIN GRIB"
+#
+#
 #
 #
 #
@@ -488,6 +512,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Zoom eller skaler ud for at se skjult CRAIN GRIB"
@@ -501,9 +527,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Tryk, mBar"
+#
+#
 #
 #
 #
@@ -540,6 +570,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Havoverflade temperatur, C"
@@ -553,9 +585,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Meteorologi(GRIB) folder"
+#
+#
 #
 #
 #
@@ -610,6 +646,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Signifikant bølgehøjde, m"
@@ -623,8 +661,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Brug højopløsningsgrafik"
+#
+#
 #
 #
 #
@@ -680,9 +722,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Vindretning"
+#
+#
 #
 #
 #
@@ -716,9 +762,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Vindhastighed, knob"
+#
+#
 #
 #
 #
@@ -780,6 +830,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "Meteorologi(GRIB)"
@@ -787,9 +839,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Hastighed, knob"
+#
+#
 #
 #
 #

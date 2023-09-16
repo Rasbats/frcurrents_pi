@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 3.3.1009\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: 2013-10-24 17:24+0100\n"
 "Last-Translator: NAV <rider2@kpnmail.nl>\n"
 "Language-Team: rider2@kpnmail.nl\n"
@@ -198,6 +198,9 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+msgid "LW"
+msgstr ""
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -320,6 +323,9 @@ msgstr "Map voor GRIB bestand"
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -375,8 +381,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid " (Dup)"
 #~ msgstr " (dup)"
+#
+#
 #
 #
 #
@@ -395,8 +405,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid " Mo )"
 #~ msgstr " Mo )"
+#
+#
 #
 #
 #
@@ -410,9 +424,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Stroomsnelheid"
+#
+#
 #
 #
 #
@@ -433,8 +451,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Address used to send request eMail. (Mandatory for LINUX)"
 #~ msgstr "Adres voor verzenden e-mailverzoek (verplicht voor LINUX)"
+#
+#
 #
 #
 #
@@ -453,8 +475,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Air Temperature(2m)"
 #~ msgstr "Luchttemp. (2 m)"
+#
+#
 #
 #
 #
@@ -473,8 +499,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Barbed Arrows"
 #~ msgstr "Windpijlen"
+#
+#
 #
 #
 #
@@ -499,8 +529,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Building Isobar map"
 #~ msgstr "Maken van  isobarenkaart ..."
+#
+#
 #
 #
 #
@@ -521,6 +555,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Celsius"
 #~ msgstr "Celsius"
 #
@@ -533,8 +569,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Cloud"
 #~ msgstr "Bewolking"
+#
+#
 #
 #
 #
@@ -576,8 +616,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Colors"
 #~ msgstr "kleuren"
+#
+#
 #
 #
 #
@@ -596,8 +640,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Copy Missing Wave Records"
 #~ msgstr "Kopieer ontbrekende golfgegevens"
+#
+#
 #
 #
 #
@@ -622,9 +670,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "GRIB voorkeuren"
+#
+#
 #
 #
 #
@@ -643,8 +695,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Days"
 #~ msgstr "dagen"
+#
+#
 #
 #
 #
@@ -663,6 +719,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Direction Arrows"
 #~ msgstr "Richtingpijlen"
 #
@@ -673,8 +731,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Display"
 #~ msgstr "Toon op scherm"
+#
+#
 #
 #
 #
@@ -695,6 +757,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Display Iso Temp. Lines"
 #~ msgstr "Toon isothermen"
 #
@@ -705,8 +769,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Display Isobars"
 #~ msgstr "Toon isobaren"
+#
+#
 #
 #
 #
@@ -728,8 +796,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Error"
 #~ msgstr "Fout"
+#
+#
 #
 #
 #
@@ -748,8 +820,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Error:  File does not exist!"
 #~ msgstr "Fout: bestand bestaat niet!"
+#
+#
 #
 #
 #
@@ -768,8 +844,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Estimated File Size"
 #~ msgstr "Geschatte bestandsgrootte"
+#
+#
 #
 #
 #
@@ -788,8 +868,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Feet"
 #~ msgstr "voet"
+#
+#
 #
 #
 #
@@ -812,6 +896,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
 #
@@ -822,8 +908,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Generic"
 #~ msgstr "Generiek"
+#
+#
 #
 #
 #
@@ -844,8 +934,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
+#
 #
 #
 #
@@ -864,8 +958,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Inches"
 #~ msgstr "inch"
+#
+#
 #
 #
 #
@@ -885,8 +983,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Interval"
 #~ msgstr "Interval"
+#
+#
 #
 #
 #
@@ -907,8 +1009,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "KPH"
 #~ msgstr "km/u"
+#
+#
 #
 #
 #
@@ -927,8 +1033,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Load File Options"
 #~ msgstr "Opties voor laden bestand"
+#
+#
 #
 #
 #
@@ -948,6 +1058,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Load the More Recent File in Directory"
 #~ msgstr "Laad het meest recente bestand uit de map"
 #
@@ -958,8 +1070,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Local Time"
 #~ msgstr "Lokale tijd"
+#
+#
 #
 #
 #
@@ -980,8 +1096,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "M/S"
 #~ msgstr "m/sec"
+#
+#
 #
 #
 #
@@ -1003,8 +1123,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "MPH"
 #~ msgstr "mijl/u"
+#
+#
 #
 #
 #
@@ -1023,8 +1147,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Mail To "
 #~ msgstr "E-mail aan"
+#
+#
 #
 #
 #
@@ -1043,8 +1171,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "MilliBars"
 #~ msgstr "millibar"
+#
+#
 #
 #
 #
@@ -1065,8 +1197,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "MyLabel"
 #~ msgstr "MijnLabel"
+#
+#
 #
 #
 #
@@ -1085,8 +1221,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Numbers"
 #~ msgstr "Getallen"
+#
+#
 #
 #
 #
@@ -1107,6 +1247,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "OpenCpn failed to logon! Please verify your eMail environment"
 #~ msgstr "OpenCPN logon mislukt! Controleer uw e-mail instellingen."
 #
@@ -1117,8 +1259,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Overlay Transparency"
 #~ msgstr "Overlay-transparantie"
+#
+#
 #
 #
 #
@@ -1139,8 +1285,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Parameters"
 #~ msgstr "Parameters"
+#
+#
 #
 #
 #
@@ -1161,8 +1311,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Period"
 #~ msgstr "Periode"
+#
+#
 #
 #
 #
@@ -1182,9 +1336,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view invisible overlays:"
 #~ msgstr "Zoom uit of verklein schaal om niet-zichtbare overlay te zien:"
+#
+#
 #
 #
 #
@@ -1216,9 +1374,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
 #~ msgstr "Zoom uit of verklein schaal om onderdrukte CRAIN GRIB te zien."
+#
+#
 #
 #
 #
@@ -1250,9 +1412,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
 #~ msgstr "Zoom uit of verklein schaal om onderdrukte SEATEMP GRIB te zien."
+#
+#
 #
 #
 #
@@ -1280,8 +1446,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Precipitation"
 #~ msgstr "Neerslag"
+#
+#
 #
 #
 #
@@ -1307,9 +1477,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure (MSL)"
 #~ msgstr "luchtdruk (hPa)"
+#
+#
 #
 #
 #
@@ -1330,6 +1504,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Quickscat"
 #~ msgstr "Quickscat"
 #
@@ -1340,8 +1516,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Rainfall"
 #~ msgstr "Neerslag"
+#
+#
 #
 #
 #
@@ -1362,8 +1542,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Ref : "
 #~ msgstr "Ref:"
+#
+#
 #
 #
 #
@@ -1384,8 +1568,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Request Pofile"
 #~ msgstr "Verzoekprofiel"
+#
+#
 #
 #
 #
@@ -1402,6 +1590,8 @@ msgstr ""
 #~ "Het verzoek kan niet verzonden worden. Controleer uw\n"
 #~ "e-mail parameters en uw logbestand.\n"
 #~ "Opslaan of Afbreken om te beeindigen ..."
+#
+#
 #
 #
 #
@@ -1429,6 +1619,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Sea Temp"
 #~ msgstr "Zeetemp."
 #
@@ -1439,8 +1631,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Sea Temperature(surf.)"
 #~ msgstr "Zeewateroppervl.temp."
+#
+#
 #
 #
 #
@@ -1462,9 +1658,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Selecteer een GRIB-bestand"
+#
+#
 #
 #
 #
@@ -1483,6 +1683,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Sender eMail Address"
 #~ msgstr "E-mailadres verzender"
 #
@@ -1493,8 +1695,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Settings"
 #~ msgstr "Instellingen"
+#
+#
 #
 #
 #
@@ -1568,8 +1774,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Show metres/sec for Wind Speed"
 #~ msgstr "Toon windsnelheid in m/sec"
+#
+#
 #
 #
 #
@@ -1595,8 +1805,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Size"
 #~ msgstr "grootte"
+#
+#
 #
 #
 #
@@ -1615,8 +1829,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Slices per hour"
 #~ msgstr "delen per uur"
+#
+#
 #
 #
 #
@@ -1635,8 +1853,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Stop"
 #~ msgstr "Stop"
+#
+#
 #
 #
 #
@@ -1651,6 +1873,8 @@ msgstr ""
 #~ msgstr ""
 #~ "De limiet voor bestandsgrootte is bereikt!\n"
 #~ "U kunt inzoomen en/of parameters aanpassen ..."
+#
+#
 #
 #
 #
@@ -1676,6 +1900,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "This is your zytcurrent's forum access Login"
 #~ msgstr "Dit is uw login voor het zyGrib-forum"
@@ -1683,8 +1909,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "UTC"
 #~ msgstr "UTC"
+#
+#
 #
 #
 #
@@ -1703,8 +1933,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Updates per Second"
 #~ msgstr "updates per sec"
+#
+#
 #
 #
 #
@@ -1724,8 +1958,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Gebruik hoge grafische resolutie"
+#
+#
 #
 #
 #
@@ -1744,8 +1982,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Warning:  Empty directory!"
 #~ msgstr "Waarschuwing: lege map!"
+#
+#
 #
 #
 #
@@ -1764,6 +2006,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "WavesModel"
 #~ msgstr "Golfmodel"
 #
@@ -1774,8 +2018,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind"
 #~ msgstr "Wind"
+#
+#
 #
 #
 #
@@ -1801,6 +2049,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Gust"
 #~ msgstr "Windvlagen"
 #
@@ -1813,8 +2063,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Scat"
 #~ msgstr "Windscat"
+#
+#
 #
 #
 #
@@ -1846,9 +2100,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "windsnelheid (m/sec)"
+#
+#
 #
 #
 #
@@ -1867,6 +2125,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid ""
 #~ "Your request is ready. An email is prepared in your email environment. \n"
@@ -1876,6 +2136,8 @@ msgstr ""
 #~ "Uw aanvraag staat gereed. Een e-mail is voorbereid.\n"
 #~ "Controleer en verzend deze ...\n"
 #~ "Opslaan of Afbreken om te beeindigen of nieuwe parameters in te voeren ..."
+#
+#
 #
 #
 #
@@ -1903,8 +2165,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Zone"
 #~ msgstr "Zone"
+#
+#
 #
 #
 #
@@ -1925,8 +2191,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "km/h"
 #~ msgstr "km/u"
+#
+#
 #
 #
 #
@@ -1945,8 +2215,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "mmHG"
 #~ msgstr "mm kwik"
+#
+#
 #
 #
 #
@@ -1965,8 +2239,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "playback"
 #~ msgstr "Terugspelen"
+#
+#
 #
 #
 #
@@ -1999,9 +2277,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrent Data at Cursor"
 #~ msgstr "GRIB-gegevens bij cursor"
+#
+#
 #
 #
 #
@@ -2053,9 +2335,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrent Preferences"
 #~ msgstr "GRIB voorkeuren"
+#
+#
 #
 #
 #, fuzzy
@@ -2064,14 +2350,20 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Stroomsnelheid"
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "GRIB-instellingen"
+#
+#
 #
 #
 #
@@ -2086,9 +2378,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "zytcurrent Code"
 #~ msgstr "zyGrib code"
+#
+#
 #
 #
 #

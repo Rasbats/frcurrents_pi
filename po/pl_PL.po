@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.2.1111\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: 2010-11-28 17:53+0100\n"
 "Last-Translator: Piotr Carlson <pjotrc@interia.pl>\n"
 "Language-Team: \n"
@@ -167,6 +167,9 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+msgid "LW"
+msgstr ""
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -282,6 +285,9 @@ msgstr "Katalog plików GRIB"
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -324,9 +330,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Prędkość prądu, w."
+#
+#
 #
 #
 #
@@ -370,9 +380,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Prędkość prądu, w."
+#
+#
 #
 #
 #
@@ -401,6 +415,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
 #
@@ -413,8 +429,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
+#
 #
 #
 #
@@ -440,9 +460,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć SEATEMP"
+#
+#
 #
 #
 #
@@ -474,9 +498,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć OCEAN CURRENT"
+#
+#
 #
 #
 #
@@ -506,6 +534,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Zmniejsz skalę lub powiększenie by zobaczyć CRAIN"
@@ -518,9 +548,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Ciśnienie, mbar"
+#
+#
 #
 #
 #
@@ -554,6 +588,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Temp. powierzchni morza, C"
@@ -566,9 +602,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Wybierz katalog GRIB"
+#
+#
 #
 #
 #
@@ -619,6 +659,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Wysokość fali znacznej, m"
@@ -631,8 +673,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Użyj grafili wysokuej rozdzielczości"
+#
+#
 #
 #
 #
@@ -684,9 +730,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Kierunek wiatru"
+#
+#
 #
 #
 #
@@ -716,9 +766,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Prędkość wiatru, w."
+#
+#
 #
 #
 #
@@ -777,9 +831,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "Dane GRIB"
+#
+#
 #
 #
 #
@@ -812,6 +870,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Prędkość prądu, w."
@@ -834,9 +894,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "Preferencje GRIB"
+#
+#
 #
 #
 #

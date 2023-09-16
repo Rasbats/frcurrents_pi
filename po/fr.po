@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn : Plugin TCurrent\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gilletarom et  EdelVoilier <contact@gilletarom.fr et  "
 "pascaljouin74@gmail.com>\n"
@@ -180,6 +180,10 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+#
+msgid "LW"
+msgstr "BM"
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -265,6 +269,9 @@ msgstr ""
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -321,8 +328,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid " (Max size )"
 #~ msgstr "(Taille maximale)"
+#
+#
 #
 #
 #
@@ -341,13 +352,19 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "( Max "
 #~ msgstr "( Max "
+#
+#
 #
 #
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "tcurrent"
+#
+#
 #
 #
 #
@@ -367,8 +384,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Air Temp"
 #~ msgstr "Temp. Air"
+#
+#
 #
 #
 #
@@ -387,6 +408,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Apply"
 #~ msgstr "Appliquer"
 #
@@ -397,8 +420,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Barbed Arrows"
 #~ msgstr "Flèches à barbules"
+#
+#
 #
 #
 #
@@ -424,8 +451,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Building Isobar map"
 #~ msgstr "Construire la carte des isobarres"
+#
+#
 #
 #
 #
@@ -444,8 +475,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Cloud Cover"
 #~ msgstr "Couverture nuageuse"
+#
+#
 #
 #
 #
@@ -464,8 +499,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Copy First Cumulative Missing Record"
 #~ msgstr "Copier le premier enregistrement cumulatif manquant"
+#
+#
 #
 #
 #
@@ -484,8 +523,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Current"
 #~ msgstr "Courant"
+#
+#
 #
 #
 #
@@ -504,8 +547,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Days"
 #~ msgstr "Jours"
+#
+#
 #
 #
 #
@@ -524,6 +571,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Direction Arrows"
 #~ msgstr "Direction des flèches"
 #
@@ -534,8 +583,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Display"
 #~ msgstr "Afficher"
+#
+#
 #
 #
 #
@@ -555,8 +608,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Display Isobars"
 #~ msgstr "Afficher les isobarres"
+#
+#
 #
 #
 #
@@ -576,9 +633,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Display Isotherms"
 #~ msgstr "Afficher les isobarres"
+#
+#
 #
 #
 #
@@ -597,8 +658,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Error:  File does not exist!"
 #~ msgstr "Erreur : Fichier n'existant pas !"
+#
+#
 #
 #
 #
@@ -617,8 +682,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Estimated File Size"
 #~ msgstr "Taille estimée du fichier"
+#
+#
 #
 #
 #
@@ -637,8 +706,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Feet"
 #~ msgstr "Pieds"
+#
+#
 #
 #
 #
@@ -657,8 +730,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Generic"
 #~ msgstr "Générique"
+#
+#
 #
 #
 #
@@ -679,6 +756,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Hours"
 #~ msgstr "heures"
 #
@@ -689,8 +768,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Inches"
 #~ msgstr "Pouces"
+#
+#
 #
 #
 #
@@ -710,8 +793,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Interval"
 #~ msgstr "Intervalle"
+#
+#
 #
 #
 #
@@ -730,12 +817,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Knots"
 #~ msgstr "Noeuds"
 #
 #
-#~ msgid "LW"
-#~ msgstr "BM"
 #
 #
 #
@@ -746,6 +833,8 @@ msgstr ""
 #
 #~ msgid "Load File Options"
 #~ msgstr "Option de fichier"
+#
+#
 #
 #
 #
@@ -765,8 +854,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Load the More Recent File in Directory"
 #~ msgstr "Chargez le plus récent fichier du dossier"
+#
+#
 #
 #
 #
@@ -785,8 +878,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Loop Mode"
 #~ msgstr "Mode en boucle"
+#
+#
 #
 #
 #
@@ -806,8 +903,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Mail"
 #~ msgstr "Mail"
+#
+#
 #
 #
 #
@@ -826,8 +927,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Meters"
 #~ msgstr "Mètres"
+#
+#
 #
 #
 #
@@ -846,8 +951,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Millimeters"
 #~ msgstr "Millimètres"
+#
+#
 #
 #
 #
@@ -866,8 +975,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Numbers"
 #~ msgstr "Nombres"
+#
+#
 #
 #
 #
@@ -886,8 +999,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Overlay Transparency"
 #~ msgstr "Transparence de superposition"
+#
+#
 #
 #
 #
@@ -906,6 +1023,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Percentage"
 #~ msgstr "Pourcentage"
 #
@@ -916,8 +1035,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Play"
 #~ msgstr "Jouer"
+#
+#
 #
 #
 #
@@ -940,8 +1063,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Pressure"
 #~ msgstr "Pression"
+#
+#
 #
 #
 #
@@ -960,8 +1087,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Rainfall"
 #~ msgstr "Précipitations"
+#
+#
 #
 #
 #
@@ -980,8 +1111,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Request"
 #~ msgstr "Requête"
+#
+#
 #
 #
 #
@@ -1007,8 +1142,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Save"
 #~ msgstr "Sauvegarder"
+#
+#
 #
 #
 #
@@ -1027,8 +1166,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Sea Temperature(surf.)"
 #~ msgstr "Température de l'eau(Surf.)"
+#
+#
 #
 #
 #
@@ -1048,8 +1191,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Send"
 #~ msgstr "Envoyer"
+#
+#
 #
 #
 #
@@ -1068,8 +1215,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Settings"
 #~ msgstr "Préférences"
+#
+#
 #
 #
 #
@@ -1088,8 +1239,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Slices per Update"
 #~ msgstr "Tranches par jour"
+#
+#
 #
 #
 #
@@ -1108,8 +1263,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Spacing"
 #~ msgstr "Espacement"
+#
+#
 #
 #
 #
@@ -1128,12 +1287,16 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid ""
 #~ "The file size limit is overcome!\n"
 #~ "You can zoom in and/or change parameters..."
 #~ msgstr ""
 #~ "La taille du fichier est trop grande !\n"
 #~ "Vous devez effectuer un zoom + et/ou changer les paramètres ... "
+#
+#
 #
 #
 #
@@ -1158,6 +1321,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "This is your zytcurrent's forum access Login"
 #~ msgstr "Ceci est votre login d'accès au forum de Zygrib"
@@ -1165,8 +1330,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "UTC"
 #~ msgstr "UTC"
+#
+#
 #
 #
 #
@@ -1185,8 +1354,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Updates per Second"
 #~ msgstr "Mises à jour par seconde"
+#
+#
 #
 #
 #
@@ -1206,8 +1379,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Utiliser le graphisme haute définition"
+#
+#
 #
 #
 #
@@ -1226,8 +1403,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Warning:  Empty directory!"
 #~ msgstr "Attention : Ce dossier est vide !"
+#
+#
 #
 #
 #
@@ -1246,8 +1427,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "WavesModel"
 #~ msgstr "Modèle des vagues"
+#
+#
 #
 #
 #
@@ -1266,6 +1451,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Wind Gust"
 #~ msgstr "Rafale de vent"
 #
@@ -1276,8 +1463,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Write and send eMail request"
 #~ msgstr "Préparation et envoi des caractéristiques de la requête GRIB"
+#
+#
 #
 #
 #
@@ -1304,6 +1495,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid ""
 #~ "Your request was sent \n"
@@ -1322,8 +1515,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "km/h"
 #~ msgstr "km/h"
+#
+#
 #
 #
 #
@@ -1342,8 +1539,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "mmHG"
 #~ msgstr "mmHG"
+#
+#
 #
 #
 #
@@ -1362,8 +1563,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "playback"
 #~ msgstr "Mode d'affichage"
+#
+#
 #
 #
 #
@@ -1375,6 +1580,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "tcurrent Data at Cursor"
 #~ msgstr "Valeurs des données sous la souris"
+#
+#
 #
 #
 #
@@ -1406,8 +1613,12 @@ msgstr ""
 #~ "- Courant de surface : Direction et vitesse."
 #
 #
+#
+#
 #~ msgid "tcurrent Settings"
 #~ msgstr "Réglages de TCurrent"
+#
+#
 #
 #
 #, fuzzy
@@ -1415,14 +1626,20 @@ msgstr ""
 #~ msgstr "tcurrent"
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "Réglages de TCurrent"
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentUseFillColour"
 #~ msgstr "Remplissage en couleur des flèches"
+#
+#
 #
 #
 #, fuzzy
@@ -1436,9 +1653,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "zytcurrent Code"
 #~ msgstr "Votre code Zygrib"
+#
+#
 #
 #
 #

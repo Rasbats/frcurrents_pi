@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.6.1718\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
 "PO-Revision-Date: 2013-01-10 15:09+0100\n"
 "Last-Translator: opencpn.es <opencpn.es@gmx.com>\n"
 "Language-Team: SpanishTeam LaTabernadelPuerto.com <opencpn.es@gmx.com>\n"
@@ -168,6 +168,9 @@ msgstr ""
 msgid "Information"
 msgstr ""
 #
+msgid "LW"
+msgstr ""
+#
 msgid "LW+1"
 msgstr ""
 #
@@ -284,6 +287,9 @@ msgstr "Carpeta Ficheros GRIB"
 msgid "Select High Water"
 msgstr ""
 #
+msgid "Select Low Water"
+msgstr ""
+#
 msgid "Select tidal area"
 msgstr ""
 #
@@ -328,9 +334,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Velocidad Actual, Nds."
+#
+#
 #
 #
 #
@@ -376,9 +386,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Velocidad Actual, Nds."
+#
+#
 #
 #
 #
@@ -408,8 +422,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
+#
+#
 #
 #
 #
@@ -431,9 +449,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view invisible overlays:"
 #~ msgstr "Ajuste Zoom o Escala para ver HTSGW GRIB eliminado"
+#
+#
 #
 #
 #
@@ -467,9 +489,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
 #~ msgstr "Ajuste Zoom o Escala para ver CRAIN GRIB eliminado"
+#
+#
 #
 #
 #
@@ -503,9 +529,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
 #~ msgstr "Ajuste Zoom o Escala para ver SEATEMP GRIB eliminado"
+#
+#
 #
 #
 #
@@ -534,9 +564,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Presión, mBar"
+#
+#
 #
 #
 #
@@ -573,6 +607,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Temperatura Superficie Mar, C"
@@ -586,9 +622,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Seleccionar Carpeta GRIB"
+#
+#
 #
 #
 #
@@ -663,8 +703,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Show metres/sec for Wind Speed"
 #~ msgstr "Mostrar metros/seg para Velocidad Viento"
+#
+#
 #
 #
 #
@@ -693,8 +737,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Usar Gráficos Alta Definición"
+#
+#
 #
 #
 #
@@ -728,6 +776,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Dirección Viento"
@@ -746,9 +796,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Velocidad Viento, m/seg."
+#
+#
 #
 #
 #
@@ -810,9 +864,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "Datos GRIB"
+#
+#
 #
 #
 #
@@ -846,6 +904,8 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Velocidad Actual, Nds."
@@ -868,9 +928,13 @@ msgstr ""
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "Preferencias GRIB"
+#
+#
 #
 #
 #

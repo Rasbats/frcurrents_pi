@@ -1,10 +1,10 @@
-#: src/frcurrentsUIDialog.cpp:675
+#: src/frcurrentsUIDialog.cpp:616
 msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:43+0100\n"
-"PO-Revision-Date: 2023-09-11 16:27\n"
+"POT-Creation-Date: 2023-09-15 20:52+0100\n"
+"PO-Revision-Date: 2023-09-16 11:33\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /plugins/frcurrents_pi/po/frcurrents_pi.pot\n"
 "X-Crowdin-File-ID: 421\n"
 
-#: src/frcurrentsUIDialog.cpp:288
+#: src/frcurrentsUIDialog.cpp:288 src/frcurrentsUIDialog.cpp:1943
 msgid "HW-6"
 msgstr "HW-6"
 
@@ -42,7 +42,7 @@ msgstr "HW-2"
 msgid "HW-1"
 msgstr "HW-1"
 
-#: src/frcurrentsUIDialog.cpp:294 src/frcurrentsUIDialog.cpp:2303
+#: src/frcurrentsUIDialog.cpp:294 src/frcurrentsUIDialog.cpp:2244
 msgid "High Water"
 msgstr "Marea Alta"
 
@@ -66,11 +66,12 @@ msgstr "HW+4"
 msgid "HW+5"
 msgstr "HW+5"
 
-#: src/frcurrentsUIDialog.cpp:300
+#: src/frcurrentsUIDialog.cpp:300 src/frcurrentsUIDialog.cpp:1944
 msgid "HW+6"
 msgstr "HW+6"
 
-#: src/frcurrentsUIDialog.cpp:302
+#: src/frcurrentsUIDialog.cpp:302 src/frcurrentsUIDialog.cpp:1955
+#: src/frcurrentsUIDialog.cpp:1962
 msgid "LW-6"
 msgstr ""
 
@@ -94,7 +95,7 @@ msgstr ""
 msgid "LW-1"
 msgstr ""
 
-#: src/frcurrentsUIDialog.cpp:308 src/frcurrentsUIDialog.cpp:2301
+#: src/frcurrentsUIDialog.cpp:308 src/frcurrentsUIDialog.cpp:2242
 msgid "Low Water"
 msgstr ""
 
@@ -118,49 +119,66 @@ msgstr ""
 msgid "LW+5"
 msgstr ""
 
-#: src/frcurrentsUIDialog.cpp:314
+#: src/frcurrentsUIDialog.cpp:314 src/frcurrentsUIDialog.cpp:1956
+#: src/frcurrentsUIDialog.cpp:1963
 msgid "LW+6"
 msgstr ""
 
-#: src/frcurrentsUIDialog.cpp:574 src/frcurrentsUIDialog.cpp:673
+#: src/frcurrentsUIDialog.cpp:515 src/frcurrentsUIDialog.cpp:614
 msgid "No tidal data"
 msgstr "Sin datos de mareas"
 
-#: src/frcurrentsUIDialog.cpp:666 src/frcurrentsUIDialog.cpp:2290
+#: src/frcurrentsUIDialog.cpp:607 src/frcurrentsUIDialog.cpp:2231
 msgid "Port not found"
 msgstr "Puerto no encontrado"
 
-#: src/frcurrentsUIDialog.cpp:666 src/frcurrentsUIDialog.cpp:2290
+#: src/frcurrentsUIDialog.cpp:607 src/frcurrentsUIDialog.cpp:2231
 msgid "Port finder"
 msgstr "Buscador de Puerto"
 
-#: src/frcurrentsUIDialog.cpp:937
+#: src/frcurrentsUIDialog.cpp:878
 msgid "Choose a directory"
 msgstr "Elegir directorio"
 
-#: src/frcurrentsUIDialog.cpp:1017
+#: src/frcurrentsUIDialog.cpp:958
 msgid "Choose the tcdata directory"
 msgstr "Elegir el directorio tcdata"
 
-#: src/frcurrentsUIDialog.cpp:1031
+#: src/frcurrentsUIDialog.cpp:972
 msgid "Using Tide/Current data from:  "
 msgstr "Usando datos de Marea/Corriente de:  "
 
-#: src/frcurrentsUIDialog.cpp:1154 src/frcurrentsUIDialog.cpp:1267
-#: src/frcurrentsUIDialog.cpp:1392
+#: src/frcurrentsUIDialog.cpp:1095 src/frcurrentsUIDialog.cpp:1208
+#: src/frcurrentsUIDialog.cpp:1333
 msgid "No tidal data for this port"
 msgstr "Sin datos de mareas para este puerto"
 
-#: src/frcurrentsUIDialog.cpp:1154 src/frcurrentsUIDialog.cpp:1267
-#: src/frcurrentsUIDialog.cpp:1392
+#: src/frcurrentsUIDialog.cpp:1095 src/frcurrentsUIDialog.cpp:1208
+#: src/frcurrentsUIDialog.cpp:1333
 msgid "No Tidal Data"
 msgstr "Sin datos de mareas"
 
-#: src/frcurrentsUIDialog.cpp:1725
+#: src/frcurrentsUIDialog.cpp:1666
 msgid "Failed to load file: "
 msgstr "Error al cargar archivo: "
 
-#: src/frcurrentsUIDialog.cpp:2544
+#: src/frcurrentsUIDialog.cpp:1942 src/frcurrentsUIDialogBase.cpp:130
+msgid "HW"
+msgstr "HW"
+
+#: src/frcurrentsUIDialog.cpp:1945 src/frcurrentsUIDialogBase.cpp:76
+msgid "Select High Water"
+msgstr "Seleccionar marea alta"
+
+#: src/frcurrentsUIDialog.cpp:1954 src/frcurrentsUIDialog.cpp:1961
+msgid "LW"
+msgstr ""
+
+#: src/frcurrentsUIDialog.cpp:1957 src/frcurrentsUIDialog.cpp:1964
+msgid "Select Low Water"
+msgstr ""
+
+#: src/frcurrentsUIDialog.cpp:2485
 msgid "Please choose a new date"
 msgstr "Por favor, elija una nueva fecha"
 
@@ -224,10 +242,6 @@ msgstr "Elegir fecha"
 msgid "   Coeff"
 msgstr "Coeficiente"
 
-#: src/frcurrentsUIDialogBase.cpp:76
-msgid "Select High Water"
-msgstr "Seleccionar marea alta"
-
 #: src/frcurrentsUIDialogBase.cpp:92
 msgid "Now"
 msgstr "Ahora"
@@ -243,10 +257,6 @@ msgstr "Anterior"
 #: src/frcurrentsUIDialogBase.cpp:116
 msgid "Next"
 msgstr "Posterior"
-
-#: src/frcurrentsUIDialogBase.cpp:130
-msgid "HW"
-msgstr "HW"
 
 #: src/frcurrentsUIDialogBase.cpp:136
 msgid "HW -6"
