@@ -249,7 +249,7 @@ wxPoint g_startPos;
 wxPoint g_startMouse;
 wxPoint g_mouse_pos_screen;
 
-void Dlg::OnPopupClick(wxCommandEvent& evt)
+void frcurrentsUIDialog::OnPopupClick(wxCommandEvent& evt)
 {
     switch (evt.GetId()) {
     case ID_SOMETHING:
@@ -260,17 +260,17 @@ void Dlg::OnPopupClick(wxCommandEvent& evt)
     }
 }
 
-void Dlg::OnDLeftClick(wxMouseEvent& event)
+void frcurrentsUIDialog::OnDLeftClick(wxMouseEvent& event)
 {
     wxMenu mnu;
     mnu.Append(ID_SOMETHING, "Resize...");
     // mnu.Append(ID_SOMETHING_ELSE, "Do something else");
     mnu.Connect(wxEVT_COMMAND_MENU_SELECTED,
-        wxCommandEventHandler(Dlg::OnPopupClick), NULL, this);
+        wxCommandEventHandler(frcurrentsUIDialog::OnPopupClick), NULL, this);
     PopupMenu(&mnu);
 }
 
-void Dlg::OnMouseEvent(wxMouseEvent& event)
+void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event)
 {
     if (m_binResize) {
         wxSize currentSize = g_Window->GetSize();
