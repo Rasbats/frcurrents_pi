@@ -186,6 +186,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	// Connect Events
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( frcurrentsUIDialogBase::OnClose ) );
+	this->Connect( wxEVT_LEFT_DCLICK, wxMouseEventHandler( frcurrentsUIDialogBase::OnDLeftClick ) );
 	this->Connect( wxEVT_MOVE, wxMoveEventHandler( frcurrentsUIDialogBase::OnMove ) );
 	this->Connect( wxEVT_SIZE, wxSizeEventHandler( frcurrentsUIDialogBase::OnSize ) );
 	m_choiceArea->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnAreaSelected ), NULL, this );
@@ -205,6 +206,7 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
 {
 	// Disconnect Events
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( frcurrentsUIDialogBase::OnClose ) );
+	this->Disconnect( wxEVT_LEFT_DCLICK, wxMouseEventHandler( frcurrentsUIDialogBase::OnDLeftClick ) );
 	this->Disconnect( wxEVT_MOVE, wxMoveEventHandler( frcurrentsUIDialogBase::OnMove ) );
 	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( frcurrentsUIDialogBase::OnSize ) );
 	m_choiceArea->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnAreaSelected ), NULL, this );

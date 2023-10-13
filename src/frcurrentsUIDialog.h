@@ -191,6 +191,18 @@ public:
     double m_coeff;
     double m_jumpLat, m_jumpLon;
 
+    #ifdef __ANDROID__
+    void OnMouseEvent(wxMouseEvent& event);
+    wxPoint m_resizeStartPoint;
+    wxSize m_resizeStartSize;
+    bool m_binResize;
+    bool m_binResize2;
+
+    void OnPopupClick(wxCommandEvent& evt);
+    void OnDLeftClick(wxMouseEvent& event);
+
+#endif
+
 private:
     void OnClose(wxCloseEvent& event);
     void OnMove(wxMoveEvent& event);

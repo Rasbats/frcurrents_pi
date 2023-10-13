@@ -33,7 +33,6 @@
 #include <wx/clrpicker.h>
 
 ///////////////////////////////////////////////////////////////////////////
-
 ///////////////////////////////////////////////////////////////////////////////
 /// Class frcurrentsUIDialogBase
 ///////////////////////////////////////////////////////////////////////////////
@@ -60,6 +59,7 @@ class frcurrentsUIDialogBase : public wxDialog
 
 		// Virtual event handlers, override them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
+		virtual void OnDLeftClick( wxMouseEvent& event ) { event.Skip(); }
 		virtual void OnMove( wxMoveEvent& event ) { event.Skip(); }
 		virtual void OnSize( wxSizeEvent& event ) { event.Skip(); }
 		virtual void OnAreaSelected( wxCommandEvent& event ) { event.Skip(); }

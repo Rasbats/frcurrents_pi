@@ -63,6 +63,10 @@
 #include <wx/txtstrm.h>
 #include <wx/wfstream.h>
 
+#ifdef __ANDROID__
+wxWindow* g_Window;
+#endif
+
 enum { TIDE_PLOT, CURRENT_PLOT };
 
 constexpr double radToDeg(float rad) { return rad * (180 / M_PI); }
@@ -150,6 +154,19 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     pParent = parent;
     pPlugIn = ppi;
 
+#ifdef __ANDROID__
+
+    m_binResize = false;
+
+    g_Window = this;
+    GetHandle()->setStyleSheet(qtStyleSheet);
+    Connect(wxEVT_LEFT_DOWN, wxMouseEventHandler(Dlg::OnMouseEvent));
+    Connect(wxEVT_LEFT_UP, wxMouseEventHandler(Dlg::OnMouseEvent));
+
+    Connect(wxEVT_MOTION, wxMouseEventHandler(Dlg::OnMouseEvent));
+
+#endif
+
     wxFileConfig* pConf = GetOCPNConfigObject();
 
     if (pConf) {
@@ -183,11 +200,6 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     m_bpNow->SetBitmap(*_img_Clock);
 
     ptcmgr = NULL;
-
-    // this->Connect( wxEVT_MOVE, wxMoveEventHandler( frcurrentsUIDialog::OnMove
-    // ) );
-
-    // DimeWindow( this );
 
     // Fit();
     // SetMinSize( GetBestSize() );
@@ -230,6 +242,111 @@ frcurrentsUIDialog::~frcurrentsUIDialog()
         pConf->Write("frcurrentsFolder", m_FolderSelected);
     }
 }
+
+
+#ifdef __ANDROID__
+wxPoint g_startPos;
+wxPoint g_startMouse;
+wxPoint g_mouse_pos_screen;
+
+void Dlg::OnPopupClick(wxCommandEvent& evt)
+{
+    switch (evt.GetId()) {
+    case ID_SOMETHING:
+        m_binResize = true;
+        break;
+        // case ID_SOMETHING_ELSE:
+        //   break;
+    }
+}
+
+void Dlg::OnDLeftClick(wxMouseEvent& event)
+{
+    wxMenu mnu;
+    mnu.Append(ID_SOMETHING, "Resize...");
+    // mnu.Append(ID_SOMETHING_ELSE, "Do something else");
+    mnu.Connect(wxEVT_COMMAND_MENU_SELECTED,
+        wxCommandEventHandler(Dlg::OnPopupClick), NULL, this);
+    PopupMenu(&mnu);
+}
+
+void Dlg::OnMouseEvent(wxMouseEvent& event)
+{
+    if (m_binResize) {
+        wxSize currentSize = g_Window->GetSize();
+        wxSize par_size = GetOCPNCanvasWindow()->GetClientSize();
+        wxPoint par_pos = g_Window->GetPosition();
+        if (event.LeftDown()) {
+            m_resizeStartPoint = event.GetPosition();
+            m_resizeStartSize = currentSize;
+            m_binResize2 = true;
+        }
+
+        if (m_binResize2) {
+            if (event.Dragging()) {
+                wxPoint p = event.GetPosition();
+
+                wxSize dragSize = m_resizeStartSize;
+
+                dragSize.y = p.y; //  - m_resizeStartPoint.y;
+                dragSize.x = p.x; //  - m_resizeStartPoint.x;
+                ;
+                /*
+                if ((par_pos.y + dragSize.y) > par_size.y)
+                    dragSize.y = par_size.y - par_pos.y;
+
+                if ((par_pos.x + dragSize.x) > par_size.x)
+                    dragSize.x = par_size.x - par_pos.x;
+        */
+                // not too small
+                dragSize.x = wxMax(dragSize.x, 150);
+                dragSize.y = wxMax(dragSize.y, 150);
+
+                int x = wxMax(0, m_resizeStartPoint.x);
+                int y = wxMax(0, m_resizeStartPoint.y);
+                int xmax = ::wxGetDisplaySize().x - GetSize().x;
+                x = wxMin(x, xmax);
+                int ymax = ::wxGetDisplaySize().y
+                    - (GetSize().y); // Some fluff at the bottom
+                y = wxMin(y, ymax);
+
+                g_Window->Move(x, y);
+            }
+            if (event.LeftUp()) {
+                wxPoint p = event.GetPosition();
+
+                wxSize dragSize = m_resizeStartSize;
+
+                dragSize.y = p.y;
+                dragSize.x = p.x;
+
+                // not too small
+                dragSize.x = wxMax(dragSize.x, 150);
+                dragSize.y = wxMax(dragSize.y, 150);
+
+                g_Window->SetSize(dragSize);
+
+                m_binResize = false;
+                m_binResize2 = false;
+            }
+        }
+    } else {
+        if (event.Dragging()) {
+            m_resizeStartPoint = event.GetPosition();
+            int x = wxMax(0, m_resizeStartPoint.x);
+            int y = wxMax(0, m_resizeStartPoint.y);
+            int xmax = ::wxGetDisplaySize().x - GetSize().x;
+            x = wxMin(x, xmax);
+            int ymax = ::wxGetDisplaySize().y
+                - (GetSize().y); // Some fluff at the bottom
+            y = wxMin(y, ymax);
+
+            g_Window->Move(x, y);
+        }
+    }
+}
+
+#endif // End of Android functions for move/resize
 
 void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon)
 {
