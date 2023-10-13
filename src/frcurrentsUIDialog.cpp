@@ -34,7 +34,7 @@
 #include <wx/graphics.h>
 #include <wx/intl.h>
 #include <wx/wfstream.h>
-
+#include "qtstylesheet.h"
 #include <wx/stdpaths.h>
 
 #include <math.h>
@@ -160,10 +160,13 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     g_Window = this;
     GetHandle()->setStyleSheet(qtStyleSheet);
-    Connect(wxEVT_LEFT_DOWN, wxMouseEventHandler(Dlg::OnMouseEvent));
-    Connect(wxEVT_LEFT_UP, wxMouseEventHandler(Dlg::OnMouseEvent));
+    Connect(
+        wxEVT_LEFT_DOWN, wxMouseEventHandler(frcurrentsUIDialog::OnMouseEvent));
+    Connect(
+        wxEVT_LEFT_UP, wxMouseEventHandler(frcurrentsUIDialog::OnMouseEvent));
 
-    Connect(wxEVT_MOTION, wxMouseEventHandler(Dlg::OnMouseEvent));
+    Connect(
+        wxEVT_MOTION, wxMouseEventHandler(frcurrentsUIDialog::OnMouseEvent));
 
 #endif
 
@@ -242,7 +245,6 @@ frcurrentsUIDialog::~frcurrentsUIDialog()
         pConf->Write("frcurrentsFolder", m_FolderSelected);
     }
 }
-
 
 #ifdef __ANDROID__
 wxPoint g_startPos;
