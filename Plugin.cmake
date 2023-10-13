@@ -92,13 +92,6 @@ set(PKG_API_LIB api-16)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
 macro(late_init)
   # Perform initialization after the PACKAGE_NAME library, compilers
   # and ocpn::api is available.
-
-  add_definitions(-DocpnUSE_GL)
-
-  if (QT_ANDROID)
-    add_definitions(-DUSE_ANDROID_GLES2)
-  endif ()
-
 endmacro ()
 
 macro(add_plugin_libraries)
