@@ -101,6 +101,9 @@ macro(add_plugin_libraries)
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/plugingl")
   target_link_libraries(${PACKAGE_NAME} ocpn::plugingl)
 
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/opencpn-glu")
+  target_link_libraries(${PACKAGE_NAME} ocpn::opencpn-glu)
+
   # The wxsvg library enables SVG overall in the plugin
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/wxsvg")
   target_link_libraries(${PACKAGE_NAME} ocpn::wxsvg)
