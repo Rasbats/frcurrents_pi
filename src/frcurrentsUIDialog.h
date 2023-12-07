@@ -134,12 +134,6 @@ public:
   frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi);
   ~frcurrentsUIDialog();
 
-#ifdef __ANDROID__
-  void OnMouseEvent(wxMouseEvent& event);
-  wxPoint m_resizeStartPoint;
-  wxSize m_resizeStartSize;
-#endif
-
   void OpenFile(bool newestFile = false);
 
   void SetCursorLatLon(double lat, double lon);
