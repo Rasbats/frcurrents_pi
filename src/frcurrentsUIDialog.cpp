@@ -67,6 +67,8 @@
 wxWindow* g_Window;
 #endif
 
+enum { TIDE_PLOT, CURRENT_PLOT };
+
 constexpr double radToDeg(float rad) { return rad * (180 / M_PI); }
 constexpr double DegToRad(float deg) { return deg * (M_PI / 180); }
 
