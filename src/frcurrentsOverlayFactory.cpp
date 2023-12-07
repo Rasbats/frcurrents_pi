@@ -183,18 +183,6 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
     return true;
 }
 
-void frcurrentsOverlayFactory::DrawLine( double x1, double y1, double x2, double y2,
-                                          const wxColour &color, double width )
-{
-    m_dc->ConfigurePen();
-    m_dc->SetPen( wxPen(color, width ) );
-    m_dc->ConfigureBrush();
-    m_dc->SetBrush( *wxTRANSPARENT_BRUSH);
-    m_dc->DrawLine(x1, y1, x2, y2, false);
-
-    //wxMessageBox("here");
-}
-
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
 	switch (my_style){		
 		case 0:
@@ -351,10 +339,9 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
 
         brush.SetStyle(wxBRUSHSTYLE_SOLID);
         m_dc->SetBrush(brush);
-        m_dc->ConfigureBrush();
 
-        m_dc->DrawPolygon(3, polyPoints, 0, 0);
-        m_dc->DrawPolygon(4, rectPoints, 0, 0);
+        m_dc->DrawPolygonTessellated(3, polyPoints);
+        m_dc->DrawPolygonTessellated(4, rectPoints);
     }
     return true;
 }

@@ -31,7 +31,7 @@ set(OCPN_RELEASE_REPO
 # -------  Plugin setup --------
 #
 set(PKG_NAME frcurrents_pi)
-set(PKG_VERSION  1.2.0)
+set(PKG_VERSION  1.3.0)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME frcurrents)    # Dialogs, installer artifacts, ...
@@ -58,11 +58,6 @@ set(SRC
             src/icons.cpp
             src/tcmgr.cpp
             src/tcmgr.h
-            src/tinyxml.h
-            src/tinyxml.cpp
-            src/tinyxmlparser.cpp
-            src/tinyxmlerror.cpp
-
         src/IDX_entry.cpp
         src/IDX_entry.h
         src/logger.cpp
@@ -98,11 +93,8 @@ macro(add_plugin_libraries)
   add_subdirectory("opencpn-libs/tinyxml")
   target_link_libraries(${PACKAGE_NAME} ocpn::tinyxml)
 
-  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/plugingl")
-  target_link_libraries(${PACKAGE_NAME} ocpn::plugingl)
-
-  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/opencpn-glu")
-  target_link_libraries(${PACKAGE_NAME} ocpn::opencpn-glu)
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/plugin_dc")
+  target_link_libraries(${PACKAGE_NAME} ocpn::plugin-dc)
 
   # The wxsvg library enables SVG overall in the plugin
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/wxsvg")
