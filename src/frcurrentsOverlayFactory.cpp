@@ -44,11 +44,6 @@
 # include <OpenGL/gl3.h>
 #endif
 
-#ifdef __OCPN__ANDROID__
-#include <qopengl.h>
-#include "gl_private.h"
-#endif
-
 #ifdef USE_GLES2
 #include "GLES2/gl2.h"
 #endif
