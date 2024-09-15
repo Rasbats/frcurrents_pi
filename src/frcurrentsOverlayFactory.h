@@ -28,6 +28,9 @@
 #include <wx/string.h>
 #include "tcmgr.h"
 #include "wx/tokenzr.h"
+#include "pidc.h"
+#include <wx/brush.h>
+#include <wx/gdicmn.h>
 
 using namespace std;
 

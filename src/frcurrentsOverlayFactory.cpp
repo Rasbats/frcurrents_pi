@@ -34,7 +34,6 @@
 #include <wx/glcanvas.h>
 #include <wx/graphics.h>
 #include <wx/progdlg.h>
-#include "pidc.h"
 
 #include "frcurrents_pi.h"
 #include <vector>
