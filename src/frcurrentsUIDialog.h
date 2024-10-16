@@ -161,6 +161,8 @@ public:
   vector<Position> OnRecord();
   void SetFromHW(int fromHW);
 
+  int press_next_id;
+  int press_prev_id;
   int button_id;
   wxString m_portXML;
   double myRange;
@@ -237,7 +239,6 @@ private:
   void ParseCurrentsFile(wxString infile);
   void ParseCurrentsVE(wxString inCurrents);
   void ParseCurrentsME(wxString inCurrents);
-
   void OnChooseTideButton(wxCommandEvent& event);
   void OnPrev(wxCommandEvent& event);
   void OnNext(wxCommandEvent& event);
@@ -246,7 +247,6 @@ private:
   int myPortCode;
   int BrestID;
   void SetTimeFactors();
-  void SetTimeFactorsBrest();
   bool btc_valid;
   int m_stationOffset_mins;
   int m_diff_mins;
@@ -286,11 +286,19 @@ private:
   int myNewDateSelection;
   wxString euTC[8][4];  // Date.Time, Height, Units, HW.LW
   wxDateTime m_dt;
+  wxDateTime choice_dt;
+  wxDateTime back_dt;
+  wxDateTime next_dt;
   wxTimeSpan m_ts;
   int m_plot_type;
   void JumpToPort();
 
   bool isNowButton;
+  bool m_bAtLastChoice;
+  bool m_bAtLastPrev;
+  bool m_bPrev, m_bNext;
+  bool m_bChooseTide;
+  int track_id;
 
   double PMVEew[13], PMVEns[13], PMMEew[13], PMMEns[13], BMVEew[13], BMVEns[13],
       BMMEew[13], BMMEns[13];
