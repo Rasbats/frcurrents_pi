@@ -2328,7 +2328,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   m_bPrev = true;
 
   if (m_bChooseTide) {
-    wxMessageBox("Please click Previous again");
+    //wxMessageBox("Please click Previous again");
     m_bChooseTide = false;
   }
   c = m_choice2->GetCount();
@@ -2346,7 +2346,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
         m_bAtLastChoice = true;
       }
     }
-    wxMessageBox("Please click Previous again");
+    //wxMessageBox("Please click Previous again");
     m_bNext = false;
   }
 
@@ -2394,8 +2394,8 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   switch (button_id) {
     case 12: {
       next_id = 11;
-      m_choice2->SetSelection(m_myChoice);
-      st_mydate = m_choice2->GetString(m_myChoice);
+      myDateSelection = m_choice2->GetSelection();
+      st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Add(wxTimeSpan::Hours(6));
       s = m_dt.Format(_T( "%a %d %b %Y %H:%M "));
@@ -2412,6 +2412,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
 
       if (myDateSelection > 0) {
         m_myChoice--;
+        m_choice2->SetSelection(m_myChoice);
       }
 
       if (myDateSelection == 0) {
@@ -2453,7 +2454,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   wxString st_mydate;
 
   if (m_bChooseTide) {
-    wxMessageBox("Please click Next again");
+    //wxMessageBox("Please click Next again");
     m_bChooseTide = false;
   }
   int c = m_choice2->GetCount();
@@ -2473,7 +2474,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
         m_choice2->SetSelection(m_myChoice);
       }
     }
-    wxMessageBox("Please click Next again");
+    //wxMessageBox("Please click Next again");
     m_bPrev = false;
   }
 
@@ -2539,6 +2540,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
 
       if (myDateSelection < c - 1) {
         m_myChoice++;
+        m_choice2->SetSelection(m_myChoice);
       }
 
       break;
@@ -2548,8 +2550,8 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
 
       next_id = 1;
       back_id = 12;
-      m_choice2->SetSelection(m_myChoice);
-      st_mydate = m_choice2->GetString(m_myChoice);
+      myDateSelection = m_choice2->GetSelection();
+      st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Subtract(wxTimeSpan::Hours(6));
       s = m_dt.Format(_T( "%a %d %b %Y %H:%M "));
