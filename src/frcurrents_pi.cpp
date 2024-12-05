@@ -36,9 +36,9 @@
 
 #include "frcurrents_pi.h"
 
-wxString myVColour[] = {_T("rgb(127, 0, 255)"), _T("rgb(0, 166, 80)"),
-                        _T("rgb(253, 184, 19)"), _T("rgb(248, 128, 64)"),
-                        _T("rgb(248, 0, 0)")};
+wxString myVColour[] = {"rgb(127, 0, 255)", "rgb(0, 166, 80)",
+                        "rgb(253, 184, 19)", "rgb(248, 128, 64)",
+                        "rgb(248, 0, 0)"};
 
 // the class factories, used to create and destroy instances of the PlugIn
 
@@ -104,7 +104,7 @@ frcurrents_pi::~frcurrents_pi(void) {
 }
 
 int frcurrents_pi::Init(void) {
-  AddLocaleCatalog(_T("opencpn-frcurrents_pi"));
+  AddLocaleCatalog("opencpn-frcurrents_pi");
 
   // Set some default private member parameters
   m_frcurrents_dialog_x = 40;
@@ -132,13 +132,13 @@ int frcurrents_pi::Init(void) {
   if (m_bfrcurrentsShowIcon) {
 #ifdef ocpnUSE_SVG
     m_leftclick_tool_id = InsertPlugInToolSVG(
-        _T( "frcurrents" ), _svg_frcurrents, _svg_frcurrents_rollover,
+        "frcurrents", _svg_frcurrents, _svg_frcurrents_rollover,
         _svg_frcurrents_toggled, wxITEM_CHECK, _("frcurrents"), _T( "" ), NULL,
         frcurrents_TOOL_POSITION, 0, this);
 #else
     m_leftclick_tool_id = InsertPlugInTool(
-        _T(""), _img_frcurrents, _img_frcurrents, wxITEM_CHECK, _("frcurrents"),
-        _T(""), NULL, frcurrents_TOOL_POSITION, 0, this);
+        "", _img_frcurrents, _img_frcurrents, wxITEM_CHECK, _("frcurrents"),
+       "", NULL, frcurrents_TOOL_POSITION, 0, this);
 #endif
   }
   return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK |
@@ -180,7 +180,7 @@ int GetPlugInVersionPatch() { return PLUGIN_VERSION_PATCH; }
 
 wxBitmap *frcurrents_pi::GetPlugInBitmap() { return &m_panelBitmap; }
 
-wxString frcurrents_pi::GetCommonName() { return _T("frcurrents"); }
+wxString frcurrents_pi::GetCommonName() { return "frcurrents"; }
 
 wxString frcurrents_pi::GetShortDescription() {
   return _("frcurrents PlugIn for OpenCPN");
@@ -385,30 +385,30 @@ bool frcurrents_pi::LoadConfig(void) {
 
   pConf->SetPath(_T( "/PlugIns/frcurrents" ));
 
-  m_bCopyUseRate = pConf->Read(_T ( "frcurrentsUseRate" ), 1);
-  m_bCopyUseDirection = pConf->Read(_T ( "frcurrentsUseDirection" ), 1);
-  m_bCopyUseHighRes = pConf->Read(_T("frcurrentsUseHighResolution"), 1);
-  m_bfrcurrentsUseHiDef = pConf->Read(_T( "frcurrentsUseFillColour" ), 1);
+  m_bCopyUseRate = pConf->Read("frcurrentsUseRate", 1);
+  m_bCopyUseDirection = pConf->Read("frcurrentsUseDirection", 1);
+  m_bCopyUseHighRes = pConf->Read("frcurrentsUseHighResolution", 1);
+  m_bfrcurrentsUseHiDef = pConf->Read("frcurrentsUseFillColour", 1);
 
-  m_CopyArrowStyle = pConf->Read(_T( "frcurrentsUseArrowStyle" ), 1);
+  m_CopyArrowStyle = pConf->Read("frcurrentsUseArrowStyle", 1);
 
-  m_CopyFolderSelected = pConf->Read(_T( "frcurrentsFolder" ), "");
+  m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
-  m_frcurrents_dialog_sx = pConf->Read(_T ( "frcurrentsDialogSizeX" ), 300L);
-  m_frcurrents_dialog_sy = pConf->Read(_T ( "frcurrentsDialogSizeY" ), 540L);
-  m_frcurrents_dialog_x = pConf->Read(_T ( "frcurrentsDialogPosX" ), 20L);
-  m_frcurrents_dialog_y = pConf->Read(_T ( "frcurrentsDialogPosY" ), 170L);
+  m_frcurrents_dialog_sx = pConf->Read("frcurrentsDialogSizeX", 300L);
+  m_frcurrents_dialog_sy = pConf->Read("frcurrentsDialogSizeY", 540L);
+  m_frcurrents_dialog_x = pConf->Read("frcurrentsDialogPosX", 20L);
+  m_frcurrents_dialog_y = pConf->Read("frcurrentsDialogPosY", 170L);
 
   if ((m_frcurrents_dialog_x < 0) || (m_frcurrents_dialog_x > m_display_width))
     m_frcurrents_dialog_x = 40;
   if ((m_frcurrents_dialog_y < 0) || (m_frcurrents_dialog_y > m_display_height))
     m_frcurrents_dialog_y = 140;
 
-  pConf->Read(_T("VColour0"), &myVColour[0], myVColour[0]);
-  pConf->Read(_T("VColour1"), &myVColour[1], myVColour[1]);
-  pConf->Read(_T("VColour2"), &myVColour[2], myVColour[2]);
-  pConf->Read(_T("VColour3"), &myVColour[3], myVColour[3]);
-  pConf->Read(_T("VColour4"), &myVColour[4], myVColour[4]);
+  pConf->Read("VColour0", &myVColour[0], myVColour[0]);
+  pConf->Read("VColour1", &myVColour[1], myVColour[1]);
+  pConf->Read("VColour2", &myVColour[2], myVColour[2]);
+  pConf->Read("VColour3", &myVColour[3], myVColour[3]);
+  pConf->Read("VColour4", &myVColour[4], myVColour[4]);
 
   return true;
 }
@@ -417,26 +417,26 @@ bool frcurrents_pi::SaveConfig(void) {
   wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 
   if (pConf) {
-    pConf->SetPath(_T( "/PlugIns/frcurrents" ));
-    pConf->Write(_T ( "frcurrentsUseRate" ), m_bCopyUseRate);
-    pConf->Write(_T ( "frcurrentsUseDirection" ), m_bCopyUseDirection);
-    pConf->Write(_T("frcurrentsUseHighResolution"), m_bCopyUseHighRes);
-    pConf->Write(_T ( "frcurrentsUseFillColour" ), m_bfrcurrentsUseHiDef);
+    pConf->SetPath("/PlugIns/frcurrents");
+    pConf->Write("frcurrentsUseRate", m_bCopyUseRate);
+    pConf->Write("frcurrentsUseDirection", m_bCopyUseDirection);
+    pConf->Write("frcurrentsUseHighResolution", m_bCopyUseHighRes);
+    pConf->Write("frcurrentsUseFillColour", m_bfrcurrentsUseHiDef);
 
-    pConf->Write(_T ( "frcurrentsUseArrowStyle" ), m_CopyArrowStyle);
+    pConf->Write("frcurrentsUseArrowStyle", m_CopyArrowStyle);
 
-    pConf->Write(_T( "frcurrentsFolder" ), m_CopyFolderSelected);
+    pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 
-    pConf->Write(_T ( "frcurrentsDialogSizeX" ), m_frcurrents_dialog_sx);
-    pConf->Write(_T ( "frcurrentsDialogSizeY" ), m_frcurrents_dialog_sy);
-    pConf->Write(_T ( "frcurrentsDialogPosX" ), m_frcurrents_dialog_x);
-    pConf->Write(_T ( "frcurrentsDialogPosY" ), m_frcurrents_dialog_y);
+    pConf->Write("frcurrentsDialogSizeX", m_frcurrents_dialog_sx);
+    pConf->Write("frcurrentsDialogSizeY", m_frcurrents_dialog_sy);
+    pConf->Write("frcurrentsDialogPosX", m_frcurrents_dialog_x);
+    pConf->Write("frcurrentsDialogPosY", m_frcurrents_dialog_y);
 
-    pConf->Write(_T("VColour0"), myVColour[0]);
-    pConf->Write(_T("VColour1"), myVColour[1]);
-    pConf->Write(_T("VColour2"), myVColour[2]);
-    pConf->Write(_T("VColour3"), myVColour[3]);
-    pConf->Write(_T("VColour4"), myVColour[4]);
+    pConf->Write("VColour0", myVColour[0]);
+    pConf->Write("VColour1", myVColour[1]);
+    pConf->Write("VColour2", myVColour[2]);
+    pConf->Write("VColour3", myVColour[3]);
+    pConf->Write("VColour4", myVColour[4]);
 
     return true;
 

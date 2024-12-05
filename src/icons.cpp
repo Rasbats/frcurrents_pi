@@ -40,11 +40,11 @@ void initialize_images(void)
 
         tmp_path = GetPluginDataDir("frcurrents_pi");
         fn.SetPath(tmp_path);
-        fn.AppendDir(_T("data"));
+        fn.AppendDir("data");
 
-        fn.SetFullName(_T("frcurrents_pi.svg"));
+        fn.SetFullName("frcurrents_pi.svg");
         _svg_frcurrents = fn.GetFullPath();
-        fn.SetFullName(_T("frcurrents_pi_toggled.svg"));
+        fn.SetFullName("frcurrents_pi_toggled.svg");
         _svg_frcurrents_toggled = fn.GetFullPath();
 #endif
 

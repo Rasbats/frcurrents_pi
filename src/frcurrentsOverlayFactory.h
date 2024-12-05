@@ -96,9 +96,6 @@ public:
                                  bool bdraw_mono_for_mask, wxDateTime myTime);
 
   void Reset();
-  wxImage &DrawGLText(double value, int precision);
-  wxImage &DrawGLTextDir(double value, int precision);
-  wxImage &DrawGLTextString(wxString myText);
 
   bool m_bShowRate;
   bool m_bShowDirection;

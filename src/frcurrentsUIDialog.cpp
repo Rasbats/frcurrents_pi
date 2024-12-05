@@ -170,18 +170,18 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     pConf->Read("frcurrentsUseRate", &m_bUseRate);
     pConf->Read("frcurrentsUseDirection", &m_bUseDirection);
     pConf->Read("frcurrentsUseFillColour", &m_bUseFillColour);
-    pConf->Read(_T("frcurrentsUseHighResolution"), &m_bUseHighRes);
+    pConf->Read("frcurrentsUseHighResolution", &m_bUseHighRes);
 
-    pConf->Read(_T( "frcurrentsUseArrowStyle" ), &m_UseArrowStyle);
+    pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
     pConf->Read("frcurrentsPort", &m_PortSelected);
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
-    pConf->Read(_T("VColour0"), &myVColour[0], myVColour[0]);
-    pConf->Read(_T("VColour1"), &myVColour[1], myVColour[1]);
-    pConf->Read(_T("VColour2"), &myVColour[2], myVColour[2]);
-    pConf->Read(_T("VColour3"), &myVColour[3], myVColour[3]);
-    pConf->Read(_T("VColour4"), &myVColour[4], myVColour[4]);
+    pConf->Read("VColour0", &myVColour[0], myVColour[0]);
+    pConf->Read("VColour1", &myVColour[1], myVColour[1]);
+    pConf->Read("VColour2", &myVColour[2], myVColour[2]);
+    pConf->Read("VColour3", &myVColour[3], myVColour[3]);
+    pConf->Read("VColour4", &myVColour[4], myVColour[4]);
 
     myUseColour[0] = myVColour[0];
     myUseColour[1] = myVColour[1];
@@ -223,16 +223,16 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
 
     pConf->Write("frcurrentsUseRate", m_bUseRate);
     pConf->Write("frcurrentsUseDirection", m_bUseDirection);
-    pConf->Write(_T("frcurrentsUseHighResolution"), m_bUseHighRes);
+    pConf->Write("frcurrentsUseHighResolution", m_bUseHighRes);
     pConf->Write("frcurrentsUseFillColour", m_bUseFillColour);
 
     pConf->Write(_T ( "frcurrentsUseArrowStyle" ), m_UseArrowStyle);
 
-    pConf->Write(_T("VColour0"), myVColour[0]);
-    pConf->Write(_T("VColour1"), myVColour[1]);
-    pConf->Write(_T("VColour2"), myVColour[2]);
-    pConf->Write(_T("VColour3"), myVColour[3]);
-    pConf->Write(_T("VColour4"), myVColour[4]);
+    pConf->Write("VColour0", myVColour[0]);
+    pConf->Write("VColour1", myVColour[1]);
+    pConf->Write("VColour2", myVColour[2]);
+    pConf->Write("VColour3", myVColour[3]);
+    pConf->Write("VColour4", myVColour[4]);
 
     int c = m_choice1->GetCurrentSelection();
     wxString myP = m_choice1->GetString(c);
@@ -453,9 +453,9 @@ void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
   }
 
   wxDateTime this_now = wxDateTime::Now();
-  wxString s0 = this_now.Format(_T( "%a %d %b %Y"));
-  wxString s1 = this_now.Format(_T("%H:%M"));
-  wxString s2 = s0 + _T(" ") + s1;
+  wxString s0 = this_now.Format("%a %d %b %Y");
+  wxString s1 = this_now.Format("%H:%M");
+  wxString s2 = s0 + " " + s1;
 
   m_staticText211->SetLabel(s2);
 
@@ -508,9 +508,9 @@ void frcurrentsUIDialog::SetNow() {
   }
 
   wxDateTime this_now = wxDateTime::Now();
-  wxString s0 = this_now.Format(_T( "%a %d %b %Y"));
-  wxString s1 = this_now.Format(_T("%H:%M"));
-  wxString s2 = s0 + _T(" ") + s1;
+  wxString s0 = this_now.Format("%a %d %b %Y");
+  wxString s1 = this_now.Format("%H:%M");
+  wxString s2 = s0 + " " + s1;
 
   m_staticText211->SetLabel(s2);
 
@@ -599,8 +599,8 @@ void frcurrentsUIDialog::SetCorrectHWSelection() {
 }
 
 void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
-  m_staticText2->SetLabel(_T("  "));
-  m_staticText211->SetLabel(_T("  "));
+  m_staticText2->SetLabel("  ");
+  m_staticText211->SetLabel("  ");
 
   //    Clear the Choice ListBox
   m_choice2->Clear();
@@ -631,8 +631,8 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
 }
 
 void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
-  m_staticText2->SetLabel(_T("  "));
-  m_staticText211->SetLabel(_T("  "));
+  m_staticText2->SetLabel("  ");
+  m_staticText211->SetLabel("  ");
 
   int ma = m_choiceArea->GetCurrentSelection();
   wxString sa = m_choiceArea->GetString(ma);
@@ -660,8 +660,8 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
 }
 
 void frcurrentsUIDialog::OnPortListed() {
-  m_staticText2->SetLabel(_T("  "));
-  m_staticText211->SetLabel(_T("  "));
+  m_staticText2->SetLabel("  ");
+  m_staticText211->SetLabel("  ");
 
   int ma = m_choiceArea->GetCurrentSelection();
   wxString sa = m_choiceArea->GetString(ma);
@@ -697,7 +697,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
   wxString string = m_choice1->GetString(m);
   m_portXML = FindPortXMLUsingChoice(string);
 
-  if (m_portXML == _T("")) {
+  if (m_portXML == "") {
     wxMessageBox(_("Port not found"), _("Port finder"));
     return;
   }
@@ -706,8 +706,8 @@ void frcurrentsUIDialog::SetDateForNowButton() {
 
   if (id == 0) {
     wxMessageBox(_("No tidal data"));
-    m_staticText2->SetLabel(_T(""));
-    m_staticText211->SetLabel(_(""));
+    m_staticText2->SetLabel("");
+    m_staticText211->SetLabel("");
     button_id = 6;
     back_id = 5;
     next_id = 7;
@@ -898,7 +898,7 @@ wxString frcurrentsUIDialog::FindPortXMLUsingChoice(wxString inPortName) {
     i++;
   }
 
-  return _T("");
+  return "";
 }
 
 int frcurrentsUIDialog::FindTidePortUsingChoice(wxString inAreaNumber) {
@@ -1048,7 +1048,7 @@ void frcurrentsUIDialog::LoadTCMFile() {
   wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
 
   //	wxString default_tcdata0 = TCDir +
-  //_T("harmonics-dwf-20210110-free.tcd");
+  //"harmonics-dwf-20210110-free.tcd";
   wxString default_tcdata1 = TCDir + "HARMONIC.IDX";
   wxLogMessage(default_tcdata1);
 
@@ -1287,7 +1287,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   // Get the timezone of the station
   int h = m_stationOffset_mins;
   h /= 60;
-  m_stz.Printf(_T("Z %+03d"), h);
+  m_stz.Printf("Z %+03d", h);
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
@@ -1343,17 +1343,17 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
 
           // if (m_tzoneDisplay == 0)  // LMT @ Station
           tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
-          s2 = tcd.Format(_T( "%A %d %B %Y"));
-          s.Printf(tcd.Format(_T("%H:%M  ")));
-          s1.Printf(_T("%05.2f "), tcvalue);  // write value
+          s2 = tcd.Format("%A %d %B %Y");
+          s.Printf(tcd.Format("%H:%M  "));
+          s1.Printf("%05.2f ", tcvalue);  // write value
           s.Append(s1);
           pmsd = pIDX->pref_sta_data;  // write unit
           if (pmsd) s.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
-          s.Append(_T("   "));
+          s.Append("   ");
 
           (wt) ? sHWLW = "HW" : sHWLW = "LW";  // write HW or LT
           // Fill the array with tide data
-          euTC[array_index][0] = s2 + _T(" ") + s;
+          euTC[array_index][0] = s2 + " " + s;
           euTC[array_index][1] = s1;
           euTC[array_index][2] = wxString(pmsd->units_abbrv, wxConvUTF8);
           euTC[array_index][3] = sHWLW;
@@ -1405,7 +1405,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   // Get the timezone of the station
   int h = m_stationOffset_mins;
   h /= 60;
-  m_stz.Printf(_T("Z %+03d"), h);
+  m_stz.Printf("Z %+03d", h);
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
@@ -1465,18 +1465,18 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
           // if (m_tzoneDisplay == 0)  // LMT @
           // Station
           tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
-          s2 = tcd.Format(_T( "%A %d %B %Y"));
-          s.Printf(tcd.Format(_T("%H:%M  ")));
-          s1.Printf(_T("%05.2f "),
+          s2 = tcd.Format("%A %d %B %Y");
+          s.Printf(tcd.Format("%H:%M  "));
+          s1.Printf("%05.2f ",
                     tcvalue);  // write value
           s.Append(s1);
           pmsd = pIDX->pref_sta_data;  // write unit
           if (pmsd) s.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
-          s.Append(_T("   "));
+          s.Append("   ");
 
           (!wt) ? sHWLW = "LW" : sHWLW = "HW";  // write HW or LT
           // Fill the array with tide data
-          euTC[array_index][0] = s2 + _T(" ") + s;
+          euTC[array_index][0] = s2 + " " + s;
           euTC[array_index][1] = s1;
           euTC[array_index][2] = wxString(pmsd->units_abbrv, wxConvUTF8);
           euTC[array_index][3] = sHWLW;
@@ -1696,7 +1696,7 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
 
   tmp_path = GetPluginDataDir("frcurrents_pi");
   fn.SetPath(tmp_path);
-  fn.AppendDir(_T("data"));
+  fn.AppendDir("data");
   fn.SetFullName("StandardPorts.xml");
 
   filename = fn.GetFullPath();
@@ -1802,7 +1802,7 @@ bool frcurrentsUIDialog::OpenXML() {
 
   tmp_path = GetPluginDataDir("frcurrents_pi");
   fn.SetPath(tmp_path);
-  fn.AppendDir(_T("data"));
+  fn.AppendDir("data");
   fn.SetFullName("tcSample.xml");
 
   filename = fn.GetFullPath();
@@ -1938,7 +1938,7 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
 
   tmp_path = GetPluginDataDir("frcurrents_pi");
   fn.SetPath(tmp_path);
-  fn.AppendDir(_T("data"));
+  fn.AppendDir("data");
   fn.SetFullName(dirname);
 
   wxDir dir(fn.GetFullPath());
@@ -2249,7 +2249,7 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
   wxString s = m_choice1->GetString(m);
   m_portXML = FindPortXMLUsingChoice(s);
 
-  if (m_portXML == _T("")) {
+  if (m_portXML == "") {
     wxMessageBox(_("Port not found"), _("Port finder"));
     return;
   }
@@ -2259,13 +2259,13 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
 
   if (i == 0) {
     // No tidal data
-    m_staticText2->SetLabel(_T(""));
+    m_staticText2->SetLabel("");
     if (s == "LE HAVRE, France" || s == "LA ROCHELLE - LA PALLICE, France")
       m_staticText211->SetLabel(_("Low Water"));
     else
       m_staticText211->SetLabel(_("High Water"));
     button_id = 6;
-    st_mydate = _T("");
+    st_mydate = "";
   } else {
     myDateSelection = m_choice2->GetSelection();
     st_mydate = m_choice2->GetString(myDateSelection);
@@ -2274,7 +2274,7 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
     m_myChoice = myDateSelection;
   }
 
-  m_staticText2->SetLabel(_T(""));
+  m_staticText2->SetLabel("");
 
   button_id = event.GetId();  // Find which button was pushed (HW, HW-6, HW+6)`
   switch (button_id) {        // And make the label depending HW+6, HW-6 etc
@@ -2289,9 +2289,9 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
       m_myChoice = m_choice2->GetSelection();
       m_ts = wxTimeSpan::Hours(6);
       m_dt.Subtract(m_ts);
-      wxString s = m_dt.Format(_T( "%a %d %b %Y %H:%M"));
-      if (st_mydate == _T(""))
-        m_staticText2->SetLabel(_T(""));
+      wxString s = m_dt.Format("%a %d %b %Y %H:%M");
+      if (st_mydate == "")
+        m_staticText2->SetLabel("");
       else
         m_staticText2->SetLabel(s);
       break;
@@ -2301,9 +2301,9 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
       m_myChoice = m_choice2->GetSelection();
       m_ts = wxTimeSpan::Hours(6);
       m_dt.Add(m_ts);
-      wxString s = m_dt.Format(_T( "%a %d %b %Y %H:%M"));
-      if (st_mydate == _T(""))
-        m_staticText2->SetLabel(_T(""));
+      wxString s = m_dt.Format("%a %d %b %Y %H:%M");
+      if (st_mydate == "")
+        m_staticText2->SetLabel("");
       else
         m_staticText2->SetLabel(s);
       break;
@@ -2398,7 +2398,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Add(wxTimeSpan::Hours(6));
-      s = m_dt.Format(_T( "%a %d %b %Y %H:%M "));
+      s = m_dt.Format("%a %d %b %Y %H:%M ");
       break;
     }
     case 0: {
@@ -2408,7 +2408,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Subtract(wxTimeSpan::Hours(6));
-      s = m_dt.Format(_T( "%a %d %b %Y %H:%M "));
+      s = m_dt.Format("%a %d %b %Y %H:%M ");
 
       if (myDateSelection > 0) {
         m_myChoice--;
@@ -2427,14 +2427,14 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       m_dt.ParseDateTime(st_mydate);
       m_dt.Subtract(wxTimeSpan::Hours(6));
       m_dt.Add(wxTimeSpan::Hours(button_id));
-      s = m_dt.Format(_T( "%a %d %b %Y %H:%M "));
+      s = m_dt.Format("%a %d %b %Y %H:%M ");
       next_id = button_id - 1;  // to make change from forward to back work
       break;
     }
   }  // End switch
 
-  if (st_mydate == _T(""))
-    m_staticText2->SetLabel(_T(""));
+  if (st_mydate == "")
+    m_staticText2->SetLabel("");
   else
     m_staticText2->SetLabel(s);
 
@@ -2533,7 +2533,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Add(wxTimeSpan::Hours(6));
-      s = m_dt.Format(_T( "%a %d %b %Y %H:%M "));
+      s = m_dt.Format("%a %d %b %Y %H:%M ");
       if (myDateSelection == c - 1) {
         m_bAtLastChoice = true;
       }
@@ -2554,7 +2554,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Subtract(wxTimeSpan::Hours(6));
-      s = m_dt.Format(_T( "%a %d %b %Y %H:%M "));
+      s = m_dt.Format("%a %d %b %Y %H:%M ");
 
       break;
     }
@@ -2572,8 +2572,8 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
     }
   }  // End switch
 
-  if (st_mydate == _T(""))
-    m_staticText2->SetLabel(_T(""));
+  if (st_mydate == "")
+    m_staticText2->SetLabel("");
   else
     m_staticText2->SetLabel(s);
 
@@ -2610,7 +2610,7 @@ for the day\n") , _("About Tidal Arrows"), wxOK | wxICON_INFORMATION, this);*/
   fn.AppendDir("data");
   fn.SetFullName("\\console.exe");
 
-  wxString g_sencutil_bin = fn.GetPath() + _T("\\console.exe");
+  wxString g_sencutil_bin = fn.GetPath() + "\\console.exe";
 
   wxString cmd = g_sencutil_bin;
   cmd += " -c";
