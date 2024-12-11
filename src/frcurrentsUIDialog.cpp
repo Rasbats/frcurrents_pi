@@ -2334,9 +2334,11 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   int c, p;
 
   m_bPrev = true;
+  bool again = false;
 
   if (m_bChooseTide) {
     //wxMessageBox("Please click Previous again");
+    again = true;
     m_bChooseTide = false;
   }
   c = m_choice2->GetCount();
@@ -2355,6 +2357,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       }
     }
     //wxMessageBox("Please click Previous again");
+    again = true;
     m_bNext = false;
   }
 
@@ -2451,8 +2454,10 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   } else {
     m_staticText211->SetLabel(label_array[button_id]);
   }
-
-  RequestRefresh(pParent);
+  if (again)
+    OnPrev(event);
+  else
+    RequestRefresh(pParent);
 }
 
 void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
@@ -2460,9 +2465,11 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
 
   wxString s;
   wxString st_mydate;
+  bool again = false;
 
   if (m_bChooseTide) {
     //wxMessageBox("Please click Next again");
+    again = true;
     m_bChooseTide = false;
   }
   int c = m_choice2->GetCount();
@@ -2483,6 +2490,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       }
     }
     //wxMessageBox("Please click Next again");
+    again = true;
     m_bPrev = false;
   }
 
@@ -2590,8 +2598,10 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   } else {
     m_staticText211->SetLabel(label_array[button_id]);
   }
-
-  RequestRefresh(pParent);
+  if (again)
+    OnNext(event);
+  else
+    RequestRefresh(pParent);
 }
 
 void frcurrentsUIDialog::About(wxCommandEvent& event) {
