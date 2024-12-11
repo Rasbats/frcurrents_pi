@@ -447,9 +447,9 @@ void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
     button_id = 0;
   }
   if (m_bUseBM) {
-    m_staticText2->SetLabel(label_lw[button_id]);
+    m_staticText211->SetLabel(label_lw[button_id]);
   } else {
-    m_staticText2->SetLabel(label_array[button_id]);
+    m_staticText211->SetLabel(label_array[button_id]);
   }
 
   wxDateTime this_now = wxDateTime::Now();
@@ -457,7 +457,7 @@ void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
   wxString s1 = this_now.Format("%H:%M");
   wxString s2 = s0 + " " + s1;
 
-  m_staticText211->SetLabel(s2);
+  m_staticText2->SetLabel(s2);
 
   SetCorrectHWSelection();
 
@@ -502,9 +502,9 @@ void frcurrentsUIDialog::SetNow() {
   }
 
   if (m_bUseBM) {
-    m_staticText2->SetLabel(label_lw[button_id]);
+    m_staticText211->SetLabel(label_lw[button_id]);
   } else {
-    m_staticText2->SetLabel(label_array[button_id]);
+    m_staticText211->SetLabel(label_array[button_id]);
   }
 
   wxDateTime this_now = wxDateTime::Now();
@@ -512,7 +512,7 @@ void frcurrentsUIDialog::SetNow() {
   wxString s1 = this_now.Format("%H:%M");
   wxString s2 = s0 + " " + s1;
 
-  m_staticText211->SetLabel(s2);
+  m_staticText2->SetLabel(s2);
 
   SetCorrectHWSelection();
 
@@ -1972,8 +1972,6 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
   wxString tidePort = token[0];
 
   m_bUseBM = false;
-  m_button5->SetLabel(_("HW"));
-  m_staticTextHW->SetLabel(_("Select High Water"));
 
   if (tidePort == "ILE de GROIX (Port Tudy)") {
     tidePort = "PORT-TUDY";
@@ -1982,14 +1980,22 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
   } else if (tidePort == "LE HAVRE") {
     tidePort = "LE HAVRE.BM";
     m_bUseBM = true;
-    m_button5->SetLabel(_("LW"));
-    m_staticTextHW->SetLabel(_("Select Low Water"));
   } else if (tidePort == "LA ROCHELLE - LA PALLICE") {
     tidePort = "LA_ROCHELLE_BM";
     m_bUseBM = true;
+  }
+  if (m_bUseBM) {
     m_button5->SetLabel(_("LW"));
     m_staticTextHW->SetLabel(_("Select Low Water"));
+    m_button4->SetLabel(_("LW -6"));
+    m_button6->SetLabel(_("LW +6"));
+  } else {
+    m_button5->SetLabel(_("HW"));
+    m_staticTextHW->SetLabel(_("Select High Water"));
+    m_button4->SetLabel(_("HW -6"));
+    m_button6->SetLabel(_("HW +6"));
   }
+
 
   wxString filePort;
   // wxMessageBox(tidePort);
@@ -2281,7 +2287,9 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
     case 6: {
       next_id = 6;
       m_myChoice = m_choice2->GetSelection();
-      m_staticText2->SetLabel(st_mydate);
+      m_dt.Add(m_ts);
+      wxString s = m_dt.Format("%a %d %b %Y %H:%M");
+      m_staticText2->SetLabel(s);
       break;
     }
     case 0: {
