@@ -463,25 +463,11 @@ void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
 
   m_myChoice = m_choice2->GetSelection();
 
-  switch (button_id) {  // And make the label depending HW+6, HW-6 etc
-    case 0: {
-      next_id = 0;
-      back_id = 12;
-      m_myChoice--;
-      break;
-    }
-    case 12: {
-      next_id = 12;
-      back_id = 11;
-      // m_myChoice++;
-      break;
-    }
+  next_id = button_id;
 
-    default: {
-      next_id = button_id + 1;
-      back_id = button_id - 1;
-    }
-  }
+  m_bNext = false;
+  m_bPrev = false;
+  m_bChooseTide = true;
 
   RequestRefresh(pParent);
 }
@@ -518,25 +504,11 @@ void frcurrentsUIDialog::SetNow() {
 
   m_myChoice = m_choice2->GetSelection();
 
-  switch (button_id) {  // And make the label depending HW+6, HW-6 etc
-    case 0: {
-      next_id = 1;
-      back_id = 12;
-      m_myChoice--;
-      break;
-    }
-    case 12: {
-      next_id = 0;
-      back_id = 11;
-      m_myChoice++;
-      break;
-    }
+  next_id = button_id;
 
-    default: {
-      next_id = button_id + 1;
-      back_id = button_id - 1;
-    }
-  }
+  m_bNext = false;
+  m_bPrev = false;
+  m_bChooseTide = true;
 
   RequestRefresh(pParent);
 }
@@ -2423,7 +2395,6 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
 
       if (myDateSelection > 0) {
         m_myChoice--;
-        m_choice2->SetSelection(m_myChoice);
       }
 
       if (myDateSelection == 0) {
@@ -2473,7 +2444,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
     m_bChooseTide = false;
   }
   int c = m_choice2->GetCount();
-  m_myChoice = m_choice2->GetSelection();
+  m_choice2->SetSelection(m_myChoice);
 
   // CreateFileArray();
   if (m_bPrev) {
@@ -2556,7 +2527,6 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
 
       if (myDateSelection < c - 1) {
         m_myChoice++;
-        m_choice2->SetSelection(m_myChoice);
       }
 
       break;
