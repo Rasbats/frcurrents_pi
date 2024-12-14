@@ -586,7 +586,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
     wxMessageBox(_("No tidal data"));
     return;
   }
-  if (s == "LE HAVRE, France" || s == "LA ROCHELLE - LA PALLICE, France") {
+  if(m_bUseBM){
     CalcLW(i);
   } else {
     CalcHW(i);
@@ -598,6 +598,19 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
   GetCurrentsData(s);
   SetCorrectHWSelection();
+
+  if (m_bUseBM) {
+    m_staticText211->SetLabel(label_lw[button_id]);
+  }
+  else {
+    m_staticText211->SetLabel(label_array[button_id]);
+  }
+
+  m_myChoice = m_choice2->GetSelection();
+  m_dt.ParseDateTime(m_choice2->GetString(m_myChoice));
+  m_dt.Subtract(wxTimeSpan::Hours(6));
+  m_dt.Add(wxTimeSpan::Hours(button_id));
+  m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y %H:%M"));
 
   RequestRefresh(pParent);
 }
