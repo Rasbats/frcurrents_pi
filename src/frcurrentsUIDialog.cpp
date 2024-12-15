@@ -174,6 +174,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
+    pConf->Read("frcurrentsArea", &m_AreaSelected);
     pConf->Read("frcurrentsPort", &m_PortSelected);
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
@@ -208,7 +209,6 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
   LoadStandardPorts();  // From StandardPorts.xml Load the port choice control
   LoadTCMFile();
   LoadHarmonics();
-  m_choice1->SetStringSelection(m_PortSelected);  // from opencpn.ini
 
   OpenFile();        // Set up variables
   OnStartSetupHW();  // Set up the HW control and information text controls
@@ -234,6 +234,9 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     pConf->Write("VColour3", myVColour[3]);
     pConf->Write("VColour4", myVColour[4]);
 
+    int b = m_choiceArea->GetCurrentSelection();
+    wxString myA = m_choiceArea->GetString(b);
+    pConf->Write("frcurrentsArea", myA);
     int c = m_choice1->GetCurrentSelection();
     wxString myP = m_choice1->GetString(c);
     pConf->Write("frcurrentsPort", myP);
@@ -422,12 +425,19 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
 
 void frcurrentsUIDialog::OnStartSetupHW() {
   m_bOnStart = true;
-  int a = 0;
-  int an = 0;
-  a = m_choiceArea->GetSelection();
-  wxString s = m_choiceArea->GetString(a);
+  //find area ID and select it
+  int id;
+  id = m_choiceArea->FindString(m_AreaSelected, true);
+  if (id == wxNOT_FOUND) id = 0;
+  m_choiceArea->SetSelection(id);
+  wxString s = m_choiceArea->GetString(id);
 
   FindTidePortUsingChoice(s);
+
+  //find port ID and select it
+  id = m_choice1->FindString(m_PortSelected, true);
+  if (id == wxNOT_FOUND) id = 0;
+  m_choice1->SetSelection(id);
 
   OnPortListed();
 }
@@ -906,8 +916,6 @@ int frcurrentsUIDialog::FindTidePortUsingChoice(wxString inAreaNumber) {
     }
     i++;
   }
-  m_choice1->SetSelection(0);
-  RequestRefresh(pParent);
   return 0;
 }
 
@@ -1905,10 +1913,10 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
   wxString s = m_choiceArea->GetString(a);
 
   FindTidePortUsingChoice(s);
+  m_choice1->SetSelection(0);
 
   OnPortListed();
 
-  SetNow();
 }
 
 void frcurrentsUIDialog::GetCurrentsData(wxString areaFolder) {
