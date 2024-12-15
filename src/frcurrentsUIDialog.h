@@ -183,6 +183,7 @@ public:
   int round(double c);
 
   wxString m_PortSelected;
+  wxString m_AreaSelected;
   wxArrayString TideCurrentDataSet;
   wxString* pTC_Dir;
   vector<SHOMport> portLines;
