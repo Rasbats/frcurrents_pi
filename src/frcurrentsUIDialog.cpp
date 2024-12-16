@@ -780,7 +780,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         BrestRange = CalcRange_Brest();
         m_coeff = CalcCoefficient();
         wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-        m_textCtrlCoefficient->SetValue(s_coeff);
+        m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
         GetCurrentsData(sa);
         m_choice2->SetSelection(0);
@@ -802,7 +802,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         BrestRange = CalcRange_Brest();
         m_coeff = CalcCoefficient();
         wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-        m_textCtrlCoefficient->SetValue(s_coeff);
+        m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
 
         GetCurrentsData(sa);
         c = m_choice2->GetCount();
