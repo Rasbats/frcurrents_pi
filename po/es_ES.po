@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-15 20:52+0100\n"
-"PO-Revision-Date: 2023-09-16 11:33\n"
+"PO-Revision-Date: 2024-12-28 14:37\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -73,56 +73,56 @@ msgstr "HW+6"
 #: src/frcurrentsUIDialog.cpp:302 src/frcurrentsUIDialog.cpp:1955
 #: src/frcurrentsUIDialog.cpp:1962
 msgid "LW-6"
-msgstr ""
+msgstr "LW-6"
 
 #: src/frcurrentsUIDialog.cpp:303
 msgid "LW-5"
-msgstr ""
+msgstr "LW-5"
 
 #: src/frcurrentsUIDialog.cpp:304
 msgid "LW-4"
-msgstr ""
+msgstr "LW-4"
 
 #: src/frcurrentsUIDialog.cpp:305
 msgid "LW-3"
-msgstr ""
+msgstr "LW-3"
 
 #: src/frcurrentsUIDialog.cpp:306
 msgid "LW-2"
-msgstr ""
+msgstr "LW-2"
 
 #: src/frcurrentsUIDialog.cpp:307
 msgid "LW-1"
-msgstr ""
+msgstr "LW-1"
 
 #: src/frcurrentsUIDialog.cpp:308 src/frcurrentsUIDialog.cpp:2242
 msgid "Low Water"
-msgstr ""
+msgstr "Marea Baja (LW)"
 
 #: src/frcurrentsUIDialog.cpp:309
 msgid "LW+1"
-msgstr ""
+msgstr "LW+1"
 
 #: src/frcurrentsUIDialog.cpp:310
 msgid "LW+2"
-msgstr ""
+msgstr "LW+2"
 
 #: src/frcurrentsUIDialog.cpp:311
 msgid "LW+3"
-msgstr ""
+msgstr "LW+3"
 
 #: src/frcurrentsUIDialog.cpp:312
 msgid "LW+4"
-msgstr ""
+msgstr "LW+4"
 
 #: src/frcurrentsUIDialog.cpp:313
 msgid "LW+5"
-msgstr ""
+msgstr "LW+5"
 
 #: src/frcurrentsUIDialog.cpp:314 src/frcurrentsUIDialog.cpp:1956
 #: src/frcurrentsUIDialog.cpp:1963
 msgid "LW+6"
-msgstr ""
+msgstr "LW+6"
 
 #: src/frcurrentsUIDialog.cpp:515 src/frcurrentsUIDialog.cpp:614
 msgid "No tidal data"
@@ -172,11 +172,11 @@ msgstr "Seleccionar marea alta"
 
 #: src/frcurrentsUIDialog.cpp:1954 src/frcurrentsUIDialog.cpp:1961
 msgid "LW"
-msgstr ""
+msgstr "LW"
 
 #: src/frcurrentsUIDialog.cpp:1957 src/frcurrentsUIDialog.cpp:1964
 msgid "Select Low Water"
-msgstr ""
+msgstr "Seleccione Marea Baja"
 
 #: src/frcurrentsUIDialog.cpp:2485
 msgid "Please choose a new date"
@@ -296,62 +296,65 @@ msgstr "Color de relleno"
 
 #: src/frcurrentsUIDialogBase.cpp:243
 msgid "High Resolution Display"
-msgstr ""
+msgstr "Pantalla de alta resolución"
 
 #: src/frcurrentsUIDialogBase.cpp:253
 msgid "Tidal Current Arrow Colour"
-msgstr ""
+msgstr "Color del vector corriente de marea"
 
 #: src/frcurrentsUIDialogBase.cpp:261
 msgid "      < 0.5 knots"
-msgstr ""
+msgstr "      < 0.5 nudos"
 
 #: src/frcurrentsUIDialogBase.cpp:268
 msgid ">= 0.5 and < 1.5"
-msgstr ""
+msgstr ">= 0.5 y < 1.5"
 
 #: src/frcurrentsUIDialogBase.cpp:275
 msgid ">= 1.5 and < 2.5"
-msgstr ""
+msgstr ">= 1.5 y < 2.5"
 
 #: src/frcurrentsUIDialogBase.cpp:282
 msgid ">= 2.5 and < 3.5"
-msgstr ""
+msgstr ">= 2.5 y < 3.5"
 
 #: src/frcurrentsUIDialogBase.cpp:289
 msgid ">= 3.5 knots    "
-msgstr ""
+msgstr ">= 3.5 nudos    "
 
 #: src/frcurrentsUIDialogBase.cpp:303
 msgid "Arrow Style"
-msgstr ""
+msgstr "Estilo de flecha"
 
 #: src/frcurrentsUIDialogBase.cpp:311
 msgid "Options:   "
-msgstr ""
+msgstr "Opciones:   "
 
 #: src/frcurrentsUIDialogBase.cpp:315
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: src/frcurrentsUIDialogBase.cpp:315
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: src/frcurrentsUIDialogBase.cpp:315
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: src/frcurrentsUIDialogBase.cpp:325
 msgid "Arrow Options :"
-msgstr ""
+msgstr "Opciones de flecha:"
 
 #: src/frcurrentsUIDialogBase.cpp:327
 msgid "1: Normal\n"
 "2: Small \n"
 "3: Normal length, \n"
 "    narrow width"
-msgstr ""
+msgstr "1: Normal\n"
+"2: Pequeña \n"
+"3: Longitud normal, \n"
+"    ancho estrecho"
 
 #: src/frcurrentsUIDialogBase.h:83
 msgid "French Tidal Streams"

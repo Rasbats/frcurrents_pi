@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-15 20:52+0100\n"
-"PO-Revision-Date: 2023-09-16 11:33\n"
+"PO-Revision-Date: 2024-12-28 14:37\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -176,7 +176,7 @@ msgstr "BM"
 
 #: src/frcurrentsUIDialog.cpp:1957 src/frcurrentsUIDialog.cpp:1964
 msgid "Select Low Water"
-msgstr "Sélectionner une marée basse"
+msgstr "Choix Marée Basse"
 
 #: src/frcurrentsUIDialog.cpp:2485
 msgid "Please choose a new date"
