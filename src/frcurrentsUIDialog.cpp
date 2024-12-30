@@ -99,7 +99,10 @@ enum {
   FORWARD_ONE_MINUTES_STEP = 60,
   BACKWARD_ONE_HOUR_STEP = -3600,
   BACKWARD_TEN_MINUTES_STEP = -600,
-  BACKWARD_ONE_MINUTES_STEP = -60
+  BACKWARD_ONE_MINUTES_STEP = -60,
+  FIRST_DAY_IN_MONTH = 1,
+  FIRST_MONTH_IN_YEAR = 0,   //  base 0
+  LAST_MONTH_IN_YEAR = 11    //  to 11
 };
 
 // Handle to DLL
@@ -147,6 +150,11 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
   this->Fit();
   pParent = parent;
   pPlugIn = ppi;
+
+  //  Set date picker's limits from 1st January 1980 to 31th December 2037
+  //  to prevent crashes beyong time_t 32 bits capacity overtake during jan 2038.
+  m_datePicker1->SetRange(wxDateTime((time_t)1, static_cast<wxDateTime::Month>(0), 1970),
+    wxDateTime((time_t)31, static_cast<wxDateTime::Month>(11), 2037));
 
 #ifdef __ANDROID__
 
@@ -425,7 +433,7 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
 
 void frcurrentsUIDialog::OnStartSetupHW() {
   m_bOnStart = true;
-  //find area ID and select it
+  //  find area ID and select it
   int id;
   id = m_choiceArea->FindString(m_AreaSelected, true);
   if (id == wxNOT_FOUND) id = 0;
@@ -434,7 +442,7 @@ void frcurrentsUIDialog::OnStartSetupHW() {
 
   FindTidePortUsingChoice(s);
 
-  //find port ID and select it
+  //  find port ID and select it
   id = m_choice1->FindString(m_PortSelected, true);
   if (id == wxNOT_FOUND) id = 0;
   m_choice1->SetSelection(id);
@@ -581,6 +589,56 @@ void frcurrentsUIDialog::SetCorrectHWSelection() {
 }
 
 void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
+
+  if (event.GetDate().IsSameDate(m_SelectedDate))
+    return;
+
+  //  calc new date and apply
+  //  get days, months & Year
+  int selectedDateTicks = m_SelectedDate.GetTicks();
+  int currentDay = m_SelectedDate.GetDay();
+  int newDay = event.GetDate().GetDay();
+  int currentMonth = static_cast<int>(m_SelectedDate.GetMonth());
+  int newMonth = static_cast<int>(event.GetDate().GetMonth());
+  int newYear = event.GetDate().GetYear();
+
+  //  years scrolled or changed
+  if (m_SelectedDate.GetYear() != newYear)
+    m_SelectedDate.SetYear(newYear);
+
+  //   months scrolled or changed
+  else if (currentMonth != newMonth) {
+    if (newMonth == FIRST_MONTH_IN_YEAR && currentMonth == LAST_MONTH_IN_YEAR)  // 1 year later
+      currentMonth = newMonth - 1;
+    else if (newMonth == LAST_MONTH_IN_YEAR && currentMonth == FIRST_MONTH_IN_YEAR)  // 1 year earlier
+      currentMonth = newMonth + 1;
+
+    if (newMonth > currentMonth)
+      m_SelectedDate.Add(wxDateSpan::Months(newMonth - currentMonth));
+    else
+      m_SelectedDate.Subtract(wxDateSpan::Months(currentMonth - newMonth));
+  }
+  //   days scrolled or changed
+  else if (currentDay != newDay) {
+    //find last day of the month
+    int feb = wxDateTime::IsLeapYear(m_SelectedDate.GetYear()) ? 29 : 28;
+    int lastDays[] = { 31,feb,31,30,31,30,31,31,30,31,30,31 };
+    int lastDaysINMonth = lastDays[currentMonth];
+    if (newDay == FIRST_DAY_IN_MONTH && currentDay == lastDaysINMonth)      // 1 month later
+      currentDay = newDay - 1;
+    else if (newDay == lastDaysINMonth && currentDay == FIRST_DAY_IN_MONTH) // 1 month earlier
+      currentDay = newDay + 1;
+
+    if (newDay > currentDay)
+      m_SelectedDate.Add(wxDateSpan::Days(newDay - currentDay));
+    else
+      m_SelectedDate.Subtract(wxDateSpan::Days(currentDay - newDay));
+  }
+  //   update picker & save the new selected date ticks
+  m_datePicker1->SetValue(m_SelectedDate);
+  bool later = m_SelectedDate.GetTicks() > selectedDateTicks;
+//  end new date
+
   m_staticText2->SetLabel("  ");
   m_staticText211->SetLabel("  ");
 
@@ -596,9 +654,10 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
     wxMessageBox(_("No tidal data"));
     return;
   }
-  if(m_bUseBM){
+  if (m_bUseBM) {
     CalcLW(i);
-  } else {
+  }
+  else {
     CalcHW(i);
   }
 
@@ -607,22 +666,39 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   wxString s_coeff = wxString::Format("%3.0f", m_coeff);
   m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
   GetCurrentsData(s);
-  SetCorrectHWSelection();
 
-  if (m_bUseBM) {
-    m_staticText211->SetLabel(label_lw[button_id]);
-  }
+  if (m_SelectedDate.IsSameDate(wxDateTime::Now()))
+    SetNow();
   else {
-    m_staticText211->SetLabel(label_array[button_id]);
+    button_id = 6;     //  in another days as today, set to HW/LW
+
+    if (later)
+      m_myChoice = 0;       // first HW/LW of the later day
+    else {
+      int c = m_choice2->GetCount();
+      m_myChoice = c - 1;     // last HW/LW of the earlier day
+    }
+
+    m_choice2->SetSelection(m_myChoice);
+
+    m_dt.ParseDateTime(m_choice2->GetString(m_myChoice));
+    m_dt.Subtract(wxTimeSpan::Hours(6));
+    m_dt.Add(wxTimeSpan::Hours(button_id));
+    m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y %H:%M"));
+
+    if (m_bUseBM)
+      m_staticText211->SetLabel(label_lw[button_id]);
+    else
+      m_staticText211->SetLabel(label_array[button_id]);
+
+    //   prepare to a further usage of the 'next' or 'previous' buttons
+    next_id = button_id;
+    m_bNext = false;
+    m_bPrev = false;
+    m_bChooseTide = true;
+
+    RequestRefresh(pParent);
   }
-
-  m_myChoice = m_choice2->GetSelection();
-  m_dt.ParseDateTime(m_choice2->GetString(m_myChoice));
-  m_dt.Subtract(wxTimeSpan::Hours(6));
-  m_dt.Add(wxTimeSpan::Hours(button_id));
-  m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y %H:%M"));
-
-  RequestRefresh(pParent);
 }
 
 void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
@@ -684,6 +760,7 @@ void frcurrentsUIDialog::OnPortListed() {
 void frcurrentsUIDialog::SetDateForNowButton() {
   wxDateTime this_now = wxDateTime::Now();
   m_datePicker1->SetValue(this_now);
+  m_SelectedDate = this_now.GetDateOnly();
 
   int ma = m_choiceArea->GetCurrentSelection();
   wxString sa = m_choiceArea->GetString(ma);
@@ -770,6 +847,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         wxDateTime myDate = m_datePicker1->GetValue();
         myDate.Add(myOneDay);
         m_datePicker1->SetValue(myDate);
+        m_SelectedDate = myDate.GetDateOnly();
 
         if (m_bUseBM) {
           CalcLW(id);
@@ -792,6 +870,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         wxDateTime myDate = m_datePicker1->GetValue();
         myDate.Subtract(myOneDay);
         m_datePicker1->SetValue(myDate);
+        m_SelectedDate = myDate.GetDateOnly();
 
         if (m_bUseBM) {
           CalcLW(id);
@@ -1423,7 +1502,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   // The tide/current modules calculate values based on PC local time
   // We need  LMT at station, so adjust accordingly
   int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
-  tt_localtz -= m_stationOffset_mins * 60;  //LMT at station
+  tt_localtz -= m_stationOffset_mins * 60;  //  LMT at station
 
   // get tide flow sens ( flood or ebb ? )
   ptcmgr->GetTideFlowSens(tt_localtz, BACKWARD_TEN_MINUTES_STEP,
@@ -2328,7 +2407,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   bool again = false;
 
   if (m_bChooseTide) {
-    //wxMessageBox("Please click Previous again");
+    //  wxMessageBox("Please click Previous again");
     again = true;
     m_bChooseTide = false;
   }
@@ -2347,7 +2426,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
         m_bAtLastChoice = true;
       }
     }
-    //wxMessageBox("Please click Previous again");
+    //  wxMessageBox("Please click Previous again");
     again = true;
     m_bNext = false;
   }
@@ -2370,6 +2449,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
 
     myDate.Subtract(myOneDay);
     m_datePicker1->SetValue(myDate);
+    m_SelectedDate = myDate.GetDateOnly();
 
     p = m_choice1->GetSelection();  // Get the port selected
     wxString s = m_choice1->GetString(p);
@@ -2458,7 +2538,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   bool again = false;
 
   if (m_bChooseTide) {
-    //wxMessageBox("Please click Next again");
+    //  wxMessageBox("Please click Next again");
     again = true;
     m_bChooseTide = false;
   }
@@ -2479,7 +2559,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
         m_choice2->SetSelection(m_myChoice);
       }
     }
-    //wxMessageBox("Please click Next again");
+    //  wxMessageBox("Please click Next again");
     again = true;
     m_bPrev = false;
   }
@@ -2506,6 +2586,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
 
     myDate.Add(myOneDay);
     m_datePicker1->SetValue(myDate);
+    m_SelectedDate = myDate.GetDateOnly();
 
     int p = m_choice1->GetSelection();  // Get the port selected
     wxString s = m_choice1->GetString(p);
