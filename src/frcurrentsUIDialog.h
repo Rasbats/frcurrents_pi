@@ -284,7 +284,7 @@ private:
   float tcv[26];
 
   int myDateSelection;
-  int myNewDateSelection;
+  wxDateTime m_SelectedDate; //  to store the current selected date
   wxString euTC[8][4];  // Date.Time, Height, Units, HW.LW
   wxDateTime m_dt;
   wxDateTime choice_dt;
