@@ -1384,7 +1384,8 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   // We need  LMT at station, so adjust accordingly
   int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
   tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
-
+  //  Get the day after
+  int tt_nextlocaltzday = tt_localtz + (24 * 3600);
   // get tide flow sens ( flood or ebb ? )
   ptcmgr->GetTideFlowSens(tt_localtz, BACKWARD_TEN_MINUTES_STEP,
                           pIDX->IDX_rec_num, tcv[0], val, wt);
@@ -1405,7 +1406,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
         ptcmgr->GetHightOrLowTide(tt, BACKWARD_TEN_MINUTES_STEP,
                                   BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
                                   pIDX->IDX_rec_num, tcvalue, tctime);
-        if (tctime > tt_localtz) {  // Only show events visible in graphic
+        if (tctime > tt_localtz && tctime < tt_nextlocaltzday) {  // Only show events visible in graphic
           // presently shown
           wxDateTime tcd;  // write date
           wxString s, s1, s2;
@@ -1503,7 +1504,8 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   // We need  LMT at station, so adjust accordingly
   int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
   tt_localtz -= m_stationOffset_mins * 60;  //  LMT at station
-
+  //  Get the day after
+  int tt_nextlocaltzday = tt_localtz + (24 * 3600);
   // get tide flow sens ( flood or ebb ? )
   ptcmgr->GetTideFlowSens(tt_localtz, BACKWARD_TEN_MINUTES_STEP,
                           pIDX->IDX_rec_num, tcv[0], val, wt);
@@ -1525,7 +1527,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
         ptcmgr->GetHightOrLowTide(tt, BACKWARD_TEN_MINUTES_STEP,
                                   BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
                                   pIDX->IDX_rec_num, tcvalue, tctime);
-        if (tctime > tt_localtz) {  // Only show events
+        if (tctime > tt_localtz && tctime < tt_nextlocaltzday) {  // Only show events
                                     // visible in graphic
           // presently shown
           wxDateTime tcd;  // write date
