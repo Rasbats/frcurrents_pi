@@ -667,9 +667,6 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
   GetCurrentsData(s);
 
-  if (m_SelectedDate.IsSameDate(wxDateTime::Now()))
-    SetNow();
-  else {
     button_id = 6;     //  in another days as today, set to HW/LW
 
     if (later)
@@ -698,7 +695,6 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
     m_bChooseTide = true;
 
     RequestRefresh(pParent);
-  }
 }
 
 void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
