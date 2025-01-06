@@ -1263,7 +1263,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
   double myLW, myHW;
   bool wt = false;
   bool gotHW = false;
-  Station_Data* pmsd;
   int i;
   float tcv[26];
   time_t tt_tcv[26];
@@ -2063,13 +2062,13 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
   if (m_bUseBM) {
     m_button5->SetLabel(_("LW"));
     m_staticTextHW->SetLabel(_("Select Low Water"));
-    m_button4->SetLabel(_("LW -6"));
-    m_button6->SetLabel(_("LW +6"));
+    m_button4->SetLabel(_("LW-6"));
+    m_button6->SetLabel(_("LW+6"));
   } else {
     m_button5->SetLabel(_("HW"));
     m_staticTextHW->SetLabel(_("Select High Water"));
-    m_button4->SetLabel(_("HW -6"));
-    m_button6->SetLabel(_("HW +6"));
+    m_button4->SetLabel(_("HW-6"));
+    m_button6->SetLabel(_("HW+6"));
   }
 
 

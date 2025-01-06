@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version 4.0.0-0-g0efcecf)
+// C++ code generated with wxFormBuilder (version 4.2.1-0-g80c4cb6)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -133,13 +133,13 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	bSizer4->Add( 0, 0, 1, wxEXPAND, 5 );
 
-	m_button4 = new wxButton( this, 0, _("HW -6"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button4 = new wxButton( this, 0, _("HW-6"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer4->Add( m_button4, 0, wxALL, 5 );
 
 
 	bSizer4->Add( 0, 0, 1, wxEXPAND, 5 );
 
-	m_button6 = new wxButton( this, 12, _("HW +6"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button6 = new wxButton( this, 12, _("HW+6"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer4->Add( m_button6, 0, wxALL, 5 );
 
 
