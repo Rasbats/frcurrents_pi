@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version 4.0.0-0-g0efcecf)
+// C++ code generated with wxFormBuilder (version 4.2.1-0-g80c4cb6)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -19,7 +19,10 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	wxStaticBoxSizer* sbSizer71;
 	sbSizer71 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Area") ), wxHORIZONTAL );
 
-	wxString m_choiceAreaChoices[] = { _("557"), _("558"), _("559"), _("560"), _("561"), _("562"), _("563"), _("564"), _("565") };
+	wxString m_choiceAreaChoices[] = { _("557 Strait of Dover"), _("558 South Brittany"),
+		_("559 Vendee-Gironde"), _("560 Tip of Britanny"), _("561 Fecamp to Cherbourg"),
+		_("562 La Hague to Hx-de-Breat"), _("563 Hx-de-Breat to Brignogan"), _("564 English Channel"),
+		_("565 Bay of Biscay") };
 	int m_choiceAreaNChoices = sizeof( m_choiceAreaChoices ) / sizeof( wxString );
 	m_choiceArea = new wxChoice( sbSizer71->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceAreaNChoices, m_choiceAreaChoices, 0 );
 	m_choiceArea->SetSelection( 0 );
@@ -133,13 +136,13 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	bSizer4->Add( 0, 0, 1, wxEXPAND, 5 );
 
-	m_button4 = new wxButton( this, 0, _("HW -6"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button4 = new wxButton( this, 0, _("HW-6"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer4->Add( m_button4, 0, wxALL, 5 );
 
 
 	bSizer4->Add( 0, 0, 1, wxEXPAND, 5 );
 
-	m_button6 = new wxButton( this, 12, _("HW +6"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button6 = new wxButton( this, 12, _("HW+6"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer4->Add( m_button6, 0, wxALL, 5 );
 
 

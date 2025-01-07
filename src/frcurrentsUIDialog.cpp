@@ -438,7 +438,7 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   id = m_choiceArea->FindString(m_AreaSelected, true);
   if (id == wxNOT_FOUND) id = 0;
   m_choiceArea->SetSelection(id);
-  wxString s = m_choiceArea->GetString(id);
+  wxString s = m_choiceArea->GetString(id).Left(3);
 
   FindTidePortUsingChoice(s);
 
@@ -702,7 +702,7 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
   m_staticText211->SetLabel("  ");
 
   int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma);
+  wxString sa = m_choiceArea->GetString(ma).Left(3);
 
   int m = m_choice1->GetCurrentSelection();
   wxString s = m_choice1->GetString(m);
@@ -731,7 +731,7 @@ void frcurrentsUIDialog::OnPortListed() {
   m_staticText211->SetLabel("  ");
 
   int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma);
+  wxString sa = m_choiceArea->GetString(ma).Left(3);
 
   int m = m_choice1->GetCurrentSelection();
   wxString s = m_choice1->GetString(m);
@@ -759,7 +759,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
   m_SelectedDate = this_now.GetDateOnly();
 
   int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma);
+  wxString sa = m_choiceArea->GetString(ma).Left(3);
 
   int m = m_choice1->GetSelection();
   wxString string = m_choice1->GetString(m);
@@ -1259,7 +1259,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
   double myLW, myHW;
   bool wt = false;
   bool gotHW = false;
-  Station_Data* pmsd;
   int i;
   float tcv[26];
   time_t tt_tcv[26];
@@ -1989,7 +1988,7 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
   int a = 0;
   int an = 0;
   a = m_choiceArea->GetSelection();
-  wxString s = m_choiceArea->GetString(a);
+  wxString s = m_choiceArea->GetString(a).Left(3);
 
   FindTidePortUsingChoice(s);
   m_choice1->SetSelection(0);
@@ -2059,13 +2058,13 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
   if (m_bUseBM) {
     m_button5->SetLabel(_("LW"));
     m_staticTextHW->SetLabel(_("Select Low Water"));
-    m_button4->SetLabel(_("LW -6"));
-    m_button6->SetLabel(_("LW +6"));
+    m_button4->SetLabel(_("LW-6"));
+    m_button6->SetLabel(_("LW+6"));
   } else {
     m_button5->SetLabel(_("HW"));
     m_staticTextHW->SetLabel(_("Select High Water"));
-    m_button4->SetLabel(_("HW -6"));
-    m_button6->SetLabel(_("HW +6"));
+    m_button4->SetLabel(_("HW-6"));
+    m_button6->SetLabel(_("HW+6"));
   }
 
 
@@ -2436,7 +2435,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   button_id = next_id;
 
   int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma);
+  wxString sa = m_choiceArea->GetString(ma).Left(3);
 
   myDateSelection = m_choice2->GetSelection();
   st_mydate = m_choice2->GetString(myDateSelection);
@@ -2571,7 +2570,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   // Test if we have gone beyond the current list of HW.
   //
   int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma);
+  wxString sa = m_choiceArea->GetString(ma).Left(3);
 
   st_mydate = m_choice2->GetString(myDateSelection);
   wxDateTime m_testDT;
