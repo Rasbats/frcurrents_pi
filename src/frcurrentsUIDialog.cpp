@@ -1196,19 +1196,18 @@ void frcurrentsUIDialog::SetTimeFactors() {
 
   // m_graphday = this_gmt;
 
-  int day_gmt = m_graphday.GetDayOfYear();
+  time_t  t_time_gmt = m_graphday.GetTicks();
 
   time_t ttNow = this_now.GetTicks();
   time_t tt_at_station =
       ttNow - (m_diff_mins * 60) + (m_stationOffset_mins * 60);
-  wxDateTime atStation(tt_at_station);
-  int day_at_station = atStation.GetDayOfYear();
 
-  if (day_gmt > day_at_station) {
-    wxTimeSpan dt(24, 0, 0, 0);
+  if (t_time_gmt > tt_at_station) {
+    wxTimeSpan dt((t_time_gmt - tt_at_station) / 3600, 0, 0, 0);
     m_graphday.Subtract(dt);
-  } else if (day_gmt < day_at_station) {
-    wxTimeSpan dt(24, 0, 0, 0);
+  }
+  else if (t_time_gmt < tt_at_station) {
+    wxTimeSpan dt((tt_at_station - t_time_gmt) / 3600, 0, 0, 0);
     m_graphday.Add(dt);
   }
 
@@ -1351,9 +1350,12 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   // Establish the inital drawing day as today
   m_graphday = m_datePicker1->GetValue();
   // Get the timezone of the station
-  int h = m_stationOffset_mins;
-  h /= 60;
-  m_stz.Printf("Z %+03d", h);
+  int h = m_stationOffset_mins / 60;
+  int h1 = m_stationOffset_mins % 60;
+  if (h1 == 0)
+    m_stz.Printf("Z %+03d", h);
+  else
+    m_stz.Printf("Z %+03d:%02d", h, h1);
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
