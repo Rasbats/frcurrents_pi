@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-06 10:32+0000\n"
-"PO-Revision-Date: 2025-01-06 10:48\n"
+"POT-Creation-Date: 2025-01-07 11:23+0000\n"
+"PO-Revision-Date: 2025-01-14 10:20\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -17,163 +17,163 @@ msgstr ""
 "X-Crowdin-File: /plugins/frcurrents_pi/po/frcurrents_pi.pot\n"
 "X-Crowdin-File-ID: 421\n"
 
-#: src/frcurrentsUIDialog.cpp:397 src/frcurrentsUIDialog.cpp:1985
-#: src/frcurrentsUIDialogBase.cpp:136
+#: src/frcurrentsUIDialog.cpp:405 src/frcurrentsUIDialog.cpp:2066
+#: src/frcurrentsUIDialogBase.cpp:139
 msgid "HW-6"
 msgstr "HW-6"
 
-#: src/frcurrentsUIDialog.cpp:398
+#: src/frcurrentsUIDialog.cpp:406
 msgid "HW-5"
 msgstr "HW-5"
 
-#: src/frcurrentsUIDialog.cpp:399
+#: src/frcurrentsUIDialog.cpp:407
 msgid "HW-4"
 msgstr "HW-4"
 
-#: src/frcurrentsUIDialog.cpp:400
+#: src/frcurrentsUIDialog.cpp:408
 msgid "HW-3"
 msgstr "HW-3"
 
-#: src/frcurrentsUIDialog.cpp:401
+#: src/frcurrentsUIDialog.cpp:409
 msgid "HW-2"
 msgstr "HW-2"
 
-#: src/frcurrentsUIDialog.cpp:402
+#: src/frcurrentsUIDialog.cpp:410
 msgid "HW-1"
 msgstr "HW-1"
 
-#: src/frcurrentsUIDialog.cpp:403 src/frcurrentsUIDialog.cpp:2262
+#: src/frcurrentsUIDialog.cpp:411 src/frcurrentsUIDialog.cpp:2343
 msgid "High Water"
 msgstr "Marea Alta"
 
-#: src/frcurrentsUIDialog.cpp:404
+#: src/frcurrentsUIDialog.cpp:412
 msgid "HW+1"
 msgstr "HW+1"
 
-#: src/frcurrentsUIDialog.cpp:405
+#: src/frcurrentsUIDialog.cpp:413
 msgid "HW+2"
 msgstr "HW+2"
 
-#: src/frcurrentsUIDialog.cpp:406
+#: src/frcurrentsUIDialog.cpp:414
 msgid "HW+3"
 msgstr "HW+3"
 
-#: src/frcurrentsUIDialog.cpp:407
+#: src/frcurrentsUIDialog.cpp:415
 msgid "HW+4"
 msgstr "HW+4"
 
-#: src/frcurrentsUIDialog.cpp:408
+#: src/frcurrentsUIDialog.cpp:416
 msgid "HW+5"
 msgstr "HW+5"
 
-#: src/frcurrentsUIDialog.cpp:409 src/frcurrentsUIDialog.cpp:1986
-#: src/frcurrentsUIDialogBase.cpp:142
+#: src/frcurrentsUIDialog.cpp:417 src/frcurrentsUIDialog.cpp:2067
+#: src/frcurrentsUIDialogBase.cpp:145
 msgid "HW+6"
 msgstr "HW+6"
 
-#: src/frcurrentsUIDialog.cpp:411 src/frcurrentsUIDialog.cpp:1980
+#: src/frcurrentsUIDialog.cpp:419 src/frcurrentsUIDialog.cpp:2061
 msgid "LW-6"
 msgstr "LW-6"
 
-#: src/frcurrentsUIDialog.cpp:412
+#: src/frcurrentsUIDialog.cpp:420
 msgid "LW-5"
 msgstr "LW-5"
 
-#: src/frcurrentsUIDialog.cpp:413
+#: src/frcurrentsUIDialog.cpp:421
 msgid "LW-4"
 msgstr "LW-4"
 
-#: src/frcurrentsUIDialog.cpp:414
+#: src/frcurrentsUIDialog.cpp:422
 msgid "LW-3"
 msgstr "LW-3"
 
-#: src/frcurrentsUIDialog.cpp:415
+#: src/frcurrentsUIDialog.cpp:423
 msgid "LW-2"
 msgstr "LW-2"
 
-#: src/frcurrentsUIDialog.cpp:416
+#: src/frcurrentsUIDialog.cpp:424
 msgid "LW-1"
 msgstr "LW-1"
 
-#: src/frcurrentsUIDialog.cpp:417 src/frcurrentsUIDialog.cpp:2260
+#: src/frcurrentsUIDialog.cpp:425 src/frcurrentsUIDialog.cpp:2341
 msgid "Low Water"
 msgstr "Marea Baja (LW)"
 
-#: src/frcurrentsUIDialog.cpp:418
+#: src/frcurrentsUIDialog.cpp:426
 msgid "LW+1"
 msgstr "LW+1"
 
-#: src/frcurrentsUIDialog.cpp:419
+#: src/frcurrentsUIDialog.cpp:427
 msgid "LW+2"
 msgstr "LW+2"
 
-#: src/frcurrentsUIDialog.cpp:420
+#: src/frcurrentsUIDialog.cpp:428
 msgid "LW+3"
 msgstr "LW+3"
 
-#: src/frcurrentsUIDialog.cpp:421
+#: src/frcurrentsUIDialog.cpp:429
 msgid "LW+4"
 msgstr "LW+4"
 
-#: src/frcurrentsUIDialog.cpp:422
+#: src/frcurrentsUIDialog.cpp:430
 msgid "LW+5"
 msgstr "LW+5"
 
-#: src/frcurrentsUIDialog.cpp:423 src/frcurrentsUIDialog.cpp:1981
+#: src/frcurrentsUIDialog.cpp:431 src/frcurrentsUIDialog.cpp:2062
 msgid "LW+6"
 msgstr "LW+6"
 
-#: src/frcurrentsUIDialog.cpp:596 src/frcurrentsUIDialog.cpp:703
+#: src/frcurrentsUIDialog.cpp:654 src/frcurrentsUIDialog.cpp:776
 msgid "No tidal data"
 msgstr "Sin datos de mareas"
 
-#: src/frcurrentsUIDialog.cpp:696 src/frcurrentsUIDialog.cpp:2249
+#: src/frcurrentsUIDialog.cpp:769 src/frcurrentsUIDialog.cpp:2330
 msgid "Port not found"
 msgstr "Puerto no encontrado"
 
-#: src/frcurrentsUIDialog.cpp:696 src/frcurrentsUIDialog.cpp:2249
+#: src/frcurrentsUIDialog.cpp:769 src/frcurrentsUIDialog.cpp:2330
 msgid "Port finder"
 msgstr "Buscador de Puerto"
 
-#: src/frcurrentsUIDialog.cpp:950
+#: src/frcurrentsUIDialog.cpp:1025
 msgid "Choose a directory"
 msgstr "Elegir directorio"
 
-#: src/frcurrentsUIDialog.cpp:1025
+#: src/frcurrentsUIDialog.cpp:1100
 msgid "Choose the tcdata directory"
 msgstr "Elegir el directorio tcdata"
 
-#: src/frcurrentsUIDialog.cpp:1041
+#: src/frcurrentsUIDialog.cpp:1116
 msgid "Using Tide/Current data from:  "
 msgstr "Usando datos de Marea/Corriente de:  "
 
-#: src/frcurrentsUIDialog.cpp:1158 src/frcurrentsUIDialog.cpp:1265
-#: src/frcurrentsUIDialog.cpp:1382
+#: src/frcurrentsUIDialog.cpp:1233 src/frcurrentsUIDialog.cpp:1340
+#: src/frcurrentsUIDialog.cpp:1460
 msgid "No tidal data for this port"
 msgstr "Sin datos de mareas para este puerto"
 
-#: src/frcurrentsUIDialog.cpp:1158 src/frcurrentsUIDialog.cpp:1265
-#: src/frcurrentsUIDialog.cpp:1382
+#: src/frcurrentsUIDialog.cpp:1233 src/frcurrentsUIDialog.cpp:1340
+#: src/frcurrentsUIDialog.cpp:1460
 msgid "No Tidal Data"
 msgstr "Sin datos de mareas"
 
-#: src/frcurrentsUIDialog.cpp:1697
+#: src/frcurrentsUIDialog.cpp:1778
 msgid "Failed to load file: "
 msgstr "Error al cargar archivo: "
 
-#: src/frcurrentsUIDialog.cpp:1978
+#: src/frcurrentsUIDialog.cpp:2059
 msgid "LW"
 msgstr "LW"
 
-#: src/frcurrentsUIDialog.cpp:1979
+#: src/frcurrentsUIDialog.cpp:2060
 msgid "Select Low Water"
 msgstr "Seleccione Marea Baja"
 
-#: src/frcurrentsUIDialog.cpp:1983 src/frcurrentsUIDialogBase.cpp:130
+#: src/frcurrentsUIDialog.cpp:2064 src/frcurrentsUIDialogBase.cpp:133
 msgid "HW"
 msgstr "HW"
 
-#: src/frcurrentsUIDialog.cpp:1984 src/frcurrentsUIDialogBase.cpp:76
+#: src/frcurrentsUIDialog.cpp:2065 src/frcurrentsUIDialogBase.cpp:79
 msgid "Select High Water"
 msgstr "Seleccionar marea alta"
 
@@ -182,158 +182,158 @@ msgid "Tidal Area"
 msgstr "Área de Mareas"
 
 #: src/frcurrentsUIDialogBase.cpp:22
-msgid "557"
-msgstr "557"
+msgid "557 Strait of Dover"
+msgstr "557 Estrecho de Dover"
 
 #: src/frcurrentsUIDialogBase.cpp:22
-msgid "558"
-msgstr "558"
+msgid "558 South Brittany"
+msgstr "558 Bretaña del Sur"
 
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "559"
-msgstr "559"
+#: src/frcurrentsUIDialogBase.cpp:23
+msgid "559 Vendee-Gironde"
+msgstr "559 Vendee-Gironda"
 
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "560"
-msgstr "560"
+#: src/frcurrentsUIDialogBase.cpp:23
+msgid "560 Tip of Britanny"
+msgstr "560 Punta de Bretaña "
 
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "561"
-msgstr "561"
+#: src/frcurrentsUIDialogBase.cpp:23
+msgid "561 Fecamp to Cherbourg"
+msgstr "561 Fecamp a Cherburgo"
 
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "562"
-msgstr "562"
+#: src/frcurrentsUIDialogBase.cpp:24
+msgid "562 La Hague to Hx-de-Breat"
+msgstr "562 La Hague a Hx-de-Breat"
 
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "563"
-msgstr "563"
+#: src/frcurrentsUIDialogBase.cpp:24
+msgid "563 Hx-de-Breat to Brignogan"
+msgstr "563 Hx-de-Breat a Brignogan"
 
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "564"
-msgstr "564"
+#: src/frcurrentsUIDialogBase.cpp:24
+msgid "564 English Channel"
+msgstr "564 Canal de la Mancha"
 
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "565"
-msgstr "565"
+#: src/frcurrentsUIDialogBase.cpp:25
+msgid "565 Bay of Biscay"
+msgstr "565 Golfo de Vizcaya"
 
-#: src/frcurrentsUIDialogBase.cpp:26
+#: src/frcurrentsUIDialogBase.cpp:29
 msgid "Select tidal area"
 msgstr "Seleccionar área de marea"
 
-#: src/frcurrentsUIDialogBase.cpp:33
+#: src/frcurrentsUIDialogBase.cpp:36
 msgid "Information"
 msgstr "Información"
 
-#: src/frcurrentsUIDialogBase.cpp:42
+#: src/frcurrentsUIDialogBase.cpp:45
 msgid "Standard Ports"
 msgstr "Puerto estándar"
 
-#: src/frcurrentsUIDialogBase.cpp:53
+#: src/frcurrentsUIDialogBase.cpp:56
 msgid "Choose Date"
 msgstr "Elegir fecha"
 
-#: src/frcurrentsUIDialogBase.cpp:63
+#: src/frcurrentsUIDialogBase.cpp:66
 msgid "   Coeff"
 msgstr "Coeficiente"
 
-#: src/frcurrentsUIDialogBase.cpp:92
+#: src/frcurrentsUIDialogBase.cpp:95
 msgid "Now"
 msgstr "Ahora"
 
-#: src/frcurrentsUIDialogBase.cpp:100
+#: src/frcurrentsUIDialogBase.cpp:103
 msgid "Time Zone"
 msgstr "Zona horaria"
 
-#: src/frcurrentsUIDialogBase.cpp:110
+#: src/frcurrentsUIDialogBase.cpp:113
 msgid "Previous"
 msgstr "Anterior"
 
-#: src/frcurrentsUIDialogBase.cpp:116
+#: src/frcurrentsUIDialogBase.cpp:119
 msgid "Next"
 msgstr "Posterior"
 
-#: src/frcurrentsUIDialogBase.cpp:154
+#: src/frcurrentsUIDialogBase.cpp:157
 msgid "Display date/time"
 msgstr "Mostrar fecha/hora"
 
-#: src/frcurrentsUIDialogBase.cpp:158
+#: src/frcurrentsUIDialogBase.cpp:161
 msgid "High Water +-"
 msgstr "Marea Alta +-"
 
-#: src/frcurrentsUIDialogBase.cpp:169
+#: src/frcurrentsUIDialogBase.cpp:172
 msgid "Tide Harmonics IDX Directory"
 msgstr "Directorio IDX de Constantes Armónicas"
 
-#: src/frcurrentsUIDialogBase.cpp:171
+#: src/frcurrentsUIDialogBase.cpp:174
 msgid "Select Directory"
 msgstr "Seleccionar directorio"
 
-#: src/frcurrentsUIDialogBase.cpp:236
+#: src/frcurrentsUIDialogBase.cpp:239
 msgid "Display tidal rates (knots)"
 msgstr "Mostrar corriente de mareas (nudos)"
 
-#: src/frcurrentsUIDialogBase.cpp:239
+#: src/frcurrentsUIDialogBase.cpp:242
 msgid "Display tidal direction"
 msgstr "Mostrar dirección marea"
 
-#: src/frcurrentsUIDialogBase.cpp:242
+#: src/frcurrentsUIDialogBase.cpp:245
 msgid "Fill Colour"
 msgstr "Color de relleno"
 
-#: src/frcurrentsUIDialogBase.cpp:245
+#: src/frcurrentsUIDialogBase.cpp:248
 msgid "High Resolution Display"
 msgstr "Pantalla de alta resolución"
 
-#: src/frcurrentsUIDialogBase.cpp:255
+#: src/frcurrentsUIDialogBase.cpp:258
 msgid "Tidal Current Arrow Colour"
 msgstr "Color del vector corriente de marea"
 
-#: src/frcurrentsUIDialogBase.cpp:263
+#: src/frcurrentsUIDialogBase.cpp:266
 msgid "      < 0.5 knots"
 msgstr "      < 0.5 nudos"
 
-#: src/frcurrentsUIDialogBase.cpp:270
+#: src/frcurrentsUIDialogBase.cpp:273
 msgid ">= 0.5 and < 1.5"
 msgstr ">= 0.5 y < 1.5"
 
-#: src/frcurrentsUIDialogBase.cpp:277
+#: src/frcurrentsUIDialogBase.cpp:280
 msgid ">= 1.5 and < 2.5"
 msgstr ">= 1.5 y < 2.5"
 
-#: src/frcurrentsUIDialogBase.cpp:284
+#: src/frcurrentsUIDialogBase.cpp:287
 msgid ">= 2.5 and < 3.5"
 msgstr ">= 2.5 y < 3.5"
 
-#: src/frcurrentsUIDialogBase.cpp:291
+#: src/frcurrentsUIDialogBase.cpp:294
 msgid ">= 3.5 knots    "
 msgstr ">= 3.5 nudos    "
 
-#: src/frcurrentsUIDialogBase.cpp:305
+#: src/frcurrentsUIDialogBase.cpp:308
 msgid "Arrow Style"
 msgstr "Estilo de flecha"
 
-#: src/frcurrentsUIDialogBase.cpp:313
+#: src/frcurrentsUIDialogBase.cpp:316
 msgid "Options:   "
 msgstr "Opciones:   "
 
-#: src/frcurrentsUIDialogBase.cpp:317
+#: src/frcurrentsUIDialogBase.cpp:320
 msgid "1"
 msgstr "1"
 
-#: src/frcurrentsUIDialogBase.cpp:317
+#: src/frcurrentsUIDialogBase.cpp:320
 msgid "2"
 msgstr "2"
 
-#: src/frcurrentsUIDialogBase.cpp:317
+#: src/frcurrentsUIDialogBase.cpp:320
 msgid "3"
 msgstr "3"
 
-#: src/frcurrentsUIDialogBase.cpp:327
+#: src/frcurrentsUIDialogBase.cpp:330
 msgid "Arrow Options :"
 msgstr "Opciones de flecha:"
 
-#: src/frcurrentsUIDialogBase.cpp:329
+#: src/frcurrentsUIDialogBase.cpp:332
 msgid "1: Normal\n"
 "2: Small \n"
 "3: Normal length, \n"
