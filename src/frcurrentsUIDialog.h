@@ -199,7 +199,7 @@ public:
   void OnContextMenu(wxContextMenuEvent& event);
   void OnContextMenuSelect(wxCommandEvent& event);
   
-  void OnMouseEvent(wxMouseEvent& event);
+ // void OnMouseEvent(wxMouseEvent& event);
   wxPoint m_resizeStartPoint;
   wxSize m_resizeStartSize;
   bool m_binResize;

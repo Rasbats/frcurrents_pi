@@ -356,7 +356,7 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
 
 #endif  // End of Android functions for move/resize
 
-
+/*
 
 void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
   wxSize currentSize = this->GetSize();
@@ -415,12 +415,7 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
       // not too small
       dragSize.x = wxMax(dragSize.x, 150);
       dragSize.y = wxMax(dragSize.y, 150);
-      /*
-                      for( unsigned int i=0; i<m_ArrayOfInstrument.size();
-         i++ ) { DashboardInstrument* inst =
-         m_ArrayOfInstrument.Item(i)->m_pInstrument; inst->Show();
-                      }
-      */
+     
       this->SetSize(dragSize);
 
       m_binResize = false;
@@ -428,6 +423,7 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
     }
   }
 }
+  */
 
 void frcurrentsUIDialog::OnContextMenu(wxContextMenuEvent& event) {
   wxMenu* contextMenu = new wxMenu();
