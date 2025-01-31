@@ -29,10 +29,10 @@
 
 #include "wx/wxprec.h"
 
-#ifndef  WX_PRECOMP
-  #include "wx/wx.h"
-  #include <wx/glcanvas.h>
-#endif //precompiled headers
+#ifndef WX_PRECOMP
+#include "wx/wx.h"
+#include <wx/glcanvas.h>
+#endif  // precompiled headers
 
 #include "ocpn_plugin.h"
 #include "frcurrentsOverlayFactory.h"
@@ -47,122 +47,124 @@
 
 #include "config.h"
 
-extern wxString myVColour[5]; 
+extern wxString myVColour[5];
 
-#define frcurrents_TOOL_POSITION    -1          // Request default positioning of toolbar tool
+#define frcurrents_TOOL_POSITION \
+  -1  // Request default positioning of toolbar tool
 
-class frcurrents_pi : public opencpn_plugin_116
-{
+class frcurrents_pi : public opencpn_plugin_116 {
 public:
-      frcurrents_pi(void *ppimgr);
-      ~frcurrents_pi(void);
+  frcurrents_pi(void *ppimgr);
+  ~frcurrents_pi(void);
 
-//    The required PlugIn Methods
-      int Init(void);
-      bool DeInit(void);
+  //    The required PlugIn Methods
+  int Init(void);
+  bool DeInit(void);
 
-      int GetAPIVersionMajor();
-      int GetAPIVersionMinor();
-      int GetPlugInVersionMajor();
-      int GetPlugInVersionMinor();
-      wxBitmap* GetPlugInBitmap();
-      wxString GetCommonName();
-      wxString GetShortDescription();
-      wxString GetLongDescription();
+  int GetAPIVersionMajor();
+  int GetAPIVersionMinor();
+  int GetPlugInVersionMajor();
+  int GetPlugInVersionMinor();
+  wxBitmap *GetPlugInBitmap();
+  wxString GetCommonName();
+  wxString GetShortDescription();
+  wxString GetLongDescription();
 
-//    The override PlugIn Methods
-      bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
-	  bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
-      void SetCursorLatLon(double lat, double lon);
-      void SendTimelineMessage(wxDateTime time);
-      void SetDefaults(void);
-      int GetToolbarToolCount(void);
-      void ShowPreferencesDialog( wxWindow* parent );
-      void OnToolbarToolCallback(int id);
+  //    The override PlugIn Methods
+  bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
+  bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
+  void SetCursorLatLon(double lat, double lon);
+  void SendTimelineMessage(wxDateTime time);
+  void SetDefaults(void);
+  int GetToolbarToolCount(void);
+  void ShowPreferencesDialog(wxWindow *parent);
+  void OnToolbarToolCallback(int id);
 
-// Other public methods
-      void SetfrcurrentsDialogX    (int x){ m_frcurrents_dialog_x = x;};
-      void SetfrcurrentsDialogY    (int x){ m_frcurrents_dialog_y = x;}
-      void SetfrcurrentsDialogSizeX(int x){ m_frcurrents_dialog_sx = x;}
-      void SetfrcurrentsDialogSizeY(int x){ m_frcurrents_dialog_sy = x;}
-      void SetColorScheme(PI_ColorScheme cs);
+  // Other public methods
+  void SetfrcurrentsDialogX(int x) { m_frcurrents_dialog_x = x; };
+  void SetfrcurrentsDialogY(int x) { m_frcurrents_dialog_y = x; }
+  void SetfrcurrentsDialogSizeX(int x) { m_frcurrents_dialog_sx = x; }
+  void SetfrcurrentsDialogSizeY(int x) { m_frcurrents_dialog_sy = x; }
+  void SetColorScheme(PI_ColorScheme cs);
 
-      void OnfrcurrentsDialogClose();
+  void OnfrcurrentsDialogClose();
 
-      bool GetCopyRate() { return  m_bCopyUseRate; }
-      bool GetCopyDirection() { return  m_bCopyUseDirection; }
-	  bool GetCopyResolution() { return  m_bCopyUseHighRes; }
-	  bool GetCopyColour() { return m_bfrcurrentsUseHiDef ; }
-	  int GetCopyArrowStyle() { return  m_CopyArrowStyle; }
+  bool GetCopyRate() { return m_bCopyUseRate; }
+  bool GetCopyDirection() { return m_bCopyUseDirection; }
+  bool GetCopyResolution() { return m_bCopyUseHighRes; }
+  bool GetCopyColour() { return m_bfrcurrentsUseHiDef; }
+  int GetCopyArrowStyle() { return m_CopyArrowStyle; }
 
+  wxString GetFolderSelected() { return m_CopyFolderSelected; }
+  // wxString GetCopyPort() { return  m_bCopyusePort; }
+  frcurrentsOverlayFactory *GetfrcurrentsOverlayFactory() {
+    return m_pfrcurrentsOverlayFactory;
+  }
 
-	  wxString GetFolderSelected() {return m_CopyFolderSelected;}
-     // wxString GetCopyPort() { return  m_bCopyusePort; }
-      frcurrentsOverlayFactory *GetfrcurrentsOverlayFactory(){ return m_pfrcurrentsOverlayFactory; }
-	  
-	  wxString          m_CopyFolderSelected;
+  wxString m_CopyFolderSelected;
 
-      int m_frcurrents_dialog_x, m_frcurrents_dialog_y;
-      int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
+  int m_frcurrents_dialog_x, m_frcurrents_dialog_y;
+  int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
+  bool LoadConfig(void);
+  bool SaveConfig(void);
+  void OnContextMenu();
+  
 
 private:
-      bool LoadConfig(void);
-      bool SaveConfig(void);
+  int m_position_menu_id;
+  int m_position_menu_id2;
 
-      wxFileConfig     *m_pconfig;
-      wxWindow         *m_parent_window;
+  wxFileConfig *m_pconfig;
+  wxWindow *m_parent_window;
 
-      frcurrentsUIDialog     *m_pfrcurrentsDialog;
-      frcurrentsOverlayFactory *m_pfrcurrentsOverlayFactory;
+  frcurrentsUIDialog *m_pfrcurrentsDialog;
+  frcurrentsOverlayFactory *m_pfrcurrentsOverlayFactory;
 
-      int              m_display_width, m_display_height;
-      int              m_leftclick_tool_id;
-	  
-	  //wxString myPort;
+  int m_display_width, m_display_height;
+  int m_leftclick_tool_id;
 
-	 // int myNewPort; 
-	 // 
+  // wxString myPort;
 
-      //    Controls added to Preferences panel
-      wxCheckBox              *m_pfrcurrentsUseHiDef;
-      wxCheckBox              *m_pfrcurrentsUseGradualColors;
+  // int myNewPort;
+  //
 
-     // frcurrentsTimelineRecordSet *m_pLastTimelineSet;
+  //    Controls added to Preferences panel
+  wxCheckBox *m_pfrcurrentsUseHiDef;
+  wxCheckBox *m_pfrcurrentsUseGradualColors;
 
-      // preference data
-      bool              m_bfrcurrentsUseHiDef;
-      bool              m_bfrcurrentsUseGradualColors;
-	  bool              m_bCopyUseRate;
-      bool              m_bCopyUseDirection;
-	  bool				m_bCopyUseHighRes;
-	  int               m_CopyArrowStyle;
+  // frcurrentsTimelineRecordSet *m_pLastTimelineSet;
 
-      int              m_bTimeZone;
-   
-      int              m_bStartOptions;
-      wxString         m_RequestConfig;
-     
-      
-      bool             m_bfrcurrentsShowIcon;
+  // preference data
+  bool m_bfrcurrentsUseHiDef;
+  bool m_bfrcurrentsUseGradualColors;
+  bool m_bCopyUseRate;
+  bool m_bCopyUseDirection;
+  bool m_bCopyUseHighRes;
+  int m_CopyArrowStyle;
 
-      int              m_height;
+  int m_bTimeZone;
 
-      bool        m_bShowfrcurrents;
-      wxBitmap    m_panelBitmap;
+  int m_bStartOptions;
+  wxString m_RequestConfig;
+
+  bool m_bfrcurrentsShowIcon;
+
+  int m_height;
+
+  bool m_bShowfrcurrents;
+  wxBitmap m_panelBitmap;
 };
 
 //----------------------------------------------------------------------------------------
 // Prefrence dialog definition
 //----------------------------------------------------------------------------------------
 
-class frcurrentsPreferencesDialog : public frcurrentsPreferencesDialogBase
-{
+class frcurrentsPreferencesDialog : public frcurrentsPreferencesDialogBase {
 public:
-    frcurrentsPreferencesDialog( wxWindow *pparent)
-    : frcurrentsPreferencesDialogBase(pparent) {}
-    ~frcurrentsPreferencesDialog() {}
+  frcurrentsPreferencesDialog(wxWindow *pparent)
+      : frcurrentsPreferencesDialogBase(pparent) {}
+  ~frcurrentsPreferencesDialog() {}
 
 private:
-    
 };
 #endif

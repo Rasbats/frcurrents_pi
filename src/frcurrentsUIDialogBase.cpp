@@ -203,6 +203,20 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button6->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button7->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnSelectData ), NULL, this );
+        this->Connect(
+            wxEVT_CONTEXT_MENU,
+            wxContextMenuEventHandler(frcurrentsUIDialogBase::OnContextMenu),
+            NULL, this);
+        this->Connect(
+            wxEVT_COMMAND_MENU_SELECTED,
+            wxCommandEventHandler(frcurrentsUIDialogBase::OnContextMenuSelect),
+            NULL, this);
+        this->Connect(wxEVT_LEFT_DOWN,
+            wxMouseEventHandler(frcurrentsUIDialogBase::OnMouseEvent));
+        this->Connect(wxEVT_LEFT_UP,
+               wxMouseEventHandler(frcurrentsUIDialogBase::OnMouseEvent));
+        this->Connect(wxEVT_MOTION, wxMouseEventHandler(
+                                        frcurrentsUIDialogBase::OnMouseEvent));
 }
 
 frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
@@ -212,6 +226,13 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
 	this->Disconnect( wxEVT_LEFT_DCLICK, wxMouseEventHandler( frcurrentsUIDialogBase::OnDLeftClick ) );
 	this->Disconnect( wxEVT_MOVE, wxMoveEventHandler( frcurrentsUIDialogBase::OnMove ) );
 	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( frcurrentsUIDialogBase::OnSize ) );
+        this->Disconnect(
+            wxEVT_LEFT_DOWN,
+            wxMouseEventHandler(frcurrentsUIDialogBase::OnMouseEvent));
+        this->Disconnect(wxEVT_LEFT_UP,
+               wxMouseEventHandler(frcurrentsUIDialogBase::OnMouseEvent));
+        this->Disconnect(wxEVT_MOTION, wxMouseEventHandler(
+                                        frcurrentsUIDialogBase::OnMouseEvent));
 	m_choiceArea->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnAreaSelected ), NULL, this );
 	m_button8->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnInformation ), NULL, this );
 	m_choice1->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnPortChanged ), NULL, this );
@@ -224,6 +245,15 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
 	m_button6->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button7->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnSelectData ), NULL, this );
 
+
+  this->Disconnect(
+            wxEVT_CONTEXT_MENU,
+            wxContextMenuEventHandler(frcurrentsUIDialogBase::OnContextMenu),
+            NULL, this);
+        this->Disconnect(
+            wxEVT_COMMAND_MENU_SELECTED,
+            wxCommandEventHandler(frcurrentsUIDialogBase::OnContextMenuSelect),
+            NULL, this);
 }
 
 frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
