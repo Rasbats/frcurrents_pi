@@ -196,17 +196,20 @@ public:
   wxString m_FolderSelected;
   double m_coeff;
   double m_jumpLat, m_jumpLon;
-  void OnContextMenu(wxContextMenuEvent& event);
-  void OnContextMenuSelect(wxCommandEvent& event);
   
  // void OnMouseEvent(wxMouseEvent& event);
+  /*
   wxPoint m_resizeStartPoint;
   wxSize m_resizeStartSize;
   bool m_binResize;
   bool m_binResize2;
-  int eventid;
+  int eventid;*/
 
 #ifdef __ANDROID__
+  void OnContextMenu(wxContextMenuEvent& event);
+  void OnContextMenuSelect(wxCommandEvent& event);
+
+
   void OnMouseEvent(wxMouseEvent& event);
   wxPoint m_resizeStartPoint;
   wxSize m_resizeStartSize;

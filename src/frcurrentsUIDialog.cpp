@@ -354,6 +354,43 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
   }
 }
 
+void frcurrentsUIDialog::OnContextMenuSelect(wxCommandEvent& event) {
+  //
+  switch (event.GetId()) {
+    case ID_DASH_RESIZE: {
+      /*
+                  for( unsigned int i=0; i<m_ArrayOfInstrument.size(); i++ ) {
+                      DashboardInstrument* inst =
+         m_ArrayOfInstrument.Item(i)->m_pInstrument; inst->Hide();
+                  }
+      */
+      m_binResize = true;
+      wxMessageBox("here");
+
+      return;
+    }
+  }
+  pPlugIn->SaveConfig();
+}
+
+void frcurrentsUIDialog::OnContextMenu(wxContextMenuEvent& event) {
+  wxMenu* contextMenu = new wxMenu();
+  wxFont* pf = OCPNGetFont(_T("Menu"), 0);
+
+  // add stuff
+  wxMenuItem* item1 =
+      new wxMenuItem(contextMenu, ID_DASH_PREFS, _("Preferences..."));
+  item1->SetFont(*pf);
+  contextMenu->Append(item1);
+
+  wxMenuItem* item2 =
+      new wxMenuItem(contextMenu, ID_DASH_RESIZE, _("Resize..."));
+  item2->SetFont(*pf);
+  contextMenu->Append(item2);
+
+  PopupMenu(contextMenu);
+  delete contextMenu;
+}
 #endif  // End of Android functions for move/resize
 
 /*
@@ -425,43 +462,9 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
 }
   */
 
-void frcurrentsUIDialog::OnContextMenu(wxContextMenuEvent& event) {
-  wxMenu* contextMenu = new wxMenu();
-  wxFont* pf = OCPNGetFont(_T("Menu"), 0);
 
-  // add stuff
-  wxMenuItem* item1 =
-      new wxMenuItem(contextMenu, ID_DASH_PREFS, _("Preferences..."));
-  item1->SetFont(*pf);
-  contextMenu->Append(item1);
 
-  wxMenuItem* item2 =
-      new wxMenuItem(contextMenu, ID_DASH_RESIZE, _("Resize..."));
-  item2->SetFont(*pf);
-  contextMenu->Append(item2);
 
-  PopupMenu(contextMenu);
-  delete contextMenu;
-}
-
-void frcurrentsUIDialog::OnContextMenuSelect(wxCommandEvent& event) {
-  //
-  switch (event.GetId()) {
-    case ID_DASH_RESIZE: {
-      /*
-                  for( unsigned int i=0; i<m_ArrayOfInstrument.size(); i++ ) {
-                      DashboardInstrument* inst =
-         m_ArrayOfInstrument.Item(i)->m_pInstrument; inst->Hide();
-                  }
-      */
-      m_binResize = true;
-      wxMessageBox("here");
-
-      return;
-    }
-  }
-  pPlugIn->SaveConfig();
-}
 
 void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
   m_cursor_lon = lon;
