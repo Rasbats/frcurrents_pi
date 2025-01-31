@@ -107,7 +107,6 @@ public:
   int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
   bool LoadConfig(void);
   bool SaveConfig(void);
-  void OnContextMenu();
   
 
 private:

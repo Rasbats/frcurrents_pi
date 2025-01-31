@@ -298,8 +298,6 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
     m_pfrcurrentsOverlayFactory->SetParentSize(m_display_width,
                                                m_display_height);
 
-    OnContextMenu();
-
   }
 
   // Toggle frcurrents overlay display
@@ -381,34 +379,6 @@ void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
   if (m_pfrcurrentsDialog) m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
 }
 
-void frcurrents_pi::OnContextMenu() {
-  wxMenu *contextMenu = new wxMenu();
-  wxMenu dummy_menu;
-  
-
-  // #ifdef __WXQT__
-  wxFont *pf = OCPNGetFont(_T("Menu"), 0);
-
-  // add stuff
-  wxMenuItem *item1 =
-      new wxMenuItem(contextMenu, ID_DASH_PREFS, _("Preferences..."));
-  item1->SetFont(*pf);
-  
-  contextMenu->Append(item1);
-
-  wxMenuItem *item2 =
-      new wxMenuItem(contextMenu, ID_DASH_RESIZE, _("Resize..."));
-  item2->SetFont(*pf);
-  contextMenu->Append(item2);
-
-  m_position_menu_id = AddCanvasContextMenuItem(new wxMenuItem (&dummy_menu, ID_DASH_PREFS, _("Preferences...")), this );
-  m_position_menu_id2 = AddCanvasContextMenuItem(new wxMenuItem(&dummy_menu, ID_DASH_PREFS, _("Resize...")), this);
-
-  SetCanvasContextMenuItemViz(m_position_menu_id, true);
-  SetCanvasContextMenuItemViz(m_position_menu_id2, true);
-
-  // #endif
-}
 
 
 bool frcurrents_pi::LoadConfig(void) {
