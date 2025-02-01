@@ -288,7 +288,7 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
     double aRatio = (double)currentSize.y / (double)currentSize.x;
 
     wxSize par_size = GetOCPNCanvasWindow()->GetClientSize();
-    wxPoint par_pos = wxPoint(g_Window->floating_pos.x, g_Window->floating_pos.y);
+    wxPoint par_pos = GetOCPNCanvasWindow()->GetPosition();
 
     if (event.LeftDown()) {
       m_resizeStartPoint = event.GetPosition();
