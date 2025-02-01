@@ -1147,10 +1147,12 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
       new wxDirDialog(this, _("Choose a directory"), "", 0, wxDefaultPosition);
   if (d->ShowModal() == wxID_OK) {
     m_dirPicker1->SetValue(d->GetPath());
+    
     m_FolderSelected = m_dirPicker1->GetValue();
     pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   }
 #else
+  m_dirPicker1->SetSize(400, 400);
   wxString tc =
       "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
   m_dirPicker1->SetValue(tc);
