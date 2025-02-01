@@ -284,7 +284,7 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
 
   if (m_binResize) {
    
-    wxSize currentSize = g_window.GetSize();
+    wxSize currentSize = g_window->GetSize();
     double aRatio = (double)currentSize.y / (double)currentSize.x;
 
     wxSize par_size = GetOCPNCanvasWindow()->GetClientSize();
@@ -319,7 +319,7 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
         dragSize.x = wxMax(dragSize.x, 150);
         dragSize.y = wxMax(dragSize.y, 150);
 
-        g_window.SetSize(dragSize);
+        g_window->SetSize(dragSize);
         
       }
 
@@ -342,11 +342,24 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
         dragSize.x = wxMax(dragSize.x, 150);
         dragSize.y = wxMax(dragSize.y, 150);
         
-        g_window.SetSize(dragSize);
+        g_window->SetSize(dragSize);
 
         m_binResize = false;
         m_binResize2 = false;
       }
+    }
+  } else {
+    if(event.Dragging()) {
+      m_resizeStartPoint = event.GetPosition();
+      int x = wxMax(0, m_resizeStartPoint.x);
+      int y = wxMax(0, m_resizeStartPoint.y);
+      int xmax = ::wxGetDisplaySize().x - GetSize().x;
+      x = wxMin(x, xmax);
+      int ymax =
+          ::wxGetDisplaySize().y - (GetSize().y);  // Some fluff at the bottom
+      y = wxMin(y, ymax);
+
+      g_Window->Move(x, y);
     }
   }
 }
