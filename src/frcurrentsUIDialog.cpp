@@ -1150,10 +1150,10 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
       "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
   wxString idir = initDir;
    wxString dir;
-  boolean b_addFiles = false;
+  
   int result =
       androidFileChooser(&dir, idir, "Choose Harmonics Files", _T(""), _T(""), true,
-                              b_addFiles);  // Directories only, maybe add dirs
+                              bool b_addFiles);  // Directories only, maybe add dirs
  // wxString dir_spec;
 //  int response = PlatformDirSelectorDialog(
 //      this, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
