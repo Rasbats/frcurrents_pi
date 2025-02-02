@@ -67,10 +67,6 @@
 wxWindow* g_Window;
 #endif
 
-#ifdef __ANDROID__
-#include "androidUTIL.h"
-#endif
-
 enum { TIDE_PLOT, CURRENT_PLOT };
 
 constexpr double radToDeg(float rad) { return rad * (180 / M_PI); }
@@ -1148,22 +1144,13 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
     pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   }
 #else
-
-   //  Verify that initDir is traversable, fix it if not...
-  wxString initDir =
-      "/storage/emulated/0/Android/data/org.opencpn.opencpn/files/tcdata";
-  wxString idir = initDir;
-   wxString dir;
-
-  int result =
-      androidFileChooser(&dir, idir, "Choose Harmonics Files", _T(""), _T(""), true,
-                              true);  // Directories only, maybe add dirs
- // wxString dir_spec;
-//  int response = PlatformDirSelectorDialog(
-//      this, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
-  if (result == wxID_OK) {
-    m_dirPicker1->SetValue(dir);
-    m_FolderSelected = dir;
+  g_Window = this;
+  wxString dir_spec;
+  int response = PlatformDirSelectorDialog(
+      g_Window, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
+  if (response == wxID_OK) {
+    m_dirPicker1->SetValue(dir_spec);
+    m_FolderSelected = dir_spec;
     pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   }
 #endif
