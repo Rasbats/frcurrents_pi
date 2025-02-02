@@ -64,6 +64,7 @@
 #include <wx/wfstream.h>
 
 #ifdef __ANDROID__
+#include "api_shim.cpp"
 wxWindow* g_Window;
 #endif
 

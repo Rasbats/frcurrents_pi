@@ -76,6 +76,7 @@ set(SRC
         src/georef.cpp
         src/georef.h
         src/folder.xpm
+        src/api_shim.cpp
 
 )
 
