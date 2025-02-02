@@ -1146,7 +1146,7 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
 #else
   wxString dir_spec;
   int response = PlatformDirSelectorDialog(
-      this, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue();
+      this, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
   if (response == wxID_OK) {
     m_dirPicker1->SetValue(dir_spec);
     m_FolderSelected = dir_spec;
