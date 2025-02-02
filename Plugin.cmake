@@ -76,8 +76,6 @@ set(SRC
         src/georef.cpp
         src/georef.h
         src/folder.xpm
-        src/api_shim.cpp
-
 )
 
 set(PKG_API_LIB api-16)  #  A dir in opencpn-libs/ e. g., api-17 or api-16

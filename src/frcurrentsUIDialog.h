@@ -61,6 +61,7 @@
 #include <wx/wfstream.h>
 #include <wx/statbox.h>
 #include <wx/event.h>
+#include "ocpn_plugin.h"
 
 #define ID_SOMETHING 2001
 #define ID_SOMETHING_ELSE 2002
