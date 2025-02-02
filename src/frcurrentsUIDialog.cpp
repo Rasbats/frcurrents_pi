@@ -1151,9 +1151,10 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
   wxString idir = initDir;
    wxString dir;
   
+   bool b_addFiles = true;
   int result =
       androidFileChooser(&dir, idir, "Choose Harmonics Files", _T(""), _T(""), true,
-                              bool b_addFiles);  // Directories only, maybe add dirs
+                              b_addFiles);  // Directories only, maybe add dirs
  // wxString dir_spec;
 //  int response = PlatformDirSelectorDialog(
 //      this, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
