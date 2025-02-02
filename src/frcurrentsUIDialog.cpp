@@ -1134,7 +1134,7 @@ int frcurrentsUIDialog::FindPortIDUsingChoice(wxString inPortName) {
 }
 
 void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
-#ifndef __OCPN__ANDROID__
+#ifndef __ANDROID__
   wxDirDialog* d =
       new wxDirDialog(this, _("Choose a directory"), "", 0, wxDefaultPosition);
   if (d->ShowModal() == wxID_OK) {
@@ -1144,13 +1144,9 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
     pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   }
 #else
-  wxString dir_spec =
-      "/storage/emulated/0/Android/data/org.opencpn.opencpn/files";
-  m_dirPicker1->SetValue(dir_spec);
+  wxString dir_spec;
   int response = PlatformDirSelectorDialog(
-      this, &dir_spec, _("Choose Harmonics Files Directory"),
-      m_dirPicker1->GetValue());
-
+      this, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue();
   if (response == wxID_OK) {
     m_dirPicker1->SetValue(dir_spec);
     m_FolderSelected = dir_spec;
