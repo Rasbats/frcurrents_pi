@@ -1144,12 +1144,21 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
     pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   }
 #else
-  wxString dir_spec;
-  int response = PlatformDirSelectorDialog(
-      this, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
-  if (response == wxID_OK) {
-    m_dirPicker1->SetValue(dir_spec);
-    m_FolderSelected = dir_spec;
+
+   //  Verify that initDir is traversable, fix it if not...
+  wxString idir = initDir;
+  if (initDir.StartsWith(
+          _T("/data/data")))  // not good, provokes a crash usually...
+    idir = GetWritableDocumentsDir();
+
+  result = androidFileChooser(&dir, idir, Title, _T(""), _T(""), true,
+                              b_addFiles);  // Directories only, maybe add dirs
+ // wxString dir_spec;
+//  int response = PlatformDirSelectorDialog(
+//      this, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
+  if (result == wxID_OK) {
+    m_dirPicker1->SetValue(idir);
+    m_FolderSelected = idir;
     pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   }
 #endif
