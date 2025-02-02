@@ -1151,7 +1151,7 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
           _T("/data/data")))  // not good, provokes a crash usually...
     idir = GetWritableDocumentsDir();
 
-  result = androidFileChooser(&dir, idir, Title, _T(""), _T(""), true,
+  int result = androidFileChooser(&dir, idir, Title, _T(""), _T(""), true,
                               b_addFiles);  // Directories only, maybe add dirs
  // wxString dir_spec;
 //  int response = PlatformDirSelectorDialog(
