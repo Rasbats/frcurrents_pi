@@ -261,7 +261,7 @@ wxPoint g_mouse_pos_screen;
 
 void frcurrentsUIDialog::OnPopupClick(wxCommandEvent& evt) {
   switch (evt.GetId()) {
-    case ID_SOMETHING:
+    case ID_DASH_RESIZE:
       m_binResize = true;
       break;
       // case ID_SOMETHING_ELSE:
@@ -269,13 +269,13 @@ void frcurrentsUIDialog::OnPopupClick(wxCommandEvent& evt) {
   }
 }
 
-void frcurrentsUIDialog::OnDLeftClick(wxMouseEvent& event) {
+void frcurrentsUIDialog::OnRightClick(wxMouseEvent& event) {
   wxMenu mnu;
-  mnu.Append(ID_SOMETHING, "Resize...");
+  mnu.Append(ID_DASH_RESIZE, "Resize...");
   // mnu.Append(ID_SOMETHING_ELSE, "Do something else");
   mnu.Connect(wxEVT_COMMAND_MENU_SELECTED,
               wxCommandEventHandler(frcurrentsUIDialog::OnPopupClick), NULL,
-              this);
+              g_Window);
   PopupMenu(&mnu);
 }
 

@@ -63,8 +63,6 @@
 #include <wx/event.h>
 #include "ocpn_plugin.h"
 
-#define ID_SOMETHING 2001
-#define ID_SOMETHING_ELSE 2002
 
 enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
 
@@ -218,7 +216,7 @@ public:
   bool m_binResize2;
 
   void OnPopupClick(wxCommandEvent& evt);
-  void OnDLeftClick(wxMouseEvent& event);
+  void OnRightClick(wxMouseEvent& event);
 
 #endif
 
