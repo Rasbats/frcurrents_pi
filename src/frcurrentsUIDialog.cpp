@@ -275,7 +275,7 @@ void frcurrentsUIDialog::OnDLeftClick(wxMouseEvent& event) {
   // mnu.Append(ID_SOMETHING_ELSE, "Do something else");
   mnu.Connect(wxEVT_COMMAND_MENU_SELECTED,
               wxCommandEventHandler(frcurrentsUIDialog::OnPopupClick), NULL,
-              g_Window);
+              this);
   PopupMenu(&mnu);
 }
 
@@ -1144,7 +1144,6 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
     pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   }
 #else
-  g_Window = this;
   wxString dir_spec;
   int response = PlatformDirSelectorDialog(
       g_Window, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
