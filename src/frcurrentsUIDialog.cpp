@@ -275,7 +275,7 @@ void frcurrentsUIDialog::OnDLeftClick(wxMouseEvent& event) {
   // mnu.Append(ID_SOMETHING_ELSE, "Do something else");
   mnu.Connect(wxEVT_COMMAND_MENU_SELECTED,
               wxCommandEventHandler(frcurrentsUIDialog::OnPopupClick), NULL,
-              this);
+              g_Window);
   PopupMenu(&mnu);
 }
 
@@ -1223,7 +1223,6 @@ void frcurrentsUIDialog::LoadTCMFile() {
       TCDir = m_dirPicker1->GetValue();
     }
 #else
-    g_Window = this;
     wxString dir_spec;
     int response = PlatformDirSelectorDialog(g_Window, &dir_spec,
                                              _("Choose Harmonics Directory"),
