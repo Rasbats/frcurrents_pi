@@ -269,13 +269,13 @@ void frcurrentsUIDialog::OnPopupClick(wxCommandEvent& evt) {
   }
 }
 
-void frcurrentsUIDialog::OnRightClick(wxMouseEvent& event) {
+void frcurrentsUIDialog::OnDLeftClick(wxMouseEvent& event) {
   wxMenu mnu;
   mnu.Append(ID_DASH_RESIZE, "Resize...");
   // mnu.Append(ID_SOMETHING_ELSE, "Do something else");
   mnu.Connect(wxEVT_COMMAND_MENU_SELECTED,
               wxCommandEventHandler(frcurrentsUIDialog::OnPopupClick), NULL,
-              g_Window);
+              this);
   PopupMenu(&mnu);
 }
 
@@ -1213,7 +1213,7 @@ void frcurrentsUIDialog::LoadTCMFile() {
         "No Harmonics\nSelect the directory containing "
         "HARMONIC.IDX\n Using the dialog that follows");
 
-#ifndef __OCPN__ANDROID__
+#ifndef __ANDROID__
     TCDir = pPlugIn->GetFolderSelected();
     m_dirPicker1->SetValue(TCDir);
     wxDirDialog* d = new wxDirDialog(this, _("Choose the tcdata directory"), "",
@@ -1223,11 +1223,17 @@ void frcurrentsUIDialog::LoadTCMFile() {
       TCDir = m_dirPicker1->GetValue();
     }
 #else
-    wxString tc =
-        "/storage/emulated/0/Android/data/org.opencpn.opencpn/"
-        "files/tcdata";
-    m_dirPicker1->SetValue(tc);
-    TCDir = tc;
+    g_Window = this;
+    wxString dir_spec;
+    int response = PlatformDirSelectorDialog(g_Window, &dir_spec,
+                                             _("Choose Harmonics Directory"),
+                                             m_dirPicker1->GetValue());
+    if (response == wxID_OK) {
+      m_dirPicker1->SetValue(dir_spec);
+      m_FolderSelected = dir_spec;
+      pPlugIn->m_CopyFolderSelected = m_FolderSelected;
+      TCDir = tc;
+    }
 
 #endif
   }

@@ -216,7 +216,7 @@ public:
   bool m_binResize2;
 
   void OnPopupClick(wxCommandEvent& evt);
-  void OnRightClick(wxMouseEvent& event);
+  void OnDLeftClick(wxMouseEvent& event);
 
 #endif
 
