@@ -1232,7 +1232,7 @@ void frcurrentsUIDialog::LoadTCMFile() {
       m_dirPicker1->SetValue(dir_spec);
       m_FolderSelected = dir_spec;
       pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-      TCDir = tc;
+      TCDir = m_dirPicker1->GetValue();
     }
 
 #endif
