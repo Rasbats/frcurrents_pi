@@ -31,7 +31,7 @@
 #include <wx/dialog.h>
 #include <wx/checkbox.h>
 #include <wx/clrpicker.h>
-
+#include <wx/slider.h>
 ///////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ class frcurrentsUIDialogBase : public wxDialog
 	private:
 
 	protected:
-		wxButton* m_button8;
+		wxBitmapButton* m_button8;
 		wxDatePickerCtrl* m_datePicker1;
 		wxStaticText* m_staticTextHW;
 		wxChoice* m_choice2;
@@ -108,7 +108,8 @@ class frcurrentsPreferencesDialogBase : public wxDialog
 
 		// Virtual event handlers, override them in your derived class
 		virtual void OnChoice( wxCommandEvent& event ) { event.Skip(); }
-
+		virtual void OnIconsSlidersChange(wxCommandEvent& event) { event.Skip(); }
+		virtual void OnFontSlidersChange(wxCommandEvent & event) { event.Skip(); }
 
 	public:
 		wxCheckBox* m_cbUseRate;
@@ -121,6 +122,8 @@ class frcurrentsPreferencesDialogBase : public wxDialog
 		wxColourPickerCtrl* myColourPicker3;
 		wxColourPickerCtrl* myColourPicker4;
 		wxChoice* m_cStyle;
+		wxSlider* m_sIconSizeFactor;
+		wxSlider* m_sFontSizeFactor;
 
 		frcurrentsPreferencesDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Preferences"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxRESIZE_BORDER );
 

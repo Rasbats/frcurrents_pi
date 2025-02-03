@@ -139,6 +139,8 @@ public:
   void SetCursorLatLon(double lat, double lon);
   void SetFactoryOptions(bool set_val = false);
 
+  void SetScaledBitmaps(double scalefactor);
+
   void SetViewPort(PlugIn_ViewPort* vp);
   PlugIn_ViewPort* vp;
 

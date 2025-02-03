@@ -55,6 +55,7 @@ extern "C" DECL_EXP void destroy_pi(opencpn_plugin *p) { delete p; }
 //---------------------------------------------------------------------------------------------------------
 
 #include "icons.h"
+#include "ocpn_plugin.h"
 
 static wxBitmap load_plugin(const char *icon_name, const char *api_name) {
   wxBitmap bitmap;
@@ -83,24 +84,27 @@ static wxBitmap load_plugin(const char *icon_name, const char *api_name) {
   return bitmap;
 }
 
+frcurrents_pi* g_pi;
 //---------------------------------------------------------------------------------------------------------
 //
 //          PlugIn initialization and de-init
 //
 //---------------------------------------------------------------------------------------------------------
 
-frcurrents_pi::frcurrents_pi(void *ppimgr) : opencpn_plugin_116(ppimgr) {
+frcurrents_pi::frcurrents_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
   // Create the PlugIn icons
   initialize_images();
 
   m_panelBitmap = load_plugin("frcurrents_panel_icon", "frcurrents_pi");
 
   m_bShowfrcurrents = false;
+
+  g_pi = this;
 }
 
 frcurrents_pi::~frcurrents_pi(void) {
-  delete _img_frcurrents_pi;
-  delete _img_frcurrents;
+  if(_xpm_frcurrents_pi) delete _xpm_frcurrents_pi;
+  if(_xpm_frcurrents) delete _xpm_frcurrents;
 }
 
 int frcurrents_pi::Init(void) {
@@ -137,7 +141,7 @@ int frcurrents_pi::Init(void) {
         frcurrents_TOOL_POSITION, 0, this);
 #else
     m_leftclick_tool_id = InsertPlugInTool(
-        "", _img_frcurrents, _img_frcurrents, wxITEM_CHECK, _("frcurrents"),
+        "", _xpm_frcurrents_pi, _xpm_frcurrents, wxITEM_CHECK, _("frcurrents"),
        "", NULL, frcurrents_TOOL_POSITION, 0, this);
 #endif
   }
@@ -196,13 +200,33 @@ void frcurrents_pi::SetDefaults(void) {}
 
 int frcurrents_pi::GetToolbarToolCount(void) { return 1; }
 
+void frcurrents_pi::SetDialogFont(wxWindow* dialog, wxFont* font) {
+  /*We have to go down to all necessary windows levels. In this case
+  two levels is enough */
+  dialog->SetFont(*font); // dialog level
+  wxFont& ft = dialog->GetFont();
+  ft.SetNumericWeight(wxFONTWEIGHT_BOLD);
+  wxWindowList list = dialog->GetChildren(); // first level
+  for (wxWindowList::iterator it = list.begin(); it != list.end(); ++it) {
+    wxWindow* win = *it;
+    win->GetId() == wxID_FIND ? win->SetFont(ft) : win->SetFont(*font);
+    wxWindowList list1 = win->GetChildren(); // second level
+    for (wxWindowList::iterator it = list1.begin(); it != list1.end(); ++it) {
+      wxWindow* win1 = *it;
+      win1->GetId() == wxID_FIND ? win1->SetFont(ft) : win1->SetFont(*font);
+    }
+  }
+}
+
 void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
-  frcurrentsPreferencesDialog *Pref = new frcurrentsPreferencesDialog(parent);
+ frcurrentsPreferencesDialog *Pref = new frcurrentsPreferencesDialog(parent);
 
   Pref->m_cbUseRate->SetValue(m_bCopyUseRate);
   Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
   Pref->m_cbFillColour->SetValue(m_bfrcurrentsUseHiDef);
   Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
+  Pref->m_sIconSizeFactor->SetValue(my_IconsScaleFactor);
+  Pref->m_sFontSizeFactor->SetValue(my_FontpointSizeFactor);
 
   wxColour myC0 = wxColour(myVColour[0]);
   Pref->myColourPicker0->SetColour(myC0);
@@ -285,6 +309,12 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
 }
 
 void frcurrents_pi::OnToolbarToolCallback(int id) {
+
+  double scalefactor = GetOCPNGUIToolScaleFactor_PlugIn();
+  scalefactor *= OCPN_GetWinDIPScaleFactor() * (1. + (my_IconsScaleFactor / 10.));
+  wxFont f = *OCPNGetFont(_("Dialog"), 10);
+  f.SetPointSize(f.GetPointSize() + my_FontpointSizeFactor);
+  wxFont* font = &f;
   if (NULL == m_pfrcurrentsDialog) {
     m_pfrcurrentsDialog = new frcurrentsUIDialog(m_parent_window, this);
     wxPoint p = wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y);
@@ -304,6 +334,8 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
 
   //    Toggle dialog?
   if (m_bShowfrcurrents) {
+    SetDialogFont(m_pfrcurrentsDialog, font);
+    m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
     m_pfrcurrentsDialog->Move(
         wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y));
     m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
@@ -392,6 +424,8 @@ bool frcurrents_pi::LoadConfig(void) {
 
   m_CopyArrowStyle = pConf->Read("frcurrentsUseArrowStyle", 1);
 
+  my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
+  my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
   m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
   m_frcurrents_dialog_sx = pConf->Read("frcurrentsDialogSizeX", 300L);
@@ -427,6 +461,9 @@ bool frcurrents_pi::SaveConfig(void) {
 
     pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 
+    pConf->Write("frcurrentsIconscalefactor", my_IconsScaleFactor);
+    pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
+
     pConf->Write("frcurrentsDialogSizeX", m_frcurrents_dialog_sx);
     pConf->Write("frcurrentsDialogSizeY", m_frcurrents_dialog_sy);
     pConf->Write("frcurrentsDialogPosX", m_frcurrents_dialog_x);
@@ -446,4 +483,31 @@ bool frcurrents_pi::SaveConfig(void) {
 
 void frcurrents_pi::SetColorScheme(PI_ColorScheme cs) {
   DimeWindow(m_pfrcurrentsDialog);
+}
+
+//-----------------------------------------------------------------------
+// implantation prerences dialog
+//------------------------------------------------------------------------
+void frcurrentsPreferencesDialog::OnIconsSlidersChange(wxCommandEvent& event) {
+  if (g_pi) {
+    g_pi->my_IconsScaleFactor = (double)event.GetInt();
+    if (g_pi->m_pfrcurrentsDialog) {
+      double  scalefactor = GetOCPNGUIToolScaleFactor_PlugIn()
+        * OCPN_GetWinDIPScaleFactor() * (1. + ((double)event.GetInt() / 10.));
+      g_pi->m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
+      g_pi->m_pfrcurrentsDialog->Fit();
+    }
+  }
+}
+void frcurrentsPreferencesDialog::OnFontSlidersChange(wxCommandEvent& event) {
+  if (g_pi) {
+    g_pi->my_FontpointSizeFactor = event.GetInt();
+    if (g_pi->m_pfrcurrentsDialog) {
+      wxFont f = *OCPNGetFont(_("Dialog"), 10);
+      f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
+      wxFont* font = &f;
+      g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, font);
+      g_pi->m_pfrcurrentsDialog->Fit();
+    }
+  }
 }

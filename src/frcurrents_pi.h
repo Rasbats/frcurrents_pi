@@ -51,7 +51,7 @@ extern wxString myVColour[5];
 
 #define frcurrents_TOOL_POSITION    -1          // Request default positioning of toolbar tool
 
-class frcurrents_pi : public opencpn_plugin_116
+class frcurrents_pi : public opencpn_plugin_118
 {
 public:
       frcurrents_pi(void *ppimgr);
@@ -65,6 +65,10 @@ public:
       int GetAPIVersionMinor();
       int GetPlugInVersionMajor();
       int GetPlugInVersionMinor();
+      int GetPlugInVersionPatch() { return PLUGIN_VERSION_PATCH; }
+      int GetPlugInVersionPost() { return PLUGIN_VERSION_TWEAK; }
+      const char* GetPlugInVersionPre() { return PKG_PRERELEASE; }
+      const char* GetPlugInVersionBuild() { return PKG_BUILD_INFO; }
       wxBitmap* GetPlugInBitmap();
       wxString GetCommonName();
       wxString GetShortDescription();
@@ -77,6 +81,7 @@ public:
       void SendTimelineMessage(wxDateTime time);
       void SetDefaults(void);
       int GetToolbarToolCount(void);
+      void SetDialogFont(wxWindow* dialog, wxFont* font);
       void ShowPreferencesDialog( wxWindow* parent );
       void OnToolbarToolCallback(int id);
 
@@ -105,6 +110,12 @@ public:
       int m_frcurrents_dialog_x, m_frcurrents_dialog_y;
       int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
 
+      frcurrentsUIDialog* m_pfrcurrentsDialog;
+
+      double            m_IconsScaleFactor;
+      double            my_IconsScaleFactor;
+      int               my_FontpointSizeFactor;
+
 private:
       bool LoadConfig(void);
       bool SaveConfig(void);
@@ -112,7 +123,6 @@ private:
       wxFileConfig     *m_pconfig;
       wxWindow         *m_parent_window;
 
-      frcurrentsUIDialog     *m_pfrcurrentsDialog;
       frcurrentsOverlayFactory *m_pfrcurrentsOverlayFactory;
 
       int              m_display_width, m_display_height;
@@ -130,6 +140,7 @@ private:
      // frcurrentsTimelineRecordSet *m_pLastTimelineSet;
 
       // preference data
+
       bool              m_bfrcurrentsUseHiDef;
       bool              m_bfrcurrentsUseGradualColors;
 	  bool              m_bCopyUseRate;
@@ -163,6 +174,7 @@ public:
     ~frcurrentsPreferencesDialog() {}
 
 private:
-    
+  void OnIconsSlidersChange(wxCommandEvent& event);
+  void OnFontSlidersChange(wxCommandEvent& event);
 };
 #endif

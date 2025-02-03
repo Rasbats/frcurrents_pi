@@ -6,17 +6,21 @@
 #ifndef WX_PRECOMP
 #	include <wx/wx.h>
 #endif
-
+#include "folder.xpm"
 extern void initialize_images(void);
 
-extern wxBitmap *_img_frcurrents_pi;
-extern wxBitmap *_img_frcurrents;
-extern wxBitmap *_img_Clock;
+extern wxBitmap *_xpm_frcurrents_pi;
+extern wxBitmap *_xpm_frcurrents;
+//extern wxBitmap *_img_Clock;
 
 #ifdef ocpnUSE_SVG
 extern wxString _svg_frcurrents;
 extern wxString _svg_frcurrents_rollover;
 extern wxString _svg_frcurrents_toggled;
+extern wxString _svg_frcurrents_info;
+extern wxString _svg_frcurrents_next;
+extern wxString _svg_frcurrents_prev;
+extern wxString _svg_frcurrents_now;
 #endif
 
 
