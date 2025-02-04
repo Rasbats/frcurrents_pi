@@ -1222,7 +1222,12 @@ void frcurrentsUIDialog::LoadTCMFile() {
       m_dirPicker1->SetValue(d->GetPath());
       TCDir = m_dirPicker1->GetValue();
     }
-#else    
+#else
+    wxString tc =
+        "/storage/emulated/0/Android/data/org.opencpn.opencpn/"
+        "files/";
+    m_dirPicker1->SetValue(tc);
+    TCDir = tc;
 
     wxMessageBox(
         "Harmonics not installed \nUse the button "
@@ -1351,12 +1356,16 @@ double frcurrentsUIDialog::CalcRange_Brest() {
     wxMessageBox(_("No tidal data for this port"), _("No Tidal Data"));
 
 #ifdef __ANDROID__
+    wxString tc =
+        "/storage/emulated/0/Android/data/org.opencpn.opencpn/"
+        "files/";
+    m_dirPicker1->SetValue(tc);
 
     wxMessageBox(
         "Harmonics not installed \nUse the button "
         "Select Directory"
         "");
-    return 999.0;
+    return 999;
 
 #endif
 
@@ -1469,6 +1478,10 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
     wxMessageBox(_("No tidal data for this port"), _("No Tidal Data"));
 
 #ifdef __ANDROID__
+    wxString tc =
+        "/storage/emulated/0/Android/data/org.opencpn.opencpn/"
+        "files/";
+    m_dirPicker1->SetValue(tc);
 
     wxMessageBox(
         "Harmonics not installed \nUse the button "
@@ -1605,6 +1618,10 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
     wxMessageBox(_("No tidal data for this port"), _("No Tidal Data"));
 
 #ifdef __ANDROID__
+    wxString tc =
+        "/storage/emulated/0/Android/data/org.opencpn.opencpn/"
+        "files/";
+    m_dirPicker1->SetValue(tc);
 
     wxMessageBox(
         "Harmonics not installed \nUse the button "
