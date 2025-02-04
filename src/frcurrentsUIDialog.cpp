@@ -1145,8 +1145,9 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
   }
 #else
   wxString dir_spec;
-  int response = PlatformDirSelectorDialog(
-      g_Window, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
+  int response = PlatformDirSelectorDialog(g_Window, &dir_spec,
+                                           _("Choose Harmonics Directory"),
+                                           m_dirPicker1->GetValue());
   if (response == wxID_OK) {
     m_dirPicker1->SetValue(dir_spec);
     m_FolderSelected = dir_spec;
@@ -1222,17 +1223,18 @@ void frcurrentsUIDialog::LoadTCMFile() {
       TCDir = m_dirPicker1->GetValue();
     }
 #else
-    wxString dir_spec;
-    int response = PlatformDirSelectorDialog(g_Window, &dir_spec,
-                                             _("Choose Harmonics Directory"),
-                                             m_dirPicker1->GetValue());
-    if (response == wxID_OK) {
-      m_dirPicker1->SetValue(dir_spec);
-      m_FolderSelected = dir_spec;
-      pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-      TCDir = m_dirPicker1->GetValue();
-    }
+    wxString tc =
+        "/storage/emulated/0/Android/data/org.opencpn.opencpn/"
+        "files/";
+    m_dirPicker1->SetValue(tc);
+    TCDir = tc;
 
+    wxMessageBox(
+        "Harmonics not installed \nUse the button "
+        "Select Directory"
+        "");
+    return;
+   
 #endif
   }
   TCDir.Append(wxFileName::GetPathSeparator());
