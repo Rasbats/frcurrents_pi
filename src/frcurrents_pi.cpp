@@ -201,7 +201,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
 
   Pref->m_cbUseRate->SetValue(m_bCopyUseRate);
   Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
-  Pref->m_cbFillColour->SetValue(m_bfrcurrentsUseHiDef);
+  Pref->m_cbFillColour->SetValue(m_bCopyUseFillColour);
   Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
 
   wxColour myC0 = wxColour(myVColour[0]);
@@ -233,8 +233,8 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
     bool copyresolution = Pref->m_cbUseHighRes->GetValue();
+    bool copyFillColour = Pref->m_cbFillColour->GetValue();
 
-    bool FillColour = Pref->m_cbFillColour->GetValue();
     int ArrowStyle = Pref->m_cStyle->GetSelection();
 
     if (m_bCopyUseRate != copyrate) {
@@ -249,8 +249,8 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
       m_bCopyUseHighRes = copyresolution;
     }
 
-    if (m_bfrcurrentsUseHiDef != FillColour) {
-      m_bfrcurrentsUseHiDef = FillColour;
+    if (m_bCopyUseFillColour != copyFillColour) {
+      m_bCopyUseFillColour = copyFillColour;
     }
 
     if (m_CopyArrowStyle != ArrowStyle) {
@@ -261,7 +261,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
       m_pfrcurrentsDialog->m_bUseRate = m_bCopyUseRate;
       m_pfrcurrentsDialog->m_bUseDirection = m_bCopyUseDirection;
       m_pfrcurrentsDialog->m_bUseHighRes = m_bCopyUseHighRes;
-      m_pfrcurrentsDialog->m_bUseFillColour = m_bfrcurrentsUseHiDef;
+      m_pfrcurrentsDialog->m_bUseFillColour = m_bCopyUseFillColour;
       m_pfrcurrentsDialog->m_UseArrowStyle = m_CopyArrowStyle;
 
       m_pfrcurrentsDialog->myUseColour[0] = myVColour[0];
@@ -274,7 +274,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     if (m_pfrcurrentsOverlayFactory) {
       m_pfrcurrentsOverlayFactory->m_bShowRate = m_bCopyUseRate;
       m_pfrcurrentsOverlayFactory->m_bShowDirection = m_bCopyUseDirection;
-      m_pfrcurrentsOverlayFactory->m_bShowFillColour = m_bfrcurrentsUseHiDef;
+      m_pfrcurrentsOverlayFactory->m_bShowFillColour = m_bCopyUseFillColour;
       m_pfrcurrentsOverlayFactory->m_bHighResolution = m_bCopyUseHighRes;
       m_pfrcurrentsOverlayFactory->m_ShowArrowStyle = m_CopyArrowStyle;
     }
@@ -297,7 +297,6 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
         new frcurrentsOverlayFactory(*m_pfrcurrentsDialog);
     m_pfrcurrentsOverlayFactory->SetParentSize(m_display_width,
                                                m_display_height);
-
   }
 
   // Toggle frcurrents overlay display
@@ -379,8 +378,6 @@ void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
   if (m_pfrcurrentsDialog) m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
 }
 
-
-
 bool frcurrents_pi::LoadConfig(void) {
   wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 
@@ -391,7 +388,7 @@ bool frcurrents_pi::LoadConfig(void) {
   m_bCopyUseRate = pConf->Read("frcurrentsUseRate", 1);
   m_bCopyUseDirection = pConf->Read("frcurrentsUseDirection", 1);
   m_bCopyUseHighRes = pConf->Read("frcurrentsUseHighResolution", 1);
-  m_bfrcurrentsUseHiDef = pConf->Read("frcurrentsUseFillColour", 1);
+  m_bCopyUseFillColour = pConf->Read("frcurrentsUseFillColour", 1);
 
   m_CopyArrowStyle = pConf->Read("frcurrentsUseArrowStyle", 1);
 
@@ -424,7 +421,7 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->Write("frcurrentsUseRate", m_bCopyUseRate);
     pConf->Write("frcurrentsUseDirection", m_bCopyUseDirection);
     pConf->Write("frcurrentsUseHighResolution", m_bCopyUseHighRes);
-    pConf->Write("frcurrentsUseFillColour", m_bfrcurrentsUseHiDef);
+    pConf->Write("frcurrentsUseFillColour", m_bCopyUseFillColour);
 
     pConf->Write("frcurrentsUseArrowStyle", m_CopyArrowStyle);
 

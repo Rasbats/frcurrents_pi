@@ -92,7 +92,7 @@ public:
   bool GetCopyRate() { return m_bCopyUseRate; }
   bool GetCopyDirection() { return m_bCopyUseDirection; }
   bool GetCopyResolution() { return m_bCopyUseHighRes; }
-  bool GetCopyColour() { return m_bfrcurrentsUseHiDef; }
+  bool GetCopyColour() { return m_bCopyUseFillColour; }
   int GetCopyArrowStyle() { return m_CopyArrowStyle; }
 
   wxString GetFolderSelected() { return m_CopyFolderSelected; }
@@ -107,7 +107,6 @@ public:
   int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
   bool LoadConfig(void);
   bool SaveConfig(void);
-  
 
 private:
   int m_position_menu_id;
@@ -134,13 +133,14 @@ private:
   // frcurrentsTimelineRecordSet *m_pLastTimelineSet;
 
   // preference data
-  bool m_bfrcurrentsUseHiDef;
-  bool m_bfrcurrentsUseGradualColors;
+
+  bool m_bCopyGradualColors;
   bool m_bCopyUseRate;
   bool m_bCopyUseDirection;
   bool m_bCopyUseHighRes;
+  bool m_bCopyUseFillColour;
   int m_CopyArrowStyle;
-
+  
   int m_bTimeZone;
 
   int m_bStartOptions;

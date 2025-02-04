@@ -245,6 +245,7 @@ private:
   int FindTidePortUsingChoice(wxString inAreaNumber);
 
   void OnSelectData(wxCommandEvent& event);
+  bool m_harmonics;
   void LoadTCMFile();
   void LoadHarmonics();
   int FindPortID(wxString myPort);
