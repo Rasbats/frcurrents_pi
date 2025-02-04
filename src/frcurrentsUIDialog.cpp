@@ -1360,6 +1360,7 @@ double frcurrentsUIDialog::CalcRange_Brest() {
         "/storage/emulated/0/Android/data/org.opencpn.opencpn/"
         "files/";
     m_dirPicker1->SetValue(tc);
+    TCDir = tc;
 
     wxMessageBox(
         "Harmonics not installed \nUse the button "
@@ -1482,6 +1483,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
         "/storage/emulated/0/Android/data/org.opencpn.opencpn/"
         "files/";
     m_dirPicker1->SetValue(tc);
+    TCDir = tc;
 
     wxMessageBox(
         "Harmonics not installed \nUse the button "
@@ -1622,6 +1624,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
         "/storage/emulated/0/Android/data/org.opencpn.opencpn/"
         "files/";
     m_dirPicker1->SetValue(tc);
+    TCDir = tc;
 
     wxMessageBox(
         "Harmonics not installed \nUse the button "
