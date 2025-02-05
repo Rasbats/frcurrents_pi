@@ -31,7 +31,7 @@
   #include "wx/wx.h"
 #endif //precompiled headers
 
-#include <wx/glcanvas.h>
+
 #include <wx/graphics.h>
 #include <wx/progdlg.h>
 
@@ -61,6 +61,8 @@ typedef void (*_GLUfuncptr)();
 #error platform not supported.
 #endif  // __ANDROID__
 #endif  // ocpnUSE_GL
+
+#include <wx/glcanvas.h>
 
 #ifdef __WXMSW__
 #define snprintf _snprintf
