@@ -272,12 +272,12 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
     wxBrush brush(colour);
 
     if( m_dc ) {
-        wxPen pen( colour, 2 );
+        wxPen pen( colour, 4 );
 
         m_dc->SetPen( pen );
         m_dc->SetBrush( brush);
     }
-
+    m_dc->DrawLine(100, 100, 150, 150);
     float sin_rot = sin( rot_angle * PI / 180. );
     float cos_rot = cos( rot_angle * PI / 180. );
 
