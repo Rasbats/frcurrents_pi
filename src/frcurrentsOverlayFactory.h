@@ -40,8 +40,7 @@ class wxDC;
 
 #ifdef __ANDROID__
 #include <qopengl.h>
-#include "gl_private.h"
-#include <GLES2/gl2.h>
+#include "GL/gl_private.h"
 #endif
 
 //----------------------------------------------------------------------------------------------------------
