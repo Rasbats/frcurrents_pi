@@ -38,11 +38,6 @@ class plugIn_Viewport;
 class piDC;
 class wxDC;
 
-#ifdef __ANDROID__
-#include <qopengl.h>
-#include "GL/gl_private.h"
-#endif
-
 //----------------------------------------------------------------------------------------------------------
 //    frcurrents Overlay Specification
 //----------------------------------------------------------------------------------------------------------
