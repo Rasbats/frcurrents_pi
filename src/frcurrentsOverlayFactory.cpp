@@ -510,8 +510,8 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 
 					bool d = drawCurrentArrow( p.x, p.y,
 												dir - 90 , scale / 100, myCurrent );
-					//if (d) wxMessageBox("Drawing");
-					//else { wxMessageBox("Not Drawing"); }
+					if (d) wxMessageBox("Drawing");
+					else { wxMessageBox("Not Drawing"); }
 
 					int shift = 0;
 
