@@ -242,7 +242,11 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
 	GetArrowStyle(m_ShowArrowStyle);
 
     wxColour colour;
+
     colour = GetSpeedColour( m_rate );
+
+    wxString c = colour.GetAsString();
+    wxMessageBox("c");
 
     c_GLcolour = colour;  // for filling GL arrows
     if( scale <= 1e-2 )

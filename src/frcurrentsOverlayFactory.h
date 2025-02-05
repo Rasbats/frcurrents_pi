@@ -38,9 +38,10 @@ class plugIn_Viewport;
 class piDC;
 class wxDC;
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
 #include <qopengl.h>
 #include "gl_private.h"
+#include <GLES2/gl2.h>
 #endif
 
 //----------------------------------------------------------------------------------------------------------
@@ -108,6 +109,7 @@ public:
   std::map<wxString, wxImage> m_labelCacheText;
 
   piDC *m_dc;
+  wxMemoryDC mdc;
 
   wxPoint p[9];
   wxPoint polyPoints[7];
