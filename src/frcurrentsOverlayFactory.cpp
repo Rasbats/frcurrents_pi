@@ -40,7 +40,7 @@
 
 #ifdef __ANDROID__
 #include <qopengl.h>
-#include <GL/gl_private.h>  // this is a cut-down version of gl.h
+#include "GL/gl_private.h"  // this is a cut-down version of gl.h
 #include <GLES2/gl2.h>
 
 #elif defined(ocpnUSE_GL)
@@ -207,7 +207,7 @@ void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort *vp) {
     m_dc->SetPen(pen);
     m_dc->SetBrush(brush);
   }
-  m_dc->StrokeLine(100, 100, 150, 150);
+  m_dc->DrawLine(100, 100, 150, 150, true);
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {

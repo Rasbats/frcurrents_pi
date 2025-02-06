@@ -32,6 +32,13 @@
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
 
+
+#if defined(__OCPN__ANDROID__)
+
+#include <qopengl.h>
+#include  "GL/gl_private.h"  // this is a cut-down version of gl.h
+#endif
+
 using namespace std;
 
 class plugIn_Viewport;
