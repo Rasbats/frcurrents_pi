@@ -189,9 +189,25 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
 
     wxColour myColour = wxColour("RED");
 
-		RenderMyArrows(&vp);
+    RenderTestLine(&vp);
+
+		//RenderMyArrows(&vp);
 
     return true;
+}
+
+void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort *vp) {
+
+  wxColour colour(255, 0, 0);
+  wxBrush brush(colour);
+
+  if (m_dc) {
+    wxPen pen(colour, 4);
+
+    m_dc->SetPen(pen);
+    m_dc->SetBrush(brush);
+  }
+  m_dc->DrawLine(100, 100, 150, 150);
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
@@ -277,7 +293,6 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
         m_dc->SetPen( pen );
         m_dc->SetBrush( brush);
     }
-    m_dc->DrawLine(100, 100, 150, 150);
     float sin_rot = sin( rot_angle * PI / 180. );
     float cos_rot = cos( rot_angle * PI / 180. );
 

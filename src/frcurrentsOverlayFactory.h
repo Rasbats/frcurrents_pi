@@ -112,8 +112,8 @@ public:
 private:
   bool inGL;
   wxPoint myArrowArray[9];
-
-  bool DoRenderfrcurrentsOverlay(PlugIn_ViewPort *vp);
+  void RenderTestLine(PlugIn_ViewPort *vp);
+  //bool DoRenderfrcurrentsOverlay(PlugIn_ViewPort *vp);
   void RenderMyArrows(PlugIn_ViewPort *vp);
   int m_fromHW;
   void GetArrowStyle(int my_style);
