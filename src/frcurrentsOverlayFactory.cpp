@@ -182,7 +182,7 @@ void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort *vp) {
     m_dc->SetPen(pen);
     m_dc->SetBrush(brush);
   }
-  m_dc->DrawLine(100, 100, 150, 150, true);
+  m_dc->StrokeLine(100, 100, 150, 150);
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
