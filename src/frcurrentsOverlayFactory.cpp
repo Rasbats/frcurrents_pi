@@ -171,7 +171,7 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
     return true;
 }
 
-void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort *vp) {
+void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort &vp) {
 
   wxColour colour(255, 0, 0);
   wxBrush brush(colour);
@@ -182,7 +182,7 @@ void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort *vp) {
     m_dc->SetPen(pen);
     m_dc->SetBrush(brush);
   }
-  m_dc->StrokeLine(100, 100, 150, 150);
+  m_dc->StrokeLine(100, 100, 400, 400);
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
