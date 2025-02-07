@@ -33,16 +33,17 @@
 #include <wx/gdicmn.h>
 
 
-#ifndef __OCPN__ANDROID__
-#include <GL/gl.h>
-#include <GL/glu.h>
+#if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
+#include <qopengl.h>
+#include "GL/gl_private.h"
+#elif defined(__APPLE__)
+#include "OpenGL/gl.h"
+#include "OpenGL/glu.h"
 #else
 #include "GL/gl.h"
-#include "qopengl.h"  // this gives us the qt runtime gles2.h
-#include "GL/gl_private.h"
+#include "GL/glu.h"
+#include "GL/glext.h"
 #endif
-
-#include <wx/glcanvas.h>
 
 using namespace std;
 
