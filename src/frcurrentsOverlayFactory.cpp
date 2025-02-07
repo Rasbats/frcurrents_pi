@@ -164,14 +164,14 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
 
     wxColour myColour = wxColour("RED");
 
-    RenderTestLine(vp);
+    RenderTestLine(&vp);
 
 		//RenderMyArrows(&vp);
 
     return true;
 }
 
-void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort &vp) {
+void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort *vp) {
 
   wxColour colour(255, 0, 0);
   wxBrush brush(colour);
