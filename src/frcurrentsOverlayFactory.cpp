@@ -31,21 +31,13 @@
   #include "wx/wx.h"
 #endif //precompiled headers
 
-#include <wx/glcanvas.h>
+
 #include <wx/graphics.h>
 #include <wx/progdlg.h>
 
 #include "frcurrents_pi.h"
 #include <vector>
 
-#ifdef __WXOSX__
-# include <OpenGL/OpenGL.h>
-# include <OpenGL/gl3.h>
-#endif
-
-#ifdef USE_GLES2
-#include "GLES2/gl2.h"
-#endif
 
 #ifdef __WXMSW__
 #define snprintf _snprintf
@@ -172,9 +164,25 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
 
     wxColour myColour = wxColour("RED");
 
+    //RenderTestLine(&vp);
+
 		RenderMyArrows(&vp);
 
     return true;
+}
+
+void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort *vp) {
+
+  wxColour colour(255, 0, 0);
+  wxBrush brush(colour);
+
+  if (m_dc) {
+    wxPen pen(colour, 4);
+
+    m_dc->SetPen(pen);
+    m_dc->SetBrush(brush);
+  }
+  m_dc->DrawLine(100, 100, 400, 400, true);
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
@@ -242,7 +250,11 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
 	GetArrowStyle(m_ShowArrowStyle);
 
     wxColour colour;
+
     colour = GetSpeedColour( m_rate );
+
+    wxString c = colour.GetAsString();
+    //wxMessageBox(c);
 
     c_GLcolour = colour;  // for filling GL arrows
     if( scale <= 1e-2 )
@@ -251,12 +263,11 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
     wxBrush brush(colour);
 
     if( m_dc ) {
-        wxPen pen( colour, 2 );
+        wxPen pen( colour, 4 );
 
         m_dc->SetPen( pen );
         m_dc->SetBrush( brush);
     }
-
     float sin_rot = sin( rot_angle * PI / 180. );
     float cos_rot = cos( rot_angle * PI / 180. );
 

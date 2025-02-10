@@ -31,7 +31,7 @@ set(OCPN_RELEASE_REPO
 # -------  Plugin setup --------
 #
 set(PKG_NAME frcurrents_pi)
-set(PKG_VERSION  1.14.0)
+set(PKG_VERSION  1.15.0)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME frcurrents)    # Dialogs, installer artifacts, ...
@@ -46,18 +46,30 @@ set(PKG_HOMEPAGE https://github.com/Rasbats/frcurrents_pi)
 set(PKG_INFO_URL https://opencpn.org/OpenCPN/plugins/frcurrents.html)
 
 set(SRC
-            src/frcurrents_pi.h
-            src/frcurrents_pi.cpp
-            src/frcurrentsOverlayFactory.cpp
-            src/frcurrentsOverlayFactory.h
-            src/frcurrentsUIDialogBase.cpp
-            src/frcurrentsUIDialogBase.h
-            src/frcurrentsUIDialog.cpp
-            src/frcurrentsUIDialog.h
-            src/icons.h
-            src/icons.cpp
-            src/tcmgr.cpp
-            src/tcmgr.h
+        src/frcurrents_pi.h
+        src/frcurrents_pi.cpp
+        src/frcurrentsOverlayFactory.cpp
+        src/frcurrentsOverlayFactory.h
+        src/frcurrentsUIDialogBase.cpp
+        src/frcurrentsUIDialogBase.h
+        src/frcurrentsUIDialog.cpp
+        src/frcurrentsUIDialog.h
+        src/icons.h
+        src/icons.cpp
+        src/tcmgr.cpp
+        src/tcmgr.h
+        src/frcurrents_pi.h
+        src/frcurrents_pi.cpp
+        src/frcurrentsOverlayFactory.cpp
+        src/frcurrentsOverlayFactory.h
+        src/frcurrentsUIDialogBase.cpp
+        src/frcurrentsUIDialogBase.h
+        src/frcurrentsUIDialog.cpp
+        src/frcurrentsUIDialog.h
+        src/icons.h
+        src/icons.cpp
+        src/tcmgr.cpp
+        src/tcmgr.h
         src/IDX_entry.cpp
         src/IDX_entry.h
         src/logger.cpp
@@ -78,7 +90,7 @@ set(SRC
         src/folder.xpm
 )
 
-set(PKG_API_LIB api-16)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
+set(PKG_API_LIB api-18)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
 
 macro(late_init)
   # Perform initialization after the PACKAGE_NAME library, compilers

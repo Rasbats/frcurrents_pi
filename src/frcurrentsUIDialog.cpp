@@ -41,7 +41,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "folder.xpm"
 #include "frcurrents_pi.h"
 #include "icons.h"
 
@@ -200,11 +199,6 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     myUseColour[3] = myVColour[3];
     myUseColour[4] = myVColour[4];
   }
-
-  m_bpPrev->SetBitmap(wxBitmap(prev1));
-  m_bpNext->SetBitmap(wxBitmap(next1));
-  m_bpNow->SetBitmap(*_img_Clock);
-
   ptcmgr = NULL;
 
   // Fit();
@@ -468,6 +462,35 @@ void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
 }
   */
 
+void frcurrentsUIDialog::SetScaledBitmaps(double scalefactor) {
+  //  Round to the nearest "quarter", to avoid rendering artifacts
+  double myscaledFactor = wxRound(scalefactor * 4.0) / 4.0;
+  int w, h;
+  w = 32 * scalefactor; // 32x32 is the standard bitmap's size
+  h = 32 * scalefactor;
+
+#ifdef ocpnUSE_SVG
+  wxBitmap bitmap = GetBitmapFromSVGFile(_svg_frcurrents_info, w, h);
+  m_button8->SetBitmap(bitmap);
+  bitmap = GetBitmapFromSVGFile(_svg_frcurrents_next, w, h);
+  m_bpNext->SetBitmap(bitmap);
+  bitmap = GetBitmapFromSVGFile(_svg_frcurrents_prev, w, h);
+  m_bpPrev->SetBitmap(bitmap);
+  bitmap = GetBitmapFromSVGFile(_svg_frcurrents_now, w, h);
+  m_bpNow->SetBitmap(bitmap);
+#else
+  wxImage im0 = wxBitmap(prev_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  m_bpPrev->SetBitmap(wxBitmap(im0));
+  wxImage im1 = wxBitmap(next_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  m_bpNext->SetBitmap(wxBitmap(im1));
+  wxImage im2 = wxBitmap(info_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  m_button8->SetBitmap(wxBitmap(im2));
+  wxImage im3 = wxBitmap(now_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  m_bpNow->SetBitmap(wxBitmap(im3));
+#endif
+
+  this->Refresh();
+}
 void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
   m_cursor_lon = lon;
   m_cursor_lat = lat;
@@ -522,7 +545,7 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
   label_array[3] = _("HW-3");
   label_array[4] = _("HW-2");
   label_array[5] = _("HW-1");
-  label_array[6] = _("High Water");
+  label_array[6] = _("HW");
   label_array[7] = _("HW+1");
   label_array[8] = _("HW+2");
   label_array[9] = _("HW+3");
@@ -536,7 +559,7 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
   label_lw[3] = _("LW-3");
   label_lw[4] = _("LW-2");
   label_lw[5] = _("LW-1");
-  label_lw[6] = _("Low Water");
+  label_lw[6] = _("LW");
   label_lw[7] = _("LW+1");
   label_lw[8] = _("LW+2");
   label_lw[9] = _("LW+3");
@@ -578,18 +601,18 @@ void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
   if (button_id == -1) {
     button_id = 0;
   }
+  wxString s2;
   if (m_bUseBM) {
-    m_staticText211->SetLabel(label_lw[button_id]);
+    s2 = label_lw[button_id];
   } else {
-    m_staticText211->SetLabel(label_array[button_id]);
+    s2 = label_array[button_id];
   }
-
   wxDateTime this_now = wxDateTime::Now();
   wxString s0 = this_now.Format("%a %d %b %Y");
   wxString s1 = this_now.Format("%H:%M");
-  wxString s2 = s0 + " " + s1;
 
-  m_staticText2->SetLabel(s2);
+  m_staticText2->SetLabel(s0);
+  m_staticText211->SetLabel(s1 + "    " + s2);
 
   SetCorrectHWSelection();
 
@@ -618,19 +641,18 @@ void frcurrentsUIDialog::SetNow() {
   if (button_id == -1) {
     button_id = 0;
   }
-
+  wxString s2;
   if (m_bUseBM) {
-    m_staticText211->SetLabel(label_lw[button_id]);
+    s2 = label_lw[button_id];
   } else {
-    m_staticText211->SetLabel(label_array[button_id]);
+    s2 = label_array[button_id];
   }
-
   wxDateTime this_now = wxDateTime::Now();
   wxString s0 = this_now.Format("%a %d %b %Y");
   wxString s1 = this_now.Format("%H:%M");
-  wxString s2 = s0 + " " + s1;
 
-  m_staticText2->SetLabel(s2);
+  m_staticText2->SetLabel(s0);
+  m_staticText211->SetLabel(s1 + "    " + s2);
 
   SetCorrectHWSelection();
 
@@ -754,8 +776,8 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   bool later = m_SelectedDate.GetTicks() > selectedDateTicks;
   //  end new date
 
-  m_staticText2->SetLabel("  ");
-  m_staticText211->SetLabel("  ");
+  m_staticText2->SetLabel("");
+  m_staticText211->SetLabel("");
 
   //    Clear the Choice ListBox
   m_choice2->Clear();
@@ -795,12 +817,12 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   m_dt.ParseDateTime(m_choice2->GetString(m_myChoice));
   m_dt.Subtract(wxTimeSpan::Hours(6));
   m_dt.Add(wxTimeSpan::Hours(button_id));
-  m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y %H:%M"));
-
+  m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+  wxString t = m_dt.Format("%H:%M") + "    ";
   if (m_bUseBM)
-    m_staticText211->SetLabel(label_lw[button_id]);
+    m_staticText211->SetLabel(t + label_lw[button_id]);
   else
-    m_staticText211->SetLabel(label_array[button_id]);
+    m_staticText211->SetLabel(t + label_array[button_id]);
 
   //   prepare to a further usage of the 'next' or 'previous' buttons
   next_id = button_id;
@@ -812,8 +834,8 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
 }
 
 void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
-  m_staticText2->SetLabel("  ");
-  m_staticText211->SetLabel("  ");
+  m_staticText2->SetLabel("");
+  m_staticText211->SetLabel("");
 
   int ma = m_choiceArea->GetCurrentSelection();
   wxString sa = m_choiceArea->GetString(ma).Left(3);
@@ -841,8 +863,8 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
 }
 
 void frcurrentsUIDialog::OnPortListed() {
-  m_staticText2->SetLabel("  ");
-  m_staticText211->SetLabel("  ");
+  m_staticText2->SetLabel("");
+  m_staticText211->SetLabel("");
 
   int ma = m_choiceArea->GetCurrentSelection();
   wxString sa = m_choiceArea->GetString(ma).Left(3);
@@ -1474,10 +1496,11 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   // Get the timezone of the station
   int h = m_stationOffset_mins / 60;
   int h1 = m_stationOffset_mins % 60;
+  m_stz = "Time Zone : UTC";
   if (h1 == 0)
-    m_stz.Printf("Z %+03d", h);
+    m_stz << wxString::Format("%+03d", h);
   else
-    m_stz.Printf("Z %+03d:%02d", h, h1);
+    m_stz << wxString::Format(" % +03d:%02d", h, h1);
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
@@ -1532,22 +1555,19 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
                 tt_nextlocaltzday) {  // Only show events visible in graphic
           // presently shown
           wxDateTime tcd;  // write date
-          wxString s, s1, s2;
-          tcd.Set(tctime - (m_diff_mins * 60));
+          wxString s, s1;
+      //    tcd.Set(tctime - (m_diff_mins * 60));
 
           // if (m_tzoneDisplay == 0)  // LMT @ Station
           tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
-          s2 = tcd.Format("%A %d %B %Y");
-          s.Printf(tcd.Format("%H:%M  "));
+          s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ", tcvalue);  // write value
-          s.Append(s1);
           pmsd = pIDX->pref_sta_data;  // write unit
-          if (pmsd) s.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
-          s.Append("   ");
+          if (pmsd) s1.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
 
           (wt) ? sHWLW = "HW" : sHWLW = "LW";  // write HW or LT
           // Fill the array with tide data
-          euTC[array_index][0] = s2 + " " + s;
+          euTC[array_index][0] = s + s1;
           euTC[array_index][1] = s1;
           euTC[array_index][2] = wxString(pmsd->units_abbrv, wxConvUTF8);
           euTC[array_index][3] = sHWLW;
@@ -1597,9 +1617,13 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   // Establish the inital drawing day as today
   m_graphday = m_datePicker1->GetValue();
   // Get the timezone of the station
-  int h = m_stationOffset_mins;
-  h /= 60;
-  m_stz.Printf("Z %+03d", h);
+  int h = m_stationOffset_mins / 60;
+  int h1 = m_stationOffset_mins % 60;
+  m_stz = "Time Zone : UTC";
+  if (h1 == 0)
+    m_stz << wxString::Format("%+03d", h);
+  else
+    m_stz << wxString::Format(" % +03d:%02d", h, h1);
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
@@ -1656,24 +1680,21 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
                                            // visible in graphic
           // presently shown
           wxDateTime tcd;  // write date
-          wxString s, s1, s2;
-          tcd.Set(tctime - (m_diff_mins * 60));
+          wxString s, s1;
+       //   tcd.Set(tctime - (m_diff_mins * 60));
 
           // if (m_tzoneDisplay == 0)  // LMT @
           // Station
           tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
-          s2 = tcd.Format("%A %d %B %Y");
-          s.Printf(tcd.Format("%H:%M  "));
+          s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ",
                     tcvalue);  // write value
-          s.Append(s1);
           pmsd = pIDX->pref_sta_data;  // write unit
-          if (pmsd) s.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
-          s.Append("   ");
+          if (pmsd) s1.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
 
           (!wt) ? sHWLW = "LW" : sHWLW = "HW";  // write HW or LT
           // Fill the array with tide data
-          euTC[array_index][0] = s2 + " " + s;
+          euTC[array_index][0] = s + s1;
           euTC[array_index][1] = s1;
           euTC[array_index][2] = wxString(pmsd->units_abbrv, wxConvUTF8);
           euTC[array_index][3] = sHWLW;
@@ -2182,20 +2203,22 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
   }
   if (m_bUseBM) {
     m_button5->SetLabel(_("LW"));
-    m_staticTextHW->SetLabel(_("Select Low Water"));
+    m_staticTextHW->SetLabel(_("Low Water"));
     m_button4->SetLabel(_("LW-6"));
     m_button6->SetLabel(_("LW+6"));
+    m_choice2->SetToolTip("Select Low Water");
   } else {
     m_button5->SetLabel(_("HW"));
-    m_staticTextHW->SetLabel(_("Select High Water"));
+    m_staticTextHW->SetLabel(_("High Water"));
     m_button4->SetLabel(_("HW-6"));
     m_button6->SetLabel(_("HW+6"));
+    m_choice2->SetToolTip("Select High Water");
   }
 
   wxString filePort;
   // wxMessageBox(tidePort);
 
-  for (int i = 0; i < filenames.size(); i++) {
+  for (size_t i = 0; i < filenames.size(); i++) {
     result = filenames.Item(i);
     // wxMessageBox(result);
     // if (result == filename) {
@@ -2458,13 +2481,14 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
   wxString st_mydate;
   int i = FindPortIDUsingChoice(s);
 
+  m_staticText2->SetLabel("");
+
   if (i == 0) {
     // No tidal data
-    m_staticText2->SetLabel("");
     if (s == "LE HAVRE, France" || s == "LA ROCHELLE - LA PALLICE, France")
-      m_staticText211->SetLabel(_("Low Water"));
+      m_staticText211->SetLabel(_("LW"));
     else
-      m_staticText211->SetLabel(_("High Water"));
+      m_staticText211->SetLabel(_("HW"));
     button_id = 6;
     st_mydate = "";
   } else {
@@ -2475,16 +2499,18 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
     m_myChoice = myDateSelection;
   }
 
+  wxString t1 = ("");
   m_staticText2->SetLabel("");
-
   button_id = event.GetId();  // Find which button was pushed (HW, HW-6, HW+6)`
   switch (button_id) {        // And make the label depending HW+6, HW-6 etc
     case 6: {
       next_id = 6;
       m_myChoice = m_choice2->GetSelection();
       m_dt.Add(m_ts);
-      wxString s = m_dt.Format("%a %d %b %Y %H:%M");
-      m_staticText2->SetLabel(s);
+      if (st_mydate != "") {
+        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+        t1 = m_dt.Format("%H:%M") + "    ";
+      }
       break;
     }
     case 0: {
@@ -2492,11 +2518,10 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
       m_myChoice = m_choice2->GetSelection();
       m_ts = wxTimeSpan::Hours(6);
       m_dt.Subtract(m_ts);
-      wxString s = m_dt.Format("%a %d %b %Y %H:%M");
-      if (st_mydate == "")
-        m_staticText2->SetLabel("");
-      else
-        m_staticText2->SetLabel(s);
+      if (st_mydate != "") {
+        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+        t1 = m_dt.Format("%H:%M") + "    ";
+      }
       break;
     }
     case 12: {
@@ -2504,18 +2529,17 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
       m_myChoice = m_choice2->GetSelection();
       m_ts = wxTimeSpan::Hours(6);
       m_dt.Add(m_ts);
-      wxString s = m_dt.Format("%a %d %b %Y %H:%M");
-      if (st_mydate == "")
-        m_staticText2->SetLabel("");
-      else
-        m_staticText2->SetLabel(s);
+      if (st_mydate != ""){
+        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+        t1 = m_dt.Format("%H:%M") + "    ";
+      }
       break;
     }
   }
   if (s == "LE HAVRE, France" || s == "LA ROCHELLE - LA PALLICE, France") {
-    m_staticText211->SetLabel(label_lw[button_id]);
+    m_staticText211->SetLabel(t1 + label_lw[button_id]);
   } else {
-    m_staticText211->SetLabel(label_array[button_id]);
+    m_staticText211->SetLabel(t1 + label_array[button_id]);
   }
   m_bChooseTide = true;
   m_bPrev = false;
@@ -2598,6 +2622,8 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   //
   // End of test.
 
+  wxString t1 = _T("");
+  m_staticText2->SetLabel("");
   switch (button_id) {
     case 12: {
       next_id = 11;
@@ -2605,7 +2631,10 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Add(wxTimeSpan::Hours(6));
-      s = m_dt.Format("%a %d %b %Y %H:%M ");
+      if (st_mydate != "") {
+        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+        t1 = m_dt.Format("%H:%M") + "    ";
+      }
       break;
     }
     case 0: {
@@ -2615,7 +2644,10 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Subtract(wxTimeSpan::Hours(6));
-      s = m_dt.Format("%a %d %b %Y %H:%M ");
+      if (st_mydate != "") {
+        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+        t1 = m_dt.Format("%H:%M") + "    ";
+      }
 
       if (myDateSelection > 0) {
         m_myChoice--;
@@ -2633,21 +2665,20 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       m_dt.ParseDateTime(st_mydate);
       m_dt.Subtract(wxTimeSpan::Hours(6));
       m_dt.Add(wxTimeSpan::Hours(button_id));
-      s = m_dt.Format("%a %d %b %Y %H:%M ");
+      if (st_mydate != ""){
+        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+        t1 = m_dt.Format("%H:%M") + "    ";
+      }
       next_id = button_id - 1;  // to make change from forward to back work
       break;
     }
   }  // End switch
 
-  if (st_mydate == "")
-    m_staticText2->SetLabel("");
-  else
-    m_staticText2->SetLabel(s);
-
+  wxString s2;
   if (m_bUseBM) {
-    m_staticText211->SetLabel(label_lw[button_id]);
+    m_staticText211->SetLabel(t1 + label_lw[button_id]);
   } else {
-    m_staticText211->SetLabel(label_array[button_id]);
+    m_staticText211->SetLabel(t1 + label_array[button_id]);
   }
   if (again)
     OnPrev(event);
@@ -2735,7 +2766,8 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   }
   //
   // End of test.
-
+  m_staticText2->SetLabel("");
+  wxString t1 = _T("");
   switch (button_id) {
     case 12: {
       next_id = 0;
@@ -2745,7 +2777,11 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Add(wxTimeSpan::Hours(6));
-      s = m_dt.Format("%a %d %b %Y %H:%M ");
+      if (st_mydate != "") {
+        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+        t1 = m_dt.Format("%H:%M") + "    ";
+      }
+
       if (myDateSelection == c - 1) {
         m_bAtLastChoice = true;
       }
@@ -2765,7 +2801,10 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       st_mydate = m_choice2->GetString(myDateSelection);
       m_dt.ParseDateTime(st_mydate);
       m_dt.Subtract(wxTimeSpan::Hours(6));
-      s = m_dt.Format("%a %d %b %Y %H:%M ");
+      if (st_mydate != "") {
+        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+        t1 = m_dt.Format("%H:%M") + "    ";
+      }
 
       break;
     }
@@ -2777,21 +2816,19 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       m_dt.ParseDateTime(st_mydate);
       m_dt.Subtract(wxTimeSpan::Hours(6));
       m_dt.Add(wxTimeSpan::Hours(button_id));
-      s = m_dt.Format("%a %d %b %Y %H:%M ");
+      if (st_mydate != ""){
+        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+        t1 = m_dt.Format("%H:%M") + "    ";
+      }
       back_id = next_id - 2;  // to make the forward back work
       break;
     }
   }  // End switch
 
-  if (st_mydate == "")
-    m_staticText2->SetLabel("");
-  else
-    m_staticText2->SetLabel(s);
-
   if (m_bUseBM) {
-    m_staticText211->SetLabel(label_lw[button_id]);
+    m_staticText211->SetLabel(t1 + label_lw[button_id]);
   } else {
-    m_staticText211->SetLabel(label_array[button_id]);
+    m_staticText211->SetLabel(t1 + label_array[button_id]);
   }
   if (again)
     OnNext(event);

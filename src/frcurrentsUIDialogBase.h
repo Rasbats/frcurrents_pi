@@ -32,7 +32,7 @@
 #include <wx/checkbox.h>
 #include <wx/clrpicker.h>
 #include <wx/event.h>
-
+#include <wx/Slider.h>
 ///////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@
 class frcurrentsUIDialogBase : public wxDialog {
 private:
 protected:
-  wxButton* m_button8;
+  wxBitmapButton* m_button8;
   wxDatePickerCtrl* m_datePicker1;
   wxStaticText* m_staticTextHW;
   wxChoice* m_choice2;
@@ -54,7 +54,6 @@ protected:
   wxButton* m_button6;
   wxStaticText* m_staticText2;
   wxStaticText* m_staticText211;
-  wxStaticLine* m_staticline1;
   wxButton* m_button7;
 
   // Virtual event handlers, override them in your derived class
@@ -111,6 +110,8 @@ protected:
 
   // Virtual event handlers, override them in your derived class
   virtual void OnChoice(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnIconsSlidersChange(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnFontSlidersChange(wxCommandEvent & event) { event.Skip(); }
 
 public:
   wxCheckBox* m_cbUseRate;
@@ -123,6 +124,8 @@ public:
   wxColourPickerCtrl* myColourPicker3;
   wxColourPickerCtrl* myColourPicker4;
   wxChoice* m_cStyle;
+  wxSlider* m_sIconSizeFactor;
+  wxSlider * m_sFontSizeFactor;
 
   frcurrentsPreferencesDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                                   const wxString& title = _("Preferences"),

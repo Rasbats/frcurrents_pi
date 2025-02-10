@@ -52,7 +52,7 @@ extern wxString myVColour[5];
 #define frcurrents_TOOL_POSITION \
   -1  // Request default positioning of toolbar tool
 
-class frcurrents_pi : public opencpn_plugin_116 {
+class frcurrents_pi : public opencpn_plugin_118 {
 public:
   frcurrents_pi(void *ppimgr);
   ~frcurrents_pi(void);
@@ -78,6 +78,7 @@ public:
   void SetDefaults(void);
   int GetToolbarToolCount(void);
   void ShowPreferencesDialog(wxWindow *parent);
+  void SetDialogFont(wxWindow* dialog, wxFont* font);
   void OnToolbarToolCallback(int id);
 
   // Other public methods
@@ -108,6 +109,10 @@ public:
   bool LoadConfig(void);
   bool SaveConfig(void);
 
+  frcurrentsUIDialog* m_pfrcurrentsDialog;
+  double            my_IconsScaleFactor;
+  int               my_FontpointSizeFactor;
+
 private:
   int m_position_menu_id;
   int m_position_menu_id2;
@@ -115,7 +120,6 @@ private:
   wxFileConfig *m_pconfig;
   wxWindow *m_parent_window;
 
-  frcurrentsUIDialog *m_pfrcurrentsDialog;
   frcurrentsOverlayFactory *m_pfrcurrentsOverlayFactory;
 
   int m_display_width, m_display_height;
@@ -165,5 +169,7 @@ public:
   ~frcurrentsPreferencesDialog() {}
 
 private:
+  void OnIconsSlidersChange(wxCommandEvent& event);
+  void OnFontSlidersChange(wxCommandEvent & event);
 };
 #endif

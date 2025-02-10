@@ -82,25 +82,26 @@ static wxBitmap load_plugin(const char *icon_name, const char *api_name) {
   wxLogDebug("Icon loaded, result: %s", bitmap.IsOk() ? "ok" : "fail");
   return bitmap;
 }
-
+frcurrents_pi* g_pi;
 //---------------------------------------------------------------------------------------------------------
 //
 //          PlugIn initialization and de-init
 //
 //---------------------------------------------------------------------------------------------------------
 
-frcurrents_pi::frcurrents_pi(void *ppimgr) : opencpn_plugin_116(ppimgr) {
+frcurrents_pi::frcurrents_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
   // Create the PlugIn icons
   initialize_images();
 
   m_panelBitmap = load_plugin("frcurrents_panel_icon", "frcurrents_pi");
 
   m_bShowfrcurrents = false;
+
+  g_pi = this;
 }
 
 frcurrents_pi::~frcurrents_pi(void) {
-  delete _img_frcurrents_pi;
-  delete _img_frcurrents;
+  if(_xpm_frcurrents_pi) delete _xpm_frcurrents_pi;
 }
 
 int frcurrents_pi::Init(void) {
@@ -137,7 +138,7 @@ int frcurrents_pi::Init(void) {
         frcurrents_TOOL_POSITION, 0, this);
 #else
     m_leftclick_tool_id = InsertPlugInTool(
-        "", _img_frcurrents, _img_frcurrents, wxITEM_CHECK, _("frcurrents"), "",
+        "", _xpm_frcurrents_pi, _xpm_frcurrents_pi, wxITEM_CHECK, _("frcurrents"), "",
         NULL, frcurrents_TOOL_POSITION, 0, this);
 #endif
   }
@@ -178,6 +179,10 @@ int frcurrents_pi::GetPlugInVersionMinor() { return PLUGIN_VERSION_MINOR; }
 
 int GetPlugInVersionPatch() { return PLUGIN_VERSION_PATCH; }
 
+int GetPlugInVersionPost() { return PLUGIN_VERSION_TWEAK; }
+const char* GetPlugInVersionPre() { return PKG_PRERELEASE; }
+const char* GetPlugInVersionBuild() { return PKG_BUILD_INFO; }
+
 wxBitmap *frcurrents_pi::GetPlugInBitmap() { return &m_panelBitmap; }
 
 wxString frcurrents_pi::GetCommonName() { return "frcurrents"; }
@@ -203,6 +208,8 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
   Pref->m_cbFillColour->SetValue(m_bCopyUseFillColour);
   Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
+  Pref->m_sIconSizeFactor->SetValue(my_IconsScaleFactor);
+  Pref->m_sFontSizeFactor->SetValue(my_FontpointSizeFactor);
 
   wxColour myC0 = wxColour(myVColour[0]);
   Pref->myColourPicker0->SetColour(myC0);
@@ -223,12 +230,13 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
 
   if (Pref->ShowModal() == wxID_OK) {
     // bool copyFillColour = true;
-
+    #ifndef __ANDROID__
     myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
     myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
     myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
     myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
-    myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
+    myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();   
+    #endif
 
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
@@ -283,8 +291,32 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     RequestRefresh(m_parent_window);  // refresh main window
   }
 }
+void frcurrents_pi::SetDialogFont(wxWindow* dialog, wxFont* font) {
+  /*  We have to go down to all necessary windows levels. In this case
+  +  two levels are enough */
+  dialog->SetFont(*font); // dialog level
+  wxFont& ft = dialog->GetFont();
+  ft.SetNumericWeight(wxFONTWEIGHT_BOLD);
+  wxWindowList list = dialog->GetChildren(); // first level
+  for (wxWindowList::iterator it = list.begin(); it != list.end(); ++it) {
+    wxWindow* win = *it;
+    win->GetId() == wxID_FIND ? win->SetFont(ft) : win->SetFont(*font);
+    wxWindowList list1 = win->GetChildren(); // second level
+    for (wxWindowList::iterator it = list1.begin(); it != list1.end(); ++it) {
+      wxWindow * win1 = *it;
+      win1->GetId() == wxID_FIND ? win1->SetFont(ft) : win1->SetFont(*font);
+    }
+  }
+}
 
 void frcurrents_pi::OnToolbarToolCallback(int id) {
+  //  get icons scale factor
+  double scalefactor = GetOCPNGUIToolScaleFactor_PlugIn();
+  scalefactor *= OCPN_GetWinDIPScaleFactor() * (1. + (my_IconsScaleFactor / 10.));
+  //  get font scale factor
+  wxFont f = *OCPNGetFont(_("Dialog"), 10);
+  f.SetPointSize(f.GetPointSize() + my_FontpointSizeFactor);
+  wxFont * font = &f;
   if (NULL == m_pfrcurrentsDialog) {
     m_pfrcurrentsDialog = new frcurrentsUIDialog(m_parent_window, this);
     wxPoint p = wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y);
@@ -304,6 +336,8 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
 
   //    Toggle dialog?
   if (m_bShowfrcurrents) {
+    m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
+    SetDialogFont(m_pfrcurrentsDialog, font);
     m_pfrcurrentsDialog->Move(
         wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y));
     m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
@@ -392,6 +426,9 @@ bool frcurrents_pi::LoadConfig(void) {
 
   m_CopyArrowStyle = pConf->Read("frcurrentsUseArrowStyle", 1);
 
+  my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
+  my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
+
   m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
   m_frcurrents_dialog_sx = pConf->Read("frcurrentsDialogSizeX", 300L);
@@ -425,6 +462,9 @@ bool frcurrents_pi::SaveConfig(void) {
 
     pConf->Write("frcurrentsUseArrowStyle", m_CopyArrowStyle);
 
+    pConf->Write("frcurrentsIconscalefactor", my_IconsScaleFactor);
+    pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
+
     pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 
     pConf->Write("frcurrentsDialogSizeX", m_frcurrents_dialog_sx);
@@ -446,4 +486,31 @@ bool frcurrents_pi::SaveConfig(void) {
 
 void frcurrents_pi::SetColorScheme(PI_ColorScheme cs) {
   DimeWindow(m_pfrcurrentsDialog);
+}
+
+// ------------------------------------------------------------------------
+//                 Preferences Dialog Implementation
+// ------------------------------------------------------------------------
+void frcurrentsPreferencesDialog::OnIconsSlidersChange(wxCommandEvent & event) {
+  if (g_pi) {
+    g_pi->my_IconsScaleFactor = (double)event.GetInt();
+    if (g_pi->m_pfrcurrentsDialog) {
+      double  scalefactor = GetOCPNGUIToolScaleFactor_PlugIn()
+        *OCPN_GetWinDIPScaleFactor() * (1. + ((double)event.GetInt() / 10.));
+      g_pi->m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
+      g_pi->m_pfrcurrentsDialog->Fit();
+    }
+  }
+}
+void frcurrentsPreferencesDialog::OnFontSlidersChange(wxCommandEvent & event) {
+  if (g_pi) {
+    g_pi->my_FontpointSizeFactor = event.GetInt();
+    if (g_pi->m_pfrcurrentsDialog) {
+      wxFont f = *OCPNGetFont(_("Dialog"), 10);
+      f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
+      wxFont * font = &f;
+      g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, font);
+      g_pi->m_pfrcurrentsDialog->Fit();
+    }
+  }
 }

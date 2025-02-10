@@ -32,16 +32,24 @@
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
 
+
+#if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
+#include <qopengl.h>
+#include "GL/gl_private.h"
+#elif defined(__APPLE__)
+#include "OpenGL/gl.h"
+#include "OpenGL/glu.h"
+#else
+#include "GL/gl.h"
+#include "GL/glu.h"
+#include "GL/glext.h"
+#endif
+
 using namespace std;
 
 class plugIn_Viewport;
 class piDC;
 class wxDC;
-
-#ifdef __OCPN__ANDROID__
-#include <qopengl.h>
-#include "gl_private.h"
-#endif
 
 //----------------------------------------------------------------------------------------------------------
 //    frcurrents Overlay Specification
@@ -108,6 +116,7 @@ public:
   std::map<wxString, wxImage> m_labelCacheText;
 
   piDC *m_dc;
+  wxMemoryDC mdc;
 
   wxPoint p[9];
   wxPoint polyPoints[7];
@@ -116,8 +125,8 @@ public:
 private:
   bool inGL;
   wxPoint myArrowArray[9];
-
-  bool DoRenderfrcurrentsOverlay(PlugIn_ViewPort *vp);
+  void RenderTestLine(PlugIn_ViewPort *vp);
+  //bool DoRenderfrcurrentsOverlay(PlugIn_ViewPort *vp);
   void RenderMyArrows(PlugIn_ViewPort *vp);
   int m_fromHW;
   void GetArrowStyle(int my_style);
