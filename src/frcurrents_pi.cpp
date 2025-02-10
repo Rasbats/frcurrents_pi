@@ -290,10 +290,10 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     SaveConfig();
     RequestRefresh(m_parent_window);  // refresh main window
   }
-}
+} /*
 void frcurrents_pi::SetDialogFont(wxWindow* dialog, wxFont* font) {
-  /*  We have to go down to all necessary windows levels. In this case
-  +  two levels are enough */
+    We have to go down to all necessary windows levels. In this case
+  +  two levels are enough 
   dialog->SetFont(*font); // dialog level
   wxFont& ft = dialog->GetFont();
   ft.SetNumericWeight(wxFONTWEIGHT_BOLD);
@@ -308,7 +308,7 @@ void frcurrents_pi::SetDialogFont(wxWindow* dialog, wxFont* font) {
     }
   }
 }
-
+*/
 void frcurrents_pi::OnToolbarToolCallback(int id) {
   //  get icons scale factor
   double scalefactor = GetOCPNGUIToolScaleFactor_PlugIn();
@@ -337,7 +337,7 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
   //    Toggle dialog?
   if (m_bShowfrcurrents) {
     m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
-    SetDialogFont(m_pfrcurrentsDialog, font);
+    //SetDialogFont(m_pfrcurrentsDialog, font);
     m_pfrcurrentsDialog->Move(
         wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y));
     m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
@@ -509,7 +509,7 @@ void frcurrentsPreferencesDialog::OnFontSlidersChange(wxCommandEvent & event) {
       wxFont f = *OCPNGetFont(_("Dialog"), 10);
       f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
       wxFont * font = &f;
-      g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, font);
+      //g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, font);
       g_pi->m_pfrcurrentsDialog->Fit();
     }
   }
