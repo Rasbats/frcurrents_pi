@@ -74,7 +74,6 @@ public:
   bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
   bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
   void SetCursorLatLon(double lat, double lon);
-  void SendTimelineMessage(wxDateTime time);
   void SetDefaults(void);
   int GetToolbarToolCount(void);
   void ShowPreferencesDialog(wxWindow *parent);
@@ -99,7 +98,6 @@ public:
   int GetCopyArrowStyle() { return m_CopyArrowStyle; }
 
   wxString GetFolderSelected() { return m_CopyFolderSelected; }
-  // wxString GetCopyPort() { return  m_bCopyusePort; }
   frcurrentsOverlayFactory *GetfrcurrentsOverlayFactory() {
     return m_pfrcurrentsOverlayFactory;
   }
@@ -127,16 +125,9 @@ private:
   int m_display_width, m_display_height;
   int m_leftclick_tool_id;
 
-  // wxString myPort;
-
-  // int myNewPort;
-  //
-
   //    Controls added to Preferences panel
   wxCheckBox *m_pfrcurrentsUseHiDef;
   wxCheckBox *m_pfrcurrentsUseGradualColors;
-
-  // frcurrentsTimelineRecordSet *m_pLastTimelineSet;
 
   // preference data
 

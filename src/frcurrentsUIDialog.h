@@ -140,7 +140,6 @@ public:
   void OpenFile(bool newestFile = false);
 
   void SetCursorLatLon(double lat, double lon);
-  void SetFactoryOptions(bool set_val = false);
   void SetScaledBitmaps(double scalefactor);
 
   void SetViewPort(PlugIn_ViewPort* vp);
@@ -197,14 +196,6 @@ public:
   double m_coeff;
   double m_jumpLat, m_jumpLon;
   
- // void OnMouseEvent(wxMouseEvent& event);
-  /*
-  wxPoint m_resizeStartPoint;
-  wxSize m_resizeStartSize;
-  bool m_binResize;
-  bool m_binResize2;
-  int eventid;*/
-
 #ifdef __ANDROID__
   void OnContextMenu(wxContextMenuEvent& event);
   void OnContextMenuSelect(wxCommandEvent& event);
@@ -224,7 +215,6 @@ public:
 private:
   void OnClose(wxCloseEvent& event);
   void OnMove(wxMoveEvent& event);
-  // void OnSize( wxSizeEvent& event );
   bool m_bOnStart;
   void OnStartSetupHW();
   void OnNow(wxCommandEvent& event);
@@ -273,7 +263,6 @@ private:
   wxDateTime m_graphday;
   int m_tzoneDisplay;
 
-  //
   //    Data
   wxWindow* pParent;
   frcurrents_pi* pPlugIn;
@@ -293,8 +282,6 @@ private:
 
   int next_id;
   int back_id;
-  // For the tide bit
-  // wxDateTime m_dt;
   int m_myChoice;
   wxString label_array[13];
   wxString label_lw[13];

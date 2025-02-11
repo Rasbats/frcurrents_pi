@@ -138,11 +138,6 @@ static wxString TToString(const wxDateTime date_time, const int time_zone) {
       return t.Format(" %a %d-%b-%Y %H:%M  ", wxDateTime::UTC) + "UTC";
   }
 }
-/*
-#if !wxCHECK_VERSION(2,9,4) // to work with wx 2.8 //
-#define SetBitmap SetBitmapLabel
-#endif
-*/
 
 frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     : frcurrentsUIDialogBase(parent) {
@@ -201,8 +196,6 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
   }
   ptcmgr = NULL;
 
-  // Fit();
-  // SetMinSize( GetBestSize() );
   m_dirPicker1->SetValue(m_FolderSelected);
   m_bOnStart = false;
   m_bAtLastChoice = false;
@@ -392,75 +385,6 @@ void frcurrentsUIDialog::OnContextMenu(wxContextMenuEvent& event) {
   delete contextMenu;
 }
 #endif  // End of Android functions for move/resize
-
-/*
-
-void frcurrentsUIDialog::OnMouseEvent(wxMouseEvent& event) {
-  wxSize currentSize = this->GetSize();
-  double aRatio = (double)currentSize.y / (double)currentSize.x;
-
-  wxSize par_size = GetOCPNCanvasWindow()->GetClientSize();
-  wxPoint par_pos = this->GetPosition();
-
-  if (event.LeftDown()) {
-    m_resizeStartPoint = event.GetPosition();
-    m_resizeStartSize = currentSize;
-    m_binResize2 = true;
-  }
-
-  if (m_binResize2) {
-    if (event.Dragging()) {
-      wxPoint p = event.GetPosition();
-
-      wxSize dragSize = m_resizeStartSize;
-
-      dragSize.y += p.y - m_resizeStartPoint.y;
-      dragSize.x += p.x - m_resizeStartPoint.x;
-      ;
-
-      if ((par_pos.y + dragSize.y) > par_size.y)
-        dragSize.y = par_size.y - par_pos.y;
-
-      if ((par_pos.x + dragSize.x) > par_size.x)
-        dragSize.x = par_size.x - par_pos.x;
-
-      /// vertical
-      // dragSize.x = dragSize.y / aRatio;
-
-      // not too small
-      dragSize.x = wxMax(dragSize.x, 150);
-      dragSize.y = wxMax(dragSize.y, 150);
-
-      this->SetSize(dragSize);
-    }
-
-    if (event.LeftUp()) {
-      wxPoint p = event.GetPosition();
-
-      wxSize dragSize = m_resizeStartSize;
-
-      dragSize.y += p.y - m_resizeStartPoint.y;
-      dragSize.x += p.x - m_resizeStartPoint.x;
-      ;
-
-      if ((par_pos.y + dragSize.y) > par_size.y)
-        dragSize.y = par_size.y - par_pos.y;
-
-      if ((par_pos.x + dragSize.x) > par_size.x)
-        dragSize.x = par_size.x - par_pos.x;
-
-      // not too small
-      dragSize.x = wxMax(dragSize.x, 150);
-      dragSize.y = wxMax(dragSize.y, 150);
-
-      this->SetSize(dragSize);
-
-      m_binResize = false;
-      m_binResize2 = false;
-    }
-  }
-}
-  */
 
 void frcurrentsUIDialog::SetScaledBitmaps(double scalefactor) {
   //  Round to the nearest "quarter", to avoid rendering artifacts
@@ -934,6 +858,9 @@ void frcurrentsUIDialog::SetDateForNowButton() {
     int i, c, s, t, t1, t2, t10, t20;
     wxDateTime d1, d2, d10, d20;
 
+    t1 = 0;
+    t2 = 0;
+
     c = m_choice2->GetCount();
     wxDateTime myChoiceDates[6], m_dt;
 
@@ -1122,7 +1049,6 @@ int frcurrentsUIDialog::FindTidePortUsingChoice(wxString inAreaNumber) {
     myPortTides.m_IDX = (*it).IDX;
 
     if (myPortTides.m_portID == s) {
-      // wxMessageBox(myPortTides.m_portName);
       m_choice1->Append(myPortTides.m_portName);
     }
     i++;
@@ -1260,36 +1186,19 @@ void frcurrentsUIDialog::LoadTCMFile() {
   TCDir.Append(wxFileName::GetPathSeparator());
   wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
 
-  //	wxString default_tcdata0 = TCDir +
-  //"harmonics-dwf-20210110-free.tcd";
   wxString default_tcdata1 = TCDir + "HARMONIC.IDX";
   wxLogMessage(default_tcdata1);
 
-  // if (!TideCurrentDataSet.GetCount()) {
-  // TideCurrentDataSet.Add(default_tcdata0);
   TideCurrentDataSet.Add(default_tcdata1);
-  //}
-  /*
-  else{
-          wxMessageBox("Cannot add TideCurrentDataSet");
-  }*/
 }
 
 int frcurrentsUIDialog::FindPortID(wxString myPort) {
-  // int c = ptcmgr->Get_max_IDX();
-  // wxString mystring = wxString::Format("%i", c);
-  // wxMessageBox(myPort);
-
   const IDX_entry* pIDX;
   for (int i = 1; i < ptcmgr->Get_max_IDX() + 1; i++) {
     pIDX = ptcmgr->GetIDX_entry(i);
     wxString locnx(pIDX->IDX_station_name, wxConvUTF8);
-    // const char name = pIDX->GetStationIDXbyName(myPort,lat, lon);
-    // wxString mystring = wxString::FromUTF8(&name);
     if (locnx == myPort) {
-      // wxMessageBox(locnx);
       wxString ind = wxString::Format("%i", i);
-      // wxMessageBox(ind, "index");
       return i;
     }
   }
@@ -1381,7 +1290,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
 
   const IDX_entry* pIDX = ptcmgr->GetIDX_entry(BrestID);
 
-  // if (strchr("Tt", pIDX->IDX_type))
   m_plot_type = TIDE_PLOT;
 
   // Establish the inital drawing day as today
@@ -1471,8 +1379,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
       val = tcv[i];
     }
   }
-  // wxString br = wxString::Format("%f", BrestRange);
-  // wxMessageBox(br);
   return BrestRange;
 }
 
@@ -1488,7 +1394,6 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
 
   const IDX_entry* pIDX = ptcmgr->GetIDX_entry(PortCode);
 
-  // if (strchr("Tt", pIDX->IDX_type))
   m_plot_type = TIDE_PLOT;
 
   // Establish the inital drawing day as today
@@ -1556,9 +1461,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
           // presently shown
           wxDateTime tcd;  // write date
           wxString s, s1;
-      //    tcd.Set(tctime - (m_diff_mins * 60));
 
-          // if (m_tzoneDisplay == 0)  // LMT @ Station
           tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
           s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ", tcvalue);  // write value
@@ -1681,10 +1584,6 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
           // presently shown
           wxDateTime tcd;  // write date
           wxString s, s1;
-       //   tcd.Set(tctime - (m_diff_mins * 60));
-
-          // if (m_tzoneDisplay == 0)  // LMT @
-          // Station
           tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
           s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ",
@@ -1700,7 +1599,6 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
           euTC[array_index][3] = sHWLW;
 
           if (euTC[array_index][3] == "LW") {
-            // wxMessageBox(euTC[array_index][0]);
             gotLW = true;
             myLW = tcvalue;
             myHeightLW = myLW;
@@ -1740,17 +1638,6 @@ double frcurrentsUIDialog::CalcCurrent(double VE, double ME, double spRate,
   if (isnan(x)) x = 0.01;
   return x;
 
-  /*
-  if (m_spRateDiamond == m_npRateDiamond)
-          return m_spRateDiamond;
-  else {
-          // y = mx + c
-          double m,c,x;
-          m = (m_spRange - m_npRange) / (m_spRateDiamond - m_npRateDiamond);
-          c = m_spRange - (m * m_spRateDiamond);
-          x = (m_rangeOnDay - c)/m ;
-          return x;
-  }*/
 }
 
 double frcurrentsUIDialog::CalcCoefficient() {
@@ -1810,10 +1697,6 @@ int frcurrentsUIDialog::CalcHoursFromHWNow() {
       }
     }
   }
-  // m_myChoice = c;
-
-  // wxString str_countPts =  wxString::Format(wxT("%f"), (double)myDiff);
-  // wxMessageBox(str_countPts,_("count_hours"));
   int f = round(myTest);
 
   return f;
@@ -1852,10 +1735,6 @@ int frcurrentsUIDialog::CalcHoursFromLWNow() {
       }
     }
   }
-  // m_myChoice = c;
-
-  // wxString str_countPts =  wxString::Format(wxT("%f"), (double)myDiff);
-  // wxMessageBox(str_countPts,_("count_hours"));
   int f = round(myTest);
 
   return f;
@@ -1897,8 +1776,6 @@ int frcurrentsUIDialog::round(double c) {
       c = a - b;
     }
   }
-  // wxString str_countPts =  wxString::Format(wxT("%d"), (int)c);
-  // wxMessageBox(str_countPts,_("count_hours"));
   return c;
 }
 
@@ -1994,17 +1871,6 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
   }  // end for
 
   int c = my_ports.size();
-  //	wxString s = wxString::Format("%i", c);
-  //	wxMessageBox(s);
-  /*
-          for(std::vector<StandardPort>::iterator it = my_ports.begin();  it
-     != my_ports.end(); it++)
-          {
-                          wxPortName[i][1] = (*it).PORT_NAME;
-                          m_choice1->Append(wxPortName[i][1]);
-                          i++;
-          }	*/
-  // m_choice1->SetSelection( 0 );
   return true;
 }
 
@@ -2220,16 +2086,12 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
 
   for (size_t i = 0; i < filenames.size(); i++) {
     result = filenames.Item(i);
-    // wxMessageBox(result);
-    // if (result == filename) {
     wxString shareLocn = fn.GetFullPath() + fn.GetPathSeparator() + result;
-    // wxMessageBox(shareLocn);
     wxFileInputStream input(shareLocn);
     wxTextInputStream text(input);
     wxString line = text.ReadLine();
     filePort = line.MakeUpper().Trim();
     input.GetFile()->Close();
-    // wxMessageBox(filePort);
     if (filePort == tidePort) {
       ParseCurrentsFile(shareLocn);
     }
@@ -2251,8 +2113,6 @@ void frcurrentsUIDialog::ParseCurrentsFile(wxString infile) {
     linenum++;
     wxString line = text.ReadLine();
     if (linenum == line2) {
-      //			wxString show10 = wxString::Format("%i",
-      // linenum); 			wxMessageBox(show10);
       s = 0;
       wxStringTokenizer tokenizer(line.Trim());
       while (tokenizer.HasMoreTokens()) {
@@ -2263,14 +2123,7 @@ void frcurrentsUIDialog::ParseCurrentsFile(wxString infile) {
       testPosition.lon = token[1];
     }
     if (linenum == line3) {
-      // wxMessageBox(line);
-      // return;
       ParseCurrentsVE(line);
-
-      // double dir = vectorAngle(PMVEns[1], PMVEew[1]);
-
-      // double rate = vectorSize(PMVEew[1], PMVEns[1]);
-
       for (int z = 0; z < 13; z++) {
         testPosition.spDir[z] = vectorAngle(PMVEns[z], PMVEew[z]);
         testPosition.spRate[z] = vectorSize(PMVEew[z], PMVEns[z]);
@@ -2280,13 +2133,7 @@ void frcurrentsUIDialog::ParseCurrentsFile(wxString infile) {
       }
     }
     if (linenum == line4) {
-      // wxMessageBox(line);
-      // return;
       ParseCurrentsME(line);
-
-      // double dir = vectorAngle(PMVEns[1], PMVEew[1]);
-
-      // double rate = vectorSize(PMVEew[1], PMVEns[1]);
 
       for (int z = 0; z < 13; z++) {
         testPosition.npDir[z] = vectorAngle(PMMEns[z], PMMEew[z]);
@@ -2329,10 +2176,8 @@ void frcurrentsUIDialog::ParseCurrentsVE(wxString inCurrents) {
     wxStringTokenizer tokenizer(currentN, " ");
     while (tokenizer.HasMoreTokens()) {
       token[i] = tokenizer.GetNextToken();
-      // wxMessageBox(token[i].Trim());
       int len = token[i].length();
       wxString curr = token[i].Left(1);
-      // Test for long - string
       if (len > 2 && curr == "-") {
         //
 
@@ -2343,7 +2188,6 @@ void frcurrentsUIDialog::ParseCurrentsVE(wxString inCurrents) {
             token[ii].Prepend("-");
           }
           if (token[ii].Trim() != "-") {
-            // wxMessageBox(token[ii].Trim());
             if (n == 0) {
               token[ii].Trim().ToDouble(&PMVEew[t]);
             } else if (n == 1) {
@@ -2355,7 +2199,6 @@ void frcurrentsUIDialog::ParseCurrentsVE(wxString inCurrents) {
         }
       } else {
         if (token[i].Trim() != "-") {
-          // wxMessageBox(token[i].Trim());
           if (n == 0) {
             token[i].Trim().ToDouble(&PMVEew[t]);
           } else if (n == 1) {
@@ -2368,21 +2211,6 @@ void frcurrentsUIDialog::ParseCurrentsVE(wxString inCurrents) {
       i++;
     }
     t = 0;
-  }
-
-  // wxString show10 = wxString::Format("%f", PMVEew[1]);
-  // wxMessageBox(show10);
-
-  // wxString show11= wxString::Format("%f", PMVEns[1]);
-  // wxMessageBox(show11);
-
-  for (int s = 0; s < 13; s++) {
-    // wxString show = wxString::Format("%f", PMVEew[s]);
-    // wxMessageBox(show);
-  }
-  for (int s = 0; s < 13; s++) {
-    // wxString show = wxString::Format("%f", PMVEns[s]);
-    // wxMessageBox(show);
   }
 }
 
@@ -2407,7 +2235,6 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
     wxStringTokenizer tokenizer(currentN, " ");
     while (tokenizer.HasMoreTokens()) {
       token[i] = tokenizer.GetNextToken();
-      // wxMessageBox(token[i].Trim());
       int len = token[i].length();
       wxString curr = token[i].Left(1);
       // Test for long - string
@@ -2421,7 +2248,6 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
             token[ii].Prepend("-");
           }
           if (token[ii].Trim() != "-") {
-            // wxMessageBox(token[ii].Trim());
             if (n == 0) {
               token[ii].Trim().ToDouble(&PMMEew[t]);
             } else if (n == 1) {
@@ -2433,7 +2259,6 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
         }
       } else {
         if (token[i].Trim() != "-") {
-          // wxMessageBox(token[i].Trim());
           if (n == 0) {
             token[i].Trim().ToDouble(&PMMEew[t]);
           } else if (n == 1) {
@@ -2446,21 +2271,6 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
       i++;
     }
     t = 0;
-  }
-
-  // wxString show10 = wxString::Format("%f", PMVEew[1]);
-  // wxMessageBox(show10);
-
-  // wxString show11= wxString::Format("%f", PMVEns[1]);
-  // wxMessageBox(show11);
-
-  for (int s = 0; s < 13; s++) {
-    // wxString show = wxString::Format("%f", PMVEew[s]);
-    // wxMessageBox(show);
-  }
-  for (int s = 0; s < 13; s++) {
-    // wxString show = wxString::Format("%f", PMVEns[s]);
-    // wxMessageBox(show);
   }
 }
 
@@ -2556,7 +2366,6 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   bool again = false;
 
   if (m_bChooseTide) {
-    //  wxMessageBox("Please click Previous again");
     again = true;
     m_bChooseTide = false;
   }
@@ -2575,7 +2384,6 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
         m_bAtLastChoice = true;
       }
     }
-    //  wxMessageBox("Please click Previous again");
     again = true;
     m_bNext = false;
   }
@@ -2715,7 +2523,6 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
         m_choice2->SetSelection(m_myChoice);
       }
     }
-    //  wxMessageBox("Please click Next again");
     again = true;
     m_bPrev = false;
   }

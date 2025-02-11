@@ -338,7 +338,6 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
   //    Toggle dialog?
   if (m_bShowfrcurrents) {
     m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
-    //SetDialogFont(m_pfrcurrentsDialog, font);
     m_pfrcurrentsDialog->Move(
         wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y));
     m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
@@ -368,8 +367,6 @@ void frcurrents_pi::OnfrcurrentsDialogClose() {
   SetToolbarItemState(m_leftclick_tool_id, m_bShowfrcurrents);
 
   m_pfrcurrentsDialog->Hide();
-  // if(m_pfrcurrentsDialog->pReq_Dialog)
-  // m_pfrcurrentsDialog->pReq_Dialog->Hide();
 
   // Capture dialog position
   wxPoint p = m_pfrcurrentsDialog->GetPosition();
