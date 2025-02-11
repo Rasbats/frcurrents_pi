@@ -78,7 +78,9 @@ public:
   void SetDefaults(void);
   int GetToolbarToolCount(void);
   void ShowPreferencesDialog(wxWindow *parent);
-  //void SetDialogFont(wxWindow* dialog, wxFont* font);
+  #ifdef __MSVC__
+  void SetDialogFont(wxWindow* dialog, wxFont* font);
+  #endif
   void OnToolbarToolCallback(int id);
 
   // Other public methods
