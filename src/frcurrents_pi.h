@@ -77,9 +77,9 @@ public:
   void SetDefaults(void);
   int GetToolbarToolCount(void);
   void ShowPreferencesDialog(wxWindow *parent);
-  #ifdef __MSVC__
-  void SetDialogFont(wxWindow* dialog, wxFont* font);
-  #endif
+#ifdef __WXMSW__
+  void SetDialogFont(wxWindow *dialog, wxFont *font);
+#endif
   void OnToolbarToolCallback(int id);
 
   // Other public methods
@@ -109,9 +109,9 @@ public:
   bool LoadConfig(void);
   bool SaveConfig(void);
 
-  frcurrentsUIDialog* m_pfrcurrentsDialog;
-  double            my_IconsScaleFactor;
-  int               my_FontpointSizeFactor;
+  frcurrentsUIDialog *m_pfrcurrentsDialog;
+  double my_IconsScaleFactor;
+  int my_FontpointSizeFactor;
 
 private:
   int m_position_menu_id;
@@ -137,7 +137,7 @@ private:
   bool m_bCopyUseHighRes;
   bool m_bCopyUseFillColour;
   int m_CopyArrowStyle;
-  
+
   int m_bTimeZone;
 
   int m_bStartOptions;
@@ -162,7 +162,7 @@ public:
   ~frcurrentsPreferencesDialog() {}
 
 private:
-  void OnIconsSlidersChange(wxCommandEvent& event);
-  void OnFontSlidersChange(wxCommandEvent & event);
+  void OnIconsSlidersChange(wxCommandEvent &event);
+  void OnFontSlidersChange(wxCommandEvent &event);
 };
 #endif
