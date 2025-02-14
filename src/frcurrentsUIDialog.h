@@ -177,7 +177,7 @@ public:
   StandardPort PopulatePortTides(wxString PortName);
   double CalcCurrent(double VE, double ME, double spRate, double npRate,
                      double coefficient);
-  double CalcCoefficient();
+  wxString CalcCoefficient();
   int CalcHoursFromHWNow();
   int CalcHoursFromLWNow();
   wxString nearestHW[8];
