@@ -339,6 +339,11 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
   //    Toggle dialog?
   if (m_bShowfrcurrents) {
     m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
+#ifdef __WXMSW__
+    wxFont f = *OCPNGetFont(_("Dialog"), 10);
+    f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
+    g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);
+#endif
     m_pfrcurrentsDialog->Move(
         wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y));
     m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
