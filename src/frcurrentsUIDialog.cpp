@@ -501,18 +501,22 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   m_choiceArea->SetSelection(id);
   wxString s = m_choiceArea->GetString(id).Left(3);
 
-  FindTidePortUsingChoice(s);
+  FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
   //  find port ID and select it
   id = m_choice1->FindString(m_PortSelected, true);
   if (id == wxNOT_FOUND) id = 0;
   m_choice1->SetSelection(id);
 
-  OnPortListed();
+  SetNow();
 }
 
 void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
   SetDateForNowButton();
+
+  // calc coefficient
+  BrestRange = CalcRange_Brest();
+  m_textCtrlCoefficient->SetValue(CalcCoefficient());
 
   if (m_bUseBM) {
     button_id = 6 + CalcHoursFromLWNow();
@@ -553,6 +557,10 @@ void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
 
 void frcurrentsUIDialog::SetNow() {
   SetDateForNowButton();
+
+  // calc coefficient
+  BrestRange = CalcRange_Brest();
+  m_textCtrlCoefficient->SetValue(CalcCoefficient());
 
   if (m_bUseBM) {
     button_id = 6 + CalcHoursFromLWNow();
@@ -712,7 +720,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   int i = FindPortIDUsingChoice(s);
 
   if (i == 0) {
-    wxMessageBox(_("No tidal data"));
+    wxMessageBox(_("No tidal data"), _("No Tidal Data"));
     return;
   }
   if (m_bUseBM) {
@@ -722,9 +730,8 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   }
 
   BrestRange = CalcRange_Brest();
-  m_coeff = CalcCoefficient();
-  wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-  m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
+  m_textCtrlCoefficient->SetValue(CalcCoefficient());
+
   GetCurrentsData(s);
 
   button_id = 6;  //  in another days as today, set to HW/LW
@@ -758,62 +765,14 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
 }
 
 void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
-  m_staticText2->SetLabel("");
-  m_staticText211->SetLabel("");
-
-  int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma).Left(3);
-
-  int m = m_choice1->GetCurrentSelection();
-  wxString s = m_choice1->GetString(m);
-  // wxMessageBox(s);
-  int i = FindPortIDUsingChoice(s);
-  if (s == "LE HAVRE, France" || s == "LA ROCHELLE - LA PALLICE, France") {
-    CalcLW(i);
-  } else {
-    CalcHW(i);
-  }
-
-  BrestRange = CalcRange_Brest();
-  m_coeff = CalcCoefficient();
-  wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-  m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
-
-  GetCurrentsData(sa);
-
-  SetCorrectHWSelection();
-
-  SetNow();
-}
-
-void frcurrentsUIDialog::OnPortListed() {
-  m_staticText2->SetLabel("");
-  m_staticText211->SetLabel("");
-
-  int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma).Left(3);
-
-  int m = m_choice1->GetCurrentSelection();
-  wxString s = m_choice1->GetString(m);
-  // wxMessageBox(s);
-  int i = FindPortIDUsingChoice(s);
-  if (s == "LE HAVRE, France" || s == "LA ROCHELLE - LA PALLICE, France") {
-    CalcLW(i);
-  } else {
-    CalcHW(i);
-  };
-  BrestRange = CalcRange_Brest();
-  m_coeff = CalcCoefficient();
-  wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-  m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
-
-  GetCurrentsData(sa);
-  SetCorrectHWSelection();
 
   SetNow();
 }
 
 void frcurrentsUIDialog::SetDateForNowButton() {
+  m_staticText2->SetLabel("");
+  m_staticText211->SetLabel("");
+
   wxDateTime this_now = wxDateTime::Now();
   m_datePicker1->SetValue(this_now);
   m_SelectedDate = this_now.GetDateOnly();
@@ -833,9 +792,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
   int id = FindPortIDUsingChoice(string);
 
   if (id == 0) {
-    wxMessageBox(_("No tidal data"));
-    m_staticText2->SetLabel("");
-    m_staticText211->SetLabel("");
+    wxMessageBox(_("No tidal data"), _("No Tidal Data"));
     button_id = 6;
     back_id = 5;
     next_id = 7;
@@ -843,17 +800,11 @@ void frcurrentsUIDialog::SetDateForNowButton() {
     return;
   } else {
     if (string == "LE HAVRE, France" ||
-        string == "LA ROCHELLE - LA PALLICE, France") {
+      string == "LA ROCHELLE - LA PALLICE, France") {
       CalcLW(id);
     } else {
       CalcHW(id);
     };
-
-    BrestRange = CalcRange_Brest();
-    m_coeff = CalcCoefficient();
-    wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-    m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
-
     GetCurrentsData(sa);
     int i, c, s, t, t1, t2, t10, t20;
     wxDateTime d1, d2, d10, d20;
@@ -913,16 +864,11 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         } else {
           CalcHW(id);
         }
-
-        BrestRange = CalcRange_Brest();
-        m_coeff = CalcCoefficient();
-        wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-        m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
-
         GetCurrentsData(sa);
         m_choice2->SetSelection(0);
         return;
       }
+
       // 6 hours greater than last HW. Reset day later.
       if (t < t1) {
         wxDateSpan myOneDay = wxDateSpan::Days(1);
@@ -936,12 +882,6 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         } else {
           CalcHW(id);
         }
-
-        BrestRange = CalcRange_Brest();
-        m_coeff = CalcCoefficient();
-        wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-        m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
-
         GetCurrentsData(sa);
         c = m_choice2->GetCount();
         m_choice2->SetSelection(c - 1);
@@ -1053,6 +993,7 @@ int frcurrentsUIDialog::FindTidePortUsingChoice(wxString inAreaNumber) {
     }
     i++;
   }
+  m_choice1->Fit();
   return 0;
 }
 
@@ -1282,7 +1223,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
   int BrestID = FindPortID("BREST, France");
 
   if (BrestID == 0) {
-    wxMessageBox(_("No tidal data for this port"), _("No Tidal Data"));
     return 999;
   }
   myPortCode = BrestID;
@@ -1385,10 +1325,9 @@ double frcurrentsUIDialog::CalcRange_Brest() {
 void frcurrentsUIDialog::CalcHW(int PortCode) {
   m_choice2->Clear();
 
-  if (PortCode == 0) {
-    wxMessageBox(_("No tidal data for this port"), _("No Tidal Data"));
+  if (PortCode == 0)
     return;
-  }
+
   myPortCode = PortCode;
   SetTimeFactors();
 
@@ -1505,10 +1444,9 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
 void frcurrentsUIDialog::CalcLW(int PortCode) {
   m_choice2->Clear();
 
-  if (PortCode == 0) {
-    wxMessageBox(_("No tidal data for this port"), _("No Tidal Data"));
+  if (PortCode == 0)
     return;
-  }
+
   myPortCode = PortCode;
   SetTimeFactors();
 
@@ -1640,7 +1578,11 @@ double frcurrentsUIDialog::CalcCurrent(double VE, double ME, double spRate,
 
 }
 
-double frcurrentsUIDialog::CalcCoefficient() {
+wxString frcurrentsUIDialog::CalcCoefficient() {
+
+  if (BrestRange == 999)
+    return wxString("No Data");
+
   double PMVE, PMME, BMVE, BMME;
 
   BMME = 2.70;
@@ -1651,13 +1593,13 @@ double frcurrentsUIDialog::CalcCoefficient() {
 
   PMVE = 7.05;
 
-  double x;
   double U;
 
   U = 100 * (PMVE - BMVE) / 95;
 
-  x = 100 * (BrestRange) / U;
-  return x;
+  m_coeff = 100 * (BrestRange) / U;
+
+  return wxString::Format("Coeff:  %3.0f", m_coeff);
 }
 
 void frcurrentsUIDialog::JumpToPort() {
@@ -1998,15 +1940,15 @@ bool frcurrentsUIDialog::OpenXML() {
 }
 
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
-  int a = 0;
-  int an = 0;
-  a = m_choiceArea->GetSelection();
+
+  int a = m_choiceArea->GetSelection();
   wxString s = m_choiceArea->GetString(a).Left(3);
 
-  FindTidePortUsingChoice(s);
+  FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
+
   m_choice1->SetSelection(0);
 
-  OnPortListed();
+  SetNow();
 }
 
 void frcurrentsUIDialog::GetCurrentsData(wxString areaFolder) {
@@ -2279,6 +2221,9 @@ vector<Position> frcurrentsUIDialog::OnRecord() { return my_positions; }
 void frcurrentsUIDialog::SetFromHW(int fromHW) { button_id = fromHW; }
 
 void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
+  m_staticText2->SetLabel("");
+  m_staticText211->SetLabel("");
+
   int m = m_choice1->GetSelection();
   wxString s = m_choice1->GetString(m);
   m_portXML = FindPortXMLUsingChoice(s);
@@ -2291,26 +2236,19 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
   wxString st_mydate;
   int i = FindPortIDUsingChoice(s);
 
-  m_staticText2->SetLabel("");
-
   if (i == 0) {
-    // No tidal data
-    if (s == "LE HAVRE, France" || s == "LA ROCHELLE - LA PALLICE, France")
-      m_staticText211->SetLabel(_("LW"));
-    else
-      m_staticText211->SetLabel(_("HW"));
+    wxMessageBox(_("No tidal data"), _("No Tidal Data"));
     button_id = 6;
-    st_mydate = "";
-  } else {
-    myDateSelection = m_choice2->GetSelection();
-    st_mydate = m_choice2->GetString(myDateSelection);
-    m_dt.ParseDateTime(st_mydate);
-    m_ts = wxTimeSpan::Hours(0);
-    m_myChoice = myDateSelection;
+    return;
   }
 
+  myDateSelection = m_choice2->GetSelection();
+  st_mydate = m_choice2->GetString(myDateSelection);
+  m_dt.ParseDateTime(st_mydate);
+  m_ts = wxTimeSpan::Hours(0);
+  m_myChoice = myDateSelection;
+
   wxString t1 = ("");
-  m_staticText2->SetLabel("");
   button_id = event.GetId();  // Find which button was pushed (HW, HW-6, HW+6)`
   switch (button_id) {        // And make the label depending HW+6, HW-6 etc
     case 6: {
@@ -2417,9 +2355,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
     else
       CalcHW(f);
     BrestRange = CalcRange_Brest();
-    m_coeff = CalcCoefficient();
-    wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-    m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
+    m_textCtrlCoefficient->SetValue(CalcCoefficient());
 
     GetCurrentsData(sa);
     c = m_choice2->GetCount();
@@ -2562,9 +2498,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       CalcHW(f);
 
     BrestRange = CalcRange_Brest();
-    m_coeff = CalcCoefficient();
-    wxString s_coeff = wxString::Format("%3.0f", m_coeff);
-    m_textCtrlCoefficient->SetValue("Coeff: " + s_coeff);
+    m_textCtrlCoefficient->SetValue(CalcCoefficient());
 
     GetCurrentsData(sa);
     m_myChoice = 0;
