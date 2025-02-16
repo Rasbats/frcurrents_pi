@@ -164,8 +164,6 @@ public:
   vector<Position> OnRecord();
   void SetFromHW(int fromHW);
 
-  int press_next_id;
-  int press_prev_id;
   int button_id;
   wxString m_portXML;
   double myRange;
@@ -226,7 +224,6 @@ private:
   void SetCorrectHWSelection();
   void OnDateSelChanged(wxDateEvent& event);
   void OnPortChanged(wxCommandEvent& event);
-  void OnPortListed();
   void SetDateForNowButton();
 
   void OnInformation(wxCommandEvent& event);
@@ -280,8 +277,6 @@ private:
 
   double m_cursor_lat, m_cursor_lon;
 
-  int next_id;
-  int back_id;
   int m_myChoice;
   wxString label_array[13];
   wxString label_lw[13];
@@ -298,11 +293,6 @@ private:
   int m_plot_type;
   void JumpToPort();
 
-  bool isNowButton;
-  bool m_bAtLastChoice;
-  bool m_bAtLastPrev;
-  bool m_bPrev, m_bNext;
-  bool m_bChooseTide;
   int track_id;
 
   double PMVEew[13], PMVEns[13], PMMEew[13], PMMEns[13], BMVEew[13], BMVEns[13],
