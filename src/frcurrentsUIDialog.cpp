@@ -198,9 +198,6 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
   m_dirPicker1->SetValue(m_FolderSelected);
   m_bOnStart = false;
-  m_bAtLastChoice = false;
-  m_bNext = false;
-  m_bPrev = false;
   m_myChoice = 0;
 
   LoadStandardPorts();  // From StandardPorts.xml Load the port choice control
@@ -459,8 +456,6 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
   m_UseArrowStyle = pPlugIn->GetCopyArrowStyle();
 
   button_id = 6;  // High Water
-  next_id = 7;
-  back_id = 5;
   m_myChoice = 0;
 
   label_array[0] = _("HW-6");
@@ -546,12 +541,6 @@ void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
 
   m_myChoice = m_choice2->GetSelection();
 
-  next_id = button_id;
-
-  m_bNext = false;
-  m_bPrev = false;
-  m_bChooseTide = true;
-
   RequestRefresh(pParent);
 }
 
@@ -589,12 +578,6 @@ void frcurrentsUIDialog::SetNow() {
   SetCorrectHWSelection();
 
   m_myChoice = m_choice2->GetSelection();
-
-  next_id = button_id;
-
-  m_bNext = false;
-  m_bPrev = false;
-  m_bChooseTide = true;
 
   RequestRefresh(pParent);
 }
@@ -755,13 +738,8 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   else
     m_staticText211->SetLabel(t + label_array[button_id]);
 
-  //   prepare to a further usage of the 'next' or 'previous' buttons
-  next_id = button_id;
-  m_bNext = false;
-  m_bPrev = false;
-  m_bChooseTide = true;
-
   RequestRefresh(pParent);
+
 }
 
 void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
@@ -794,8 +772,6 @@ void frcurrentsUIDialog::SetDateForNowButton() {
   if (id == 0) {
     wxMessageBox(_("No tidal data"), _("No Tidal Data"));
     button_id = 6;
-    back_id = 5;
-    next_id = 7;
     RequestRefresh(pParent);
     return;
   } else {
@@ -2252,7 +2228,6 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
   button_id = event.GetId();  // Find which button was pushed (HW, HW-6, HW+6)`
   switch (button_id) {        // And make the label depending HW+6, HW-6 etc
     case 6: {
-      next_id = 6;
       m_myChoice = m_choice2->GetSelection();
       m_dt.Add(m_ts);
       if (st_mydate != "") {
@@ -2262,7 +2237,6 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
       break;
     }
     case 0: {
-      next_id = 0;
       m_myChoice = m_choice2->GetSelection();
       m_ts = wxTimeSpan::Hours(6);
       m_dt.Subtract(m_ts);
@@ -2273,7 +2247,6 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
       break;
     }
     case 12: {
-      next_id = 12;
       m_myChoice = m_choice2->GetSelection();
       m_ts = wxTimeSpan::Hours(6);
       m_dt.Add(m_ts);
@@ -2289,292 +2262,146 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
   } else {
     m_staticText211->SetLabel(t1 + label_array[button_id]);
   }
-  m_bChooseTide = true;
-  m_bPrev = false;
-  m_bNext = false;
+
   RequestRefresh(pParent);
 }
 
 void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
-  wxString s;
   wxString st_mydate;
-  int c, p;
-
-  m_bPrev = true;
-  bool again = false;
-
-  if (m_bChooseTide) {
-    again = true;
-    m_bChooseTide = false;
-  }
-  c = m_choice2->GetCount();
-  m_choice2->SetSelection(m_myChoice);
-
-  if (m_bNext) {
-    next_id--;
-    if (next_id == -1) {
-      if (m_myChoice > 0) {
-        next_id = 12;
-        m_myChoice--;
-        m_choice2->SetSelection(m_myChoice);
-      }
-      if (m_myChoice == 0) {
-        m_bAtLastChoice = true;
-      }
-    }
-    again = true;
-    m_bNext = false;
-  }
-
-  button_id = next_id;
 
   int ma = m_choiceArea->GetCurrentSelection();
   wxString sa = m_choiceArea->GetString(ma).Left(3);
 
-  myDateSelection = m_choice2->GetSelection();
-  st_mydate = m_choice2->GetString(myDateSelection);
+  int p = m_choice1->GetSelection();  // Get the port selected
+  wxString s = m_choice1->GetString(p);
+  m_portXML = FindPortXMLUsingChoice(s);
 
-  wxDateTime myDate;
-  wxDateSpan myOneDay = wxDateSpan::Days(1);
 
-  // Test if we have gone beyond the current list of HW.
+  int f = FindPortIDUsingChoice(s);
+  if (f == 0) return;
 
-  if (m_bAtLastChoice) {
-    myDate = m_datePicker1->GetValue();
+  int c = m_choice2->GetCount();
+  if (c == 0) return;
 
-    myDate.Subtract(myOneDay);
-    m_datePicker1->SetValue(myDate);
-    m_SelectedDate = myDate.GetDateOnly();
+  button_id--;
 
-    p = m_choice1->GetSelection();  // Get the port selected
-    wxString s = m_choice1->GetString(p);
-    m_portXML = FindPortXMLUsingChoice(s);
-    int f = FindPortIDUsingChoice(s);
-    if (m_bUseBM)
-      CalcLW(f);
-    else
-      CalcHW(f);
-    BrestRange = CalcRange_Brest();
-    m_textCtrlCoefficient->SetValue(CalcCoefficient());
+  // Test if we have gone beyond the current list of HW
+  if (button_id == - 1) {
+    if (m_myChoice > 0) { //  we stay in the same tide day
+      m_myChoice--;
+    }
+    else {
+      // we have gone beyond the current list of HW. so go to previous day
+      wxDateTime myDate;
+      wxDateSpan myOneDay = wxDateSpan::Days(1);
+      myDate = m_datePicker1->GetValue();
+      myDate.Subtract(myOneDay);
+      m_datePicker1->SetValue(myDate);
+      m_SelectedDate = myDate.GetDateOnly();
 
-    GetCurrentsData(sa);
-    c = m_choice2->GetCount();
-    m_myChoice = c - 1;
-    m_choice2->SetSelection(m_myChoice);
-    m_bAtLastChoice = false;
+      if (m_bUseBM)
+        CalcLW(f);
+      else
+        CalcHW(f);
+
+      BrestRange = CalcRange_Brest();
+      m_textCtrlCoefficient->SetValue(CalcCoefficient());
+
+      GetCurrentsData(sa);
+
+      m_myChoice = c -1;
+    }
+    button_id = 12;
   }
-  //
+  m_choice2->SetSelection(m_myChoice);
   // End of test.
 
-  wxString t1 = _T("");
   m_staticText2->SetLabel("");
-  switch (button_id) {
-    case 12: {
-      next_id = 11;
-      myDateSelection = m_choice2->GetSelection();
-      st_mydate = m_choice2->GetString(myDateSelection);
-      m_dt.ParseDateTime(st_mydate);
-      m_dt.Add(wxTimeSpan::Hours(6));
-      if (st_mydate != "") {
-        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
-        t1 = m_dt.Format("%H:%M") + "    ";
-      }
-      break;
-    }
-    case 0: {
-      next_id = 12;
+  wxString t1 = _T("");
+  st_mydate = m_choice2->GetString(m_myChoice);
+  m_dt.ParseDateTime(st_mydate);
+  m_dt.Subtract(wxTimeSpan::Hours(6));
+  m_dt.Add(wxTimeSpan::Hours(button_id));
+  if (st_mydate != "") {
+    m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+    t1 = m_dt.Format("%H:%M") + "    ";
+  }
 
-      myDateSelection = m_choice2->GetSelection();
-      st_mydate = m_choice2->GetString(myDateSelection);
-      m_dt.ParseDateTime(st_mydate);
-      m_dt.Subtract(wxTimeSpan::Hours(6));
-      if (st_mydate != "") {
-        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
-        t1 = m_dt.Format("%H:%M") + "    ";
-      }
-
-      if (myDateSelection > 0) {
-        m_myChoice--;
-      }
-
-      if (myDateSelection == 0) {
-        m_bAtLastChoice = true;
-      }
-
-      break;
-    }
-    default: {
-      myDateSelection = m_choice2->GetSelection();
-      st_mydate = m_choice2->GetString(myDateSelection);
-      m_dt.ParseDateTime(st_mydate);
-      m_dt.Subtract(wxTimeSpan::Hours(6));
-      m_dt.Add(wxTimeSpan::Hours(button_id));
-      if (st_mydate != ""){
-        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
-        t1 = m_dt.Format("%H:%M") + "    ";
-      }
-      next_id = button_id - 1;  // to make change from forward to back work
-      break;
-    }
-  }  // End switch
-
-  wxString s2;
   if (m_bUseBM) {
     m_staticText211->SetLabel(t1 + label_lw[button_id]);
-  } else {
+  }
+  else {
     m_staticText211->SetLabel(t1 + label_array[button_id]);
   }
-  if (again)
-    OnPrev(event);
-  else
-    RequestRefresh(pParent);
+
+  RequestRefresh(pParent);
 }
 
 void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
-  m_bNext = true;
-
-  wxString s;
   wxString st_mydate;
-  bool again = false;
 
-  if (m_bChooseTide) {
-    //  wxMessageBox("Please click Next again");
-    again = true;
-    m_bChooseTide = false;
-  }
-  int c = m_choice2->GetCount();
-  m_choice2->SetSelection(m_myChoice);
-
-  // CreateFileArray();
-  if (m_bPrev) {
-    next_id++;
-    if (next_id == 13) {
-      if (m_myChoice == c - 1) {
-        m_bAtLastChoice = true;
-      }
-
-      if (m_myChoice < c - 1) {
-        next_id = 0;
-        m_myChoice++;
-        m_choice2->SetSelection(m_myChoice);
-      }
-    }
-    again = true;
-    m_bPrev = false;
-  }
-
-  button_id = next_id;
-
-  // Test if we have gone beyond the current list of HW.
-  //
   int ma = m_choiceArea->GetCurrentSelection();
   wxString sa = m_choiceArea->GetString(ma).Left(3);
+  int p = m_choice1->GetSelection();  // Get the port selected
+  wxString s = m_choice1->GetString(p);
 
-  st_mydate = m_choice2->GetString(myDateSelection);
-  wxDateTime m_testDT;
-  m_testDT.ParseDateTime(st_mydate);
-  m_testDT.Add(wxTimeSpan::Hours(6));
+  int f = FindPortIDUsingChoice(s);
+  if (f == 0) return;
 
-  wxDateTime myDate;
-  wxDateSpan myOneDay = wxDateSpan::Days(1);
+  int c = m_choice2->GetCount();
+  if (c == 0) return;
 
-  int n = m_choice2->GetCount();
+  button_id++;
 
-  if (m_bAtLastChoice) {
-    myDate = m_datePicker1->GetValue();
+  // Test if we have gone beyond the current list of HW
+  if (button_id == 13) {
+    if (m_myChoice < c - 1) { //  we stay in the same tide day
+      m_myChoice++;
+    }
+    else if (m_myChoice == c - 1) {
+      // we have gone beyond the current list of HW. so go to next day
+      wxDateTime myDate;
+      wxDateSpan myOneDay = wxDateSpan::Days(1);
+      myDate = m_datePicker1->GetValue();
+      myDate.Add(myOneDay);
+      m_datePicker1->SetValue(myDate);
+      m_SelectedDate = myDate.GetDateOnly();
 
-    myDate.Add(myOneDay);
-    m_datePicker1->SetValue(myDate);
-    m_SelectedDate = myDate.GetDateOnly();
+      if (m_bUseBM)
+        CalcLW(f);
+      else
+        CalcHW(f);
 
-    int p = m_choice1->GetSelection();  // Get the port selected
-    wxString s = m_choice1->GetString(p);
-    m_portXML = FindPortXMLUsingChoice(s);
-    int f = FindPortIDUsingChoice(s);
+      BrestRange = CalcRange_Brest();
+      m_textCtrlCoefficient->SetValue(CalcCoefficient());
 
-    if (m_bUseBM)
-      CalcLW(f);
-    else
-      CalcHW(f);
+      GetCurrentsData(sa);
 
-    BrestRange = CalcRange_Brest();
-    m_textCtrlCoefficient->SetValue(CalcCoefficient());
-
-    GetCurrentsData(sa);
-    m_myChoice = 0;
-    m_choice2->SetSelection(m_myChoice);
-    m_bAtLastChoice = false;
+      m_myChoice = 0;
+    }
+    button_id = 0;
   }
-  //
+  m_choice2->SetSelection(m_myChoice);
   // End of test.
+
   m_staticText2->SetLabel("");
   wxString t1 = _T("");
-  switch (button_id) {
-    case 12: {
-      next_id = 0;
-      back_id = 11;
-
-      myDateSelection = m_choice2->GetSelection();
-      st_mydate = m_choice2->GetString(myDateSelection);
-      m_dt.ParseDateTime(st_mydate);
-      m_dt.Add(wxTimeSpan::Hours(6));
-      if (st_mydate != "") {
-        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
-        t1 = m_dt.Format("%H:%M") + "    ";
-      }
-
-      if (myDateSelection == c - 1) {
-        m_bAtLastChoice = true;
-      }
-
-      if (myDateSelection < c - 1) {
-        m_myChoice++;
-      }
-
-      break;
-    }
-    case 0: {
-      int c = m_choice2->GetCount();
-
-      next_id = 1;
-      back_id = 12;
-      myDateSelection = m_choice2->GetSelection();
-      st_mydate = m_choice2->GetString(myDateSelection);
-      m_dt.ParseDateTime(st_mydate);
-      m_dt.Subtract(wxTimeSpan::Hours(6));
-      if (st_mydate != "") {
-        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
-        t1 = m_dt.Format("%H:%M") + "    ";
-      }
-
-      break;
-    }
-
-    default: {
-      next_id++;
-      myDateSelection = m_choice2->GetSelection();
-      st_mydate = m_choice2->GetString(myDateSelection);
-      m_dt.ParseDateTime(st_mydate);
-      m_dt.Subtract(wxTimeSpan::Hours(6));
-      m_dt.Add(wxTimeSpan::Hours(button_id));
-      if (st_mydate != ""){
-        m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
-        t1 = m_dt.Format("%H:%M") + "    ";
-      }
-      back_id = next_id - 2;  // to make the forward back work
-      break;
-    }
-  }  // End switch
-
+  st_mydate = m_choice2->GetString(m_myChoice);
+  m_dt.ParseDateTime(st_mydate);
+  m_dt.Subtract(wxTimeSpan::Hours(6));
+  m_dt.Add(wxTimeSpan::Hours(button_id));
+  if (st_mydate != "") {
+    m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
+    t1 = m_dt.Format("%H:%M") + "    ";
+  }
   if (m_bUseBM) {
     m_staticText211->SetLabel(t1 + label_lw[button_id]);
-  } else {
+  }
+  else {
     m_staticText211->SetLabel(t1 + label_array[button_id]);
   }
-  if (again)
-    OnNext(event);
-  else
-    RequestRefresh(pParent);
+
+  RequestRefresh(pParent);
 }
 
 void frcurrentsUIDialog::About(wxCommandEvent& event) {
