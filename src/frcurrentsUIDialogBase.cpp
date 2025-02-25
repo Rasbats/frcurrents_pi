@@ -19,10 +19,11 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	wxStaticBoxSizer* sbSizer71;
 	sbSizer71 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Area") ), wxHORIZONTAL );
 
-	wxString m_choiceAreaChoices[] = { _("557 Strait of Dover"), _("558 South Brittany"),
-		_("559 Vendee-Gironde"), _("560 Tip of Britanny"), _("561 Fecamp to Cherbourg"),
-		_("562 La Hague to Hx-de-Breat"), _("563 Hx-de-Breat to Brignogan"), _("564 English Channel"),
-		_("565 Bay of Biscay") };
+	wxString m_choiceAreaChoices[] = { _("Strait of Dover"), _("English Channel"),
+		_("Fecamp to La Hague"), _("La Hague to Hx-de-Brehat"),
+		_("Hx-de-Brehat to Brignogan"), _("Tip of Britanny"),
+		_("South Brittany"), _("Vendee-Gironde"), _("Bay of Biscay") };
+
 	int m_choiceAreaNChoices = sizeof( m_choiceAreaChoices ) / sizeof( wxString );
 	m_choiceArea = new wxChoice( sbSizer71->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceAreaNChoices, m_choiceAreaChoices, 0 );
 	m_choiceArea->SetSelection( 0 );
