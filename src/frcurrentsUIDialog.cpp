@@ -104,6 +104,9 @@ enum {
   LAST_MONTH_IN_YEAR = 11   //  to 11
 };
 
+wxString m_Areas[] = { _("557"), _("564"), _("561"),_("562"), _("563"),
+    _("560"), _("558"), _("559"), _("565") };
+
 // Handle to DLL
 using namespace std;
 
@@ -494,7 +497,7 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   id = m_choiceArea->FindString(m_AreaSelected, true);
   if (id == wxNOT_FOUND) id = 0;
   m_choiceArea->SetSelection(id);
-  wxString s = m_choiceArea->GetString(id).Left(3);
+  wxString s = m_Areas[id];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
@@ -756,7 +759,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
   m_SelectedDate = this_now.GetDateOnly();
 
   int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma).Left(3);
+  wxString sa = m_Areas[ma];
 
   int m = m_choice1->GetSelection();
   wxString string = m_choice1->GetString(m);
@@ -1932,7 +1935,7 @@ bool frcurrentsUIDialog::OpenXML() {
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
 
   int a = m_choiceArea->GetSelection();
-  wxString s = m_choiceArea->GetString(a).Left(3);
+  wxString s = m_Areas[a];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
@@ -2284,7 +2287,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   wxString st_mydate;
 
   int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma).Left(3);
+  wxString sa = m_Areas[ma];
 
   int p = m_choice1->GetSelection();  // Get the port selected
   wxString s = m_choice1->GetString(p);
@@ -2354,7 +2357,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   wxString st_mydate;
 
   int ma = m_choiceArea->GetCurrentSelection();
-  wxString sa = m_choiceArea->GetString(ma).Left(3);
+  wxString sa = m_Areas[ma];
   int p = m_choice1->GetSelection();  // Get the port selected
   wxString s = m_choice1->GetString(p);
 

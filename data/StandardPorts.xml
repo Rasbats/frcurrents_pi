@@ -1,4 +1,15 @@
 ﻿<DocumentElement>
+	<Table1>
+    <PORT_NUMBER>557</PORT_NUMBER>
+    <PORT_NAME>DUNKERQUE, France</PORT_NAME>
+    <LAT>51.039995</LAT>
+    <LON>2.346700</LON>
+    <PMVE>6.05</PMVE>
+    <PMME>5.0</PMME>
+    <BMME>1.5</BMME>
+    <BMVE>0.6</BMVE>
+    <IDX>DUNKERQUE, France</IDX>
+  </Table1>
    <Table1>
   <PORT_NUMBER>557</PORT_NUMBER>
     <PORT_NAME>CALAIS, France</PORT_NAME>
@@ -9,17 +20,6 @@
     <BMME>2.05</BMME>
     <BMVE>0.8</BMVE>
     <IDX>CALAIS, France</IDX>
-  </Table1>
-      <Table1>
-    <PORT_NUMBER>557</PORT_NUMBER>
-    <PORT_NAME>DUNKERQUE, France</PORT_NAME>
-    <LAT>51.039995</LAT>
-    <LON>2.346700</LON>
-    <PMVE>6.05</PMVE>
-    <PMME>5.0</PMME>
-    <BMME>1.5</BMME>
-    <BMVE>0.6</BMVE>
-    <IDX>DUNKERQUE, France</IDX>
   </Table1>
     <Table1>
     <PORT_NUMBER>557</PORT_NUMBER>
@@ -65,6 +65,17 @@
     <BMVE>0.7</BMVE>
     <IDX>PORT-NAVALO, France</IDX>
   </Table1>
+		<Table1>
+    <PORT_NUMBER>559</PORT_NUMBER>
+    <PORT_NAME>SAINT-NAZAIRE, France</PORT_NAME>
+    <LAT>47.277400</LAT>
+    <LON>-2.21700</LON>
+    <PMVE>5.90</PMVE>
+    <PMME>4.70</PMME>
+    <BMME>2.25</BMME>
+    <BMVE>0.85</BMVE>
+    <IDX>SAINT-NAZAIRE, France</IDX>
+  </Table1>
       <Table1>
     <PORT_NUMBER>559</PORT_NUMBER>
     <PORT_NAME>LES SABLES-D'OLONNE, France</PORT_NAME>
@@ -86,17 +97,6 @@
     <BMME>2.50</BMME>
     <BMVE>1.0</BMVE>
     <IDX>LA ROCHELLE - LA PALLICE, France</IDX>
-  </Table1>
-         <Table1>
-    <PORT_NUMBER>559</PORT_NUMBER>
-    <PORT_NAME>SAINT-NAZAIRE, France</PORT_NAME>
-    <LAT>47.277400</LAT>
-    <LON>-2.21700</LON>
-    <PMVE>5.90</PMVE>
-    <PMME>4.70</PMME>
-    <BMME>2.25</BMME>
-    <BMVE>0.85</BMVE>
-    <IDX>SAINT-NAZAIRE, France</IDX>
   </Table1>
        <Table1>
     <PORT_NUMBER>559</PORT_NUMBER>
@@ -120,6 +120,17 @@
     <BMVE>1.15</BMVE>
     <IDX>BREST, France</IDX>
   </Table1>
+		<Table1>
+    <PORT_NUMBER>561</PORT_NUMBER>
+    <PORT_NAME>LE HAVRE, France</PORT_NAME>
+    <LAT>49.4833</LAT>
+    <LON>0.1167</LON>
+    <PMVE>8.00</PMVE>
+    <PMME>6.70</PMME>
+    <BMME>2.95</BMME>
+    <BMVE>1.25</BMVE>
+    <IDX>LE HAVRE, France</IDX>
+  </Table1>
       <Table1>
     <PORT_NUMBER>561</PORT_NUMBER>
     <PORT_NAME>CHERBOURG, France</PORT_NAME>
@@ -130,17 +141,6 @@
     <BMME>2.60</BMME>
     <BMVE>1.15</BMVE>
     <IDX>CHERBOURG, France</IDX>
-  </Table1>
-      <Table1>
-    <PORT_NUMBER>561</PORT_NUMBER>
-    <PORT_NAME>LE HAVRE, France</PORT_NAME>
-    <LAT>49.4833</LAT>
-    <LON>0.1167</LON>
-    <PMVE>8.00</PMVE>
-    <PMME>6.70</PMME>
-    <BMME>2.95</BMME>
-    <BMVE>1.25</BMVE>
-    <IDX>LE HAVRE, France</IDX>
   </Table1>
     <Table1>
     <PORT_NUMBER>562</PORT_NUMBER>
