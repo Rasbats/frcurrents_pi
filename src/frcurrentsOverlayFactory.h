@@ -121,7 +121,8 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-  void DrawArrow(piDC &dc, int x, int y, double rot_angle, double scale);
+  void RenderLine(PlugIn_ViewPort &piVP);
+
 
 private:
   bool inGL;

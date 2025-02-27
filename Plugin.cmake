@@ -26,6 +26,8 @@ set(OCPN_RELEASE_REPO
     CACHE STRING
     "Default repository for tagged builds not matching 'beta'"
 )
+
+option(ocpnUSE_GL "Use GL" ON)
 #
 #
 # -------  Plugin setup --------
@@ -95,6 +97,9 @@ set(PKG_API_LIB api-18)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
 macro(late_init)
   # Perform initialization after the PACKAGE_NAME library, compilers
   # and ocpn::api is available.
+  if (ocpnUSE_GL)
+    add_definitions(-DocpnUSE_GL)
+  endif ()
 endmacro ()
 
 macro(add_plugin_libraries)
