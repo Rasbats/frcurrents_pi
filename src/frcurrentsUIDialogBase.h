@@ -46,14 +46,11 @@ protected:
   wxStaticText* m_staticTextHW;
   wxChoice* m_choice2;
   wxBitmapButton* m_bpNow;
-  wxStaticText* m_staticText1;
   wxBitmapButton* m_bpPrev;
   wxBitmapButton* m_bpNext;
   wxButton* m_button5;
   wxButton* m_button4;
   wxButton* m_button6;
-  wxStaticText* m_staticText2;
-  wxStaticText* m_staticText211;
   wxButton* m_button7;
 
   // Virtual event handlers, override them in your derived class
@@ -80,6 +77,9 @@ public:
   wxTextCtrl* m_textCtrlCoefficient;
   wxStaticBoxSizer* sbSizerFolder;
   wxTextCtrl* m_dirPicker1;
+  wxStaticText* m_staticText2;
+  wxStaticText* m_staticText211;
+  wxStaticText* m_staticText1;
 
   frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                          const wxString& title = _("French Tidal Streams"),

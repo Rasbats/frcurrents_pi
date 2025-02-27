@@ -21,7 +21,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	wxString m_choiceAreaChoices[] = { _("Strait of Dover"), _("English Channel"),
 		_("Fecamp to La Hague"), _("La Hague to Hx-de-Brehat"),
-		_("Hx-de-Brehat to Brignogan"), _("Tip of Britanny"),
+		_("Hx-de-Brehat to Brignogan"), _("Tip of Brittany"),
 		_("South Brittany"), _("Vendee-Gironde"), _("Bay of Biscay") };
 
 	int m_choiceAreaNChoices = sizeof( m_choiceAreaChoices ) / sizeof( wxString );
@@ -144,7 +144,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	wxBoxSizer* bSizer5;
 	bSizer5 = new wxBoxSizer(wxVERTICAL);
 
-	m_staticText1 = new wxStaticText(this, wxID_ANY, _("Time Zone"), wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText1 = new wxStaticText(this, wxID_FIND, _("Time Zone"), wxDefaultPosition, wxDefaultSize, 0);
 	m_staticText1->Wrap(-1);
 	bSizer5->Add(m_staticText1, 0, wxALL, 5);
 
