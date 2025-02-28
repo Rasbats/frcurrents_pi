@@ -168,21 +168,15 @@ void frcurrentsOverlayFactory::RenderLine(PlugIn_ViewPort &piVP) {
   piDC dc;
   dc.SetVP(&piVP);
 
-  glDisable(GL_BLEND);
-  checkGlError("glDisable", __FILE__, __LINE__);
-
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
   int width = 4;
 
   wxColour colour(255, 0, 0);
   wxBrush brush(colour);
-
-  dc.SetPen(*wxThePenList->FindOrCreatePen(colour, width, style));
-  dc.SetBrush(
-      *wxTheBrushList->FindOrCreateBrush(colour, wxBRUSHSTYLE_TRANSPARENT));
-  dc.SetGLStipple();
-  glDisable(GL_LINE_STIPPLE);
+  wxPen pen(colour, 4);
+  dc.SetPen(pen);
+  dc.SetBrush(brush);
   dc.StrokeLine(100, 100, 400, 400);
 
 #endif
