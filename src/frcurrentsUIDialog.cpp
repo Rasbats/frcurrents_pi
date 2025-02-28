@@ -157,7 +157,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
   m_binResize = false;
 
   g_Window = this;
-  g_window->GetHandle()->setStyleSheet(qtStyleSheet);
+  GetHandle()->setStyleSheet(qtStyleSheet);
   Connect(wxEVT_LEFT_DOWN,
           wxMouseEventHandler(frcurrentsUIDialog::OnMouseEvent));
   Connect(wxEVT_LEFT_UP, wxMouseEventHandler(frcurrentsUIDialog::OnMouseEvent));

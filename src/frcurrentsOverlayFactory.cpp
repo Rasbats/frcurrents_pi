@@ -172,7 +172,6 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
     RenderTestLine(&vp);
 
 		//RenderMyArrows(&vp);
-    drawCurrentArrow(100, 100, 90., 10.0, 14);
 
     return true;
 }
@@ -530,41 +529,6 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 			}   // end if         
 
 	    }// end for			   		   											   		
-}
-
-void frcurrentsOverlayFactory::DrawArrow(piDC &dc, int x, int y,
-                                         double rot_angle,
-                            double scale) {
-  if (scale > 1e-2) {
-    float sin_rot = sin(rot_angle * PI / 180.);
-    float cos_rot = cos(rot_angle * PI / 180.);
-
-    // Move to the first point
-
-    float xt = CurrentArrowArray1[0].x;
-    float yt = CurrentArrowArray1[0].y;
-
-    float xp = (xt * cos_rot) - (yt * sin_rot);
-    float yp = (xt * sin_rot) + (yt * cos_rot);
-    int x1 = (int)(xp * scale);
-    int y1 = (int)(yp * scale);
-
-    // Walk thru the point list
-    for (int ip = 1; ip < NUM_CURRENT_ARROW_POINTS; ip++) {
-      xt = CurrentArrowArray1[ip].x;
-      yt = CurrentArrowArray1[ip].y;
-
-      float xp = (xt * cos_rot) - (yt * sin_rot);
-      float yp = (xt * sin_rot) + (yt * cos_rot);
-      int x2 = (int)(xp * scale);
-      int y2 = (int)(yp * scale);
-
-      dc.DrawLine(x1 + x, y1 + y, x2 + x, y2 + y);
-
-      x1 = x2;
-      y1 = y2;
-    }
-  }
 }
 
 
