@@ -63,10 +63,6 @@
 #include <wx/event.h>
 #include "ocpn_plugin.h"
 
-#ifdef USE_ANDROID_GLES2
-#include "linmath.h"
-#endif
-
 
 enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
 

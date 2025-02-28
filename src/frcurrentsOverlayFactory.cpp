@@ -43,11 +43,6 @@
 #define snprintf _snprintf
 #endif // __WXMSW__
 
-#if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
-#include <qopengl.h>
-#include "GL/gl_private.h"
-#endif
-
 using namespace std;
 
 class Position;
@@ -169,9 +164,9 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
 
     wxColour myColour = wxColour("RED");
 
-    RenderTestLine(&vp);
+    //RenderTestLine(&vp);
 
-		//RenderMyArrows(&vp);
+		RenderMyArrows(&vp);
 
     return true;
 }
