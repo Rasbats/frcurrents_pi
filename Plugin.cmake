@@ -1,6 +1,6 @@
 # ~~~
 # Summary:      Local, non-generic plugin setup
-# Copyright (c) 2020-2021 Mike Rossiter
+# Copyright (c) 2020-2025 Mike Rossiter
 # License:      GPLv3+
 # ~~~
 
