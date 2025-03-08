@@ -343,13 +343,16 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
     wxFont f = *OCPNGetFont(_("Dialog"), 10);
     f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
     g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);
-#else
-    wxFont f = m_pfrcurrentsDialog->m_staticText1->GetFont();
-    f.SetNumericWeight(wxFONTWEIGHT_BOLD);
-    m_pfrcurrentsDialog->m_staticText1->SetFont(f);
-    m_pfrcurrentsDialog->m_staticText2->SetFont(f);
-    m_pfrcurrentsDialog->m_staticText211->SetFont(f);
+/*                                                        \
+#else                                                     \
+wxFont f = m_pfrcurrentsDialog->m_staticText1->GetFont(); \
+f.SetNumericWeight(wxFONTWEIGHT_BOLD);                    \
+m_pfrcurrentsDialog->m_staticText1->SetFont(f);           \
+m_pfrcurrentsDialog->m_staticText2->SetFont(f);           \
+m_pfrcurrentsDialog->m_staticText211->SetFont(f);         \
+*/                                                        \
 #endif
+
     m_pfrcurrentsDialog->Move(
         wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y));
     m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
