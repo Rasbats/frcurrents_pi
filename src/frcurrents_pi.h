@@ -40,6 +40,7 @@
 #include "pidc.h"
 #include "wx/string.h"
 #include <wx/window.h>
+#include <wx/font.h>
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
