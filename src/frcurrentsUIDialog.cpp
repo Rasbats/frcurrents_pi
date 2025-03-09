@@ -1127,8 +1127,13 @@ int frcurrentsUIDialog::FindPortID(wxString myPort) {
 void frcurrentsUIDialog::SetTimeFactors() {
   //    Figure out this computer timezone minute offset
 
-  wxDateTime this_now = m_datePicker1->GetValue();
+  /*  wxDatePicker's Time is O0h, but the summer time occurs at 00h +/- TZ offset.
+  * What's more, the change is effective at time decided by contries (ex: England and France
+  * make the change at the same time whereas they are not on the same meridien) Thus to be sure
+  * to spot the change the first day, the best way is to look at the end of the day;  */
 
+  wxDateTime this_now = m_datePicker1->GetValue();
+  this_now.Add(wxTimeSpan().Minutes((23 * 60) + 59));	//	set the time very near the end of the day
   wxDateTime this_gmt = this_now.ToGMT();
 
 #if wxCHECK_VERSION(2, 6, 2)
@@ -1139,15 +1144,14 @@ void frcurrentsUIDialog::SetTimeFactors() {
 
   m_diff_mins = diff.GetMinutes();
 
-  if(this_now.IsDST()) // no dst for GMT option
-    m_diff_mins -= 60;
-
   //  Correct a bug in wx3.0.2
   //  If the system TZ happens to be GMT, with DST active (e.g.summer in
   //  London), then wxDateTime returns incorrect results for toGMT() method
 #if wxCHECK_VERSION(3, 0, 2)
   if (m_diff_mins == 0 && this_now.IsDST()) m_diff_mins += 60;
 #endif
+  //   End of this computer timezone minute offset calculation
+
   const IDX_entry* pIDX = ptcmgr->GetIDX_entry(myPortCode);
 
   IDX_entry IDX = *pIDX;
