@@ -31,6 +31,7 @@
 #include "pidc.h"
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
+#include "cutil.h"
 
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
@@ -123,6 +124,9 @@ public:
   wxPoint rectPoints[7];
 
 private:
+
+  void RenderSegment(piDC &dc, int xa, int ya, int xb, int yb,
+                     PlugIn_ViewPort &VP, bool bdraw_arrow, int hilite_width);
   bool inGL;
   wxPoint myArrowArray[9];
   void RenderTestLine(PlugIn_ViewPort *vp);
