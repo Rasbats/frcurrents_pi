@@ -100,7 +100,7 @@ src/cutil.h
 src/geodesic.h
 src/georef.h
 src/Hyperlink.h
-src/ocpninclude/timers.h
+src/timers.h
 
 )
 
