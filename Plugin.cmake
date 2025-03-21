@@ -88,7 +88,20 @@ set(SRC
         src/georef.cpp
         src/georef.h
         src/folder.xpm
-        ocpninclude/cutil.h
+
+    ocpnsrc/bbox.cpp
+    ocpnsrc/cutil.cpp
+    ocpnsrc/geodesic.cpp
+    ocpnsrc/georef.cpp
+    ocpnsrc/Hyperlink.cpp
+
+ocpninclude/bbox.h
+ocpninclude/cutil.h
+ocpninclude/geodesic.h
+ocpninclude/georef.h
+ocpninclude/Hyperlink.h
+ocpninclude/timers.h
+
 )
 
 set(PKG_API_LIB api-18)  #  A dir in opencpn-libs/ e. g., api-17 or api-16

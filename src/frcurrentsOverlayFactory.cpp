@@ -37,7 +37,7 @@
 
 #include "frcurrents_pi.h"
 #include <vector>
-#include "cutil.h"
+//#include "cutil.h"
 
 
 #ifdef __WXMSW__
