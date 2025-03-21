@@ -31,7 +31,7 @@
 #include "pidc.h"
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
-#include "cutil.h"
+
 
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
