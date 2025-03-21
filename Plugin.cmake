@@ -89,18 +89,18 @@ set(SRC
         src/georef.h
         src/folder.xpm
 
-    ocpnsrc/bbox.cpp
-    ocpnsrc/cutil.cpp
-    ocpnsrc/geodesic.cpp
-    ocpnsrc/georef.cpp
-    ocpnsrc/Hyperlink.cpp
+    src/bbox.cpp
+    src/cutil.cpp
+    src/geodesic.cpp
+    src/georef.cpp
+    src/Hyperlink.cpp
 
-ocpninclude/bbox.h
-ocpninclude/cutil.h
-ocpninclude/geodesic.h
-ocpninclude/georef.h
-ocpninclude/Hyperlink.h
-ocpninclude/timers.h
+src/bbox.h
+src/cutil.h
+src/geodesic.h
+src/georef.h
+src/Hyperlink.h
+src/ocpninclude/timers.h
 
 )
 

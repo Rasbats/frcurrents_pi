@@ -31,6 +31,7 @@
 #include "pidc.h"
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
+#include "cutil.h"
 
 
 
@@ -122,11 +123,11 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-
+void RenderSegment(piDC &dc, int xa, int ya, int xb, int yb,
+                     PlugIn_ViewPort &VP, bool bdraw_arrow, int hilite_width);
 private:
 
-  void RenderSegment(piDC &dc, int xa, int ya, int xb, int yb,
-                     PlugIn_ViewPort &VP, bool bdraw_arrow, int hilite_width);
+  
   bool inGL;
   wxPoint myArrowArray[9];
   void RenderTestLine(PlugIn_ViewPort *vp);

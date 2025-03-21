@@ -37,8 +37,6 @@
 
 #include "frcurrents_pi.h"
 #include <vector>
-//#include "cutil.h"
-
 
 #ifdef __WXMSW__
 #define snprintf _snprintf
@@ -168,7 +166,7 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
     //RenderTestLine(&vp);
 
 		//RenderMyArrows(&vp);
-    RenderSegment(dc, 100, 200, 150, 200, vp, true, 4);
+    RenderSegment(*m_dc, 100, 200, 150, 300, vp, true, 4);
 
 
     return true;
