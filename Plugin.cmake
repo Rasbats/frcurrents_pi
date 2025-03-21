@@ -45,6 +45,8 @@ set(PKG_IS_OPEN_SOURCE "yes")
 set(PKG_HOMEPAGE https://github.com/Rasbats/frcurrents_pi)
 set(PKG_INFO_URL https://opencpn.org/OpenCPN/plugins/frcurrents.html)
 
+add_definitions(-DocpnUSE_GL)
+
 set(SRC
         src/frcurrents_pi.h
         src/frcurrents_pi.cpp

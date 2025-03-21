@@ -33,8 +33,6 @@
 #include <wx/gdicmn.h>
 #include "cutil.h"
 
-
-
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
 #include "GL/gl_private.h"
