@@ -39,6 +39,9 @@
 #include <vector>
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
+#include <QOpenGLContext>
+#include <QOpenGLFunctions>
+#include <QPainter>
 #include <qopengl.h>
 #include "GL/gl_private.h"
 #elif defined(__APPLE__)
