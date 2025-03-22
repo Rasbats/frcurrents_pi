@@ -38,6 +38,18 @@
 #include "frcurrents_pi.h"
 #include <vector>
 
+#if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
+#include <qopengl.h>
+#include "GL/gl_private.h"
+#elif defined(__APPLE__)
+#include "OpenGL/gl.h"
+#include "OpenGL/glu.h"
+#else
+#include "GL/gl.h"
+#include "GL/glu.h"
+#include "GL/glext.h"
+#endif
+
 #ifdef __WXMSW__
 #define snprintf _snprintf
 #endif // __WXMSW__
@@ -216,7 +228,6 @@ void frcurrentsOverlayFactory::RenderSegment(piDC &dc, int xa, int ya, int xb,
       dc.SetPen(psave);
       dc.StrokeLine(x0, y0, x1, y1);
 
-      wxMessageBox("hilite_width");
     }
   } else {
     if (Visible ==
