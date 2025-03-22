@@ -123,6 +123,12 @@ public:
   wxPoint rectPoints[7];
 void RenderSegment(piDC &dc, int xa, int ya, int xb, int yb,
                      PlugIn_ViewPort &VP, bool bdraw_arrow, int hilite_width);
+
+protected:
+
+void paintGL();
+
+
 private:
 
   

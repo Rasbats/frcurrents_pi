@@ -181,13 +181,32 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
     //RenderTestLine(&vp);
 
 		//RenderMyArrows(&vp);
-    RenderSegment(*m_dc, 100, 200, 150, 300, vp, true, 4);
-
+   // RenderSegment(*m_dc, 100, 200, 150, 300, vp, true, 4);
+    paintGL();
 
     return true;
 }
 
 static int s_arrow_icon[] = {0, 0, 5, 2, 18, 6, 12, 0, 18, -6, 5, -2, 0, 0};
+
+
+void frcurrentsOverlayFactory::paintGL() {
+  // Clear the screen
+  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);  // Black background
+  glClear(GL_COLOR_BUFFER_BIT);
+
+  // Draw something (e.g., a triangle)
+  glBegin(GL_TRIANGLES);
+  glColor3f(1.0f, 0.0f, 0.0f);  // Red
+  glVertex2f(-0.5f, -0.5f);
+  glColor3f(0.0f, 1.0f, 0.0f);  // Green
+  glVertex2f(0.5f, -0.5f);
+  glColor3f(0.0f, 0.0f, 1.0f);  // Blue
+  glVertex2f(0.0f, 0.5f);
+  glEnd();
+}
+
+
 
 void frcurrentsOverlayFactory::RenderSegment(piDC &dc, int xa, int ya, int xb,
                                              int yb,
