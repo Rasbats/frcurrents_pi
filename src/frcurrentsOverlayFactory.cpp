@@ -205,16 +205,18 @@ void frcurrentsOverlayFactory::RenderSegment(piDC &dc, int xa, int ya, int xb,
       wxPen psave = dc.GetPen();
 
       wxColour y;
-      GetGlobalColor(wxS("YELO1"), &y);
+      GetGlobalColor(wxS("URED"), &y);
       wxColour hilt(y.Red(), y.Green(), y.Blue(), 128);
 
       wxPen HiPen(hilt, hilite_width, wxPENSTYLE_SOLID);
 
       dc.SetPen(HiPen);
-      dc.StrokeLine(x0, y0, x1, y1);
+      //dc.StrokeLine(x0, y0, x1, y1);
+      dc.DrawLine(x0, y0, x1, y1);
 
       dc.SetPen(psave);
-      dc.StrokeLine(x0, y0, x1, y1);
+      //dc.StrokeLine(x0, y0, x1, y1);
+      dc.DrawLine(x0, y0, x1, y1);
     }
   } else {
     if (Visible ==
