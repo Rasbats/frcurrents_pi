@@ -255,6 +255,7 @@ private:
   bool btc_valid;
   int m_stationOffset_mins;
   int m_diff_mins;
+  int m_diff_first_dst_sec;
   wxString m_stz;
   int m_t_graphday_GMT;
   wxDateTime m_graphday;
