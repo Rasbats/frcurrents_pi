@@ -1133,7 +1133,7 @@ void frcurrentsUIDialog::SetTimeFactors() {
   * to spot the change the first day, the best way is to look at the end of the day;  */
 
   wxDateTime this_now = m_datePicker1->GetValue();
-  this_now.Add(wxTimeSpan().Minutes((23 * 60) + 59));	//	set the time very near the end of the day
+  this_now.Add(wxTimeSpan().Minutes((22 * 60) + 59));	//	set the time very near the end of the day
   wxDateTime this_gmt = this_now.ToGMT();
 
 #if wxCHECK_VERSION(2, 6, 2)
@@ -1151,6 +1151,12 @@ void frcurrentsUIDialog::SetTimeFactors() {
   if (m_diff_mins == 0 && this_now.IsDST()) m_diff_mins += 60;
 #endif
   //   End of this computer timezone minute offset calculation
+
+  //find the first day with summer time
+  m_diff_first_dst_sec = 0;
+  wxDateTime dtn = this_now;
+  if (this_now.IsDST() && !dtn.Subtract(wxTimeSpan().Days(1)).IsDST())
+    m_diff_first_dst_sec = 3600;
 
   const IDX_entry* pIDX = ptcmgr->GetIDX_entry(myPortCode);
 
@@ -1356,9 +1362,8 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   myHeightLW = 0;
 
   // The tide/current modules calculate values based on PC local time
-  // We need  LMT at station, so adjust accordingly
-  int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
- // tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
+  // We need  UTC, so adjust accordingly
+  int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60) - m_diff_first_dst_sec;
   //  Get the day after
   int tt_nextlocaltzday = tt_localtz + (24 * 3600);
 
@@ -1382,13 +1387,16 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
         ptcmgr->GetHightOrLowTide(tt, BACKWARD_TEN_MINUTES_STEP,
                                   BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
                                   pIDX->IDX_rec_num, tcvalue, tctime);
-        if (tctime > tt_localtz &&
-            tctime <= tt_nextlocaltzday) {  // Only show events visible in graphic
+        if (tctime >= tt_localtz &&
+          tctime < tt_nextlocaltzday) {  // Only show events visible in graphic
+          /* tweak to correct tide on the first hour of the day thrown back to the previous
+          * day by the summer time offset  */
+          if (tctime < (tt_localtz + m_diff_first_dst_sec)) tctime += m_diff_first_dst_sec;
+
           // presently shown
           wxDateTime tcd;  // write date
           wxString s, s1;
           tcd.Set(tctime - (m_diff_mins * 60));
-        //  tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins * 60);
           s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ", tcvalue);  // write value
           pmsd = pIDX->pref_sta_data;  // write unit
@@ -1486,9 +1494,8 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   myHeightLW = 0;
 
   // The tide/current modules calculate values based on PC local time
-  // We need  LMT at station, so adjust accordingly
-  int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
-  //tt_localtz -= m_stationOffset_mins * 60;  //  LMT at station
+  // We need  UTC, so adjust accordingly
+  int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60) - m_diff_first_dst_sec;
   //  Get the day after
   int tt_nextlocaltzday = tt_localtz + (24 * 3600);
 
@@ -1512,14 +1519,16 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
         ptcmgr->GetHightOrLowTide(tt, BACKWARD_TEN_MINUTES_STEP,
                                   BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
                                   pIDX->IDX_rec_num, tcvalue, tctime);
-        if (tctime > tt_localtz &&
-            tctime <= tt_nextlocaltzday) {  // Only show events
-                                           // visible in graphic
+        if (tctime >= tt_localtz &&
+          tctime < tt_nextlocaltzday) {  // Only show events visible in graphic
+          /* tweak to correct tide on the first hour of the day thrown back to the previous
+          * day by the summer time offset  */
+          if (tctime < (tt_localtz + m_diff_first_dst_sec)) tctime += m_diff_first_dst_sec;
+
           // presently shown
           wxDateTime tcd;  // write date
           wxString s, s1;
           tcd.Set(tctime  - (m_diff_mins * 60));
-          //tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
           s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ",
                     tcvalue);  // write value
