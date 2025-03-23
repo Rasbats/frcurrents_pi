@@ -1318,7 +1318,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   m_graphday = m_datePicker1->GetValue();
   // Show the timezones
   m_stz = "Display Time: UTC";
-  int diffloc = wxDateTime::Now().ToGMT().IsDST() ? m_diff_mins + 60 : m_diff_mins;
+  int diffloc = m_diff_mins;
   if (diffloc != 0) {
     m_stz << ("  (") << ("Local");
     if (diffloc > 0)
@@ -1327,8 +1327,8 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
       m_stz << (" +");
       diffloc = - diffloc;
     }
-    int h = diffloc / 60;
-    int h1 = diffloc % 60;
+    int h = abs(diffloc / 60);
+    int h1 = abs(diffloc % 60);
     if (h1 == 0)
       m_stz << wxString::Format("%01dh", h) << (")");
     else
@@ -1446,7 +1446,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   m_graphday = m_datePicker1->GetValue();
   // Get the timezones
   m_stz = "Diplay Time: UTC";
-  int diffloc = wxDateTime::Now().ToGMT().IsDST() ? m_diff_mins + 60 : m_diff_mins;
+  int diffloc = m_diff_mins;
   if (diffloc != 0) {
     m_stz << ("  (") << ("Local");
     if (diffloc > 0)
@@ -1455,8 +1455,8 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
       m_stz << (" +");
       diffloc = -diffloc;
     }
-    int h = diffloc / 60;
-    int h1 = diffloc % 60;
+    int h = abs(diffloc / 60);
+    int h1 = abs(diffloc % 60);
     if (h1 == 0)
       m_stz << wxString::Format("%01dh", h) << (")");
     else
@@ -2328,8 +2328,8 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       BrestRange = CalcRange_Brest();
       m_textCtrlCoefficient->SetValue(CalcCoefficient());
 
-      GetCurrentsData(sa);
-
+      c = m_choice2->GetCount();
+      if (c == 0) return;
       m_myChoice = c -1;
     }
     button_id = 12;
@@ -2395,8 +2395,8 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       BrestRange = CalcRange_Brest();
       m_textCtrlCoefficient->SetValue(CalcCoefficient());
 
-      GetCurrentsData(sa);
-
+      c = m_choice2->GetCount();
+      if (c == 0) return;
       m_myChoice = 0;
     }
     button_id = 0;
