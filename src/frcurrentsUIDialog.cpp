@@ -530,7 +530,7 @@ void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
   } else {
     s2 = label_array[button_id];
   }
-  wxDateTime this_now = wxDateTime::Now();
+  wxDateTime this_now = wxDateTime::Now().ToGMT();
   wxString s0 = this_now.Format("%a %d %b %Y");
   wxString s1 = this_now.Format("%H:%M");
 
@@ -568,7 +568,7 @@ void frcurrentsUIDialog::SetNow() {
   } else {
     s2 = label_array[button_id];
   }
-  wxDateTime this_now = wxDateTime::Now();
+  wxDateTime this_now = wxDateTime::Now().ToGMT();
   wxString s0 = this_now.Format("%a %d %b %Y");
   wxString s1 = this_now.Format("%H:%M");
 
@@ -594,7 +594,7 @@ void frcurrentsUIDialog::SetCorrectHWSelection() {
     myChoiceDates[i].ParseDateTime(m_choice2->GetString(i));
   }
 
-  wxDateTime this_now = wxDateTime::Now();
+  wxDateTime this_now = wxDateTime::Now().ToGMT();
   t = this_now.GetTicks();
 
   for (i = 0; i < c; i++) {
@@ -751,7 +751,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
   m_staticText2->SetLabel("");
   m_staticText211->SetLabel("");
 
-  wxDateTime this_now = wxDateTime::Now();
+  wxDateTime this_now = wxDateTime::Now().ToGMT();
   m_datePicker1->SetValue(this_now);
   m_SelectedDate = this_now.GetDateOnly();
 
@@ -834,7 +834,6 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         myDate.Add(myOneDay);
         m_datePicker1->SetValue(myDate);
         m_SelectedDate = myDate.GetDateOnly();
-
         if (m_bUseBM) {
           CalcLW(id);
         } else {
@@ -1137,6 +1136,9 @@ void frcurrentsUIDialog::SetTimeFactors() {
 
   m_diff_mins = diff.GetMinutes();
 
+  if(this_now.IsDST()) // no dst for GMT option
+    m_diff_mins -= 60;
+
   //  Correct a bug in wx3.0.2
   //  If the system TZ happens to be GMT, with DST active (e.g.summer in
   //  London), then wxDateTime returns incorrect results for toGMT() method
@@ -1172,7 +1174,7 @@ void frcurrentsUIDialog::SetTimeFactors() {
   time_t ttNow = this_now.GetTicks();
   time_t tt_at_station =
       ttNow - (m_diff_mins * 60) + (m_stationOffset_mins * 60);
-
+/*
   if (t_time_gmt > tt_at_station) {
     wxTimeSpan dt((t_time_gmt - tt_at_station) / 3600, 0, 0, 0);
     m_graphday.Subtract(dt);
@@ -1180,7 +1182,7 @@ void frcurrentsUIDialog::SetTimeFactors() {
     wxTimeSpan dt((tt_at_station - t_time_gmt) / 3600, 0, 0, 0);
     m_graphday.Add(dt);
   }
-
+*/
   wxDateTime graphday_00 = m_graphday;  // this_gmt;
   graphday_00.ResetTime();
   time_t t_graphday_00 = graphday_00.GetTicks();
@@ -1210,10 +1212,7 @@ double frcurrentsUIDialog::CalcRange_Brest() {
 
   // Establish the inital drawing day as today
   m_graphday = m_datePicker1->GetValue();
-  // Get the timezone of the station
-  int h = m_stationOffset_mins;
-  h /= 60;
-  //
+
   float dir;
   float tcmax, tcmin;
   tcmax = -10;
@@ -1235,7 +1234,7 @@ double frcurrentsUIDialog::CalcRange_Brest() {
   // The tide/current modules calculate values based on PC local time
   // We need  LMT at station, so adjust accordingly
   int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
-  tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
+  //tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
 
   // get tide flow sens ( flood or ebb ? )
   ptcmgr->GetTideFlowSens(tt_localtz, BACKWARD_TEN_MINUTES_STEP,
@@ -1262,9 +1261,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
           wxDateTime tcd;  // write date
           wxString s, s1, s2;
           tcd.Set(tctime - (m_diff_mins * 60));
-
-          // if (m_tzoneDisplay == 0)  // LMT @ Station
-          tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
 
           (wt) ? sHWLW = "HW" : sHWLW = "LW";  // write HW or LT
           // Fill the array with tide data
@@ -1313,14 +1309,24 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
 
   // Establish the inital drawing day as today
   m_graphday = m_datePicker1->GetValue();
-  // Get the timezone of the station
-  int h = m_stationOffset_mins / 60;
-  int h1 = m_stationOffset_mins % 60;
-  m_stz = "Time Zone : UTC";
-  if (h1 == 0)
-    m_stz << wxString::Format("%+03d", h);
-  else
-    m_stz << wxString::Format(" % +03d:%02d", h, h1);
+  // Show the timezones
+  m_stz = "Display Time: UTC";
+  int diffloc = wxDateTime::Now().ToGMT().IsDST() ? m_diff_mins + 60 : m_diff_mins;
+  if (diffloc != 0) {
+    m_stz << ("  (") << ("Local");
+    if (diffloc > 0)
+      m_stz << (" -");
+    else {
+      m_stz << (" +");
+      diffloc = - diffloc;
+    }
+    int h = diffloc / 60;
+    int h1 = diffloc % 60;
+    if (h1 == 0)
+      m_stz << wxString::Format("%01dh", h) << (")");
+    else
+      m_stz << wxString::Format("%01dh%02d", h, h1) << (")");
+  }
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
@@ -1345,8 +1351,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   // The tide/current modules calculate values based on PC local time
   // We need  LMT at station, so adjust accordingly
   int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
-  tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
-
+ // tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
   //  Get the day after
   int tt_nextlocaltzday = tt_localtz + (24 * 3600);
 
@@ -1371,13 +1376,12 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
                                   BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
                                   pIDX->IDX_rec_num, tcvalue, tctime);
         if (tctime > tt_localtz &&
-            tctime <
-                tt_nextlocaltzday) {  // Only show events visible in graphic
+            tctime <= tt_nextlocaltzday) {  // Only show events visible in graphic
           // presently shown
           wxDateTime tcd;  // write date
           wxString s, s1;
-
-          tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
+          tcd.Set(tctime - (m_diff_mins * 60));
+        //  tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins * 60);
           s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ", tcvalue);  // write value
           pmsd = pIDX->pref_sta_data;  // write unit
@@ -1433,14 +1437,24 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
 
   // Establish the inital drawing day as today
   m_graphday = m_datePicker1->GetValue();
-  // Get the timezone of the station
-  int h = m_stationOffset_mins / 60;
-  int h1 = m_stationOffset_mins % 60;
-  m_stz = "Time Zone : UTC";
-  if (h1 == 0)
-    m_stz << wxString::Format("%+03d", h);
-  else
-    m_stz << wxString::Format(" % +03d:%02d", h, h1);
+  // Get the timezones
+  m_stz = "Diplay Time: UTC";
+  int diffloc = wxDateTime::Now().ToGMT().IsDST() ? m_diff_mins + 60 : m_diff_mins;
+  if (diffloc != 0) {
+    m_stz << ("  (") << ("Local");
+    if (diffloc > 0)
+      m_stz << (" -");
+    else {
+      m_stz << (" +");
+      diffloc = -diffloc;
+    }
+    int h = diffloc / 60;
+    int h1 = diffloc % 60;
+    if (h1 == 0)
+      m_stz << wxString::Format("%01dh", h) << (")");
+    else
+      m_stz << wxString::Format("%01dh%02d", h, h1) << (")");
+  }
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
@@ -1467,8 +1481,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   // The tide/current modules calculate values based on PC local time
   // We need  LMT at station, so adjust accordingly
   int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
-  tt_localtz -= m_stationOffset_mins * 60;  //  LMT at station
-
+  //tt_localtz -= m_stationOffset_mins * 60;  //  LMT at station
   //  Get the day after
   int tt_nextlocaltzday = tt_localtz + (24 * 3600);
 
@@ -1493,12 +1506,13 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
                                   BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
                                   pIDX->IDX_rec_num, tcvalue, tctime);
         if (tctime > tt_localtz &&
-            tctime < tt_nextlocaltzday) {  // Only show events
+            tctime <= tt_nextlocaltzday) {  // Only show events
                                            // visible in graphic
           // presently shown
           wxDateTime tcd;  // write date
           wxString s, s1;
-          tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
+          tcd.Set(tctime  - (m_diff_mins * 60));
+          //tcd.Set(tctime + (m_stationOffset_mins - m_diff_mins) * 60);
           s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ",
                     tcvalue);  // write value
@@ -1589,7 +1603,7 @@ int frcurrentsUIDialog::CalcHoursFromHWNow() {
 
   myTest = 26;
 
-  wxDateTime this_now = wxDateTime::Now();
+  wxDateTime this_now = wxDateTime::Now().ToGMT();
   int t = this_now.GetTicks();
   int i = 0;
   int m;
@@ -1627,7 +1641,7 @@ int frcurrentsUIDialog::CalcHoursFromLWNow() {
 
   myTest = 26;
 
-  wxDateTime this_now = wxDateTime::Now();
+  wxDateTime this_now = wxDateTime::Now().ToGMT();
   int t = this_now.GetTicks();
   int i = 0;
   int m;
@@ -2333,7 +2347,6 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   else {
     m_staticText211->SetLabel(t1 + label_array[button_id]);
   }
-
   RequestRefresh(pParent);
 }
 
