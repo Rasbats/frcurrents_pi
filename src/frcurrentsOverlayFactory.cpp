@@ -566,7 +566,7 @@ void frcurrentsOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, 
     TCMgr *ctcmgr = m_dlg.ptcmgr;
 
 
-    wxDateTime yn = wxDateTime::Now();
+    wxDateTime yn = wxDateTime::Now().ToGMT();
     time_t myTimeNow = yn.GetTicks();
 
     wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
