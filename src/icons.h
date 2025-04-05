@@ -7,7 +7,7 @@
 #	include <wx/wx.h>
 #endif
 
-#include "folder.xpm"
+//#include "folder.xpm"
 
 extern void initialize_images(void);
 
