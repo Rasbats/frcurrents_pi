@@ -392,20 +392,39 @@ bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
 }
 
 bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
-                                    PlugIn_ViewPort *vp) {
-  if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
-      !m_pfrcurrentsOverlayFactory)
-    return false;
-
-  m_pfrcurrentsDialog->SetViewPort(vp);
-  piDC piDC;
-  glEnable(GL_BLEND);
-  piDC.SetVP(vp);
-
-  m_pfrcurrentsOverlayFactory->RenderOverlay(piDC, *vp);
-  return true;
+                                    PlugIn_ViewPort *pivp) {
+  g_bOpenGL = true;
+  return RenderGLOverlays(pcontext, pivp);
 }
 
+bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
+                                    PlugIn_ViewPort *pivp) {
+  m_pcontext = pcontext;
+  m_VP = *pivp;
+  g_VP = *pivp;
+  m_chart_scale = pivp->chart_scale;
+  m_view_scale = pivp->view_scale_ppm;
+
+  g_pDC = new piDC(pcontext);
+  g_pDC->SetVP(pivp);
+
+  m_pfrcurrentsOverlayFactory->DrawGL(*pivp);
+
+  /*
+  LLBBox llbb;
+  llbb.Set(pivp->lat_min, pivp->lon_min, pivp->lat_max, pivp->lon_max);
+
+  //    DrawAllODPointsInBBox( *g_pDC, llbb );
+  RenderPathLegs(*g_pDC);
+
+  if (m_pMouseBoundary && m_mouse_canvas_index == m_current_canvas_index)
+    m_pMouseBoundary->DrawGL(*pivp);
+
+  DrawAllPathsAndODPoints(*pivp);
+*/
+  delete g_pDC;
+  return TRUE;
+}
 void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
   if (m_pfrcurrentsDialog) m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
 }

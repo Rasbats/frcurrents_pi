@@ -49,6 +49,26 @@
 
 extern wxString myVColour[5];
 
+#ifdef __ANDROID__
+#include <qopengl.h>
+typedef double GLdouble;
+#define GL_GLEXT_LEGACY 1
+#include "GLES2/gl2.h"
+#include "glu_gl.h"
+#include "GL/glu.h"
+
+#elif defined(__WXOSX__)
+#include "OpenGL/gl.h"
+#include "OpenGL/glu.h"
+#include "OpenGL/glext.h"
+typedef void (*_GLUfuncptr)();
+
+#else
+#include "GL/gl.h"
+#include "GL/glu.h"
+#include "GL/glext.h"
+#endif
+
 #define frcurrents_TOOL_POSITION \
   -1  // Request default positioning of toolbar tool
 
@@ -112,6 +132,16 @@ public:
   frcurrentsUIDialog* m_pfrcurrentsDialog;
   double            my_IconsScaleFactor;
   int               my_FontpointSizeFactor;
+  bool g_bOpenGL;
+  bool RenderGLOverlays(wxGLContext *pcontext,
+                                       PlugIn_ViewPort *pivp);
+  wxGLContext *m_pcontext;
+  wxMemoryDC *pmdc;
+  double m_chart_scale;
+  double m_view_scale;
+  PlugIn_ViewPort m_VP;
+  PlugIn_ViewPort g_VP;
+  piDC *g_pDC;
 
 private:
   int m_position_menu_id;
