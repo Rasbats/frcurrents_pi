@@ -84,36 +84,6 @@ static wxPoint CurrentArrowArray3[NUM_CURRENT_ARROW_POINTS] = {
 static int texture_format;
 static bool glQueried = false;
 
-static GLboolean QueryExtension(const char *extName) {
-  /*
-   ** Search for extName in the extensions string. Use of strstr()
-   ** is not sufficient because extension names can be prefixes of
-   ** other extension names. Could use strtok() but the constant
-   ** string returned by glGetString might be in read-only memory.
-   */
-  char *p;
-  char *end;
-  int extNameLen;
-
-  extNameLen = strlen(extName);
-
-  p = (char *)glGetString(GL_EXTENSIONS);
-  if (NULL == p) {
-    return GL_FALSE;
-  }
-
-  end = p + strlen(p);
-
-  while (p < end) {
-    int n = strcspn(p, " ");
-    if ((extNameLen == n) && (strncmp(extName, p, n) == 0)) {
-      return GL_TRUE;
-    }
-    p += (n + 1);
-  }
-  return GL_FALSE;
-}
-
 #if defined(__WXMSW__)
 #define systemGetProcAddress(ADDR) wglGetProcAddress(ADDR)
 #elif defined(__WXOSX__)
