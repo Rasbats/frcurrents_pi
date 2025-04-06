@@ -89,20 +89,20 @@ set(SRC
         src/TCDS_Binary_Harmonic.h
         src/georef.cpp
         src/georef.h
-        src/folder.xpm
+        src/globals.h
 
-    src/bbox.cpp
-    src/cutil.cpp
-    src/geodesic.cpp
-    src/georef.cpp
-    src/Hyperlink.cpp
+        src/bbox.cpp
+        src/cutil.cpp
+        src/geodesic.cpp
+        src/georef.cpp
+        src/Hyperlink.cpp
 
-src/bbox.h
-src/cutil.h
-src/geodesic.h
-src/georef.h
-src/Hyperlink.h
-src/timers.h
+        src/bbox.h
+        src/cutil.h
+        src/geodesic.h
+        src/georef.h
+        src/Hyperlink.h
+        src/timers.h
 
 )
 

@@ -148,8 +148,8 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
 
 void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
 #ifdef ocpnUSE_GL
-  piDC dc;
-  dc.SetVP(&piVP);
+  //piDC dc;
+  //dc.SetVP(&piVP);
 
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
@@ -158,92 +158,21 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   int j = 0;
   wxPoint r;
 
-  dc.SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
-  dc.SetBrush(
+  g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
+  g_pDC->SetBrush(
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
-  dc.SetGLStipple();
+  g_pDC->SetGLStipple();
 
   
-  dc.DrawLine(100, 200, 200, 400);
-  
-
-  glDisable(GL_LINE_STIPPLE);
+  //dc.DrawLine(100, 200, 200, 400);
  
+  g_pDC->DrawLine(100, 200, 200, 400);
+  
+  drawCurrentArrow(200, 300, 60., 1, 1.5);
 #endif
 }
 
 
-static int s_arrow_icon[] = {0, 0, 5, 2, 18, 6, 12, 0, 18, -6, 5, -2, 0, 0};
-
-void frcurrentsOverlayFactory::RenderSegment(piDC &dc, int xa, int ya, int xb,
-                                             int yb, PlugIn_ViewPort &VP,
-                                             bool bdraw_arrow,
-                                             int hilite_width) {
-  wxBrush brush("RED");
-
-  dc.SetVP(&VP);
-  wxPen pen("RED", 4);
-
-  dc.SetPen(pen);
-  dc.SetBrush(brush);
-
-  //    Get the dc boundary
-  int sx, sy;
-  sx = VP.pix_width;
-  sy = VP.pix_height;
-
-  //    Try to exit early if the segment is nowhere near the screen
-  wxRect r(0, 0, sx, sy);
-  wxRect s(xa, ya, 1, 1);
-  wxRect t(xb, yb, 1, 1);
-  s.Union(t);
-  if (!r.Intersects(s)) return;
-
-  //    Clip the line segment to the dc boundary
-  int x0 = xa;
-  int y0 = ya;
-  int x1 = xb;
-  int y1 = yb;
-
-  //    If hilite is desired, use a Native Graphics context to render alpha
-  //    colours That is, if wxGraphicsContext is available.....
-
-  if (hilite_width) {
-    if (Visible ==
-        cohen_sutherland_line_clip_i(&x0, &y0, &x1, &y1, 0, sx, 0, sy)) {
-      wxPen psave = dc.GetPen();
-
-      wxColour y;
-      GetGlobalColor(wxS("YELO1"), &y);
-      wxColour hilt(y.Red(), y.Green(), y.Blue(), 128);
-
-      wxPen HiPen(hilt, hilite_width, wxPENSTYLE_SOLID);
-
-      dc.SetPen(HiPen);
-      dc.StrokeLine(x0, y0, x1, y1);
-
-      dc.SetPen(psave);
-      dc.StrokeLine(x0, y0, x1, y1);
-    }
-  } else {
-    if (Visible ==
-        cohen_sutherland_line_clip_i(&x0, &y0, &x1, &y1, 0, sx, 0, sy))
-      dc.StrokeLine(x0, y0, x1, y1);
-  }
-}
-
-  void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort * vp) {
-    wxColour colour(255, 0, 0);
-    wxBrush brush(colour);
-
-    if (m_dc) {
-      wxPen pen(colour, 4);
-
-      m_dc->SetPen(pen);
-      m_dc->SetBrush(brush);
-    }
-    m_dc->DrawLine(100, 100, 400, 400, true);
-  }
 
   void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
     switch (my_style) {
@@ -330,11 +259,11 @@ void frcurrentsOverlayFactory::RenderSegment(piDC &dc, int xa, int ya, int xb,
 
     wxBrush brush(colour);
 
-    if (m_dc) {
+    if (g_pDC) {
       wxPen pen(colour, 4);
 
-      m_dc->SetPen(pen);
-      m_dc->SetBrush(brush);
+      g_pDC->SetPen(pen);
+      g_pDC->SetBrush(brush);
     }
     float sin_rot = sin(rot_angle * PI / 180.);
     float cos_rot = cos(rot_angle * PI / 180.);
@@ -368,8 +297,8 @@ void frcurrentsOverlayFactory::RenderSegment(piDC &dc, int xa, int ya, int xb,
       p_basic[ip].x = 100 + x2;
       p_basic[ip].y = 100 + y2;
 
-      if (m_dc) {
-        m_dc->DrawLine(x1 + x, y1 + y, x2 + x, y2 + y);
+      if (g_pDC) {
+        g_pDC->DrawLine(x1 + x, y1 + y, x2 + x, y2 + y);
       }
 
       p[ip].x = x2 + x;
@@ -406,10 +335,10 @@ void frcurrentsOverlayFactory::RenderSegment(piDC &dc, int xa, int ya, int xb,
       // polyPoints[4] = p[8];
 
       brush.SetStyle(wxBRUSHSTYLE_SOLID);
-      m_dc->SetBrush(brush);
+      g_pDC->SetBrush(brush);
 
-      m_dc->DrawPolygonTessellated(3, polyPoints);
-      m_dc->DrawPolygonTessellated(4, rectPoints);
+      g_pDC->DrawPolygonTessellated(3, polyPoints);
+      g_pDC->DrawPolygonTessellated(4, rectPoints);
     }
     return true;
   }

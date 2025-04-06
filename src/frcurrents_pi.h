@@ -40,7 +40,7 @@
 #include "pidc.h"
 #include "wx/string.h"
 #include <wx/window.h>
-
+#include "globals.h"
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
@@ -141,7 +141,7 @@ public:
   double m_view_scale;
   PlugIn_ViewPort m_VP;
   PlugIn_ViewPort g_VP;
-  piDC *g_pDC;
+  
 
 private:
   int m_position_menu_id;

@@ -36,6 +36,9 @@
 
 #include "frcurrents_pi.h"
 
+
+piDC *g_pDC;
+
 wxString myVColour[] = {"rgb(127, 0, 255)", "rgb(0, 166, 80)",
                         "rgb(253, 184, 19)", "rgb(248, 128, 64)",
                         "rgb(248, 0, 0)"};
@@ -393,6 +396,10 @@ bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
 
 bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
                                     PlugIn_ViewPort *pivp) {
+    if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
+      !m_pfrcurrentsOverlayFactory)
+    return false;
+
   g_bOpenGL = true;
   return RenderGLOverlays(pcontext, pivp);
 }

@@ -32,6 +32,7 @@
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
 #include "cutil.h"
+#include "globals.h"
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
@@ -121,8 +122,6 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-void RenderSegment(piDC &dc, int xa, int ya, int xb, int yb,
-                     PlugIn_ViewPort &VP, bool bdraw_arrow, int hilite_width);
   void DrawGL(PlugIn_ViewPort &piVP);
 
 private:
@@ -130,8 +129,6 @@ private:
   
   bool inGL;
   wxPoint myArrowArray[9];
-  void RenderTestLine(PlugIn_ViewPort *vp);
-  //bool DoRenderfrcurrentsOverlay(PlugIn_ViewPort *vp);
   void RenderMyArrows(PlugIn_ViewPort *vp);
   int m_fromHW;
   void GetArrowStyle(int my_style);
