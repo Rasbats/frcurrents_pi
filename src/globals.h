@@ -29,6 +29,7 @@
 #define _OCPNDRAWGLOBALS_H_
 
 class piDC;
+class PlugIn_ViewPort;
 
 extern PlugIn_ViewPort g_VP;
 extern piDC            *g_pDC;

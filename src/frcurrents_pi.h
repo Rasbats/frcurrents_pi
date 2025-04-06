@@ -140,7 +140,7 @@ public:
   double m_chart_scale;
   double m_view_scale;
   PlugIn_ViewPort m_VP;
-  PlugIn_ViewPort g_VP;
+  
   
 
 private:

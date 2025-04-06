@@ -38,6 +38,7 @@
 
 
 piDC *g_pDC;
+PlugIn_ViewPort g_VP;
 
 wxString myVColour[] = {"rgb(127, 0, 255)", "rgb(0, 166, 80)",
                         "rgb(253, 184, 19)", "rgb(248, 128, 64)",

@@ -166,9 +166,12 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   
   //dc.DrawLine(100, 200, 200, 400);
  
-  g_pDC->DrawLine(100, 200, 200, 400);
+  //g_pDC->DrawLine(100, 200, 200, 400);
   
-  drawCurrentArrow(200, 300, 60., 1, 1.5);
+  //drawCurrentArrow(200, 300, 60., 1, 1.5);
+
+  RenderMyArrows(&g_VP);
+
 #endif
 }
 
@@ -486,7 +489,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
         char sbuf[20];
         if (m_bShowRate) {
           snprintf(sbuf, 19, "%3.1f", myCurrent);
-          m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y);
+          g_pDC->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y);
           if (!m_bHighResolution) {
             shift = 13;
           } else {
@@ -496,7 +499,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
 
         if (m_bShowDirection) {
           snprintf(sbuf, 19, "%03.0f", dir);
-          m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y + shift);
+          g_pDC->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y + shift);
         }  // end scaled current
       }  // end if
 
