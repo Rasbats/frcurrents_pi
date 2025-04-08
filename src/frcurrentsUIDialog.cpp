@@ -594,7 +594,7 @@ void frcurrentsUIDialog::SetCorrectHWSelection() {
 
   c = m_choice2->GetCount();
   for (i = 0; i < c; i++) {
-    myChoiceDates[i].ParseDateTime(m_choice2->GetString(i));
+    myChoiceDates[i] = m_choice2_dt[i];
   }
 
   wxDateTime this_now = wxDateTime::Now().ToGMT();
@@ -718,8 +718,6 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   BrestRange = CalcRange_Brest();
   m_textCtrlCoefficient->SetValue(CalcCoefficient());
 
-  GetCurrentsData(s);
-
   button_id = 6;  //  in another days as today, set to HW/LW
 
   if (later)
@@ -731,7 +729,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
 
   m_choice2->SetSelection(m_myChoice);
 
-  m_dt.ParseDateTime(m_choice2->GetString(m_myChoice));
+  m_dt = m_choice2_dt[m_myChoice];
   m_dt.Subtract(wxTimeSpan::Hours(6));
   m_dt.Add(wxTimeSpan::Hours(button_id));
   m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
@@ -778,13 +776,12 @@ void frcurrentsUIDialog::SetDateForNowButton() {
     RequestRefresh(pParent);
     return;
   } else {
-    if (string == "LE HAVRE, France" ||
-      string == "LA ROCHELLE - LA PALLICE, France") {
+    GetCurrentsData(sa);
+    if(m_bUseBM) {
       CalcLW(id);
     } else {
       CalcHW(id);
     };
-    GetCurrentsData(sa);
     int i, c, s, t, t1, t2, t10, t20;
     wxDateTime d1, d2, d10, d20;
 
@@ -796,7 +793,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
 
     c = m_choice2->GetCount();
     for (i = 0; i < c; i++) {
-      myChoiceDates[i].ParseDateTime(m_choice2->GetString(i));
+      myChoiceDates[i] = m_choice2_dt[i];
     }
 
     t = this_now.GetTicks();
@@ -842,7 +839,6 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         } else {
           CalcHW(id);
         }
-        GetCurrentsData(sa);
         m_choice2->SetSelection(0);
         return;
       }
@@ -860,7 +856,6 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         } else {
           CalcHW(id);
         }
-        GetCurrentsData(sa);
         c = m_choice2->GetCount();
         m_choice2->SetSelection(c - 1);
         return;
@@ -1309,6 +1304,7 @@ double frcurrentsUIDialog::CalcRange_Brest() {
 
 void frcurrentsUIDialog::CalcHW(int PortCode) {
   m_choice2->Clear();
+  m_choice2_dt.clear();
 
   if (PortCode == 0)
     return;
@@ -1356,6 +1352,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   bool gotHW = false;
   Station_Data* pmsd;
   int i;
+  wxDateTime euDT[8];
   float tcv[26];
   time_t tt_tcv[26];
   myHeightHW = 0;
@@ -1408,7 +1405,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
           euTC[array_index][1] = s1;
           euTC[array_index][2] = wxString(pmsd->units_abbrv, wxConvUTF8);
           euTC[array_index][3] = sHWLW;
-
+          euDT[array_index] = tcd;
           if (euTC[array_index][3] == "LW") {
             if (gotHW) myLW = tcvalue;
           }
@@ -1422,8 +1419,9 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
             myRange = myHW - myLW;
 
             m_choice2->Insert(euTC[array_index][0], list_index);
+            m_choice2_dt.push_back(euDT[array_index]);
             // nearestHW for the now button
-            nearestHW[e] = euTC[array_index][0];
+            nearestHW[e] = euDT[array_index];
             e++;
             list_index++;
           }
@@ -1438,6 +1436,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
 
 void frcurrentsUIDialog::CalcLW(int PortCode) {
   m_choice2->Clear();
+  m_choice2_dt.clear();
 
   if (PortCode == 0)
     return;
@@ -1488,6 +1487,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   bool gotLW = false;
   Station_Data* pmsd;
   int i;
+  wxDateTime euDT[8];
   float tcv[26];
   time_t tt_tcv[26];
   myHeightHW = 0;
@@ -1541,6 +1541,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
           euTC[array_index][1] = s1;
           euTC[array_index][2] = wxString(pmsd->units_abbrv, wxConvUTF8);
           euTC[array_index][3] = sHWLW;
+          euDT[array_index] = tcd;
 
           if (euTC[array_index][3] == "LW") {
             gotLW = true;
@@ -1552,11 +1553,12 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
                                     // CalcCoefficient
 
             m_choice2->Insert(euTC[array_index][0], list_index);
+            m_choice2_dt.push_back(euDT[array_index]);
             // nearestLW for the now button
-            nearestLW[e] = euTC[array_index][0];
+            nearestLW[e] = euDT[array_index];
             e++;
             list_index++;
-
+            wxDateTime t;
           } else
 
               if (euTC[array_index][3] == "HW") {
@@ -1626,7 +1628,7 @@ int frcurrentsUIDialog::CalcHoursFromHWNow() {
   double d;
 
   for (i; i < 8; i++) {
-    myDateTime.ParseDateTime(nearestHW[i]);
+    myDateTime = nearestHW[i];
     m = myDateTime.GetTicks();
 
     d = t - m;
@@ -1640,7 +1642,7 @@ int frcurrentsUIDialog::CalcHoursFromHWNow() {
   int c = m_choice2->GetCount();
   for (c = 0; c < 8; c++) {
     for (i = 0; i < 8; i++) {
-      if (m_choice2->GetString(c) == nearestHW[i]) {
+      if (m_choice2_dt[c] == nearestHW[i]) {
         m_choice2->SetSelection(c);
       }
     }
@@ -1664,7 +1666,7 @@ int frcurrentsUIDialog::CalcHoursFromLWNow() {
   double d;
 
   for (i; i < 8; i++) {
-    myDateTime.ParseDateTime(nearestLW[i]);
+    myDateTime = nearestLW[i];
     m = myDateTime.GetTicks();
 
     d = t - m;
@@ -1678,7 +1680,7 @@ int frcurrentsUIDialog::CalcHoursFromLWNow() {
   int c = m_choice2->GetCount();
   for (c = 0; c < 8; c++) {
     for (i = 0; i < 8; i++) {
-      if (m_choice2->GetString(c) == nearestLW[i]) {
+      if (m_choice2_dt[c] == nearestLW[i]) {
         m_choice2->SetSelection(c);
       }
     }
@@ -2247,13 +2249,10 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
     button_id = 6;
     return;
   }
-
-  myDateSelection = m_choice2->GetSelection();
-  st_mydate = m_choice2->GetString(myDateSelection);
-  m_dt.ParseDateTime(st_mydate);
+  m_myChoice = m_choice2->GetSelection();
+  st_mydate = m_choice2->GetString(m_myChoice);
+  m_dt = m_choice2_dt[m_myChoice];
   m_ts = wxTimeSpan::Hours(0);
-  m_myChoice = myDateSelection;
-
   wxString t1 = ("");
   button_id = event.GetId();  // Find which button was pushed (HW, HW-6, HW+6)`
   switch (button_id) {        // And make the label depending HW+6, HW-6 etc
@@ -2287,7 +2286,7 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
       break;
     }
   }
-  if (s == "LE HAVRE, France" || s == "LA ROCHELLE - LA PALLICE, France") {
+  if(m_bUseBM) {
     m_staticText211->SetLabel(t1 + label_lw[button_id]);
   } else {
     m_staticText211->SetLabel(t1 + label_array[button_id]);
@@ -2349,7 +2348,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   m_staticText2->SetLabel("");
   wxString t1 = _T("");
   st_mydate = m_choice2->GetString(m_myChoice);
-  m_dt.ParseDateTime(st_mydate);
+  m_dt = m_choice2_dt[m_myChoice];
   m_dt.Subtract(wxTimeSpan::Hours(6));
   m_dt.Add(wxTimeSpan::Hours(button_id));
   if (st_mydate != "") {
@@ -2416,7 +2415,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   m_staticText2->SetLabel("");
   wxString t1 = _T("");
   st_mydate = m_choice2->GetString(m_myChoice);
-  m_dt.ParseDateTime(st_mydate);
+  m_dt = m_choice2_dt[m_myChoice];
   m_dt.Subtract(wxTimeSpan::Hours(6));
   m_dt.Add(wxTimeSpan::Hours(button_id));
   if (st_mydate != "") {
