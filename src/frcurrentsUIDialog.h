@@ -178,8 +178,8 @@ public:
   wxString CalcCoefficient();
   int CalcHoursFromHWNow();
   int CalcHoursFromLWNow();
-  wxString nearestHW[8];
-  wxString nearestLW[8];
+  wxDateTime nearestHW[8];
+  wxDateTime nearestLW[8];
   bool m_bUseBM;
   int round(double c);
 
@@ -283,11 +283,10 @@ private:
   wxString label_lw[13];
   float tcv[26];
 
-  int myDateSelection;
   wxDateTime m_SelectedDate; //  to store the current selected date
   wxString euTC[8][4];  // Date.Time, Height, Units, HW.LW
   wxDateTime m_dt;
-  wxDateTime choice_dt;
+  vector<wxDateTime> m_choice2_dt;
   wxDateTime back_dt;
   wxDateTime next_dt;
   wxTimeSpan m_ts;
