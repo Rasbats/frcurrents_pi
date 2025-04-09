@@ -104,8 +104,8 @@ enum {
   LAST_MONTH_IN_YEAR = 11   //  to 11
 };
 
-wxString m_Areas[] = { _("557"), _("564"), _("561"),_("562"), _("563"),
-    _("560"), _("558"), _("559"), _("565") };
+wxString m_Areas[] = { _T("557"), _T("564"), _T("561"), _T("562"), _T("563"),
+    _T("560"), _T("558"), _T("559"), _T("565") };
 
 // Handle to DLL
 using namespace std;
@@ -181,7 +181,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
-    pConf->Read("frcurrentsArea", &m_AreaSelected);
+    pConf->Read("frcurrentsAreaID", &m_AreaIDSelected,0);
     pConf->Read("frcurrentsPort", &m_PortSelected);
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
@@ -232,8 +232,7 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     pConf->Write("VColour4", myVColour[4]);
 
     int b = m_choiceArea->GetCurrentSelection();
-    wxString myA = m_choiceArea->GetString(b);
-    pConf->Write("frcurrentsArea", myA);
+    pConf->Write("frcurrentsAreaID", b);
     int c = m_choice1->GetCurrentSelection();
     wxString myP = m_choice1->GetString(c);
     pConf->Write("frcurrentsPort", myP);
@@ -494,10 +493,10 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   m_bOnStart = true;
   //  find area ID and select it
   int id;
-  id = m_choiceArea->FindString(m_AreaSelected, true);
-  if (id == wxNOT_FOUND) id = 0;
-  m_choiceArea->SetSelection(id);
-  wxString s = m_Areas[id];
+  if (m_AreaIDSelected < 0 || m_AreaIDSelected >(m_choiceArea->GetCount() - 1))
+    m_AreaIDSelected = 0;
+  m_choiceArea->SetSelection(m_AreaIDSelected);
+  wxString s = m_Areas[m_AreaIDSelected];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
@@ -510,7 +509,8 @@ void frcurrentsUIDialog::OnStartSetupHW() {
 }
 
 void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
-  SetDateForNowButton();
+  if (!SetDateForNowButton())
+    return;
 
   // calc coefficient
   BrestRange = CalcRange_Brest();
@@ -548,7 +548,8 @@ void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
 }
 
 void frcurrentsUIDialog::SetNow() {
-  SetDateForNowButton();
+  if (!SetDateForNowButton())
+    return;
 
   // calc coefficient
   BrestRange = CalcRange_Brest();
@@ -706,7 +707,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   int i = FindPortIDUsingChoice(s);
 
   if (i == 0) {
-    wxMessageBox(_("No tidal data"), _("No Tidal Data"));
+    wxMessageBox(_("No Tidal Data"), _("Tidal Data Finder"));
     return;
   }
   if (m_bUseBM) {
@@ -748,7 +749,7 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
   SetNow();
 }
 
-void frcurrentsUIDialog::SetDateForNowButton() {
+bool frcurrentsUIDialog::SetDateForNowButton() {
   m_staticText2->SetLabel("");
   m_staticText211->SetLabel("");
 
@@ -765,16 +766,16 @@ void frcurrentsUIDialog::SetDateForNowButton() {
 
   if (m_portXML == "") {
     wxMessageBox(_("Port not found"), _("Port finder"));
-    return;
+    return false;
   }
 
   int id = FindPortIDUsingChoice(string);
 
   if (id == 0) {
-    wxMessageBox(_("No tidal data"), _("No Tidal Data"));
+    wxMessageBox(_("No Tidal Data"), _("Tidal Data Finder"));
     button_id = 6;
     RequestRefresh(pParent);
-    return;
+    return false;
   } else {
     GetCurrentsData(sa);
     if(m_bUseBM) {
@@ -808,7 +809,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         s = i;
         i = 100;
         m_choice2->SetSelection(s);
-        return;
+        return true;
       } else {
         s = 999;
       }
@@ -823,7 +824,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         t20 = d20.GetTicks();
         if ((t > t10) && (t < t20)) {
           m_choice2->SetSelection(i + 1);
-          return;
+          return true;
         }
       }
 
@@ -840,7 +841,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
           CalcHW(id);
         }
         m_choice2->SetSelection(0);
-        return;
+        return true;
       }
 
       // 6 hours greater than last HW. Reset day later.
@@ -858,7 +859,7 @@ void frcurrentsUIDialog::SetDateForNowButton() {
         }
         c = m_choice2->GetCount();
         m_choice2->SetSelection(c - 1);
-        return;
+        return true;
       }
     }
   }
@@ -922,7 +923,7 @@ void frcurrentsUIDialog::OnInformation(wxCommandEvent& event) {
   wxString infolocation = GetPluginDataDir("frcurrents_pi") + s + "data" + s +
                           "Information" + s + "frcurrentsInformation.html";
   bool m_bFound = wxLaunchDefaultBrowser("file://" + infolocation);
-  if (!m_bFound) wxMessageBox("No Information Found", "Internet Browser");
+  if (!m_bFound) wxMessageBox(_("No Information Found"), _("Internet Browser"));
 }
 
 wxString frcurrentsUIDialog::FindPortXMLUsingChoice(wxString inPortName) {
@@ -998,7 +999,7 @@ int frcurrentsUIDialog::FindPortIDUsingChoice(wxString inPortName) {
 void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
 #ifndef __ANDROID__
   wxDirDialog* d =
-      new wxDirDialog(this, _("Choose a directory"), "", 0, wxDefaultPosition);
+      new wxDirDialog(this, _("Choose Harmonics Directory"), "", 0, wxDefaultPosition);
   if (d->ShowModal() == wxID_OK) {
     m_dirPicker1->SetValue(d->GetPath());
 
@@ -1071,13 +1072,13 @@ void frcurrentsUIDialog::LoadTCMFile() {
 
   if (TCDir == wxEmptyString) {
     wxMessageBox(
-        "No Harmonics\nSelect the directory containing "
-        "HARMONIC.IDX\n Using the dialog that follows");
+        _("No Harmonics\nSelect the directory containing "
+        "HARMONIC.IDX\n Using the dialog that follows"));
 
 #ifndef __ANDROID__
     TCDir = pPlugIn->GetFolderSelected();
     m_dirPicker1->SetValue(TCDir);
-    wxDirDialog* d = new wxDirDialog(this, _("Choose the tcdata directory"), "",
+    wxDirDialog* d = new wxDirDialog(this, _("Choose Harmonics Directory"), "",
                                      0, wxDefaultPosition);
     if (d->ShowModal() == wxID_OK) {
       m_dirPicker1->SetValue(d->GetPath());
@@ -1319,10 +1320,10 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   // Establish the inital drawing day as today
   m_graphday = m_datePicker1->GetValue();
   // Show the timezones
-  m_stz = "Display Time: UTC";
+  m_stz = _("Display Time: UTC");
   int diffloc = m_diff_mins;
   if (diffloc != 0) {
-    m_stz << ("  (") << ("Local");
+    m_stz << ("  (") << _("Local");
     if (diffloc > 0)
       m_stz << (" -");
     else {
@@ -1332,9 +1333,9 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
     int h = abs(diffloc / 60);
     int h1 = abs(diffloc % 60);
     if (h1 == 0)
-      m_stz << wxString::Format("%01dh", h) << (")");
+      m_stz << wxString::Format("%01d", h) << (")");
     else
-      m_stz << wxString::Format("%01dh%02d", h, h1) << (")");
+      m_stz << wxString::Format("%01d:%02d", h, h1) << (")");
   }
   m_staticText1->SetLabel(m_stz);
   //
@@ -1452,10 +1453,10 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   // Establish the inital drawing day as today
   m_graphday = m_datePicker1->GetValue();
   // Get the timezones
-  m_stz = "Diplay Time: UTC";
+  m_stz = _("Display Time: UTC");
   int diffloc = m_diff_mins;
   if (diffloc != 0) {
-    m_stz << ("  (") << ("Local");
+    m_stz << ("  (") << _("Local");
     if (diffloc > 0)
       m_stz << (" -");
     else {
@@ -1465,9 +1466,9 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
     int h = abs(diffloc / 60);
     int h1 = abs(diffloc % 60);
     if (h1 == 0)
-      m_stz << wxString::Format("%01dh", h) << (")");
+      m_stz << wxString::Format("%01d", h) << (")");
     else
-      m_stz << wxString::Format("%01dh%02d", h, h1) << (")");
+      m_stz << wxString::Format("%01d:%02d", h, h1) << (")");
   }
   m_staticText1->SetLabel(m_stz);
   //
@@ -1589,7 +1590,7 @@ double frcurrentsUIDialog::CalcCurrent(double VE, double ME, double spRate,
 wxString frcurrentsUIDialog::CalcCoefficient() {
 
   if (BrestRange == 999)
-    return wxString("No Data");
+    return wxString(_("No Tidal Data for BREST"));
 
   double PMVE, PMME, BMVE, BMME;
 
@@ -1607,7 +1608,9 @@ wxString frcurrentsUIDialog::CalcCoefficient() {
 
   m_coeff = 100 * (BrestRange) / U;
 
-  return wxString::Format("Coeff:  %3.0f", m_coeff);
+  wxString cf = _("Coeff:");
+  cf.Append(wxString::Format("  %3.0f", m_coeff));
+  return cf;
 }
 
 void frcurrentsUIDialog::JumpToPort() {
@@ -2245,7 +2248,7 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
   int i = FindPortIDUsingChoice(s);
 
   if (i == 0) {
-    wxMessageBox(_("No tidal data"), _("No Tidal Data"));
+    wxMessageBox(_("No Tidal Data"), _("Tidal Data Finder"));
     button_id = 6;
     return;
   }
