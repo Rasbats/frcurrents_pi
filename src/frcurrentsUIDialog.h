@@ -184,7 +184,7 @@ public:
   int round(double c);
 
   wxString m_PortSelected;
-  wxString m_AreaSelected;
+  int m_AreaIDSelected;
   wxArrayString TideCurrentDataSet;
   wxString* pTC_Dir;
   vector<SHOMport> portLines;
@@ -224,7 +224,7 @@ private:
   void SetCorrectHWSelection();
   void OnDateSelChanged(wxDateEvent& event);
   void OnPortChanged(wxCommandEvent& event);
-  void SetDateForNowButton();
+  bool SetDateForNowButton();
 
   void OnInformation(wxCommandEvent& event);
   wxString FindPortXMLUsingChoice(wxString inPortName);

@@ -58,7 +58,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	sbSizerDateTime->Add( 0, 0, 1, wxEXPAND, 5 );
 
-	m_textCtrlCoefficient = new wxTextCtrl( sbSizerDateTime->GetStaticBox(), wxID_ANY, _("   Coeff"), wxDefaultPosition, wxDefaultSize, wxTE_BESTWRAP );
+	m_textCtrlCoefficient = new wxTextCtrl( sbSizerDateTime->GetStaticBox(), wxID_ANY, "   Coeff", wxDefaultPosition, wxDefaultSize, wxTE_BESTWRAP );
 	m_textCtrlCoefficient->SetFont( wxFont( 10, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Arial") ) );
 
 	sbSizerDateTime->Add( m_textCtrlCoefficient, 0, wxALIGN_CENTER_VERTICAL, 5 );
@@ -69,7 +69,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	wxBoxSizer* bSizerHWLW = new wxBoxSizer(wxVERTICAL);
 
-	m_staticTextHW = new wxStaticText(this, wxID_ANY, _("High Water"), wxDefaultPosition, wxDefaultSize, 0);
+	m_staticTextHW = new wxStaticText(this, wxID_ANY, "High Water", wxDefaultPosition, wxDefaultSize, 0);
 	m_staticTextHW->Wrap( -1 );
 	bSizerHWLW->Add(m_staticTextHW, 0, wxALL, 5);
 
@@ -95,11 +95,11 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	wxFlexGridSizer* fbSizerDT = new wxFlexGridSizer(2, 1, 0, 0);
 	fbSizerDT->AddGrowableCol(0);
 
-	m_staticText2 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, _("Display date/time"), wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText2 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, "Display date/time", wxDefaultPosition, wxDefaultSize, 0);
 	m_staticText2->Wrap(-1);
 	fbSizerDT->Add(m_staticText2, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
-	m_staticText211 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, _("High Water +-"), wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText211 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, "High Water +-", wxDefaultPosition, wxDefaultSize, 0);
 	m_staticText211->Wrap(-1);
 	fbSizerDT->Add(m_staticText211, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
@@ -144,7 +144,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	wxBoxSizer* bSizer5;
 	bSizer5 = new wxBoxSizer(wxVERTICAL);
 
-	m_staticText1 = new wxStaticText(this, wxID_FIND, _("Time Zone"), wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText1 = new wxStaticText(this, wxID_FIND, "Time Zone", wxDefaultPosition, wxDefaultSize, 0);
 	m_staticText1->Wrap(-1);
 	bSizer5->Add(m_staticText1, 0, wxALL, 5);
 
@@ -332,7 +332,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	m_staticText8->Wrap( -1 );
 	fgSizer2->Add( m_staticText8, 0, wxALL, 5 );
 
-	wxString m_cStyleChoices[] = { _("1"), _("2"), _("3") };
+	wxString m_cStyleChoices[] = { _T("1"), _T("2"), _T("3") };
 	int m_cStyleNChoices = sizeof( m_cStyleChoices ) / sizeof( wxString );
 	m_cStyle = new wxChoice( sbSizer5->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_cStyleNChoices, m_cStyleChoices, 0 );
 	m_cStyle->SetSelection( 0 );
