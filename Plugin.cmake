@@ -26,12 +26,12 @@ set(OCPN_RELEASE_REPO
     CACHE STRING
     "Default repository for tagged builds not matching 'beta'"
 )
-#    Android Only
+#    Android Only 2
 #
 # -------  Plugin setup --------
 #
 set(PKG_NAME frcurrents_pi)
-set(PKG_VERSION  1.16.0)
+set(PKG_VERSION  1.16.1)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME frcurrents)    # Dialogs, installer artifacts, ...
