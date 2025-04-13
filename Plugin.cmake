@@ -26,7 +26,7 @@ set(OCPN_RELEASE_REPO
     CACHE STRING
     "Default repository for tagged builds not matching 'beta'"
 )
-#
+#    Android Only
 #
 # -------  Plugin setup --------
 #
