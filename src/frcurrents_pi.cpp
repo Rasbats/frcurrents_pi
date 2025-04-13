@@ -36,6 +36,9 @@
 
 #include "frcurrents_pi.h"
 
+piDC *g_pDC;
+PlugIn_ViewPort g_VP;
+
 wxString myVColour[] = {"rgb(127, 0, 255)", "rgb(0, 166, 80)",
                         "rgb(253, 184, 19)", "rgb(248, 128, 64)",
                         "rgb(248, 0, 0)"};
@@ -342,15 +345,7 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
 #ifdef __WXMSW__
     wxFont f = *OCPNGetFont(_("Dialog"), 10);
     f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
-    g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);
-/*                                                        \
-#else                                                     \
-wxFont f = m_pfrcurrentsDialog->m_staticText1->GetFont(); \
-f.SetNumericWeight(wxFONTWEIGHT_BOLD);                    \
-m_pfrcurrentsDialog->m_staticText1->SetFont(f);           \
-m_pfrcurrentsDialog->m_staticText2->SetFont(f);           \
-m_pfrcurrentsDialog->m_staticText211->SetFont(f);         \
-*/                                                        \
+    g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);    
 #endif
 
     m_pfrcurrentsDialog->Move(
@@ -396,30 +391,23 @@ void frcurrents_pi::OnfrcurrentsDialogClose() {
   RequestRefresh(m_parent_window);  // refresh mainn window
 }
 
-bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
-  if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
-      !m_pfrcurrentsOverlayFactory)
-    return false;
-  m_pfrcurrentsDialog->SetViewPort(vp);
-  piDC pidc(dc);
-  m_pfrcurrentsOverlayFactory->RenderOverlay(pidc, *vp);
-  return true;
+bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
+                                     PlugIn_ViewPort *pivp) {
+  m_pcontext = pcontext;
+  m_VP = *pivp;
+  g_VP = *pivp;
+  m_chart_scale = pivp->chart_scale;
+  m_view_scale = pivp->view_scale_ppm;
+
+  g_pDC = new piDC(pcontext);
+  g_pDC->SetVP(pivp);
+
+  m_pfrcurrentsOverlayFactory->DrawGL(*pivp);
+
+  delete g_pDC;
+  return TRUE;
 }
 
-bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
-                                    PlugIn_ViewPort *vp) {
-  if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
-      !m_pfrcurrentsOverlayFactory)
-    return false;
-
-  m_pfrcurrentsDialog->SetViewPort(vp);
-  piDC piDC;
-  glEnable(GL_BLEND);
-  piDC.SetVP(vp);
-
-  m_pfrcurrentsOverlayFactory->RenderOverlay(piDC, *vp);
-  return true;
-}
 
 void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
   if (m_pfrcurrentsDialog) m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
