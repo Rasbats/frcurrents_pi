@@ -120,7 +120,7 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-
+  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
   void DrawGL(PlugIn_ViewPort &piVP);
 
 
@@ -144,10 +144,6 @@ private:
   wxString m_Message;
   wxString m_Message_Hiden;
   wxSize m_ParentSize;
-
-#if wxUSE_GRAPHICS_CONTEXT
-  wxGraphicsContext *m_gdc;
-#endif
 
   wxFont *m_dFont_map;
   wxFont *m_dFont_war;

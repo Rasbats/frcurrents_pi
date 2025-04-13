@@ -93,6 +93,8 @@ public:
   wxString GetLongDescription();
 
   //    The override PlugIn Methods
+  bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
+  bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
   bool RenderGLOverlays(wxGLContext *pcontext, PlugIn_ViewPort *pivp);
   void SetCursorLatLon(double lat, double lon);
   void SetDefaults(void);
@@ -138,6 +140,8 @@ public:
   double m_chart_scale;
   double m_view_scale;
   PlugIn_ViewPort m_VP;
+
+  bool g_bOpenGL;
 
 private:
   int m_position_menu_id;
