@@ -295,179 +295,164 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
     return true;
 }
 
-void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
+  void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
+  wxPoint p;
 
-		   wxPoint p;			
-	
-		   double myX, myY;
-		   myX = 50;
-     	   myY = 0;
-		   vector<Position>m_new = m_dlg.my_positions;
-			
-		   double value,  decValue; 
-		   double decValue1;
-		   
-		   wxString mLat;
-		   wxString mBitLat;
-		   wxString mDecLat;
+  double myX, myY;
+  myX = 50;
+  myY = 0;
+  vector<Position> m_new = m_dlg.my_positions;
 
-		   wxString mLon;
-		   wxString mFirstLon;
-		   wxString mBitLon;
-		   wxString mDecLon;
+  double value, decValue;
+  double decValue1;
 
-		   double latF, lonF;
-		   int n=0;
-		   int m_len;		   
-		   
-		   int m = m_dlg.m_choice1->GetSelection();
-		   wxString s = m_dlg.m_choice1->GetString(m);
+  wxString mLat;
+  wxString mBitLat;
+  wxString mDecLat;
 
-	
-		   StandardPort myPortTides;
-		   myPortTides = m_dlg.PopulatePortTides(s);
-		   double myCurrent;
+  wxString mLon;
+  wxString mFirstLon;
+  wxString mBitLon;
+  wxString mDecLon;
 
-		   for(std::vector<Position>::iterator it = m_new.begin();  it != m_new.end(); it++){
-           
-			  mLat = (*it).lat;
-			  mBitLat = mLat.Mid(0,2);
-			  mDecLat = mLat.Mid(2);			  			  
-			  mDecLat.ToDouble(&decValue);
+  double latF, lonF;
+  int n = 0;
+  int m_len;
 
-		    if(!mBitLat.ToDouble(&value)){ /* error! */ }
-				
-			  latF = value + (decValue/60);
+  int m = m_dlg.m_choice1->GetSelection();
+  wxString s = m_dlg.m_choice1->GetString(m);
 
-				wxString showlat = wxString::Format("%f", latF);
-        //wxMessageBox(showlat);
+  StandardPort myPortTides;
+  myPortTides = m_dlg.PopulatePortTides(s);
+  double myCurrent;
 
+  for (std::vector<Position>::iterator it = m_new.begin(); it != m_new.end();
+       it++) {
+    mLat = (*it).lat;
+    mBitLat = mLat.Mid(0, 2);
+    mDecLat = mLat.Mid(2);
+    mDecLat.ToDouble(&decValue);
 
-				mLon = (*it).lon;
-				m_len = mLon.Len();
-				
-				if (mLon.Mid(0, 1) == "-") {
-					if (mLon.length() == 6 || mLon.length() == 7) {
-						mDecLon = "0";
-						mBitLon = mLon.Mid(1);
-					}
-					else {
-						mDecLon = mLon.Mid(1, 1);
-						mBitLon = mLon.Mid(2);
-					}
-				}else {
-					if (mLon.length() == 5 || mLon.length() == 6) {
-						mDecLon = "0";
-						mBitLon = mLon;
-					}
-					else {
-						mDecLon = mLon.Mid(0, 1);
-						mBitLon = mLon.Mid(1);
-					}
-				}
-				mDecLon.ToDouble(&decValue1);
-				mBitLon.ToDouble(&value);
-				if (mLon.Mid(0, 1) == "-") {
-					lonF = -1 * (decValue1 + value / 60);
-				}else {
-					lonF = (decValue1 + value / 60);
-				}
+    if (!mBitLat.ToDouble(&value)) { /* error! */
+    }
 
-				wxString showlon = wxString::Format("%f", lonF);
-        //wxMessageBox(showlon);
+    latF = value + (decValue / 60);
 
-			 
+    wxString showlat = wxString::Format("%f", latF);
+    // wxMessageBox(showlat);
 
-      GetCanvasPixLL( vp, &p,latF, lonF );
-      wxRect myRect = vp->rv_rect;
+    mLon = (*it).lon;
+    m_len = mLon.Len();
 
-			wxString port_num = (*it).port_num;		
+    if (mLon.Mid(0, 1) == "-") {
+      if (mLon.length() == 6 || mLon.length() == 7) {
+        mDecLon = "0";
+        mBitLon = mLon.Mid(1);
+      } else {
+        mDecLon = mLon.Mid(1, 1);
+        mBitLon = mLon.Mid(2);
+      }
+    } else {
+      if (mLon.length() == 5 || mLon.length() == 6) {
+        mDecLon = "0";
+        mBitLon = mLon;
+      } else {
+        mDecLon = mLon.Mid(0, 1);
+        mBitLon = mLon.Mid(1);
+      }
+    }
+    mDecLon.ToDouble(&decValue1);
+    mBitLon.ToDouble(&value);
+    if (mLon.Mid(0, 1) == "-") {
+      lonF = -1 * (decValue1 + value / 60);
+    } else {
+      lonF = (decValue1 + value / 60);
+    }
 
-			if (myRect.Contains(p.x, p.y)){ 
-										        
-					// drawing scaled current arrows												
-				  m_fromHW = m_dlg.button_id;
+    wxString showlon = wxString::Format("%f", lonF);
+    // wxMessageBox(showlon);
 
-					
-					double dir = (*it).spDir[m_fromHW];
+    GetCanvasPixLL(vp, &p, latF, lonF);
+    wxRect myRect = vp->rv_rect;
 
-					wxString showDir = wxString::Format("%f", dir);
-         // wxMessageBox(showDir);
+    wxString port_num = (*it).port_num;
 
-					
+    if (myRect.Contains(p.x, p.y)) {
+      // drawing scaled current arrows
+      m_fromHW = m_dlg.button_id;
 
-					double m_spdSpring = (*it).spRate[m_fromHW];
-					
+      double dir = (*it).spDir[m_fromHW];
 
-					wxString showspdsp = wxString::Format("%f", m_spdSpring);
-        // wxMessageBox(showspdsp);
+      wxString showDir = wxString::Format("%f", dir);
+      // wxMessageBox(showDir);
 
+      double m_spdSpring = (*it).spRate[m_fromHW];
 
-					double m_spdNeap = (*it).npRate[m_fromHW];
-					
+      wxString showspdsp = wxString::Format("%f", m_spdSpring);
+      // wxMessageBox(showspdsp);
 
-					wxString showspdnp = wxString::Format("%f", m_spdNeap);
-         // wxMessageBox(showspdnp);
+      double m_spdNeap = (*it).npRate[m_fromHW];
 
-					double range = m_dlg.myRange;
-					wxString showrg = wxString::Format("%f", range);
-          //wxMessageBox(showrg);
+      wxString showspdnp = wxString::Format("%f", m_spdNeap);
+      // wxMessageBox(showspdnp);
 
-					int mmx, mmy;
-					wxDisplaySizeMM( &mmx, &mmy );
+      double range = m_dlg.myRange;
+      wxString showrg = wxString::Format("%f", range);
+      // wxMessageBox(showrg);
 
-					int sx, sy;
-					wxDisplaySize( &sx, &sy );
+      int mmx, mmy;
+      wxDisplaySizeMM(&mmx, &mmy);
 
-					double m_pix_per_mm = ( (double) sx ) / ( (double) mmx );
+      int sx, sy;
+      wxDisplaySize(&sx, &sy);
 
-					int mm_per_knot = 10;
-					float current_draw_scaler = mm_per_knot * m_pix_per_mm * 100 / 100.0;
+      double m_pix_per_mm = ((double)sx) / ((double)mmx);
 
-					double coefficient = m_dlg.m_coeff;
+      int mm_per_knot = 10;
+      float current_draw_scaler = mm_per_knot * m_pix_per_mm * 100 / 100.0;
 
-					myCurrent = m_dlg.CalcCurrent(95,45,m_spdSpring/10,m_spdNeap/10,coefficient);
-					if (isnan(myCurrent)) myCurrent = 0.0;
-					if (myCurrent == 0 || myCurrent < 0)
-						myCurrent = 00.001;
+      double coefficient = m_dlg.m_coeff;
 
-					//myCurrent /= 10; //Files give speed in 1/10 knots i.e. 10 = 1 knot
+      myCurrent = m_dlg.CalcCurrent(95, 45, m_spdSpring / 10, m_spdNeap / 10,
+                                    coefficient);
+      if (isnan(myCurrent)) myCurrent = 0.0;
+      if (myCurrent == 0 || myCurrent < 0) myCurrent = 00.001;
 
-					double a1 = myCurrent*10;    //fabs( tcvalue ) * 10.;
-					a1 = wxMax(1.0, a1);		// Current values less than 0.1 knot
-												// will be displayed as 0
-					double a2 = log10( a1 );
+      // myCurrent /= 10; //Files give speed in 1/10 knots i.e. 10 = 1 knot
 
-					double scale = current_draw_scaler * a2;			        
-					//dir = 45.00;
-					//myCurrent = 0.5;
+      double a1 = myCurrent * 10;  // fabs( tcvalue ) * 10.;
+      a1 = wxMax(1.0, a1);         // Current values less than 0.1 knot
+                                   // will be displayed as 0
+      double a2 = log10(a1);
 
-					bool d = drawCurrentArrow( p.x, p.y,
-												dir - 90 , scale / 100, myCurrent );
-					//if (d) wxMessageBox("Drawing");
-					//else { wxMessageBox("Not Drawing"); }
+      double scale = current_draw_scaler * a2;
+      // dir = 45.00;
+      // myCurrent = 0.5;
 
-					int shift = 0;
+      bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent);
+      // if (d) wxMessageBox("Drawing");
+      // else { wxMessageBox("Not Drawing"); }
 
-          char sbuf[20];
-          if( m_bShowRate ) {
-						snprintf( sbuf, 19, "%3.1f", myCurrent);
-            m_dc->DrawText( wxString( sbuf, wxConvUTF8 ), p.x, p.y );
-            if (!m_bHighResolution){
-                shift = 13;
-            }
-            else {
-                shift = 26;
-            }
-          }
+      int shift = 0;
 
-          if ( m_bShowDirection ) {
-            snprintf( sbuf, 19, "%03.0f", dir );
-            m_dc->DrawText( wxString( sbuf, wxConvUTF8 ), p.x, p.y + shift );
-          }					// end scaled current			
-			}   // end if         
+      char sbuf[20];
+      if (m_bShowRate) {
+        snprintf(sbuf, 19, "%3.1f", myCurrent);
+        g_pDC->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y);
+        if (!m_bHighResolution) {
+          shift = 13;
+        } else {
+          shift = 26;
+        }
+      }
 
-	    }// end for			   		   											   		
+      if (m_bShowDirection) {
+        snprintf(sbuf, 19, "%03.0f", dir);
+        g_pDC->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y + shift);
+      }  // end scaled current
+    }  // end if
+
+  }  // end for
 }
 
 
