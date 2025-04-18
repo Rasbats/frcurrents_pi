@@ -117,7 +117,7 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
     glEnable(GL_BLEND);
   }
 
-  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+  wxFont font(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
               wxFONTWEIGHT_NORMAL);
   m_dc->SetFont(font);
 
@@ -133,10 +133,8 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
 
 
 void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
-#ifdef ocpnUSE_GL
-  // piDC dc;
-  // dc.SetVP(&piVP);
 
+  #ifdef ocpnUSE_GL
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
   int width = 4;
@@ -144,14 +142,18 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   int j = 0;
   wxPoint r;
 
+  wxFont font(20, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+              wxFONTWEIGHT_NORMAL);
+
+  g_pDC->SetFont(font);
   g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
   g_pDC->SetBrush(
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
   g_pDC->SetGLStipple();
 
   RenderMyArrows(&g_VP);
+  #endif
 
-#endif
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
