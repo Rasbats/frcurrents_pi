@@ -142,7 +142,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   int j = 0;
   wxPoint r;
 
-  wxFont font(20, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+  wxFont font(20, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL,
               wxFONTWEIGHT_BOLD);
 
   g_pDC->SetFont(font);
