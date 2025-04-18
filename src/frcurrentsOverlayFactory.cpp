@@ -118,7 +118,7 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
   }
 
   wxFont font(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-              wxFONTWEIGHT_NORMAL);
+              wxFONTWEIGHT_BOLD);
   m_dc->SetFont(font);
 
   wxColour myColour = wxColour("RED");
@@ -143,7 +143,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   wxPoint r;
 
   wxFont font(20, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-              wxFONTWEIGHT_NORMAL);
+              wxFONTWEIGHT_BOLD);
 
   g_pDC->SetFont(font);
   g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
