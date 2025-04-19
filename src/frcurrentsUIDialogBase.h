@@ -84,7 +84,7 @@ public:
   frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                          const wxString& title = _("French Tidal Streams"),
                          const wxPoint& pos = wxDefaultPosition,
-                         const wxSize& size = wxSize(500,420),
+                         const wxSize& size = wxSize(-1, -1),
                          long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
   ~frcurrentsUIDialogBase();
@@ -130,7 +130,7 @@ public:
   frcurrentsPreferencesDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                                   const wxString& title = _("Preferences"),
                                   const wxPoint& pos = wxDefaultPosition,
-                                  const wxSize& size = wxSize(-1, -1),
+                                  const wxSize& size = wxSize(500, 420),
                                   long style = wxCAPTION | wxRESIZE_BORDER);
 
   ~frcurrentsPreferencesDialogBase();
