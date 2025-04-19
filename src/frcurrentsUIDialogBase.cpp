@@ -353,7 +353,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 #endif
 
   if (m_bcompact) {
-    this->SetSizeHints(wxDefaultSize, wxDefaultSize);
+    this->SetSizeHints(wxSize(-1, -1), wxDefaultSize);
   }
     else this->SetSizeHints(wxSize(-1, -1), wxDefaultSize);
 
