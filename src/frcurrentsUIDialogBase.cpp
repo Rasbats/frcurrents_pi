@@ -241,21 +241,15 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
             NULL, this);
 }
 
-<<<<<<< HEAD
 frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
     wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos,
     const wxSize& size, long style)
     : wxDialog(parent, id, title, pos, size, style) {
 
-    this->SetSizeHints(wxSize(500, 420), wxDefaultSize);
-=======
-frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
-{
-	this->SetSizeHints( wxSize( -1,-1 ), wxDefaultSize );
+    this->SetSizeHints(wxSize(-1, -1), wxDefaultSize);
 
 	wxBoxSizer* bSizerMain;
 	bSizerMain = new wxBoxSizer( wxVERTICAL );
->>>>>>> parent of a106364 (m_bcompact)
 
 	wxBoxSizer* bSizerCheckboxes;
 	bSizerCheckboxes = new wxBoxSizer( wxVERTICAL );
