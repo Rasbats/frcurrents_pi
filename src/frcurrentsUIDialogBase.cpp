@@ -346,16 +346,8 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
     wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos,
     const wxSize& size, long style)
     : wxDialog(parent, id, title, pos, size, style) {
-#ifdef __ANDROID__
-  const bool m_bcompact = true;
-#else
-  const bool m_bcompact = false;
-#endif
 
-  if (m_bcompact) {
-    this->SetSizeHints(wxSize(-1, -1), wxDefaultSize);
-  }
-    else this->SetSizeHints(wxSize(-1, -1), wxDefaultSize);
+    this->SetSizeHints(wxSize(500, 420), wxDefaultSize);
 
     wxBoxSizer* bSizerMain;
     bSizerMain = new wxBoxSizer(wxVERTICAL);
