@@ -98,40 +98,6 @@ frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 
 void frcurrentsOverlayFactory::Reset() {}
 
-bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
-  m_dc = &dc;
-
-  if (!dc.GetDC()) {
-    if (!glQueried) {
-      glQueried = true;
-    }
-#ifndef USE_GLSL
-    glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT | GL_HINT_BIT);  // Save state
-
-    //      Enable anti-aliased lines, at best quality
-    glEnable(GL_LINE_SMOOTH);
-    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-#endif
-    glEnable(GL_BLEND);
-  }
-
-  wxFont font(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-              wxFONTWEIGHT_BOLD);
-  m_dc->SetFont(font);
-
-  wxColour myColour = wxColour("RED");
-
-  // RenderTestLine(&vp);
-
-  // RenderMyArrows(&vp);
-  // RenderSegment(*m_dc, 100, 200, 150, 300, vp, true, 4);
-
-  return true;
-}
-
-
 void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
 
   #ifdef ocpnUSE_GL

@@ -273,7 +273,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	sbSizerColours = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Current Arrow Colour") ), wxVERTICAL );
 
 	wxFlexGridSizer* fgSizerColours;
-	fgSizerColours = new wxFlexGridSizer( 0, 2, 0, 0 );
+	fgSizerColours = new wxFlexGridSizer( 0, 1, 0, 0 );
 	fgSizerColours->AddGrowableCol( 1 );
 	fgSizerColours->SetFlexibleDirection( wxBOTH );
 	fgSizerColours->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );

@@ -120,7 +120,6 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
   void DrawGL(PlugIn_ViewPort &piVP);
 
 
