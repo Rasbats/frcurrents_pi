@@ -358,7 +358,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 
   myColourPicker0 =
       new wxColourPickerCtrl(this, wxID_ANY, *wxBLACK, wxDefaultPosition,
-                             wxDefaultSize, wxCLRP_DEFAULT_STYLE);
+                             wxDefaultSize, wxCLRP_USE_TEXTCTRL);
 
   bSizerMain->Add(myColourPicker0, 0, wxALL | wxEXPAND, 5);
 
