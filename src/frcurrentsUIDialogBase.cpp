@@ -374,14 +374,20 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
   staticTextLess05 = new wxStaticText(this, wxID_ANY, _("      < 0.5 knots"),
                                       wxDefaultPosition, wxDefaultSize, 0);
   staticTextLess05->Wrap(-1);
+  bSizerCheckboxes->Add(staticTextLess05, 0, wxALL, 5);
 
+  staticTextLess05 = new wxStaticText(this, wxID_ANY, _("      < 0.5 knots"),
+                                       wxDefaultPosition, wxDefaultSize, 0);
+  staticTextLess05->Wrap(-1);
   bSizerCheckboxes->Add(staticTextLess05, 0, wxALL, 5);
 
   myColourPicker0 = new wxColourPickerCtrl(this, wxID_ANY, *wxBLACK,
                                             wxDefaultPosition, wxDefaultSize,
                                             wxCLRP_DEFAULT_STYLE);
+  bSizerCheckboxes->Add(myColourPicker0, 0, wxALL, 5);
 
-  bSizerCheckboxes->Add(myColourPicker0, 0, wxALL|wxEXPAND, 5);
+
+  bSizerCheckboxes->Add(myColourPicker0, 0, wxALL, 5);
 
   bSizerMain->Add(bSizerCheckboxes, 0, wxALL | wxEXPAND, 5);
 
