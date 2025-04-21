@@ -52,6 +52,17 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id,
 
   bSizerMain->Add(sbSizer71, 0, wxEXPAND, 5);
 
+  staticTextLess999 = new wxStaticText(this, wxID_ANY, _("      < 0.5 knots"),
+                                      wxDefaultPosition, wxDefaultSize, 0);
+
+  bSizerMain->Add(staticTextLess999, 0, wxALL, 5);
+
+  myColourPicker999 =
+      new wxColourPickerCtrl(this, wxID_ANY, *wxBLACK, wxDefaultPosition,
+                             wxDefaultSize, wxCLRP_USE_TEXTCTRL);
+
+  bSizerMain->Add(myColourPicker999, 0, wxALL | wxEXPAND, 5);
+
   wxStaticBoxSizer* sbSizer6;
   sbSizer6 = new wxStaticBoxSizer(
       new wxStaticBox(this, wxID_ANY, _("Standard Port")), wxVERTICAL);
@@ -350,17 +361,6 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 
   wxBoxSizer* bSizerMain;
   bSizerMain = new wxBoxSizer(wxVERTICAL);
-
-  staticTextLess05 = new wxStaticText(this, wxID_ANY, _("      < 0.5 knots"),
-                                      wxDefaultPosition, wxDefaultSize, 0);
-
-  bSizerMain->Add(staticTextLess05, 0, wxALL, 5);
-
-  myColourPicker0 =
-      new wxColourPickerCtrl(this, wxID_ANY, *wxBLACK, wxDefaultPosition,
-                             wxDefaultSize, wxCLRP_USE_TEXTCTRL);
-
-  bSizerMain->Add(myColourPicker0, 0, wxALL | wxEXPAND, 5);
 
   wxBoxSizer* bSizerCheckboxes;
   bSizerCheckboxes = new wxBoxSizer(wxVERTICAL);
