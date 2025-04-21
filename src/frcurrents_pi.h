@@ -42,6 +42,7 @@
 #include <wx/window.h>
 #include <wx/font.h>
 #include "globals.h"
+#include <wx/clrpicker.h>
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
