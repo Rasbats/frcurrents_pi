@@ -40,9 +40,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 class frcurrentsUIDialogBase : public wxDialog {
 private:
-
-wxStaticText* staticTextLess999;
-
 protected:
   wxBitmapButton* m_button8;
   wxDatePickerCtrl* m_datePicker1;
@@ -83,8 +80,6 @@ public:
   wxStaticText* m_staticText2;
   wxStaticText* m_staticText211;
   wxStaticText* m_staticText1;
-  wxColourPickerCtrl* myColourPicker999;
-
 
   frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                          const wxString& title = _("French Tidal Streams"),
