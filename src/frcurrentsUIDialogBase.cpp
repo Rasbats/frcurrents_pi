@@ -555,6 +555,11 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
       wxCommandEventHandler(
           frcurrentsPreferencesDialogBase::OnFontSlidersChange),
       NULL, this);
+  myColourPicker0->Connect(
+      wxEVT_COMMAND_COLOURPICKER_CHANGED,
+      wxColourPickerEventHandler(
+          frcurrentsPreferencesDialogBase::OnColourChanged),
+      NULL, this);
 }
 
 frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase() {
@@ -572,5 +577,10 @@ frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase() {
       wxEVT_SLIDER,
       wxCommandEventHandler(
           frcurrentsPreferencesDialogBase::OnFontSlidersChange),
+      NULL, this);
+  myColourPicker0->Disconnect(
+      wxEVT_COMMAND_COLOURPICKER_CHANGED,
+      wxColourPickerEventHandler(
+          frcurrentsPreferencesDialogBase::OnColourChanged),
       NULL, this);
 }

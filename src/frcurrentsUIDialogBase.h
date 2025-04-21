@@ -112,14 +112,17 @@ protected:
   virtual void OnChoice(wxCommandEvent& event) { event.Skip(); }
   virtual void OnIconsSlidersChange(wxCommandEvent& event) { event.Skip(); }
   virtual void OnFontSlidersChange(wxCommandEvent & event) { event.Skip(); }
-wxColourPickerCtrl* myColourPicker0;
+  virtual void OnColourChanged(wxColourPickerEvent & event) {
+    event.Skip();
+  }
+
 
 public:
   wxCheckBox* m_cbUseRate;
   wxCheckBox* m_cbUseDirection;
   wxCheckBox* m_cbFillColour;
   wxCheckBox* m_cbUseHighRes;
-  
+  wxColourPickerCtrl* myColourPicker0;
   wxColourPickerCtrl* myColourPicker1;
   wxColourPickerCtrl* myColourPicker2;
   wxColourPickerCtrl* myColourPicker3;
