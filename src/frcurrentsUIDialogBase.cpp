@@ -57,7 +57,8 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id,
 
   bSizerMain->Add(staticTextLess999, 0, wxALL, 5);
 
-  myColourPicker999 = new wxColourPickerCtrl(this, wxID_ANY, *wxBLACK,
+  myColourPicker999 = new wxColourPickerCtrl(
+      this, wxID_ANY, wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW),
       wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE);
 
   bSizerMain->Add(myColourPicker999, 0, wxALL | wxEXPAND, 5);
