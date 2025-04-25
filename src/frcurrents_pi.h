@@ -42,6 +42,7 @@
 #include <wx/window.h>
 #include <wx/font.h>
 #include "globals.h"
+#include "ODPlatform.h"
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition

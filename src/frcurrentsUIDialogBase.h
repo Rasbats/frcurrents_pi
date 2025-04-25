@@ -33,6 +33,7 @@
 #include <wx/clrpicker.h>
 #include <wx/event.h>
 #include <wx/slider.h>
+#include "ODPlatform.h"
 ///////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -118,11 +119,11 @@ public:
   wxCheckBox* m_cbUseDirection;
   wxCheckBox* m_cbFillColour;
   wxCheckBox* m_cbUseHighRes;
-  wxColourPickerCtrl* myColourPicker0;
-  wxColourPickerCtrl* myColourPicker1;
-  wxColourPickerCtrl* myColourPicker2;
-  wxColourPickerCtrl* myColourPicker3;
-  wxColourPickerCtrl* myColourPicker4;
+  ODColourPickerCtrl* myColourPicker0;
+  ODColourPickerCtrl* myColourPicker1;
+  ODColourPickerCtrl* myColourPicker2;
+  ODColourPickerCtrl* myColourPicker3;
+  ODColourPickerCtrl* myColourPicker4;
   wxChoice* m_cStyle;
   wxSlider* m_sIconSizeFactor;
   wxSlider * m_sFontSizeFactor;
