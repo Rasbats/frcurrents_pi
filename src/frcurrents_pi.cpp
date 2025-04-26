@@ -236,13 +236,13 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   if (Pref->ShowModal() == wxID_OK) {
 // bool copyFillColour = true;
     
-#ifndef __ANDROID__
+//#ifndef __ANDROID__
     myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
     myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
     myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
     myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
     myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
-#endif
+//#endif
 
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
@@ -489,8 +489,7 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->Write("frcurrentsDialogPosY", m_frcurrents_dialog_y);
 
     //myVColour[0] = g_colourArrowColour0.GetAsString(wxC2S_CSS_SYNTAX);
-    pConf->Write("VColour0", myVColour[0]);
-    
+    pConf->Write("VColour0", myVColour[0]);    
 
      pConf->Write("VColour1", myVColour[1]);
     pConf->Write("VColour2", myVColour[2]);
