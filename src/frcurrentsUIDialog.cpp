@@ -921,7 +921,7 @@ StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName) {
 void frcurrentsUIDialog::OnInformation(wxCommandEvent& event) {
   wxString s = wxFileName::GetPathSeparator();
   wxString infolocation = GetPluginDataDir("frcurrents_pi") + s + "data" + s +
-                          "Information" + s + "Information.pdf";
+                          "Information" + s + "frcurrentsInformation.html";
   bool m_bFound = wxLaunchDefaultBrowser("file://" + infolocation);
   if (!m_bFound) wxMessageBox(_("No Information Found"), _("Internet Browser"));
 }
