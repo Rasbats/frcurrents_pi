@@ -916,15 +916,14 @@ StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName) {
   return myCPort;
 }
 
-void frcurrentsUIDialog::OnInformation(wxCommandEvent& event) {
+void frcurrentsUIDialog::OnInformation(wxCommandEvent& WXUNUSED(event)) {
   // wxString s = wxFileName::GetPathSeparator();
   // wxString infolocation = GetPluginDataDir("frcurrents_pi") + s + "data" + s
   // +
   //  "Information" + s + "frcurrentsInformation.html";
 
   wxString help =
-      "For a source of harmonics and other information: "
-      "website: https://opencpn-manuals.github.io/main/frcurrents/index.html";
+      "For a source of harmonics and other information: \nwebsite: https://opencpn-manuals.github.io/main/frcurrents/index.html";
   wxMessageBox(help);
 }
 
