@@ -35,6 +35,7 @@
 #include <wx/clrpicker.h>
 #include <wx/colourdata.h>
 #include <wx/colordlg.h>
+#include <wx/anybutton.h>
 
 #include <stdio.h>
 #include <vector>
