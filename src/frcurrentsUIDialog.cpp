@@ -918,12 +918,20 @@ StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName) {
   return myCPort;
 }
 
+#include <wx/mimetype.h>
+
 void frcurrentsUIDialog::OnInformation(wxCommandEvent& event) {
   wxString s = wxFileName::GetPathSeparator();
   wxString infolocation = GetPluginDataDir("frcurrents_pi") + s + "data" + s +
                           "Information" + s + "frcurrentsInformation.html";
-  bool m_bFound = wxLaunchDefaultBrowser("file://" + infolocation);
-  if (!m_bFound) wxMessageBox(_("No Information Found"), _("Internet Browser"));
+
+  wxMimeTypesManager manager;
+  wxFileType* filetype = manager.GetFileTypeFromExtension("html");
+  wxString command = filetype->GetOpenCommand(infolocation);
+  wxExecute(command);
+
+  //bool m_bFound = wxLaunchDefaultBrowser("file://" + infolocation);
+  //if (!m_bFound) wxMessageBox(_("No Information Found"), _("Internet Browser"));
 }
 
 wxString frcurrentsUIDialog::FindPortXMLUsingChoice(wxString inPortName) {
