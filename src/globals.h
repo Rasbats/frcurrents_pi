@@ -34,5 +34,7 @@ class PlugIn_ViewPort;
 extern PlugIn_ViewPort g_VP;
 extern piDC            *g_pDC;
 
+extern wxColour g_colourArrowColour0;
+
 
 #endif

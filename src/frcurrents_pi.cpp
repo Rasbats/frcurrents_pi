@@ -43,6 +43,8 @@ wxString myVColour[] = {"rgb(127, 0, 255)", "rgb(0, 166, 80)",
                         "rgb(253, 184, 19)", "rgb(248, 128, 64)",
                         "rgb(248, 0, 0)"};
 
+wxColour g_colourArrowColour0;
+
 // the class factories, used to create and destroy instances of the PlugIn
 
 extern "C" DECL_EXP opencpn_plugin *create_pi(void *ppimgr) {
@@ -233,6 +235,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
 
   if (Pref->ShowModal() == wxID_OK) {
 // bool copyFillColour = true;
+    
 #ifndef __ANDROID__
     myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
     myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
@@ -453,6 +456,8 @@ bool frcurrents_pi::LoadConfig(void) {
     m_frcurrents_dialog_y = 140;
 
   pConf->Read("VColour0", &myVColour[0], myVColour[0]);
+  //g_colourArrowColour0.Set(myVColour[0]);
+
   pConf->Read("VColour1", &myVColour[1], myVColour[1]);
   pConf->Read("VColour2", &myVColour[2], myVColour[2]);
   pConf->Read("VColour3", &myVColour[3], myVColour[3]);
@@ -483,8 +488,11 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->Write("frcurrentsDialogPosX", m_frcurrents_dialog_x);
     pConf->Write("frcurrentsDialogPosY", m_frcurrents_dialog_y);
 
+    //myVColour[0] = g_colourArrowColour0.GetAsString(wxC2S_CSS_SYNTAX);
     pConf->Write("VColour0", myVColour[0]);
-    pConf->Write("VColour1", myVColour[1]);
+    
+
+     pConf->Write("VColour1", myVColour[1]);
     pConf->Write("VColour2", myVColour[2]);
     pConf->Write("VColour3", myVColour[3]);
     pConf->Write("VColour4", myVColour[4]);
