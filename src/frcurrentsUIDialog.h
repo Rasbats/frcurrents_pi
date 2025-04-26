@@ -185,7 +185,6 @@ public:
 
   wxString m_PortSelected;
   int m_AreaIDSelected;
-  wxString m_AreaIDstring;
   wxArrayString TideCurrentDataSet;
   wxString* pTC_Dir;
   vector<SHOMport> portLines;
