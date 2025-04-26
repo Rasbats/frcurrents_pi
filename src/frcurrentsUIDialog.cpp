@@ -923,7 +923,7 @@ void frcurrentsUIDialog::OnInformation(wxCommandEvent& WXUNUSED(event)) {
   //  "Information" + s + "frcurrentsInformation.html";
 
   wxString help =
-      "For a source of harmonics and other information: \nwebsite: https://opencpn-manuals.github.io/main/frcurrents/index.html";
+      "For a source of harmonics and other information: \n\nhttps://opencpn-manuals.github.io/main/frcurrents/index.html";
   wxMessageBox(help);
 }
 
