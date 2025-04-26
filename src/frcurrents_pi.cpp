@@ -43,8 +43,6 @@ wxString myVColour[] = {"rgb(127, 0, 255)", "rgb(0, 166, 80)",
                         "rgb(253, 184, 19)", "rgb(248, 128, 64)",
                         "rgb(248, 0, 0)"};
 
-wxColour g_colourArrowColour0;
-
 // the class factories, used to create and destroy instances of the PlugIn
 
 extern "C" DECL_EXP opencpn_plugin *create_pi(void *ppimgr) {
@@ -234,15 +232,15 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   Pref->m_cStyle->SetSelection(m_CopyArrowStyle);
 
   if (Pref->ShowModal() == wxID_OK) {
-// bool copyFillColour = true;
-    
-//#ifndef __ANDROID__
+    // bool copyFillColour = true;
+
+    // #ifndef __ANDROID__
     myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
     myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
     myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
     myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
     myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
-//#endif
+    // #endif
 
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
@@ -348,7 +346,7 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
 #ifdef __WXMSW__
     wxFont f = *OCPNGetFont(_("Dialog"), 10);
     f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
-    g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);    
+    g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);
 #endif
 
     m_pfrcurrentsDialog->Move(
@@ -421,7 +419,6 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   return TRUE;
 }
 
-
 void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
   if (m_pfrcurrentsDialog) m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
 }
@@ -456,8 +453,6 @@ bool frcurrents_pi::LoadConfig(void) {
     m_frcurrents_dialog_y = 140;
 
   pConf->Read("VColour0", &myVColour[0], myVColour[0]);
-  //g_colourArrowColour0.Set(myVColour[0]);
-
   pConf->Read("VColour1", &myVColour[1], myVColour[1]);
   pConf->Read("VColour2", &myVColour[2], myVColour[2]);
   pConf->Read("VColour3", &myVColour[3], myVColour[3]);
@@ -488,10 +483,8 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->Write("frcurrentsDialogPosX", m_frcurrents_dialog_x);
     pConf->Write("frcurrentsDialogPosY", m_frcurrents_dialog_y);
 
-    //myVColour[0] = g_colourArrowColour0.GetAsString(wxC2S_CSS_SYNTAX);
-    pConf->Write("VColour0", myVColour[0]);    
-
-     pConf->Write("VColour1", myVColour[1]);
+    pConf->Write("VColour0", myVColour[0]);
+    pConf->Write("VColour1", myVColour[1]);
     pConf->Write("VColour2", myVColour[2]);
     pConf->Write("VColour3", myVColour[3]);
     pConf->Write("VColour4", myVColour[4]);
