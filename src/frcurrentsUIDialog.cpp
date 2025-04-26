@@ -181,7 +181,8 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
-    pConf->Read("frcurrentsAreaID", &m_AreaIDSelected, 0);
+    pConf->Read("frcurrentsAreaID", &m_AreaIDstring);
+    m_AreaIDSelected = wxAtoi(m_AreaIDstring);
     pConf->Read("frcurrentsPort", &m_PortSelected);
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
@@ -232,7 +233,8 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     pConf->Write("VColour4", myVColour[4]);
 
     int b = m_choiceArea->GetCurrentSelection();
-    pConf->Write("frcurrentsAreaID", b);
+    wxString bs = wxString::Format("%s", b);
+    pConf->Write("frcurrentsAreaID", bs);
     int c = m_choice1->GetCurrentSelection();
     wxString myP = m_choice1->GetString(c);
     pConf->Write("frcurrentsPort", myP);
@@ -923,7 +925,8 @@ void frcurrentsUIDialog::OnInformation(wxCommandEvent& WXUNUSED(event)) {
   //  "Information" + s + "frcurrentsInformation.html";
 
   wxString help =
-      "For a source of harmonics and other information: \n\nhttps://opencpn-manuals.github.io/main/frcurrents/index.html";
+      "For a source of harmonics and other information: "
+      "\n\nhttps://opencpn-manuals.github.io/main/frcurrents/index.html";
   wxMessageBox(help);
 }
 
