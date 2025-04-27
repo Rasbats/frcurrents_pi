@@ -255,7 +255,7 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     y1 = y2;
   }
 
-  if (m_bShowFillColour && m_dc) {
+  if (m_bShowFillColour && g_pDC) {
     /*
      *           4
      *          /\
