@@ -238,7 +238,6 @@ private:
   void LoadHarmonics();
   int FindPortID(wxString myPort);
   bool LoadStandardPorts();
-  bool OpenXML();
   void OnAreaSelected(wxCommandEvent& event);
   void GetCurrentsData(wxString areaFolder);
   void ParseCurrentsFile(wxString infile);
@@ -247,7 +246,6 @@ private:
   void OnChooseTideButton(wxCommandEvent& event);
   void OnPrev(wxCommandEvent& event);
   void OnNext(wxCommandEvent& event);
-  void About(wxCommandEvent& event);
   // Time/HW
   int myPortCode;
   int BrestID;

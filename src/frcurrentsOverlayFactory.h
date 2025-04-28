@@ -99,12 +99,6 @@ public:
   }
   bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
 
-  void DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
-                                 bool bforce_redraw_currents,
-                                 bool bdraw_mono_for_mask, wxDateTime myTime);
-
-  void Reset();
-
   bool m_bShowRate;
   bool m_bShowDirection;
   bool m_bHighResolution;
@@ -125,7 +119,6 @@ public:
 private:
   bool inGL;
   wxPoint myArrowArray[9];
-  void RenderTestLine(PlugIn_ViewPort *vp);
   //bool DoRenderfrcurrentsOverlay(PlugIn_ViewPort *vp);
   void RenderMyArrows(PlugIn_ViewPort *vp);
   int m_fromHW;

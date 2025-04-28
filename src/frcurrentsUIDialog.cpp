@@ -110,37 +110,11 @@ wxString m_Areas[] = { _T("557"), _T("564"), _T("561"), _T("562"), _T("563"),
 // Handle to DLL
 using namespace std;
 
-/*
-#if defined (_WIN32)
-int round (double x) {
-        int i = (int) x;
-        if (x >= 0.0) {
-                return ((x-i) >= 0.5) ? (i + 1) : (i);
-        } else {
-                return (-x+i >= 0.5) ? (i - 1) : (i);
-        }
-}
-#endif
-*/
 #define FAIL(X)  \
   do {           \
     error = X;   \
     goto failed; \
   } while (0)
-
-// date/time in the desired time zone format
-static wxString TToString(const wxDateTime date_time, const int time_zone) {
-  wxDateTime t(date_time);
-  t.MakeFromTimezone(wxDateTime::UTC);
-  if (t.IsDST()) t.Subtract(wxTimeSpan(1, 0, 0, 0));
-  switch (time_zone) {
-    case 0:
-      return t.Format(" %a %d-%b-%Y  %H:%M ", wxDateTime::Local) + "LOC";  //:%S
-    case 1:
-    default:
-      return t.Format(" %a %d-%b-%Y %H:%M  ", wxDateTime::UTC) + "UTC";
-  }
-}
 
 frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     : frcurrentsUIDialogBase(parent) {
@@ -439,16 +413,6 @@ void frcurrentsUIDialog::OnMove(wxMoveEvent& event) {
 
   event.Skip();
 }
-/*
-void frcurrentsUIDialog::OnSize( wxSizeEvent& event )
-{
-    //    Record the dialog size
-    wxSize p = event.GetSize();
-    pPlugIn->SetfrcurrentsDialogSizeX( p.x );
-    pPlugIn->SetfrcurrentsDialogSizeY( p.y );
-
-    event.Skip();
-}*/
 
 void frcurrentsUIDialog::OpenFile(bool newestFile) {
   m_bUseRate = pPlugIn->GetCopyRate();
@@ -985,9 +949,7 @@ int frcurrentsUIDialog::FindPortIDUsingChoice(wxString inPortName) {
     myPortTides.m_portLon = (*it).LON;
 
     myPortTides.m_IDX = (*it).IDX;
-    // wxMessageBox(myPortTides.m_portName);
     if (myPortTides.m_portName == s) {
-      // wxMessageBox(myPortTides.m_portName, "in findPortID");
       i = FindPortID(myPortTides.m_portName);
       return i;
     }
@@ -1176,7 +1138,6 @@ void frcurrentsUIDialog::SetTimeFactors() {
   //    station
   m_graphday = m_datePicker1->GetValue();
 
-  // m_graphday = this_gmt;
 
   time_t t_time_gmt = m_graphday.GetTicks();
 
@@ -1793,7 +1754,6 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
       if (!strcmp(f->Value(), "PMVE")) {
         PMVE = wxString::FromUTF8(f->GetText());
         my_port.PMVE = PMVE;
-        // wxMessageBox(my_port.PMVE,PMVE);
       }
 
       if (!strcmp(f->Value(), "PMME")) {
@@ -1815,138 +1775,13 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
         IDX = wxString::FromUTF8(f->GetText());
         my_port.IDX = IDX;
 
-        // wxMessageBox(my_port.IDX,_("myPort"));
         my_ports.push_back(my_port);
       }
 
-      // end for
     }  // end for
   }  // end for
 
   int c = my_ports.size();
-  return true;
-}
-
-bool frcurrentsUIDialog::OpenXML() {
-  wxFileName fn;
-  wxString tmp_path;
-
-  wxString m_gpx_path = fn.GetFullPath();
-  int response = wxID_CANCEL;
-  int my_count = 0;
-
-  wxString filename;
-
-  tmp_path = GetPluginDataDir("frcurrents_pi");
-  fn.SetPath(tmp_path);
-  fn.AppendDir("data");
-  fn.SetFullName("tcSample.xml");
-
-  filename = fn.GetFullPath();
-
-  TiXmlDocument doc;
-  /*  // Saved for writing to file method
-      std::ofstream f("C:\\old\\x.txt",std::ios::out | std::ios::binary);
-  // write to outfile
-*/
-  doc.LoadFile(filename);
-  TiXmlElement* root = doc.RootElement();
-
-  Position my_position;
-
-  my_positions.clear();  // Clear all the diamonds of information
-
-  int count = 0;
-
-  wxString rte_lat, rte_lon;
-  wxString stat_num, port_num, minus_6, minus_5, minus_4, minus_3, minus_2,
-      minus_1, zero;
-  wxString plus_1, plus_2, plus_3, plus_4, plus_5, plus_6;
-
-  for (TiXmlElement* e = root->FirstChildElement(); e;
-       e = e->NextSiblingElement())
-    count++;
-  int i = 0;
-  for (TiXmlElement* e = root->FirstChildElement(); e;
-       e = e->NextSiblingElement(), i++) {
-    for (TiXmlElement* f = e->FirstChildElement(); f;
-         f = f->NextSiblingElement()) {
-      if (!strcmp(f->Value(), "LATITUDE")) {
-        rte_lat = wxString::FromUTF8(f->GetText());
-        my_position.lat = rte_lat;
-      }
-
-      if (!strcmp(f->Value(), "LONGITUDE")) {
-        rte_lon = wxString::FromUTF8(f->GetText());
-        my_position.lon = rte_lon;
-      }
-      if (!strcmp(f->Value(), "PORT_NUMBER")) {
-        port_num = wxString::FromUTF8(f->GetText());
-        my_position.port_num = port_num;
-      }
-      if (!strcmp(f->Value(), "MINUS_6")) {
-        minus_6 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[0] = minus_6;
-      }
-      if (!strcmp(f->Value(), "MINUS_5")) {
-        minus_5 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[1] = minus_5;
-      }
-      if (!strcmp(f->Value(), "MINUS_4")) {
-        minus_4 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[2] = minus_4;
-      }
-      if (!strcmp(f->Value(), "MINUS_3")) {
-        minus_3 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[3] = minus_3;
-      }
-      if (!strcmp(f->Value(), "MINUS_2")) {
-        minus_2 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[4] = minus_2;
-      }
-      if (!strcmp(f->Value(), "MINUS_1")) {
-        minus_1 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[5] = minus_1;
-      }
-      if (!strcmp(f->Value(), "ZERO")) {
-        zero = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[6] = zero;
-      }
-      if (!strcmp(f->Value(), "PLUS_1")) {
-        plus_1 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[7] = plus_1;
-      }
-      if (!strcmp(f->Value(), "PLUS_2")) {
-        plus_2 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[8] = plus_2;
-      }
-      if (!strcmp(f->Value(), "PLUS_3")) {
-        plus_3 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[9] = plus_3;
-      }
-      if (!strcmp(f->Value(), "PLUS_4")) {
-        plus_4 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[10] = plus_4;
-      }
-      if (!strcmp(f->Value(), "PLUS_5")) {
-        plus_5 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[11] = plus_5;
-      }
-      if (!strcmp(f->Value(), "PLUS_6")) {
-        plus_6 = wxString::FromUTF8(f->GetText());
-        my_position.minus_plus[12] = plus_6;
-
-        my_positions.push_back(my_position);  // End of diamond information.
-                                              // Push to diamond object
-      }
-
-      // PORT_NUMBER
-
-    }  // end for
-
-  }  // end for
-
-  RequestRefresh(pParent);
   return true;
 }
 
@@ -2035,7 +1870,6 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
   }
 
   wxString filePort;
-  // wxMessageBox(tidePort);
 
   for (size_t i = 0; i < filenames.size(); i++) {
     result = filenames.Item(i);
@@ -2052,7 +1886,6 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
 }
 
 void frcurrentsUIDialog::ParseCurrentsFile(wxString infile) {
-  // wxMessageBox(infile);
   int linenum = 0;
   int line2 = 2;
   int line3 = 3;
@@ -2433,52 +2266,4 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   }
 
   RequestRefresh(pParent);
-}
-
-void frcurrentsUIDialog::About(wxCommandEvent& event) {
-  /*
- wxMessageBox(
-_("Tidal Data for UKHO Tidal
-Diamonds\n--------------------------------------------------------------\nThe
-standard OpenCPN distribution has tidal data for the\nfollowing ports, which
-this plugin uses:\n\nPLYMOUTH
-(DEVONPORT)\nPORTSMOUTH\nDOVER\nSHEERNESS\nLOWESTOFT\nIMMINGHAM\nLEITH\nABERDEEN\nWICK\nLERWICK\nULLAPOOL\nLIVERPOOL
-(GLADSTONE DOCK)\nHOLYHEAD\nMILFORD HAVEN\nPORT OF BRISTOL (AVONMOUTH)\nST.
-HELIER\n\nUse this data with caution.\nUse in conjunction with UKHO Tidal Stream
-Atlases and tidal
-diamonds\n\n--------------------------------------------------------------------\n\nNote:
-1 Rates shown are for a position corresponding to the centre\nof the base of the
-arrow. Tidal rate is shown as knots.\nNote: 2 Rates are calculated by using the
-method shown in UKHO Tidal\nStream Atlases. This is based on the average range
-for the day\n") , _("About Tidal Arrows"), wxOK | wxICON_INFORMATION, this);*/
-
-  wxFileName fn;
-
-  auto path1 = GetPluginDataDir("frcurrents_pi");
-  fn.SetPath(path1);
-  fn.AppendDir("data");
-  fn.SetFullName("\\console.exe");
-
-  wxString g_sencutil_bin = fn.GetPath() + "\\console.exe";
-
-  wxString cmd = g_sencutil_bin;
-  cmd += " -c";
-  wxMessageBox(cmd);
-
-  wxProcess* process{new wxProcess(wxPROCESS_REDIRECT)};
-  long pid = wxExecute(cmd, wxEXEC_ASYNC, process);
-  if (!pid) {
-    wxMessageBox("fail");
-    delete process;
-  } else {
-    wxInputStream* iStream{process->GetInputStream()};
-    wxString output;
-    wxTextInputStream tiStream{*iStream};
-    output = tiStream.ReadLine();
-
-    while (!iStream->Eof()) {
-      output += tiStream.ReadLine();
-    }
-    wxMessageBox(output);
-  }
 }
