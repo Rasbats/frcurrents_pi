@@ -53,51 +53,9 @@ class wxBoundingBox;
 class piDC;
 
 #define NUM_CURRENT_ARROW_POINTS 9
-static wxPoint CurrentArrowArray1[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -10 ),
-        wxPoint( 55, -10 ), wxPoint( 55, -25 ), wxPoint( 100, 0 ), wxPoint( 55, 25 ), wxPoint( 55,
-                10 ), wxPoint( 0, 10 ), wxPoint( 0, 0 )};
-
-static wxPoint CurrentArrowArray2[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -5 ),
-        wxPoint( 30, -5 ), wxPoint( 30, -12 ), wxPoint( 50, 0 ), wxPoint( 30, 12 ), wxPoint( 30,
-                5 ), wxPoint( 0, 5 ), wxPoint( 0, 0 )};
-
-static wxPoint CurrentArrowArray3[NUM_CURRENT_ARROW_POINTS] = { wxPoint( 0, 0 ), wxPoint( 0, -5 ),
-        wxPoint( 75, -5 ), wxPoint( 55, -15 ), wxPoint( 100, 0 ), wxPoint( 55, 15 ), wxPoint( 75,
-                5 ), wxPoint( 0, 5 ), wxPoint( 0, 0 )};
 
 static int texture_format;
 static bool glQueried = false;
-
-static GLboolean QueryExtension( const char *extName )
-{
-    /*
-     ** Search for extName in the extensions string. Use of strstr()
-     ** is not sufficient because extension names can be prefixes of
-     ** other extension names. Could use strtok() but the constant
-     ** string returned by glGetString might be in read-only memory.
-     */
-    char *p;
-    char *end;
-    int extNameLen;
-
-    extNameLen = strlen( extName );
-
-    p = (char *) glGetString( GL_EXTENSIONS );
-    if( NULL == p ) {
-        return GL_FALSE;
-    }
-
-    end = p + strlen( p );
-
-    while( p < end ) {
-        int n = strcspn( p, " " );
-        if( ( extNameLen == n ) && ( strncmp( extName, p, n ) == 0 ) ) {
-            return GL_TRUE;
-        }
-        p += ( n + 1 );
-    }
-    return GL_FALSE;
-}
 
 #if defined(__WXMSW__)
 #define systemGetProcAddress(ADDR) wglGetProcAddress(ADDR)
@@ -133,11 +91,6 @@ frcurrentsOverlayFactory::~frcurrentsOverlayFactory()
 
 }
 
-void frcurrentsOverlayFactory::Reset()
-{
-
-}
-
 bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
 {
     m_dc = &dc;
@@ -164,25 +117,9 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp)
 
     wxColour myColour = wxColour("RED");
 
-    //RenderTestLine(&vp);
-
 		RenderMyArrows(&vp);
 
     return true;
-}
-
-void frcurrentsOverlayFactory::RenderTestLine(PlugIn_ViewPort *vp) {
-
-  wxColour colour(255, 0, 0);
-  wxBrush brush(colour);
-
-  if (m_dc) {
-    wxPen pen(colour, 4);
-
-    m_dc->SetPen(pen);
-    m_dc->SetBrush(brush);
-  }
-  m_dc->DrawLine(100, 100, 400, 400, true);
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
@@ -252,9 +189,6 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle, 
     wxColour colour;
 
     colour = GetSpeedColour( m_rate );
-
-    wxString c = colour.GetAsString();
-    //wxMessageBox(c);
 
     c_GLcolour = colour;  // for filling GL arrows
     if( scale <= 1e-2 )
@@ -395,10 +329,6 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 				
 			  latF = value + (decValue/60);
 
-				wxString showlat = wxString::Format("%f", latF);
-        //wxMessageBox(showlat);
-
-
 				mLon = (*it).lon;
 				m_len = mLon.Len();
 				
@@ -429,11 +359,6 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 					lonF = (decValue1 + value / 60);
 				}
 
-				wxString showlon = wxString::Format("%f", lonF);
-        //wxMessageBox(showlon);
-
-			 
-
       GetCanvasPixLL( vp, &p,latF, lonF );
       wxRect myRect = vp->rv_rect;
 
@@ -444,31 +369,12 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 					// drawing scaled current arrows												
 				  m_fromHW = m_dlg.button_id;
 
-					
 					double dir = (*it).spDir[m_fromHW];
 
-					wxString showDir = wxString::Format("%f", dir);
-         // wxMessageBox(showDir);
-
-					
-
 					double m_spdSpring = (*it).spRate[m_fromHW];
-					
-
-					wxString showspdsp = wxString::Format("%f", m_spdSpring);
-        // wxMessageBox(showspdsp);
-
 
 					double m_spdNeap = (*it).npRate[m_fromHW];
 					
-
-					wxString showspdnp = wxString::Format("%f", m_spdNeap);
-         // wxMessageBox(showspdnp);
-
-					double range = m_dlg.myRange;
-					wxString showrg = wxString::Format("%f", range);
-          //wxMessageBox(showrg);
-
 					int mmx, mmy;
 					wxDisplaySizeMM( &mmx, &mmy );
 
@@ -500,8 +406,6 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 
 					bool d = drawCurrentArrow( p.x, p.y,
 												dir - 90 , scale / 100, myCurrent );
-					//if (d) wxMessageBox("Drawing");
-					//else { wxMessageBox("Not Drawing"); }
 
 					int shift = 0;
 
@@ -524,127 +428,4 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp ){
 			}   // end if         
 
 	    }// end for			   		   											   		
-}
-
-
-void frcurrentsOverlayFactory::DrawAllCurrentsInViewPort(PlugIn_ViewPort *BBox, bool bRebuildSelList,
-        bool bforce_redraw_currents, bool bdraw_mono_for_mask, wxDateTime myTime)
-{
-
-    if (BBox->chart_scale > 1000000){
-        return;
-    }
-    wxColour text_color;
-
-    GetGlobalColor( _T ("UINFD" ), &text_color );
-    if (text_color != m_text_color) {
-       // color changed, invalid cache
-       m_text_color = text_color;
-       m_labelCacheText.clear();
-    }
-
-    double rot_vp = BBox->rotation*180/M_PI;
-
-    // Set up the scaler
-    double mmx = PlugInGetDisplaySizeMM();
-
-    int sx, sy;
-    wxDisplaySize( &sx, &sy );
-
-    double m_pix_per_mm = ( (double) sx ) / ( mmx );
-
-    int mm_per_knot = 10;
-    float current_draw_scaler = mm_per_knot * m_pix_per_mm * 100 / 100.0;
-
-    // End setting up scaler
-
-    float tcvalue, dir;
-    bool bnew_val = true;
-    double lon_last = 0.;
-
-    double lat_last = 0.;
-    TCMgr *ctcmgr = m_dlg.ptcmgr;
-
-
-    wxDateTime yn = wxDateTime::Now().ToGMT();
-    time_t myTimeNow = yn.GetTicks();
-
-    wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-
-	#ifdef __WXMSW__  // for Windows hi-def screens
-		double factor = (double)(GetOCPNCanvasWindow()->ToDIP(100)) / 100.;
-		font.Scale(1. / factor);
-	#endif
-
-    m_dc->SetFont(font);
-    wxRect myRect = BBox->rv_rect;
-
-
-        for( int i = 1; i <  ctcmgr->Get_max_IDX() + 1; i++ ) {
-            const IDX_entry *pIDX = ctcmgr->GetIDX_entry( i );
-            double lon = pIDX->IDX_lon;
-            double lat = pIDX->IDX_lat;
-            bool b_dup = false;
-
-            char type = pIDX->IDX_type;             // Entry "TCtcIUu" identifier
-
-            if( ( ( type == 'c' ) || ( type == 'C' ) ) && ( 1/*pIDX->IDX_Useable*/) ) {
-
-                if ((lat == lat_last) && (lon == lon_last)) {
-                b_dup = true;
-                lon_last = lon;
-                lat_last = lat;
-                continue;
-            }
-                int pixxc, pixyc;
-                wxPoint cpoint;
-                GetCanvasPixLL(BBox,&cpoint, lat, lon);
-                pixxc = cpoint.x;
-                pixyc = cpoint.y;
-
-                if( !b_dup && myRect.Contains(cpoint.x, cpoint.y)) {
-
-
-                    if( ctcmgr->GetTideOrCurrent15( myTimeNow, i, tcvalue, dir, bnew_val) ) {
-
-                      if( type == 'c' || type == 'C' ) {
-
-                        //    Adjust drawing size using logarithmic scale
-                        double a1 = fabs( tcvalue ) * 10;
-                        a1 = wxMax(1.0, a1);      // Current values less than 0.1 knot
-                                                // will be displayed as 0
-                        double a2 = log10( a1 );
-                        double scale = current_draw_scaler * a2;
-
-                        bool rendered = drawCurrentArrow( pixxc, pixyc, dir -90 + rot_vp , scale/100, tcvalue );
-
-                        int shift = 0;
-
-                          char sbuf[20];
-                          if( m_bShowRate ) {
-                            snprintf( sbuf, 19, "%3.1f", fabs(tcvalue) );
-                            m_dc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc );
-                            if (!m_bHighResolution){
-                                shift = 13;
-                            }
-                            else {
-                                shift = 26;
-                            }
-                          }
-
-                          if ( m_bShowDirection ) {
-                            snprintf( sbuf, 19, "%03.0f", dir );
-                            m_dc->DrawText( wxString( sbuf, wxConvUTF8 ), pixxc, pixyc + shift );
-                          }
-                      }
-                    }
-
-
-                lon_last = lon;
-                lat_last = lat;
-
-                }
-            }
-
-        }
 }
