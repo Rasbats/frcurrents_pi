@@ -201,8 +201,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
   }
   ptcmgr = NULL;
 
-  m_area = atoi(m_AreaSelected.c_str());
-  m_choiceArea->SetSelection(m_area);
+  m_choiceArea->SetSelection(pPlugIn->m_AreaIDSelected);
   m_dirPicker1->SetValue(m_FolderSelected);
   m_bOnStart = false;
   m_myChoice = 0;
@@ -236,7 +235,6 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     pConf->Write("VColour4", myVColour[4]);
 
     int b = m_choiceArea->GetCurrentSelection();
-    wxString bs = wxString::Format("%s",b);
     pConf->Write("frcurrentsAreaID", b);
     int c = m_choice1->GetCurrentSelection();
     wxString myP = m_choice1->GetString(c);
@@ -436,11 +434,10 @@ void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
 
 void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
   m_area = m_choiceArea->GetSelection();
-  m_AreaSelected << m_area;
   m_FolderSelected = m_dirPicker1->GetValue();
 
   
-  pPlugIn->m_CopyAreaSelected << m_AreaSelected;
+  pPlugIn->m_AreaIDSelected = m_area;
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   pPlugIn->OnfrcurrentsDialogClose();
 }

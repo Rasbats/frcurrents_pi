@@ -124,10 +124,10 @@ public:
   frcurrentsOverlayFactory *GetfrcurrentsOverlayFactory() {
     return m_pfrcurrentsOverlayFactory;
   }
-  wxString m_CopyAreaSelected;
+
   wxString m_CopyFolderSelected;
   int m_AreaIDSelected;
-  wxString m_area;
+ 
 
   int m_frcurrents_dialog_x, m_frcurrents_dialog_y;
   int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
