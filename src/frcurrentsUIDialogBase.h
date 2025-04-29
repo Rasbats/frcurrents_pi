@@ -109,6 +109,7 @@ protected:
   wxButton* m_sdbSizerButtonsOK;
   wxButton* m_sdbSizerButtonsCancel;
 
+
   // Virtual event handlers, override them in your derived class
   virtual void OnChoice(wxCommandEvent& event) { event.Skip(); }
   virtual void OnIconsSlidersChange(wxCommandEvent& event) { event.Skip(); }

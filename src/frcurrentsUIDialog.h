@@ -184,12 +184,13 @@ public:
   int round(double c);
 
   wxString m_PortSelected;
-  int m_AreaIDSelected;
   wxArrayString TideCurrentDataSet;
   wxString* pTC_Dir;
   vector<SHOMport> portLines;
   wxString g_SData_Locn;
   TCMgr* ptcmgr;
+  wxString m_AreaSelected;
+  int m_area;
   wxString m_FolderSelected;
   double m_coeff;
   double m_jumpLat, m_jumpLon;
