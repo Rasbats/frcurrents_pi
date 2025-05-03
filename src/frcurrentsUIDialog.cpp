@@ -514,7 +514,8 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
 void frcurrentsUIDialog::OnStartSetupHW() {
   //  find area ID and select it
   int id;
-  if (m_AreaIDSelected < 0 || m_AreaIDSelected > (m_choiceArea->GetCount() - 1))
+  int count = m_choiceArea->GetCount() - 1;
+  if (m_AreaIDSelected < 0 || m_AreaIDSelected > count)
     m_AreaIDSelected = 0;
   m_choiceArea->SetSelection(m_AreaIDSelected);
   wxString s = m_Areas[m_AreaIDSelected];
