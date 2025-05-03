@@ -421,10 +421,6 @@ bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
   return true;
 }
 
-void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
-  if (m_pfrcurrentsDialog) m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
-}
-
 bool frcurrents_pi::LoadConfig(void) {
   wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 

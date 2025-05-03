@@ -174,7 +174,6 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
   ptcmgr = NULL;
 
   m_dirPicker1->SetValue(m_FolderSelected);
-  m_bOnStart = false;
   m_myChoice = 0;
 
   LoadStandardPorts();  // From StandardPorts.xml Load the port choice control
@@ -388,10 +387,6 @@ void frcurrentsUIDialog::SetScaledBitmaps(double scalefactor) {
 
   this->Refresh();
 }
-void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
-  m_cursor_lon = lon;
-  m_cursor_lat = lat;
-}
 
 void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
   if (m_vp == vp) return;
@@ -454,7 +449,6 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
 }
 
 void frcurrentsUIDialog::OnStartSetupHW() {
-  m_bOnStart = true;
   //  find area ID and select it
   int id;
   if (m_AreaIDSelected < 0 || m_AreaIDSelected >(m_choiceArea->GetCount() - 1))
@@ -470,45 +464,6 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   m_choice1->SetSelection(id);
 
   SetNow();
-}
-
-void frcurrentsUIDialog::OnNow(wxCommandEvent& event) {
-  if (!SetDateForNowButton())
-    return;
-
-  // calc coefficient
-  BrestRange = CalcRange_Brest();
-  m_textCtrlCoefficient->SetValue(CalcCoefficient());
-
-  if (m_bUseBM) {
-    button_id = 6 + CalcHoursFromLWNow();
-  } else
-    button_id = 6 + CalcHoursFromHWNow();
-
-  if (button_id == 13) {
-    button_id = 12;
-  }
-  if (button_id == -1) {
-    button_id = 0;
-  }
-  wxString s2;
-  if (m_bUseBM) {
-    s2 = label_lw[button_id];
-  } else {
-    s2 = label_array[button_id];
-  }
-  wxDateTime this_now = wxDateTime::Now().ToGMT();
-  wxString s0 = this_now.Format("%a %d %b %Y");
-  wxString s1 = this_now.Format("%H:%M");
-
-  m_staticText2->SetLabel(s0);
-  m_staticText211->SetLabel(s1 + "    " + s2);
-
-  SetCorrectHWSelection();
-
-  m_myChoice = m_choice2->GetSelection();
-
-  RequestRefresh(pParent);
 }
 
 void frcurrentsUIDialog::SetNow() {
@@ -1116,53 +1071,20 @@ void frcurrentsUIDialog::SetTimeFactors() {
   if (this_now.IsDST() && !dtn.Subtract(wxTimeSpan().Days(1)).IsDST())
     m_diff_first_dst_sec = 3600;
 
+  //  Time Offset at station Calculation (is no longer used)
   const IDX_entry* pIDX = ptcmgr->GetIDX_entry(myPortCode);
-
   IDX_entry IDX = *pIDX;
-
   int station_offset = ptcmgr->GetStationTimeOffset(&IDX);
-
   m_stationOffset_mins = station_offset;
   if (this_now.IsDST()) m_stationOffset_mins += 60;
-
-    //  Correct a bug in wx3.0.2
-    //  If the system TZ happens to be GMT, with DST active (e.g.summer in
-    //  London), then wxDateTime returns incorrect results for toGMT()
-    //  method
-#if wxCHECK_VERSION(3, 0, 2)
-//    if(  this_now.IsDST() )
-//        m_corr_mins +=60;
-#endif
+  // end of time offset at station calculation
 
   //    Establish the inital drawing day as today, in the timezone of the
   //    station
   m_graphday = m_datePicker1->GetValue();
-
-
-  time_t t_time_gmt = m_graphday.GetTicks();
-
-  time_t ttNow = this_now.GetTicks();
-  time_t tt_at_station =
-      ttNow - (m_diff_mins * 60) + (m_stationOffset_mins * 60);
-/*
-  if (t_time_gmt > tt_at_station) {
-    wxTimeSpan dt((t_time_gmt - tt_at_station) / 3600, 0, 0, 0);
-    m_graphday.Subtract(dt);
-  } else if (t_time_gmt < tt_at_station) {
-    wxTimeSpan dt((tt_at_station - t_time_gmt) / 3600, 0, 0, 0);
-    m_graphday.Add(dt);
-  }
-*/
   wxDateTime graphday_00 = m_graphday;  // this_gmt;
   graphday_00.ResetTime();
-  time_t t_graphday_00 = graphday_00.GetTicks();
-
-  //    Correct a Bug in wxWidgets time support
-  //    if( !graphday_00.IsDST() && m_graphday.IsDST() ) t_graphday_00 -=
-  //    3600; if( graphday_00.IsDST() && !m_graphday.IsDST() ) t_graphday_00
-  //    += 3600;
-
-  m_t_graphday_GMT = t_graphday_00;
+  m_t_graphday_GMT = graphday_00.GetTicks();
 
   btc_valid = false;  // Force re-calculation
 }
@@ -1180,9 +1102,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
 
   m_plot_type = TIDE_PLOT;
 
-  // Establish the inital drawing day as today
-  m_graphday = m_datePicker1->GetValue();
-
   float dir;
   float tcmax, tcmin;
   tcmax = -10;
@@ -1198,8 +1117,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
   int i;
   float tcv[26];
   time_t tt_tcv[26];
-  myHeightHW = 0;
-  myHeightLW = 0;
 
   // The tide/current modules calculate values based on PC local time
   // We need  LMT at station, so adjust accordingly
@@ -1239,8 +1156,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
           if (euTC[array_index][3] == "LW") {
             myLW = tcvalue;
             if (gotHW) {  // We use the BM after PM
-              BrestHeightHW = myHW;
-              BrestHeightLW = myLW;
               BrestRange = myHW - myLW;  // Used for
                                          // CalcCoefficient
             }
@@ -1278,8 +1193,6 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
 
   m_plot_type = TIDE_PLOT;
 
-  // Establish the inital drawing day as today
-  m_graphday = m_datePicker1->GetValue();
   // Show the timezones
   m_stz = _("Display Time: UTC");
   int diffloc = m_diff_mins;
@@ -1309,16 +1222,12 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   int array_index = 0;
   wxString sHWLW = "";
   int e = 0;
-  double myLW, myHW;
   bool wt = false;
-  bool gotHW = false;
   Station_Data* pmsd;
   int i;
   wxDateTime euDT[8];
   float tcv[26];
   time_t tt_tcv[26];
-  myHeightHW = 0;
-  myHeightLW = 0;
 
   // The tide/current modules calculate values based on PC local time
   // We need  UTC, so adjust accordingly
@@ -1368,18 +1277,8 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
           euTC[array_index][2] = wxString(pmsd->units_abbrv, wxConvUTF8);
           euTC[array_index][3] = sHWLW;
           euDT[array_index] = tcd;
-          if (euTC[array_index][3] == "LW") {
-            if (gotHW) myLW = tcvalue;
-          }
 
           if (euTC[array_index][3] == "HW") {
-            gotHW = true;
-            myHW = tcvalue;
-            myHeightHW = myHW;
-            myHeightLW = myLW;
-
-            myRange = myHW - myLW;
-
             m_choice2->Insert(euTC[array_index][0], list_index);
             m_choice2_dt.push_back(euDT[array_index]);
             // nearestHW for the now button
@@ -1411,8 +1310,6 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   // if (strchr("Tt", pIDX->IDX_type))
   m_plot_type = TIDE_PLOT;
 
-  // Establish the inital drawing day as today
-  m_graphday = m_datePicker1->GetValue();
   // Get the timezones
   m_stz = _("Display Time: UTC");
   int diffloc = m_diff_mins;
@@ -1442,18 +1339,12 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   int array_index = 0;
   wxString sHWLW = "";
   int e = 0;
-  double myLW, myHW;
-  myHW = 0.0;
   bool wt = false;
-  bool gotHW = false;
-  bool gotLW = false;
   Station_Data* pmsd;
   int i;
   wxDateTime euDT[8];
   float tcv[26];
   time_t tt_tcv[26];
-  myHeightHW = 0;
-  myHeightLW = 0;
 
   // The tide/current modules calculate values based on PC local time
   // We need  UTC, so adjust accordingly
@@ -1506,14 +1397,6 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
           euDT[array_index] = tcd;
 
           if (euTC[array_index][3] == "LW") {
-            gotLW = true;
-            myLW = tcvalue;
-            myHeightLW = myLW;
-            myHeightHW = myHW;
-
-            myRange = myHW - myLW;  // Used for
-                                    // CalcCoefficient
-
             m_choice2->Insert(euTC[array_index][0], list_index);
             m_choice2_dt.push_back(euDT[array_index]);
             // nearestLW for the now button
@@ -1521,10 +1404,6 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
             e++;
             list_index++;
             wxDateTime t;
-          } else
-
-              if (euTC[array_index][3] == "HW") {
-            if (gotLW) myHW = tcvalue;
           }
         }
         array_index++;
@@ -1572,10 +1451,6 @@ wxString frcurrentsUIDialog::CalcCoefficient() {
   wxString cf = _("Coeff:");
   cf.Append(wxString::Format("  %3.0f", m_coeff));
   return cf;
-}
-
-void frcurrentsUIDialog::JumpToPort() {
-  JumpToPosition(m_jumpLat, m_jumpLon, m_vp->view_scale_ppm);
 }
 
 int frcurrentsUIDialog::CalcHoursFromHWNow() {
