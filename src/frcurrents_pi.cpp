@@ -285,6 +285,9 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
       m_pfrcurrentsDialog->m_bUseFillColour = m_bCopyUseFillColour;
       m_pfrcurrentsDialog->m_UseArrowStyle = m_CopyArrowStyle;
 
+      m_pfrcurrentsDialog->m_AreaIDSelected = m_CopyArea;
+      m_pfrcurrentsDialog->m_PortSelected = m_CopyPort;
+
       m_pfrcurrentsDialog->myUseColour[0] = myVColour[0];
       m_pfrcurrentsDialog->myUseColour[1] = myVColour[1];
       m_pfrcurrentsDialog->myUseColour[2] = myVColour[2];
