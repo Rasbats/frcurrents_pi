@@ -127,7 +127,7 @@ public:
 
   wxString m_CopyFolderSelected;
   int m_AreaIDSelected;
- 
+  wxString m_AreaPort;
 
   int m_frcurrents_dialog_x, m_frcurrents_dialog_y;
   int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;

@@ -181,10 +181,12 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
-    pConf->Read("frcurrentsAreaID", &m_AreaSelected, 0L);
+    pConf->Read("frcurrentsArea", &m_AreaSelected, 1L);
+    pConf->Read("frcurrentsPort", &m_PortSelected);
+    
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
-    pConf->Read("frcurrentsPort", &m_PortSelected);
+   
     
 
     pConf->Read("VColour0", &myVColour[0], myVColour[0]);
@@ -201,7 +203,12 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
   }
   ptcmgr = NULL;
 
-  m_choiceArea->SetSelection(pPlugIn->m_AreaIDSelected);
+
+  m_choiceArea->SetSelection(m_AreaSelected);
+  int id = m_choice1->FindString(m_PortSelected, true);
+  if (id == wxNOT_FOUND) id = 0;
+  m_choice1->SetSelection(id);
+ 
   m_dirPicker1->SetValue(m_FolderSelected);
   m_bOnStart = false;
   m_myChoice = 0;
@@ -235,7 +242,7 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     pConf->Write("VColour4", myVColour[4]);
 
     int b = m_choiceArea->GetCurrentSelection();
-    pConf->Write("frcurrentsAreaID", b);
+    pConf->Write("frcurrentsArea", b);
     int c = m_choice1->GetCurrentSelection();
     wxString myP = m_choice1->GetString(c);
     pConf->Write("frcurrentsPort", myP);
@@ -438,6 +445,9 @@ void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
 
   
   pPlugIn->m_AreaIDSelected = m_area;
+  int c = m_choice1->GetCurrentSelection();
+  wxString myP = m_choice1->GetString(c);
+  pPlugIn->m_AreaPort = myP;
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   pPlugIn->OnfrcurrentsDialogClose();
 }
