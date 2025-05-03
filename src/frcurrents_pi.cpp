@@ -337,6 +337,10 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
   wxFont *font = &f;
   if (NULL == m_pfrcurrentsDialog) {
     m_pfrcurrentsDialog = new frcurrentsUIDialog(m_parent_window, this);
+
+    m_pfrcurrentsDialog->m_AreaSelected = m_AreaIDSelected;
+    m_pfrcurrentsDialog->m_PortSelected = m_AreaPort;
+
     wxPoint p = wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y);
     m_pfrcurrentsDialog->Move(p);
     m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,

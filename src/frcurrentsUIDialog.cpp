@@ -183,11 +183,8 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsArea", &m_AreaSelected, 1L);
     pConf->Read("frcurrentsPort", &m_PortSelected);
-    
-    pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
-   
-    
+    pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
     pConf->Read("VColour0", &myVColour[0], myVColour[0]);
     pConf->Read("VColour1", &myVColour[1], myVColour[1]);
@@ -203,12 +200,11 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
   }
   ptcmgr = NULL;
 
-
   m_choiceArea->SetSelection(m_AreaSelected);
   int id = m_choice1->FindString(m_PortSelected, true);
   if (id == wxNOT_FOUND) id = 0;
   m_choice1->SetSelection(id);
- 
+
   m_dirPicker1->SetValue(m_FolderSelected);
   m_bOnStart = false;
   m_myChoice = 0;
@@ -441,13 +437,14 @@ void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
 
 void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
   m_area = m_choiceArea->GetSelection();
-  m_FolderSelected = m_dirPicker1->GetValue();
-
-  
   pPlugIn->m_AreaIDSelected = m_area;
+
   int c = m_choice1->GetCurrentSelection();
   wxString myP = m_choice1->GetString(c);
   pPlugIn->m_AreaPort = myP;
+
+  m_FolderSelected = m_dirPicker1->GetValue();
+
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   pPlugIn->OnfrcurrentsDialogClose();
 }
@@ -938,7 +935,8 @@ void frcurrentsUIDialog::OnInformation(wxCommandEvent& WXUNUSED(event)) {
   //  "Information" + s + "frcurrentsInformation.html";
 
   wxString help =
-      "For a source of harmonics and other information: \n\nhttps://opencpn-manuals.github.io/main/frcurrents/index.html";
+      "For a source of harmonics and other information: "
+      "\n\nhttps://opencpn-manuals.github.io/main/frcurrents/index.html";
   wxMessageBox(help);
 }
 
