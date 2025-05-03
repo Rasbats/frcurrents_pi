@@ -181,7 +181,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
-    pConf->Read("frcurrentsArea", &m_AreaSelected, 1L);
+    pConf->Read("frcurrentsAreaID", &m_AreaIDSelected, 0);
     pConf->Read("frcurrentsPort", &m_PortSelected);
 
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
@@ -197,13 +197,9 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     myUseColour[2] = myVColour[2];
     myUseColour[3] = myVColour[3];
     myUseColour[4] = myVColour[4];
+
   }
   ptcmgr = NULL;
-
-  m_choiceArea->SetSelection(m_AreaSelected);
-  int id = m_choice1->FindString(m_PortSelected, true);
-  if (id == wxNOT_FOUND) id = 0;
-  m_choice1->SetSelection(id);
 
   m_dirPicker1->SetValue(m_FolderSelected);
   m_bOnStart = false;
@@ -237,13 +233,17 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     pConf->Write("VColour3", myVColour[3]);
     pConf->Write("VColour4", myVColour[4]);
 
-    int b = m_choiceArea->GetCurrentSelection();
-    pConf->Write("frcurrentsArea", b);
+   int b = m_choiceArea->GetCurrentSelection();
+    pConf->Write("frcurrentsAreaID", b);
     int c = m_choice1->GetCurrentSelection();
     wxString myP = m_choice1->GetString(c);
     pConf->Write("frcurrentsPort", myP);
+    //wxMessageBox(myP);
+
     pConf->Write("frcurrentsFolder", m_FolderSelected);
+    
   }
+  
 }
 
 #ifdef __ANDROID__
@@ -436,13 +436,6 @@ void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
 }
 
 void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
-  m_area = m_choiceArea->GetSelection();
-  pPlugIn->m_AreaIDSelected = m_area;
-
-  int c = m_choice1->GetCurrentSelection();
-  wxString myP = m_choice1->GetString(c);
-  pPlugIn->m_AreaPort = myP;
-
   m_FolderSelected = m_dirPicker1->GetValue();
 
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
@@ -508,11 +501,12 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
 }
 
 void frcurrentsUIDialog::OnStartSetupHW() {
-  m_bOnStart = true;
   //  find area ID and select it
   int id;
-  m_choiceArea->SetSelection(m_AreaSelected);
-  wxString s = m_Areas[m_AreaSelected];
+  if (m_AreaIDSelected < 0 || m_AreaIDSelected > (m_choiceArea->GetCount() - 1))
+    m_AreaIDSelected = 0;
+  m_choiceArea->SetSelection(m_AreaIDSelected);
+  wxString s = m_Areas[m_AreaIDSelected];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
@@ -1970,9 +1964,9 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
   int a = m_choiceArea->GetSelection();
   wxString s = m_Areas[a];
 
-  FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
+  int id = FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
-  m_choice1->SetSelection(0);
+  m_choice1->SetSelection(id);
 
   SetNow();
 }

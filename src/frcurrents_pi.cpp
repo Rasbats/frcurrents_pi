@@ -210,8 +210,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   frcurrentsPreferencesDialog *Pref = new frcurrentsPreferencesDialog(parent);
 
   m_parent_window = GetOCPNCanvasWindow();
-  
-  
+
   prefsize = m_parent_window->GetSize();
 
   Pref->SetSize(prefsize);
@@ -242,15 +241,15 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   Pref->m_cStyle->SetSelection(m_CopyArrowStyle);
 
   if (Pref->ShowModal() == wxID_OK) {
-// bool copyFillColour = true;
-    
-//#ifndef __ANDROID__
+    // bool copyFillColour = true;
+
+    // #ifndef __ANDROID__
     myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
     myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
     myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
     myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
     myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
-//#endif
+    // #endif
 
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
@@ -338,9 +337,6 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
   if (NULL == m_pfrcurrentsDialog) {
     m_pfrcurrentsDialog = new frcurrentsUIDialog(m_parent_window, this);
 
-    m_pfrcurrentsDialog->m_AreaSelected = m_AreaIDSelected;
-    m_pfrcurrentsDialog->m_PortSelected = m_AreaPort;
-
     wxPoint p = wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y);
     m_pfrcurrentsDialog->Move(p);
     m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
@@ -362,7 +358,7 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
 #ifdef __WXMSW__
     wxFont f = *OCPNGetFont(_("Dialog"), 10);
     f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
-    g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);    
+    g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);
 #endif
 
     m_pfrcurrentsDialog->Move(
@@ -435,7 +431,6 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   return TRUE;
 }
 
-
 void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
   if (m_pfrcurrentsDialog) m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
 }
@@ -443,43 +438,44 @@ void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
 bool frcurrents_pi::LoadConfig(void) {
   wxFileConfig *pConf = (wxFileConfig *)m_pconfig;
 
-  if (!pConf) return false;
+  if (pConf) {
+    pConf->SetPath("/PlugIns/frcurrents");
 
-  pConf->SetPath(_T( "/PlugIns/frcurrents" ));
+    m_bCopyUseRate = pConf->Read("frcurrentsUseRate", 1);
+    m_bCopyUseDirection = pConf->Read("frcurrentsUseDirection", 1);
+    m_bCopyUseHighRes = pConf->Read("frcurrentsUseHighResolution", 1);
+    m_bCopyUseFillColour = pConf->Read("frcurrentsUseFillColour", 1);
 
-  m_bCopyUseRate = pConf->Read("frcurrentsUseRate", 1);
-  m_bCopyUseDirection = pConf->Read("frcurrentsUseDirection", 1);
-  m_bCopyUseHighRes = pConf->Read("frcurrentsUseHighResolution", 1);
-  m_bCopyUseFillColour = pConf->Read("frcurrentsUseFillColour", 1);
+    m_CopyArrowStyle = pConf->Read("frcurrentsUseArrowStyle", 1);
 
-  m_CopyArrowStyle = pConf->Read("frcurrentsUseArrowStyle", 1);
+    my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
+    my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
 
-  my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
-  my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
+    m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
-  m_AreaIDSelected = pConf->Read("frcurrentsArea", 1L);
-  m_AreaPort = pConf->Read("frcurrentsPort", "");
-  m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
+    m_frcurrents_dialog_sx = pConf->Read("frcurrentsDialogSizeX", 300L);
+    m_frcurrents_dialog_sy = pConf->Read("frcurrentsDialogSizeY", 540L);
+    m_frcurrents_dialog_x = pConf->Read("frcurrentsDialogPosX", 20L);
+    m_frcurrents_dialog_y = pConf->Read("frcurrentsDialogPosY", 170L);
 
-  m_frcurrents_dialog_sx = pConf->Read("frcurrentsDialogSizeX", 300L);
-  m_frcurrents_dialog_sy = pConf->Read("frcurrentsDialogSizeY", 540L);
-  m_frcurrents_dialog_x = pConf->Read("frcurrentsDialogPosX", 20L);
-  m_frcurrents_dialog_y = pConf->Read("frcurrentsDialogPosY", 170L);
+    if ((m_frcurrents_dialog_x < 0) ||
+        (m_frcurrents_dialog_x > m_display_width))
+      m_frcurrents_dialog_x = 40;
+    if ((m_frcurrents_dialog_y < 0) ||
+        (m_frcurrents_dialog_y > m_display_height))
+      m_frcurrents_dialog_y = 140;
 
-  if ((m_frcurrents_dialog_x < 0) || (m_frcurrents_dialog_x > m_display_width))
-    m_frcurrents_dialog_x = 40;
-  if ((m_frcurrents_dialog_y < 0) || (m_frcurrents_dialog_y > m_display_height))
-    m_frcurrents_dialog_y = 140;
+    pConf->Read("VColour0", &myVColour[0], myVColour[0]);
+    // g_colourArrowColour0.Set(myVColour[0]);
 
-  pConf->Read("VColour0", &myVColour[0], myVColour[0]);
-  //g_colourArrowColour0.Set(myVColour[0]);
+    pConf->Read("VColour1", &myVColour[1], myVColour[1]);
+    pConf->Read("VColour2", &myVColour[2], myVColour[2]);
+    pConf->Read("VColour3", &myVColour[3], myVColour[3]);
+    pConf->Read("VColour4", &myVColour[4], myVColour[4]);
 
-  pConf->Read("VColour1", &myVColour[1], myVColour[1]);
-  pConf->Read("VColour2", &myVColour[2], myVColour[2]);
-  pConf->Read("VColour3", &myVColour[3], myVColour[3]);
-  pConf->Read("VColour4", &myVColour[4], myVColour[4]);
-
-  return true;
+    return true;
+  } else
+    return false;
 }
 
 bool frcurrents_pi::SaveConfig(void) {
@@ -496,9 +492,7 @@ bool frcurrents_pi::SaveConfig(void) {
 
     pConf->Write("frcurrentsIconscalefactor", my_IconsScaleFactor);
     pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
-    
-    pConf->Write("frcurrentsArea", m_AreaIDSelected);
-    pConf->Write("frcurrentsPort", m_AreaPort);
+
     pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 
     pConf->Write("frcurrentsDialogSizeX", m_frcurrents_dialog_sx);
@@ -506,10 +500,10 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->Write("frcurrentsDialogPosX", m_frcurrents_dialog_x);
     pConf->Write("frcurrentsDialogPosY", m_frcurrents_dialog_y);
 
-    //myVColour[0] = g_colourArrowColour0.GetAsString(wxC2S_CSS_SYNTAX);
-    pConf->Write("VColour0", myVColour[0]);    
+    // myVColour[0] = g_colourArrowColour0.GetAsString(wxC2S_CSS_SYNTAX);
+    pConf->Write("VColour0", myVColour[0]);
 
-     pConf->Write("VColour1", myVColour[1]);
+    pConf->Write("VColour1", myVColour[1]);
     pConf->Write("VColour2", myVColour[2]);
     pConf->Write("VColour3", myVColour[3]);
     pConf->Write("VColour4", myVColour[4]);
@@ -517,7 +511,7 @@ bool frcurrents_pi::SaveConfig(void) {
     return true;
 
   } else
-    return true;
+    return false;
 }
 
 void frcurrents_pi::SetColorScheme(PI_ColorScheme cs) {
