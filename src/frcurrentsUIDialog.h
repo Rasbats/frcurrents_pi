@@ -139,7 +139,6 @@ public:
 
   void OpenFile(bool newestFile = false);
 
-  void SetCursorLatLon(double lat, double lon);
   void SetScaledBitmaps(double scalefactor);
 
   void SetViewPort(PlugIn_ViewPort* vp);
@@ -168,10 +167,6 @@ public:
   wxString m_portXML;
   double myRange;
   double BrestRange;
-  float myHeightHW;
-  float myHeightLW;
-  float BrestHeightHW;
-  float BrestHeightLW;
   StandardPort PopulatePortTides(wxString PortName);
   double CalcCurrent(double VE, double ME, double spRate, double npRate,
                      double coefficient);
@@ -213,9 +208,8 @@ public:
 private:
   void OnClose(wxCloseEvent& event);
   void OnMove(wxMoveEvent& event);
-  bool m_bOnStart;
   void OnStartSetupHW();
-  void OnNow(wxCommandEvent& event);
+  void OnNow(wxCommandEvent& event) { SetNow(); }
 
   void CalcHW(int PortCode);
   void CalcLW(int PortCode);
@@ -274,8 +268,6 @@ private:
 
   int m_lastdatatype;
 
-  double m_cursor_lat, m_cursor_lon;
-
   int m_myChoice;
   wxString label_array[13];
   wxString label_lw[13];
@@ -289,7 +281,6 @@ private:
   wxDateTime next_dt;
   wxTimeSpan m_ts;
   int m_plot_type;
-  void JumpToPort();
 
   int track_id;
 
