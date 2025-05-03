@@ -181,7 +181,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
-    pConf->Read("frcurrentsAreaID", &m_AreaSelected);
+    pConf->Read("frcurrentsAreaID", &m_AreaSelected, 0L);
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
     pConf->Read("frcurrentsPort", &m_PortSelected);
@@ -504,10 +504,8 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   m_bOnStart = true;
   //  find area ID and select it
   int id;
-  m_area = atoi(m_AreaSelected.c_str());
-  
-  m_choiceArea->SetSelection(m_area);
-  wxString s = m_Areas[m_area];
+  m_choiceArea->SetSelection(m_AreaSelected);
+  wxString s = m_Areas[m_AreaSelected];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 

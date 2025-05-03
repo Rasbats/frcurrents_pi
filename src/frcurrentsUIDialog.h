@@ -63,9 +63,7 @@
 #include <wx/event.h>
 #include "ocpn_plugin.h"
 
-
 enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
-
 
 using namespace std;
 
@@ -189,16 +187,15 @@ public:
   vector<SHOMport> portLines;
   wxString g_SData_Locn;
   TCMgr* ptcmgr;
-  wxString m_AreaSelected;
+  int m_AreaSelected;
   int m_area;
   wxString m_FolderSelected;
   double m_coeff;
   double m_jumpLat, m_jumpLon;
-  
+
 #ifdef __ANDROID__
   void OnContextMenu(wxContextMenuEvent& event);
   void OnContextMenuSelect(wxCommandEvent& event);
-
 
   void OnMouseEvent(wxMouseEvent& event);
   wxPoint m_resizeStartPoint;
@@ -284,8 +281,8 @@ private:
   wxString label_lw[13];
   float tcv[26];
 
-  wxDateTime m_SelectedDate; //  to store the current selected date
-  wxString euTC[8][4];  // Date.Time, Height, Units, HW.LW
+  wxDateTime m_SelectedDate;  //  to store the current selected date
+  wxString euTC[8][4];        // Date.Time, Height, Units, HW.LW
   wxDateTime m_dt;
   vector<wxDateTime> m_choice2_dt;
   wxDateTime back_dt;
