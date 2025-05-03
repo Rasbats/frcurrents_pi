@@ -200,7 +200,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
   }
   ptcmgr = NULL;
-
+  m_choiceArea->SetSelection(m_AreaIDSelected);
   m_dirPicker1->SetValue(m_FolderSelected);
   m_bOnStart = false;
   m_myChoice = 0;
@@ -514,7 +514,7 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
 void frcurrentsUIDialog::OnStartSetupHW() {
   //  find area ID and select it
   int id;
-  int count = m_choiceArea->GetCount() - 1;
+  int count = m_choiceArea->GetCount() -1;
   if (m_AreaIDSelected < 0 || m_AreaIDSelected > count)
     m_AreaIDSelected = 0;
   m_choiceArea->SetSelection(m_AreaIDSelected);
