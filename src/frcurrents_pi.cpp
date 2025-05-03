@@ -493,6 +493,8 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->Write("frcurrentsIconscalefactor", my_IconsScaleFactor);
     pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
 
+    pConf->Write("frcurrentsAreaID", m_CopyArea);
+    pConf->Write("frcurrentsPort", m_CopyPort);
     pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 
     pConf->Write("frcurrentsDialogSizeX", m_frcurrents_dialog_sx);
