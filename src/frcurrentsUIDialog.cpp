@@ -233,14 +233,14 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     pConf->Write("VColour3", myVColour[3]);
     pConf->Write("VColour4", myVColour[4]);
 
-    /*
+    
    int b = m_choiceArea->GetCurrentSelection();
     pConf->Write("frcurrentsAreaID", b);
     int c = m_choice1->GetCurrentSelection();
     wxString myP = m_choice1->GetString(c);
     pConf->Write("frcurrentsPort", myP);
     //wxMessageBox(myP);
-    */
+    
 
     pConf->Write("frcurrentsFolder", m_FolderSelected);
     
@@ -440,14 +440,14 @@ void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
 void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
   m_FolderSelected = m_dirPicker1->GetValue();
 
-  /*
-  m_AreaIDSelected = m_choiceArea->GetCurrentSelection();
+  
+  //m_AreaIDSelected = m_choiceArea->GetCurrentSelection();
 
-  int c = m_choice1->GetCurrentSelection();
-  m_PortSelected = m_choice1->GetString(c);
+  //int c = m_choice1->GetCurrentSelection();
+  //m_PortSelected = m_choice1->GetString(c);
 
   pPlugIn->m_CopyArea = m_AreaIDSelected;
-  pPlugIn->m_CopyPort = m_PortSelected;*/
+  pPlugIn->m_CopyPort = m_PortSelected;
   
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   pPlugIn->OnfrcurrentsDialogClose();
