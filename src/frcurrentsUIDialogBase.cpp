@@ -45,7 +45,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	m_choice1 = new wxChoice( sbSizer6->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice1Choices, 0 );
 	m_choice1->SetToolTip(_("Select Port"));
 	m_choice1->SetSelection( 0 );
-	sbSizer6->Add( m_choice1, 0, wxALL, 5 );
+	sbSizer6->Add( m_choice1, 0, wxEXPAND|wxALL, 5 );
 
 	bSizerMain->Add( sbSizer6, 0, wxEXPAND, 5 );
 
@@ -146,7 +146,8 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	m_staticText1 = new wxStaticText(this, wxID_FIND, "Time Zone", wxDefaultPosition, wxDefaultSize, 0);
 	m_staticText1->Wrap(-1);
-	bSizer5->Add(m_staticText1, 0, wxALL, 5);
+	m_staticText1->SetToolTip(_("'Local TZ' means Time Zone set on your device"));
+	bSizer5->Add(m_staticText1, 0, wxEXPAND|wxALL, 5);
 
 	wxStaticLine* m_staticline1 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
 	bSizer5->Add(m_staticline1, 0, wxEXPAND | wxALL, 5 );
@@ -360,6 +361,17 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	wxStaticBoxSizer * sbSizerIconsFactor;
 	sbSizerIconsFactor = new wxStaticBoxSizer(new wxStaticBox(sbSizerScale->GetStaticBox(), wxID_ANY, _("Icons Size Factor")), wxVERTICAL);
 
+	wxStaticBoxSizer* sbSizerTime;
+	sbSizerTime = new wxStaticBoxSizer(new wxStaticBox(sbSizerScale->GetStaticBox(), wxID_ANY, _("Time Zone Options")), wxVERTICAL);
+	wxString m_choiceTimes[] = { _("UTC"), _("Local TZ") };
+	int m_choiceNTimes = sizeof(m_choiceTimes) / sizeof(wxString);
+	m_rTimeZoneOptions = new wxRadioBox(sbSizerTime->GetStaticBox(), wxID_ANY, _(""),
+		wxDefaultPosition, wxDefaultSize, m_choiceNTimes, m_choiceTimes, 0, wxRA_SPECIFY_ROWS);
+	m_rTimeZoneOptions->SetToolTip(_("'Local TZ' means Time Zone set on your device"));
+	sbSizerTime->Add(m_rTimeZoneOptions, 0, wxEXPAND, 5);
+
+	sbSizerScale->Add(sbSizerTime, 0, wxEXPAND, 5);
+
 	m_sIconSizeFactor =
 	new wxSlider(sbSizerIconsFactor->GetStaticBox(), wxID_ANY, 0, -6, 6, wxDefaultPosition,
 					wxDefaultSize, wxSL_BOTTOM | wxSL_HORIZONTAL | wxSL_LABELS);
@@ -399,6 +411,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	m_cStyle->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsPreferencesDialogBase::OnChoice ), NULL, this );
 	m_sIconSizeFactor->Connect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnIconsSlidersChange), NULL, this);
 	m_sFontSizeFactor->Connect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnFontSlidersChange), NULL, this);
+	m_rTimeZoneOptions->Connect(wxEVT_RADIOBOX, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnTimeZoneChange), NULL, this);
 }
 
 frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase()
@@ -407,4 +420,5 @@ frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase()
 	m_cStyle->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsPreferencesDialogBase::OnChoice ), NULL, this );
 	m_sIconSizeFactor->Disconnect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnIconsSlidersChange), NULL, this);
 	m_sFontSizeFactor->Disconnect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnFontSlidersChange), NULL, this);
+	m_rTimeZoneOptions->Disconnect(wxEVT_RADIOBOX, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnTimeZoneChange), NULL, this);
 }
