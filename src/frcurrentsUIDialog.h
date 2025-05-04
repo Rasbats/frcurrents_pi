@@ -182,7 +182,7 @@ public:
   int round(double c);
 
   wxString m_PortSelected;
-  int m_AreaIDSelected;
+  int m_UseArea;
 
   wxArrayString TideCurrentDataSet;
   wxString* pTC_Dir;

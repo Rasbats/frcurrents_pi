@@ -216,6 +216,8 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   Pref->SetSize(prefsize);
   Pref->Move(0, 0);
 
+  Pref->m_choice_area->SetSelection(m_CopyArea);
+
   Pref->m_cbUseRate->SetValue(m_bCopyUseRate);
   Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
   Pref->m_cbFillColour->SetValue(m_bCopyUseFillColour);
@@ -251,12 +253,18 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
     // #endif
 
+    int copyarea =  Pref->m_choice_area->GetSelection();
+
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
     bool copyresolution = Pref->m_cbUseHighRes->GetValue();
     bool copyFillColour = Pref->m_cbFillColour->GetValue();
 
     int ArrowStyle = Pref->m_cStyle->GetSelection();
+
+    if (m_CopyArea != copyarea) {
+      m_CopyArea = copyarea;
+    }
 
     if (m_bCopyUseRate != copyrate) {
       m_bCopyUseRate = copyrate;
@@ -279,6 +287,9 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     }
 
     if (m_pfrcurrentsDialog) {
+      m_pfrcurrentsDialog->m_UseArea = m_CopyArea;
+      m_pfrcurrentsDialog->m_choiceArea->SetSelection(m_CopyArea);
+
       m_pfrcurrentsDialog->m_bUseRate = m_bCopyUseRate;
       m_pfrcurrentsDialog->m_bUseDirection = m_bCopyUseDirection;
       m_pfrcurrentsDialog->m_bUseHighRes = m_bCopyUseHighRes;
@@ -451,7 +462,7 @@ bool frcurrents_pi::LoadConfig(void) {
     my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
     my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
 
-    m_CopyArea = pConf->Read("frcurrentsAreaID", 0.);
+    m_CopyArea = pConf->Read("frcurrentsArea", 0.);
    // m_CopyPort = pConf->Read("frcurrentsPort", "");
     
     m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
@@ -496,7 +507,7 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->Write("frcurrentsIconscalefactor", my_IconsScaleFactor);
     pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
 
-    pConf->Write("frcurrentsAreaID", m_CopyArea);
+    pConf->Write("frcurrentsArea", m_CopyArea);
     //pConf->Write("frcurrentsPort", m_CopyPort);
     pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 

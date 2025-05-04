@@ -119,6 +119,7 @@ public:
   bool GetCopyResolution() { return m_bCopyUseHighRes; }
   bool GetCopyColour() { return m_bCopyUseFillColour; }
   int GetCopyArrowStyle() { return m_CopyArrowStyle; }
+  int GetCopyArea() { return m_CopyArea; }
 
   wxString GetFolderSelected() { return m_CopyFolderSelected; }
   frcurrentsOverlayFactory *GetfrcurrentsOverlayFactory() {

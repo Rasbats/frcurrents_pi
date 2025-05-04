@@ -181,8 +181,8 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
-    pConf->Read("frcurrentsAreaID", &m_AreaIDSelected, 0.);
-    pConf->Read("frcurrentsPort", &m_PortSelected);
+    pConf->Read("frcurrentsArea", &m_UseArea);
+    //pConf->Read("frcurrentsPort", &m_PortSelected);
 
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
@@ -200,7 +200,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
   }
   ptcmgr = NULL;
-  m_choiceArea->SetSelection(m_AreaIDSelected);
+  m_choiceArea->SetSelection(m_UseArea);
   m_dirPicker1->SetValue(m_FolderSelected);
   m_bOnStart = false;
   m_myChoice = 0;
@@ -220,6 +220,7 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
   if (pConf) {
     pConf->SetPath("/PlugIns/frcurrents");
 
+    pConf->Write("frcurrentsArea", m_UseArea);
     pConf->Write("frcurrentsUseRate", m_bUseRate);
     pConf->Write("frcurrentsUseDirection", m_bUseDirection);
     pConf->Write("frcurrentsUseHighResolution", m_bUseHighRes);
@@ -235,7 +236,7 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
 
     
    int b = m_choiceArea->GetCurrentSelection();
-    pConf->Write("frcurrentsAreaID", b);
+    pConf->Write("frcurrentsArea", b);
     int c = m_choice1->GetCurrentSelection();
    // wxString myP = m_choice1->GetString(c);
    // pConf->Write("frcurrentsPort", myP);
@@ -441,12 +442,12 @@ void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
   m_FolderSelected = m_dirPicker1->GetValue();
 
   
-  //m_AreaIDSelected = m_choiceArea->GetCurrentSelection();
+  //m_UseArea = m_choiceArea->GetCurrentSelection();
 
   //int c = m_choice1->GetCurrentSelection();
   //m_PortSelected = m_choice1->GetString(c);
 
-  pPlugIn->m_CopyArea = m_AreaIDSelected;
+  pPlugIn->m_CopyArea = m_UseArea;
   //pPlugIn->m_CopyPort = m_PortSelected;
   
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
@@ -473,6 +474,8 @@ void frcurrentsUIDialog::OnSize( wxSizeEvent& event )
 }*/
 
 void frcurrentsUIDialog::OpenFile(bool newestFile) {
+
+  m_UseArea = pPlugIn->GetCopyArea();
   m_bUseRate = pPlugIn->GetCopyRate();
   m_bUseDirection = pPlugIn->GetCopyDirection();
   m_bUseHighRes = pPlugIn->GetCopyResolution();
@@ -515,10 +518,10 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   //  find area ID and select it
   //int id;
   //int count = m_choiceArea->GetCount() -1;
-  //if (m_AreaIDSelected < 0 || m_AreaIDSelected > count)
-  //  m_AreaIDSelected = 0;
-  m_choiceArea->SetSelection(m_AreaIDSelected);
-  wxString s = m_Areas[m_AreaIDSelected];
+  //if (m_UseArea < 0 || m_UseArea > count)
+  //  m_UseArea = 0;
+  m_choiceArea->SetSelection(m_UseArea);
+  wxString s = m_Areas[m_UseArea];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
@@ -1974,7 +1977,7 @@ bool frcurrentsUIDialog::OpenXML() {
 
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
   int a = m_choiceArea->GetSelection();
-  m_AreaIDSelected = a;
+  m_UseArea = a;
 
   wxString s = m_Areas[a];
 

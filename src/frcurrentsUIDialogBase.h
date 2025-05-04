@@ -103,6 +103,7 @@ private:
   wxStaticText* m_staticTextMore35;
 
 protected:
+  wxStaticText* m_staticTextChoice;
   wxStaticText* m_staticText8;
   wxStaticText* m_staticText13;
   wxStdDialogButtonSizer* m_sdbSizerButtons;
@@ -111,11 +112,13 @@ protected:
 
 
   // Virtual event handlers, override them in your derived class
+  virtual void OnChoiceArea(wxCommandEvent& event) { event.Skip(); }
   virtual void OnChoice(wxCommandEvent& event) { event.Skip(); }
   virtual void OnIconsSlidersChange(wxCommandEvent& event) { event.Skip(); }
   virtual void OnFontSlidersChange(wxCommandEvent & event) { event.Skip(); }
 
 public:
+  wxChoice* m_choice_area;
   wxCheckBox* m_cbUseRate;
   wxCheckBox* m_cbUseDirection;
   wxCheckBox* m_cbFillColour;

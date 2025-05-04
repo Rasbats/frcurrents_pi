@@ -351,6 +351,32 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
   wxBoxSizer* bSizerMain;
   bSizerMain = new wxBoxSizer(wxVERTICAL);
 
+  wxBoxSizer* bSizer7;
+  bSizer7 = new wxBoxSizer(wxVERTICAL);
+
+  m_staticTextChoice = new wxStaticText(this, wxID_ANY, _("Tidal Area ..."),
+                                    wxDefaultPosition, wxDefaultSize, 0);
+  m_staticTextChoice->Wrap(-1);
+  bSizer7->Add(m_staticTextChoice, 0, wxALL, 5);
+
+  wxString m_choice_areaChoices[] = {_("Strait of Dover"),
+                                    _("English Channel"),
+                                    _("Fecamp to La Hague"),
+                                    _("La Hague to Hx-de-Brehat"),
+                                    _("Hx-de-Brehat to Brignogan"),
+                                    _("Tip of Brittany"),
+                                    _("South Brittany"),
+                                    _("Vendee-Gironde"),
+                                    _("Bay of Biscay")};
+
+  int m_choice_areaNChoices = sizeof(m_choice_areaChoices) / sizeof(wxString);
+  m_choice_area = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                               m_choice_areaNChoices, m_choice_areaChoices, 0);
+  m_choice_area->SetSelection(0);
+  bSizer7->Add(m_choice_area, 0, wxALL | wxEXPAND, 5);
+
+  bSizerMain->Add(bSizer7, 1, wxALL, 5);
+
   wxBoxSizer* bSizerCheckboxes;
   bSizerCheckboxes = new wxBoxSizer(wxVERTICAL);
 
@@ -541,6 +567,12 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
   this->Centre(wxBOTH);
 
   // Connect Events
+
+  	m_choice_area->Connect(
+      wxEVT_COMMAND_CHOICE_SELECTED,
+      wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnChoiceArea),
+      NULL, this);
+
   m_cStyle->Connect(
       wxEVT_COMMAND_CHOICE_SELECTED,
       wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnChoice), NULL,
@@ -559,6 +591,11 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 
 frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase() {
   // Disconnect Events
+  m_choice_area->Disconnect(
+      wxEVT_COMMAND_CHOICE_SELECTED,
+      wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnChoiceArea),
+      NULL, this);
+
   m_cStyle->Disconnect(
       wxEVT_COMMAND_CHOICE_SELECTED,
       wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnChoice), NULL,
