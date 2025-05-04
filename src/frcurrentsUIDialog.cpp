@@ -513,19 +513,19 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
 
 void frcurrentsUIDialog::OnStartSetupHW() {
   //  find area ID and select it
-  int id;
-  int count = m_choiceArea->GetCount() -1;
-  if (m_AreaIDSelected < 0 || m_AreaIDSelected > count)
-    m_AreaIDSelected = 0;
+  //int id;
+  //int count = m_choiceArea->GetCount() -1;
+  //if (m_AreaIDSelected < 0 || m_AreaIDSelected > count)
+  //  m_AreaIDSelected = 0;
   m_choiceArea->SetSelection(m_AreaIDSelected);
   wxString s = m_Areas[m_AreaIDSelected];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
   //  find port ID and select it
-  id = m_choice1->FindString(m_PortSelected, true);
-  if (id == wxNOT_FOUND) id = 0;
-  m_choice1->SetSelection(id);
+  //id = m_choice1->FindString(m_PortSelected, true);
+  //if (id == wxNOT_FOUND) id = 0;
+  m_choice1->SetSelection(0);
 
   SetNow();
 }
