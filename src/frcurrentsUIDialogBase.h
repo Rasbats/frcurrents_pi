@@ -33,6 +33,7 @@
 #include <wx/clrpicker.h>
 #include <wx/event.h>
 #include <wx/slider.h>
+#include <wx/radiobox.h>
 ///////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -112,7 +113,7 @@ protected:
   virtual void OnChoice(wxCommandEvent& event) { event.Skip(); }
   virtual void OnIconsSlidersChange(wxCommandEvent& event) { event.Skip(); }
   virtual void OnFontSlidersChange(wxCommandEvent & event) { event.Skip(); }
-
+  virtual void OnTimeZoneChange(wxCommandEvent& event) { event.Skip(); }
 public:
   wxCheckBox* m_cbUseRate;
   wxCheckBox* m_cbUseDirection;
@@ -126,6 +127,7 @@ public:
   wxChoice* m_cStyle;
   wxSlider* m_sIconSizeFactor;
   wxSlider * m_sFontSizeFactor;
+  wxRadioBox* m_rTimeZoneOptions;
 
   frcurrentsPreferencesDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                                   const wxString& title = _("Preferences"),

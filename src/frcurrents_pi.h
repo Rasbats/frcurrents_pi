@@ -81,6 +81,7 @@ public:
   void SetDialogFont(wxWindow *dialog, wxFont *font);
 #endif
   void OnToolbarToolCallback(int id);
+  int VerifyTimeZoneID(int id);
 
   // Other public methods
   void SetfrcurrentsDialogX(int x) { m_frcurrents_dialog_x = x; };
@@ -96,6 +97,8 @@ public:
   bool GetCopyResolution() { return m_bCopyUseHighRes; }
   bool GetCopyColour() { return m_bCopyUseFillColour; }
   int GetCopyArrowStyle() { return m_CopyArrowStyle; }
+  int GetTZoptionID() { return m_bTimeZoneID; }
+  void SetTZoptionID(int id) { m_bTimeZoneID = id; }
 
   wxString GetFolderSelected() { return m_CopyFolderSelected; }
   frcurrentsOverlayFactory *GetfrcurrentsOverlayFactory() {
@@ -138,7 +141,7 @@ private:
   bool m_bCopyUseFillColour;
   int m_CopyArrowStyle;
 
-  int m_bTimeZone;
+  int m_bTimeZoneID;
 
   int m_bStartOptions;
   wxString m_RequestConfig;
@@ -164,5 +167,6 @@ public:
 private:
   void OnIconsSlidersChange(wxCommandEvent &event);
   void OnFontSlidersChange(wxCommandEvent &event);
+  void OnTimeZoneChange(wxCommandEvent& event);
 };
 #endif

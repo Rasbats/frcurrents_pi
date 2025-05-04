@@ -138,7 +138,8 @@ public:
   ~frcurrentsUIDialog();
 
   void OpenFile(bool newestFile = false);
-
+  wxDateTime GetNow();
+  void SetNow();
   void SetScaledBitmaps(double scalefactor);
 
   void SetViewPort(PlugIn_ViewPort* vp);
@@ -214,7 +215,6 @@ private:
   void CalcHW(int PortCode);
   void CalcLW(int PortCode);
   double CalcRange_Brest();
-  void SetNow();
   void SetCorrectHWSelection();
   void OnDateSelChanged(wxDateEvent& event);
   void OnPortChanged(wxCommandEvent& event);
