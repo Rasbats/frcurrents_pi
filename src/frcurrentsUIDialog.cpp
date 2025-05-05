@@ -358,6 +358,13 @@ void frcurrentsUIDialog::OnContextMenu(wxContextMenuEvent& event) {
 }
 #endif  // End of Android functions for move/resize
 
+wxDateTime frcurrentsUIDialog::GetNow() {
+  if (pPlugIn->GetTZoptionID() == 0)
+    return wxDateTime::Now().ToGMT();
+  else
+    return wxDateTime::Now();
+}
+
 void frcurrentsUIDialog::SetScaledBitmaps(double scalefactor) {
   //  Round to the nearest "quarter", to avoid rendering artifacts
   double myscaledFactor = wxRound(scalefactor * 4.0) / 4.0;
@@ -491,7 +498,7 @@ void frcurrentsUIDialog::SetNow() {
   } else {
     s2 = label_array[button_id];
   }
-  wxDateTime this_now = wxDateTime::Now().ToGMT();
+  wxDateTime this_now = GetNow();
   wxString s0 = this_now.Format("%a %d %b %Y");
   wxString s1 = this_now.Format("%H:%M");
 
@@ -517,7 +524,7 @@ void frcurrentsUIDialog::SetCorrectHWSelection() {
     myChoiceDates[i] = m_choice2_dt[i];
   }
 
-  wxDateTime this_now = wxDateTime::Now().ToGMT();
+  wxDateTime this_now = GetNow();
   t = this_now.GetTicks();
 
   for (i = 0; i < c; i++) {
@@ -671,8 +678,7 @@ void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
 bool frcurrentsUIDialog::SetDateForNowButton() {
   m_staticText2->SetLabel("");
   m_staticText211->SetLabel("");
-
-  wxDateTime this_now = wxDateTime::Now().ToGMT();
+  wxDateTime this_now = GetNow();
   m_datePicker1->SetValue(this_now);
   m_SelectedDate = this_now.GetDateOnly();
 
@@ -1193,24 +1199,21 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
 
   m_plot_type = TIDE_PLOT;
 
-  // Show the timezones
-  m_stz = _("Display Time: UTC");
+  // Get and display timezones
+  m_stz = _("Time in UTC");
   int diffloc = m_diff_mins;
+  if (pPlugIn->GetTZoptionID() == 0) {
+    m_stz << ("  (") + _("Local TZ");
+    diffloc = -diffloc;
+  }
   if (diffloc != 0) {
-    m_stz << ("  (") << _("Local");
-    if (diffloc > 0)
-      m_stz << (" -");
-    else {
-      m_stz << (" +");
-      diffloc = - diffloc;
-    }
+    m_stz << (diffloc < 0 ? _T(" -") : _T(" +"));
     int h = abs(diffloc / 60);
     int h1 = abs(diffloc % 60);
-    if (h1 == 0)
-      m_stz << wxString::Format("%01d", h) << (")");
-    else
-      m_stz << wxString::Format("%01d:%02d", h, h1) << (")");
+    m_stz << wxString::Format("%01d", h);
+    if (h1 != 0) m_stz << wxString::Format(":%02d", h1);
   }
+  m_stz << (pPlugIn->GetTZoptionID() == 0 ? _T(")") : _T("  (") + _("Local TZ") + _(")"));
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
@@ -1230,8 +1233,12 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   time_t tt_tcv[26];
 
   // The tide/current modules calculate values based on PC local time
-  // We need  UTC, so adjust accordingly
-  int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60) - m_diff_first_dst_sec;
+  // We need  either UTC or local device time, so adjust accordingly
+  int tt_localtz;
+  if (pPlugIn->GetTZoptionID() == 0)
+    tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60) - m_diff_first_dst_sec;  //  UTC
+  else
+    tt_localtz = m_t_graphday_GMT - m_diff_first_dst_sec;   //  Local TZ
   //  Get the day after
   int tt_nextlocaltzday = tt_localtz + (24 * 3600);
 
@@ -1256,7 +1263,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
                                   BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
                                   pIDX->IDX_rec_num, tcvalue, tctime);
         if (tctime >= tt_localtz &&
-          tctime < tt_nextlocaltzday) {  // Only show events visible in graphic
+          tctime < tt_nextlocaltzday) {  // Only keep events in the current day
           /* tweak to correct tide on the first hour of the day thrown back to the previous
           * day by the summer time offset  */
           if (tctime < (tt_localtz + m_diff_first_dst_sec)) tctime += m_diff_first_dst_sec;
@@ -1264,7 +1271,10 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
           // presently shown
           wxDateTime tcd;  // write date
           wxString s, s1;
-          tcd.Set(tctime - (m_diff_mins * 60));
+          if (pPlugIn->GetTZoptionID() == 0) //  UTC
+            tcd.Set(tctime - (m_diff_mins * 60));
+          else
+            tcd.Set(tctime);  // Local TZ
           s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ", tcvalue);  // write value
           pmsd = pIDX->pref_sta_data;  // write unit
@@ -1310,24 +1320,21 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   // if (strchr("Tt", pIDX->IDX_type))
   m_plot_type = TIDE_PLOT;
 
-  // Get the timezones
-  m_stz = _("Display Time: UTC");
+  // Get and display timezones
+  m_stz = _("Time in UTC");
   int diffloc = m_diff_mins;
+  if (pPlugIn->GetTZoptionID() == 0) {
+    m_stz << ("  (") + _("Local TZ");
+    diffloc = -diffloc;
+  }
   if (diffloc != 0) {
-    m_stz << ("  (") << _("Local");
-    if (diffloc > 0)
-      m_stz << (" -");
-    else {
-      m_stz << (" +");
-      diffloc = -diffloc;
-    }
+    m_stz << (diffloc < 0 ? _T(" -") : _T(" +"));
     int h = abs(diffloc / 60);
     int h1 = abs(diffloc % 60);
-    if (h1 == 0)
-      m_stz << wxString::Format("%01d", h) << (")");
-    else
-      m_stz << wxString::Format("%01d:%02d", h, h1) << (")");
+    m_stz << wxString::Format("%01d", h);
+    if (h1 != 0) m_stz << wxString::Format(":%02d", h1);
   }
+  m_stz << (pPlugIn->GetTZoptionID() == 0 ? _T(")") : _T("  (") + _("Local TZ") + _(")"));
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
@@ -1347,8 +1354,12 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
   time_t tt_tcv[26];
 
   // The tide/current modules calculate values based on PC local time
-  // We need  UTC, so adjust accordingly
-  int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60) - m_diff_first_dst_sec;
+  // We need  either UTC or local device time, so adjust accordingly
+  int tt_localtz;
+  if (pPlugIn->GetTZoptionID() == 0)
+    tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60) - m_diff_first_dst_sec;  //  UTC
+  else
+    tt_localtz = m_t_graphday_GMT - m_diff_first_dst_sec;   //  Local TZ
   //  Get the day after
   int tt_nextlocaltzday = tt_localtz + (24 * 3600);
 
@@ -1373,7 +1384,7 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
                                   BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
                                   pIDX->IDX_rec_num, tcvalue, tctime);
         if (tctime >= tt_localtz &&
-          tctime < tt_nextlocaltzday) {  // Only show events visible in graphic
+          tctime < tt_nextlocaltzday) {  // Only keep events in the current day
           /* tweak to correct tide on the first hour of the day thrown back to the previous
           * day by the summer time offset  */
           if (tctime < (tt_localtz + m_diff_first_dst_sec)) tctime += m_diff_first_dst_sec;
@@ -1381,7 +1392,10 @@ void frcurrentsUIDialog::CalcLW(int PortCode) {
           // presently shown
           wxDateTime tcd;  // write date
           wxString s, s1;
-          tcd.Set(tctime  - (m_diff_mins * 60));
+          if (pPlugIn->GetTZoptionID() == 0) //  UTC
+            tcd.Set(tctime - (m_diff_mins * 60));
+          else
+            tcd.Set(tctime);  // Local TZ
           s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ",
                     tcvalue);  // write value
@@ -1460,7 +1474,7 @@ int frcurrentsUIDialog::CalcHoursFromHWNow() {
 
   myTest = 26;
 
-  wxDateTime this_now = wxDateTime::Now().ToGMT();
+  wxDateTime this_now = GetNow();
   int t = this_now.GetTicks();
   int i = 0;
   int m;
@@ -1498,7 +1512,7 @@ int frcurrentsUIDialog::CalcHoursFromLWNow() {
 
   myTest = 26;
 
-  wxDateTime this_now = wxDateTime::Now().ToGMT();
+  wxDateTime this_now = GetNow();
   int t = this_now.GetTicks();
   int i = 0;
   int m;

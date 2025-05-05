@@ -210,6 +210,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
   Pref->m_sIconSizeFactor->SetValue(my_IconsScaleFactor);
   Pref->m_sFontSizeFactor->SetValue(my_FontpointSizeFactor);
+  Pref->m_rTimeZoneOptions->SetSelection(g_pi->GetTZoptionID());
 
   wxColour myC0 = wxColour(myVColour[0]);
   Pref->myColourPicker0->SetColour(myC0);
@@ -339,10 +340,11 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
   //    Toggle dialog?
   if (m_bShowfrcurrents) {
     m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
+
 #ifdef __WXMSW__
     wxFont f = *OCPNGetFont(_("Dialog"), 10);
     f.SetPointSize(f.GetPointSize() + g_pi->my_FontpointSizeFactor);
-    g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);
+    SetDialogFont(g_pi->m_pfrcurrentsDialog, &f);
 /*                                                        \
 #else                                                     \
 wxFont f = m_pfrcurrentsDialog->m_staticText1->GetFont(); \
@@ -375,6 +377,24 @@ m_pfrcurrentsDialog->m_staticText211->SetFont(f);         \
   SetfrcurrentsDialogSizeY(r.GetHeight());
 
   RequestRefresh(m_parent_window);  // refresh main window
+}
+
+int frcurrents_pi::VerifyTimeZoneID( int id) {
+  if (id <= 0 || id > 1) return 0; // only 0 or 1 supported; 0 always valid
+  wxTimeSpan diff = wxDateTime::Now().Subtract(wxDateTime::Now().ToGMT());
+  int diffs = wxDateTime::Now().IsDST() ? diff.GetMinutes() - 60 : diff.GetMinutes();
+  if (abs(diffs) > 60 || abs(diffs) < 0) {    //  only UTC and UTC+1 time zones supported
+    wxString s = _("The Time Zone UTC");
+    s << ((diffs > 0) ? _T(" +") : _T(" -"));
+    int h = abs(diffs / 60);
+    int h1 = abs(diffs % 60);
+    s << wxString::Format("%01d", h);
+    if(h1 != 0) s << wxString::Format(":%01d", h1);
+    s << (" ") << _("set on your device is not supported!\nTime will be displayed in UTC");
+    wxMessageBox(s, _("Warning"));
+    return 0;
+  }
+  return id;
 }
 
 void frcurrents_pi::OnfrcurrentsDialogClose() {
@@ -437,7 +457,8 @@ bool frcurrents_pi::LoadConfig(void) {
 
   my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
   my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
-
+  int idx = pConf->Read("frcurrentsTimeZoneID", 0.);  // 0 = UTC; 1 = Local TZ
+  m_bTimeZoneID = VerifyTimeZoneID(idx); // verify validity
   m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
   m_frcurrents_dialog_sx = pConf->Read("frcurrentsDialogSizeX", 300L);
@@ -473,6 +494,7 @@ bool frcurrents_pi::SaveConfig(void) {
 
     pConf->Write("frcurrentsIconscalefactor", my_IconsScaleFactor);
     pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
+    pConf->Write("frcurrentsTimeZoneID", m_bTimeZoneID);
 
     pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 
@@ -523,6 +545,19 @@ void frcurrentsPreferencesDialog::OnFontSlidersChange(wxCommandEvent &event) {
       g_pi->SetDialogFont(g_pi->m_pfrcurrentsDialog, font);
 #endif
       g_pi->m_pfrcurrentsDialog->Fit();
+    }
+  }
+}
+
+void frcurrentsPreferencesDialog::OnTimeZoneChange(wxCommandEvent& event) {
+  if (g_pi) {
+    int id = g_pi->GetTZoptionID();
+    int idx = g_pi->VerifyTimeZoneID(m_rTimeZoneOptions->GetSelection());
+    g_pi->SetTZoptionID(idx);
+    if (id != idx) {
+      m_rTimeZoneOptions->SetSelection(idx);
+      if (g_pi->m_pfrcurrentsDialog)
+        g_pi->m_pfrcurrentsDialog->SetNow(); // force returning to now to activate new TZ chosen
     }
   }
 }
