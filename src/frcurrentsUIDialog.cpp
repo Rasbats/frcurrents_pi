@@ -481,10 +481,7 @@ void frcurrentsUIDialog::SetNow() {
   BrestRange = CalcRange_Brest();
   m_textCtrlCoefficient->SetValue(CalcCoefficient());
 
-  if (m_bUseBM) {
-    button_id = 6 + CalcHoursFromLWNow();
-  } else
-    button_id = 6 + CalcHoursFromHWNow();
+  button_id = 6 + CalcHoursFromHWNow();
 
   if (button_id == 13) {
     button_id = 12;
@@ -636,11 +633,8 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
     wxMessageBox(_("No Tidal Data"), _("Tidal Data Finder"));
     return;
   }
-  if (m_bUseBM) {
-    CalcLW(i);
-  } else {
-    CalcHW(i);
-  }
+
+  CalcHW(i);
 
   BrestRange = CalcRange_Brest();
   m_textCtrlCoefficient->SetValue(CalcCoefficient());
@@ -703,11 +697,9 @@ bool frcurrentsUIDialog::SetDateForNowButton() {
     return false;
   } else {
     GetCurrentsData(sa);
-    if(m_bUseBM) {
-      CalcLW(id);
-    } else {
-      CalcHW(id);
-    };
+
+    CalcHW(id);
+
     int i, c, s, t, t1, t2, t10, t20;
     wxDateTime d1, d2, d10, d20;
 
@@ -760,11 +752,9 @@ bool frcurrentsUIDialog::SetDateForNowButton() {
         myDate.Add(myOneDay);
         m_datePicker1->SetValue(myDate);
         m_SelectedDate = myDate.GetDateOnly();
-        if (m_bUseBM) {
-          CalcLW(id);
-        } else {
-          CalcHW(id);
-        }
+
+        CalcHW(id);
+
         m_choice2->SetSelection(0);
         return true;
       }
@@ -777,11 +767,8 @@ bool frcurrentsUIDialog::SetDateForNowButton() {
         m_datePicker1->SetValue(myDate);
         m_SelectedDate = myDate.GetDateOnly();
 
-        if (m_bUseBM) {
-          CalcLW(id);
-        } else {
-          CalcHW(id);
-        }
+        CalcHW(id);
+
         c = m_choice2->GetCount();
         m_choice2->SetSelection(c - 1);
         return true;
@@ -1116,7 +1103,6 @@ double frcurrentsUIDialog::CalcRange_Brest() {
   int list_index = 0;
   int array_index = 0;
   wxString sHWLW = "";
-  int e = 0;
   double myLW, myHW;
   bool wt = false;
   bool gotHW = false;
@@ -1166,13 +1152,9 @@ double frcurrentsUIDialog::CalcRange_Brest() {
                                          // CalcCoefficient
             }
           }
-
           if (euTC[array_index][3] == "HW") {
             gotHW = true;
             myHW = tcvalue;
-
-            // nearestHW for the now button
-            e++;
             list_index++;
           }
         }
@@ -1199,6 +1181,8 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
 
   m_plot_type = TIDE_PLOT;
 
+  wxString useHWorLW = m_bUseBM ? "LW" : "HW";
+
   // Get and display timezones
   m_stz = _("Time in UTC");
   int diffloc = m_diff_mins;
@@ -1224,7 +1208,6 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   int list_index = 0;
   int array_index = 0;
   wxString sHWLW = "";
-  int e = 0;
   bool wt = false;
   Station_Data* pmsd;
   int i;
@@ -1288,136 +1271,10 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
           euTC[array_index][3] = sHWLW;
           euDT[array_index] = tcd;
 
-          if (euTC[array_index][3] == "HW") {
+          if (euTC[array_index][3] == useHWorLW) {
             m_choice2->Insert(euTC[array_index][0], list_index);
             m_choice2_dt.push_back(euDT[array_index]);
-            // nearestHW for the now button
-            nearestHW[e] = euDT[array_index];
-            e++;
             list_index++;
-          }
-        }
-        array_index++;
-        wt = !wt;  // change tide flow sens
-      }
-      val = tcv[i];
-    }
-  }
-}
-
-void frcurrentsUIDialog::CalcLW(int PortCode) {
-  m_choice2->Clear();
-  m_choice2_dt.clear();
-
-  if (PortCode == 0)
-    return;
-
-  myPortCode = PortCode;
-  SetTimeFactors();
-
-  const IDX_entry* pIDX = ptcmgr->GetIDX_entry(PortCode);
-
-  // if (strchr("Tt", pIDX->IDX_type))
-  m_plot_type = TIDE_PLOT;
-
-  // Get and display timezones
-  m_stz = _("Time in UTC");
-  int diffloc = m_diff_mins;
-  if (pPlugIn->GetTZoptionID() == 0) {
-    m_stz << ("  (") + _("Local TZ");
-    diffloc = -diffloc;
-  }
-  if (diffloc != 0) {
-    m_stz << (diffloc < 0 ? _T(" -") : _T(" +"));
-    int h = abs(diffloc / 60);
-    int h1 = abs(diffloc % 60);
-    m_stz << wxString::Format("%01d", h);
-    if (h1 != 0) m_stz << wxString::Format(":%02d", h1);
-  }
-  m_stz << (pPlugIn->GetTZoptionID() == 0 ? _T(")") : _T("  (") + _("Local TZ") + _(")"));
-  m_staticText1->SetLabel(m_stz);
-  //
-  float dir;
-  float tcmax, tcmin;
-  tcmax = -10;
-  tcmin = 10;
-  float val = -100;
-  int list_index = 0;
-  int array_index = 0;
-  wxString sHWLW = "";
-  int e = 0;
-  bool wt = false;
-  Station_Data* pmsd;
-  int i;
-  wxDateTime euDT[8];
-  float tcv[26];
-  time_t tt_tcv[26];
-
-  // The tide/current modules calculate values based on PC local time
-  // We need  either UTC or local device time, so adjust accordingly
-  int tt_localtz;
-  if (pPlugIn->GetTZoptionID() == 0)
-    tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60) - m_diff_first_dst_sec;  //  UTC
-  else
-    tt_localtz = m_t_graphday_GMT - m_diff_first_dst_sec;   //  Local TZ
-  //  Get the day after
-  int tt_nextlocaltzday = tt_localtz + (24 * 3600);
-
-  // get tide flow sens ( flood or ebb ? )
-  ptcmgr->GetTideFlowSens(tt_localtz, BACKWARD_TEN_MINUTES_STEP,
-                          pIDX->IDX_rec_num, tcv[0], val, wt);
-
-  for (i = 0; i < 26; i++) {
-    int tt = tt_localtz + (i * FORWARD_ONE_HOUR_STEP);
-
-    ptcmgr->GetTideOrCurrent(tt, pIDX->IDX_rec_num, tcv[i], dir);
-    tt_tcv[i] = tt;  // store the corresponding time_t value
-    if (tcv[i] > tcmax) tcmax = tcv[i];
-
-    if (tcv[i] < tcmin) tcmin = tcv[i];
-    if (TIDE_PLOT == m_plot_type) {
-      if (!((tcv[i] > val) == wt) && (i > 0))  // if tide flow sense change
-      {
-        float tcvalue;  // look backward for HW or LW
-        time_t tctime;
-        ptcmgr->GetHightOrLowTide(tt, BACKWARD_TEN_MINUTES_STEP,
-                                  BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
-                                  pIDX->IDX_rec_num, tcvalue, tctime);
-        if (tctime >= tt_localtz &&
-          tctime < tt_nextlocaltzday) {  // Only keep events in the current day
-          /* tweak to correct tide on the first hour of the day thrown back to the previous
-          * day by the summer time offset  */
-          if (tctime < (tt_localtz + m_diff_first_dst_sec)) tctime += m_diff_first_dst_sec;
-
-          // presently shown
-          wxDateTime tcd;  // write date
-          wxString s, s1;
-          if (pPlugIn->GetTZoptionID() == 0) //  UTC
-            tcd.Set(tctime - (m_diff_mins * 60));
-          else
-            tcd.Set(tctime);  // Local TZ
-          s = tcd.Format("%a %d %b %Y  %H:%M  ");
-          s1.Printf("%05.2f ",
-                    tcvalue);  // write value
-          pmsd = pIDX->pref_sta_data;  // write unit
-          if (pmsd) s1.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
-
-          (!wt) ? sHWLW = "LW" : sHWLW = "HW";  // write HW or LT
-          // Fill the array with tide data
-          euTC[array_index][0] = s + s1;
-          euTC[array_index][1] = s1;
-          euTC[array_index][2] = wxString(pmsd->units_abbrv, wxConvUTF8);
-          euTC[array_index][3] = sHWLW;
-          euDT[array_index] = tcd;
-
-          if (euTC[array_index][3] == "LW") {
-            m_choice2->Insert(euTC[array_index][0], list_index);
-            m_choice2_dt.push_back(euDT[array_index]);
-            // nearestLW for the now button
-            nearestLW[e] = euDT[array_index];
-            e++;
-            list_index++;
-            wxDateTime t;
           }
         }
         array_index++;
@@ -1480,8 +1337,8 @@ int frcurrentsUIDialog::CalcHoursFromHWNow() {
   int m;
   double d;
 
-  for (i; i < 8; i++) {
-    myDateTime = nearestHW[i];
+  for (i; i < m_choice2->GetCount(); i++) {
+    myDateTime = m_choice2_dt[i];
     m = myDateTime.GetTicks();
 
     d = t - m;
@@ -1491,53 +1348,7 @@ int frcurrentsUIDialog::CalcHoursFromHWNow() {
       myTest = myDiff;
     }
   }
-
-  int c = m_choice2->GetCount();
-  for (c = 0; c < 8; c++) {
-    for (i = 0; i < 8; i++) {
-      if (m_choice2_dt[c] == nearestHW[i]) {
-        m_choice2->SetSelection(c);
-      }
-    }
-  }
-  int f = round(myTest);
-
-  return f;
-}
-
-int frcurrentsUIDialog::CalcHoursFromLWNow() {
-  wxDateTime myDateTime;
-  wxTimeSpan diff;
-  double myDiff, myTest;
-
-  myTest = 26;
-
-  wxDateTime this_now = GetNow();
-  int t = this_now.GetTicks();
-  int i = 0;
-  int m;
-  double d;
-
-  for (i; i < 8; i++) {
-    myDateTime = nearestLW[i];
-    m = myDateTime.GetTicks();
-
-    d = t - m;
-    myDiff = (d / 60) / 60;
-
-    if (abs(myDiff) < abs(myTest)) {
-      myTest = myDiff;
-    }
-  }
-
-  int c = m_choice2->GetCount();
-  for (c = 0; c < 8; c++) {
-    for (i = 0; i < 8; i++) {
-      if (m_choice2_dt[c] == nearestLW[i]) {
-        m_choice2->SetSelection(c);
-      }
-    }
-  }
+  m_choice2->SetSelection(i);
   int f = round(myTest);
 
   return f;
@@ -2053,10 +1864,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       m_datePicker1->SetValue(myDate);
       m_SelectedDate = myDate.GetDateOnly();
 
-      if (m_bUseBM)
-        CalcLW(f);
-      else
-        CalcHW(f);
+      CalcHW(f);
 
       BrestRange = CalcRange_Brest();
       m_textCtrlCoefficient->SetValue(CalcCoefficient());
@@ -2120,10 +1928,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       m_datePicker1->SetValue(myDate);
       m_SelectedDate = myDate.GetDateOnly();
 
-      if (m_bUseBM)
-        CalcLW(f);
-      else
-        CalcHW(f);
+      CalcHW(f);
 
       BrestRange = CalcRange_Brest();
       m_textCtrlCoefficient->SetValue(CalcCoefficient());
