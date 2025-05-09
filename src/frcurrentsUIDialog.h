@@ -173,9 +173,6 @@ public:
                      double coefficient);
   wxString CalcCoefficient();
   int CalcHoursFromHWNow();
-  int CalcHoursFromLWNow();
-  wxDateTime nearestHW[8];
-  wxDateTime nearestLW[8];
   bool m_bUseBM;
   int round(double c);
 
@@ -213,7 +210,6 @@ private:
   void OnNow(wxCommandEvent& event) { SetNow(); }
 
   void CalcHW(int PortCode);
-  void CalcLW(int PortCode);
   double CalcRange_Brest();
   void SetCorrectHWSelection();
   void OnDateSelChanged(wxDateEvent& event);
