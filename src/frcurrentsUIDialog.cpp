@@ -458,7 +458,8 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
 void frcurrentsUIDialog::OnStartSetupHW() {
   //  find area ID and select it
   int id;
-  if (m_AreaIDSelected < 0 || m_AreaIDSelected >(m_choiceArea->GetCount() - 1))
+  int c = m_choiceArea->GetCount();
+  if (m_AreaIDSelected < 0 || m_AreaIDSelected >(c - 1))
     m_AreaIDSelected = 0;
   m_choiceArea->SetSelection(m_AreaIDSelected);
   wxString s = m_Areas[m_AreaIDSelected];
@@ -513,7 +514,6 @@ void frcurrentsUIDialog::SetCorrectHWSelection() {
   int i, c, s, t, t1, t2, t10, t20;
   wxDateTime d1, d2, d10, d20;
 
-  c = m_choice2->GetCount();
   wxDateTime myChoiceDates[6], m_dt;
 
   c = m_choice2->GetCount();
@@ -775,6 +775,7 @@ bool frcurrentsUIDialog::SetDateForNowButton() {
       }
     }
   }
+  return false;
 }
 
 StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName) {
@@ -1336,8 +1337,8 @@ int frcurrentsUIDialog::CalcHoursFromHWNow() {
   int i = 0;
   int m;
   double d;
-
-  for (i; i < m_choice2->GetCount(); i++) {
+  int c = m_choice2->GetCount();
+  for (i; i < c; i++) {
     myDateTime = m_choice2_dt[i];
     m = myDateTime.GetTicks();
 
