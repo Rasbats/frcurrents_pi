@@ -34,7 +34,6 @@
 #include <wx/graphics.h>
 #include <wx/intl.h>
 #include <wx/wfstream.h>
-#include "qtstylesheet.h"
 #include <wx/stdpaths.h>
 
 #include <math.h>

@@ -25,13 +25,12 @@
  */
 
 #include <map>
+#include <wx/image.h>
 #include <wx/string.h>
 #include "tcmgr.h"
 #include "wx/tokenzr.h"
-#include "pidc.h"
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
-
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
@@ -48,7 +47,6 @@
 using namespace std;
 
 class plugIn_Viewport;
-class piDC;
 class wxDC;
 
 //----------------------------------------------------------------------------------------------------------
@@ -97,7 +95,8 @@ public:
     m_ParentSize.SetWidth(w);
     m_ParentSize.SetHeight(h);
   }
-  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
+  bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
+  bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
 
   bool m_bShowRate;
   bool m_bShowDirection;
@@ -109,24 +108,48 @@ public:
   std::map<double, wxImage> m_labelCache;
   std::map<wxString, wxImage> m_labelCacheText;
 
-  piDC *m_dc;
   wxMemoryDC mdc;
+  wxDC *m_pdc;
+  wxGraphicsContext *m_gdc;
 
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
 
+  wxImage &DrawGLText(double value, int precision);
+  wxImage &DrawGLTextDir(double value, int precision);
+  wxImage &DrawGLTextString(wxString myText);
+  wxImage &DrawGLPolygon();
+
 private:
   bool inGL;
   wxPoint myArrowArray[9];
-  //bool DoRenderfrcurrentsOverlay(PlugIn_ViewPort *vp);
-  void RenderMyArrows(PlugIn_ViewPort *vp);
+  void RenderMyArrows(PlugIn_ViewPort *vp, bool bRebuildSelList,
+                      bool bforce_redraw_currents, bool bdraw_mono_for_mask,
+                      wxDateTime myTime);
+
+  bool drawCurrentArrow(int x, int y, double rot_angle, double scale,
+                        double rate);
+
+  wxPoint frcurrentsOverlayFactory::ScaleCurrentArrow(int index,
+                                                      wxPoint myPoint,
+                                                      int scale);
   int m_fromHW;
   void GetArrowStyle(int my_style);
   wxColour GetSpeedColour(double my_speed);
 
-  bool drawCurrentArrow(int x, int y, double rot_angle, double scale,
-                        double rate);
+  void DrawGLLine(double x1, double y1, double x2,
+                                            double y2, double width,
+                                            wxColour myColour);
+
+
+  void DrawGLLabels(frcurrentsOverlayFactory *pof, wxDC *dc,
+                    PlugIn_ViewPort *vp, wxImage &imageLabel, double myLat,
+                    double myLon, int offset);
+
+  void drawGLPolygons(frcurrentsOverlayFactory *pof, wxDC *dc,
+                      PlugIn_ViewPort *vp, wxImage &imageLabel, double myLat,
+                      double myLon, int offset);
 
   double m_last_vp_scale;
 
@@ -137,10 +160,6 @@ private:
   wxString m_Message;
   wxString m_Message_Hiden;
   wxSize m_ParentSize;
-
-#if wxUSE_GRAPHICS_CONTEXT
-  wxGraphicsContext *m_gdc;
-#endif
 
   wxFont *m_dFont_map;
   wxFont *m_dFont_war;

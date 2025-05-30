@@ -421,8 +421,7 @@ bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
       !m_pfrcurrentsOverlayFactory)
     return false;
   m_pfrcurrentsDialog->SetViewPort(vp);
-  piDC pidc(dc);
-  m_pfrcurrentsOverlayFactory->RenderOverlay(pidc, *vp);
+  m_pfrcurrentsOverlayFactory->RenderOverlay(dc, vp);
   return true;
 }
 
@@ -433,11 +432,7 @@ bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
     return false;
 
   m_pfrcurrentsDialog->SetViewPort(vp);
-  piDC piDC;
-  glEnable(GL_BLEND);
-  piDC.SetVP(vp);
-
-  m_pfrcurrentsOverlayFactory->RenderOverlay(piDC, *vp);
+  m_pfrcurrentsOverlayFactory->RenderGLOverlay(pcontext, vp);
   return true;
 }
 

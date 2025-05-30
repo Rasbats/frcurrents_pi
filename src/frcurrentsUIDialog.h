@@ -27,6 +27,7 @@
 #ifndef __frcurrentsUIDIALOG_H__
 #define __frcurrentsUIDIALOG_H__
 
+#include <map>
 #include "wx/wxprec.h"
 
 #ifndef WX_PRECOMP

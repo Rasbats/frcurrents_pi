@@ -37,7 +37,6 @@
 #include "ocpn_plugin.h"
 #include "frcurrentsOverlayFactory.h"
 #include "frcurrentsUIDialog.h"
-#include "pidc.h"
 #include "wx/string.h"
 #include <wx/window.h>
 #include <wx/font.h>

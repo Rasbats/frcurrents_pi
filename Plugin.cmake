@@ -103,8 +103,8 @@ macro(add_plugin_libraries)
   add_subdirectory("opencpn-libs/tinyxml")
   target_link_libraries(${PACKAGE_NAME} ocpn::tinyxml)
 
-  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/plugin_dc")
-  target_link_libraries(${PACKAGE_NAME} ocpn::plugin-dc)
+  #add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/plugin_dc")
+  #target_link_libraries(${PACKAGE_NAME} ocpn::plugin-dc)
 
   # The wxsvg library enables SVG overall in the plugin
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/wxsvg")
