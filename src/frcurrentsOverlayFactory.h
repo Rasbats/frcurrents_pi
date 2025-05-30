@@ -131,17 +131,13 @@ private:
   bool drawCurrentArrow(int x, int y, double rot_angle, double scale,
                         double rate);
 
-  wxPoint frcurrentsOverlayFactory::ScaleCurrentArrow(int index,
-                                                      wxPoint myPoint,
-                                                      int scale);
+  wxPoint ScaleCurrentArrow(int index, wxPoint myPoint, int scale);
   int m_fromHW;
   void GetArrowStyle(int my_style);
   wxColour GetSpeedColour(double my_speed);
 
-  void DrawGLLine(double x1, double y1, double x2,
-                                            double y2, double width,
-                                            wxColour myColour);
-
+  void DrawGLLine(double x1, double y1, double x2, double y2, double width,
+                  wxColour myColour);
 
   void DrawGLLabels(frcurrentsOverlayFactory *pof, wxDC *dc,
                     PlugIn_ViewPort *vp, wxImage &imageLabel, double myLat,

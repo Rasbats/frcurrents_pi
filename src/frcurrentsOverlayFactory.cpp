@@ -71,8 +71,6 @@ static bool glQueried = false;
 //----------------------------------------------------------------------------------------------------------
 frcurrentsOverlayFactory::frcurrentsOverlayFactory(frcurrentsUIDialog &dlg)
     : m_dlg(dlg) {
-
-
   m_dFont_map = new wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                            wxFONTWEIGHT_NORMAL);
   m_dFont_war = new wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC,
@@ -261,11 +259,11 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp,
     wxPoint cpoint;
     GetCanvasPixLL(vp, &cpoint, latF, lonF);
     pixxc = cpoint.x;
-    pixyc = cpoint.y;  
+    pixyc = cpoint.y;
 
     GetCanvasPixLL(vp, &p, latF, lonF);
     wxRect myRect = vp->rv_rect;
-    
+
     wxString port_num = (*it).port_num;
 
     if (myRect.Contains(p.x, p.y)) {
@@ -307,7 +305,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp,
       // dir = 45.00;
       // myCurrent = 0.5;
 
-      bool rendered = 
+      bool rendered =
           drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent);
 
       int shift = 0;
@@ -359,8 +357,8 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp,
 }
 
 void frcurrentsOverlayFactory::DrawGLLine(double x1, double y1, double x2,
-                                         double y2, double width,
-                                         wxColour myColour) {
+                                          double y2, double width,
+                                          wxColour myColour) {
   {
     wxColour isoLineColor = myColour;
     glColor4ub(isoLineColor.Red(), isoLineColor.Green(), isoLineColor.Blue(),
@@ -431,7 +429,7 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
   m_sShowScale.ToLong(&scalevalue);
   scalevalue *= 10;
 
- // Walk thru the point list
+  // Walk thru the point list
   for (int ip = 1; ip < NUM_CURRENT_ARROW_POINTS; ip++) {
     scaledPoint = ScaleCurrentArrow(ip, myArrowArray[ip], scalevalue);
 
@@ -458,7 +456,6 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     y1 = y2;
   }
 
-
   // p[9].x = x1;
   // p[9].y = y1;
 
@@ -467,7 +464,7 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     m_pdc->DrawPolygon(9, p);
   }
   return true;
-  }
+}
 
 void frcurrentsOverlayFactory::DrawGLLabels(frcurrentsOverlayFactory *pof,
                                             wxDC *dc, PlugIn_ViewPort *vp,
@@ -541,7 +538,7 @@ void frcurrentsOverlayFactory::DrawGLLabels(frcurrentsOverlayFactory *pof,
 }
 
 wxPoint frcurrentsOverlayFactory::ScaleCurrentArrow(int index, wxPoint myPoint,
-                                                   int scale) {
+                                                    int scale) {
   wxPoint dummy = myPoint;
   switch (index) {
     case 1: {
@@ -581,8 +578,6 @@ wxPoint frcurrentsOverlayFactory::ScaleCurrentArrow(int index, wxPoint myPoint,
     }
   }
 }
-
-
 
 void frcurrentsOverlayFactory::drawGLPolygons(frcurrentsOverlayFactory *pof,
                                               wxDC *dc, PlugIn_ViewPort *vp,
@@ -780,7 +775,7 @@ wxImage &frcurrentsOverlayFactory::DrawGLTextDir(double value, int precision) {
 wxImage &frcurrentsOverlayFactory::DrawGLTextString(wxString myText) {
   wxString labels;
   labels = myText;
- // wxMessageBox(labels);
+  // wxMessageBox(labels);
   std::map<wxString, wxImage>::iterator it;
 
   it = m_labelCacheText.find(labels);
