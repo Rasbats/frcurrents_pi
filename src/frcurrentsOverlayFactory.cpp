@@ -389,6 +389,8 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
   double m_rate = fabs(rate);
   wxPoint p[9];
 
+  GetArrowStyle(m_ShowArrowStyle);
+
   wxColour colour;
   colour = GetSpeedColour(m_rate);
 
@@ -423,18 +425,10 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
   p_basic[0].x = 100;
   p_basic[0].y = 100;
 
-  wxString m_sShowScale = "1";
-  wxPoint scaledPoint;
-  long scalevalue;
-  m_sShowScale.ToLong(&scalevalue);
-  scalevalue *= 10;
-
   // Walk thru the point list
   for (int ip = 1; ip < NUM_CURRENT_ARROW_POINTS; ip++) {
-    scaledPoint = ScaleCurrentArrow(ip, myArrowArray[ip], scalevalue);
-
-    xt = scaledPoint.x;
-    yt = scaledPoint.y;
+    xt = myArrowArray[ip].x;
+    yt = myArrowArray[ip].y;
 
     float xp = (xt * cos_rot) - (yt * sin_rot);
     float yp = (xt * sin_rot) + (yt * cos_rot);
