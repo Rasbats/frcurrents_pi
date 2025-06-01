@@ -74,8 +74,6 @@ frcurrentsOverlayFactory::frcurrentsOverlayFactory(frcurrentsUIDialog &dlg)
  
   pTCFont = new wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                        wxFONTWEIGHT_BOLD);
-     // wxTheFontList->FindOrCreateFont(12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
-                                     // wxString(_T ( "Eurostile Extended" )));
   m_last_vp_scale = 0.;
   m_bShowRate = m_dlg.m_bUseRate;
   m_bShowDirection = m_dlg.m_bUseDirection;

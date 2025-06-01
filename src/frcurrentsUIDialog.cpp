@@ -938,7 +938,7 @@ void frcurrentsUIDialog::LoadHarmonics() {
     ptcmgr->LoadDataSources(TideCurrentDataSet);
 
   }
-
+  
   else {
     bool b_newdataset = false;
 
@@ -975,6 +975,7 @@ void frcurrentsUIDialog::LoadHarmonics() {
 
     if (b_newdataset) ptcmgr->LoadDataSources(TideCurrentDataSet);
   }
+  
 }
 
 void frcurrentsUIDialog::LoadTCMFile() {
@@ -1011,7 +1012,7 @@ void frcurrentsUIDialog::LoadTCMFile() {
   TCDir.Append(wxFileName::GetPathSeparator());
   wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
 
-  wxString default_tcdata1 = TCDir + "HARMONIC.IDX";
+  wxString default_tcdata1 = TCDir + "HARMONIC.idx";
   wxLogMessage(default_tcdata1);
 
   TideCurrentDataSet.Add(default_tcdata1);
