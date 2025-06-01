@@ -778,6 +778,7 @@ wxImage &frcurrentsOverlayFactory::DrawGLTextString(wxString myText) {
   mdc.SelectObject(bm);
   mdc.Clear();
 
+  m_text_color = wxColour("BLACK");
   wxPen penText(m_text_color);
   mdc.SetPen(penText);
 
