@@ -157,8 +157,7 @@ private:
   wxString m_Message_Hiden;
   wxSize m_ParentSize;
 
-  wxFont *m_dFont_map;
-  wxFont *m_dFont_war;
+  
 
   wxFont *pTCFont;
 

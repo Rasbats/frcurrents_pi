@@ -71,13 +71,11 @@ static bool glQueried = false;
 //----------------------------------------------------------------------------------------------------------
 frcurrentsOverlayFactory::frcurrentsOverlayFactory(frcurrentsUIDialog &dlg)
     : m_dlg(dlg) {
-  m_dFont_map = new wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                           wxFONTWEIGHT_NORMAL);
-  m_dFont_war = new wxFont(16, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_ITALIC,
-                           wxFONTWEIGHT_NORMAL);
-  pTCFont =
-      wxTheFontList->FindOrCreateFont(12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
-                                      wxString(_T ( "Eurostile Extended" )));
+ 
+  pTCFont = new wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                       wxFONTWEIGHT_BOLD);
+     // wxTheFontList->FindOrCreateFont(12, wxDEFAULT, wxNORMAL, wxBOLD, FALSE,
+                                     // wxString(_T ( "Eurostile Extended" )));
   m_last_vp_scale = 0.;
   m_bShowRate = m_dlg.m_bUseRate;
   m_bShowDirection = m_dlg.m_bUseDirection;
@@ -306,15 +304,9 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp,
       // myCurrent = 0.5;
 
       bool rendered =
-          drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent);
+          drawCurrentArrow(pixxc, pixyc, dir - 90, scale / 100, myCurrent);
 
-      int shift = 0;
-
-      if (!m_bHighResolution) {
-        shift = 13;
-      } else {
-        shift = 35;
-      }
+      int shift = 0;     
 
       if (!m_pdc) {
         if (rendered && m_bShowFillColour)
@@ -455,7 +447,7 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
 
   if (m_bShowFillColour && m_pdc) {
     m_pdc->SetBrush(brush);
-    m_pdc->DrawPolygon(9, p);
+    m_pdc->DrawPolygon(9, p, 0, 0);
   }
   return true;
 }
