@@ -311,7 +311,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp,
           drawGLPolygons(this, m_pdc, vp, DrawGLPolygon(), latF, lonF, shift);
 
         if (m_bShowRate) {
-          DrawGLLabels(this, m_pdc, vp, DrawGLText(fabs(myCurrent), 1), latF,
+          DrawGLLabels(this, m_pdc, vp, DrawGLText(myCurrent, 1), latF,
                        lonF, 0);
 
           if (!m_bHighResolution) {

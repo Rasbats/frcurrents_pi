@@ -938,7 +938,7 @@ void frcurrentsUIDialog::LoadHarmonics() {
     ptcmgr->LoadDataSources(TideCurrentDataSet);
 
   }
-  
+  /*
   else {
     bool b_newdataset = false;
 
@@ -975,7 +975,6 @@ void frcurrentsUIDialog::LoadHarmonics() {
 
     if (b_newdataset) ptcmgr->LoadDataSources(TideCurrentDataSet);
   }
-  
 }
 
 void frcurrentsUIDialog::LoadTCMFile() {
