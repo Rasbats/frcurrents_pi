@@ -975,6 +975,7 @@ void frcurrentsUIDialog::LoadHarmonics() {
 
     if (b_newdataset) ptcmgr->LoadDataSources(TideCurrentDataSet);
   }
+  */
 }
 
 void frcurrentsUIDialog::LoadTCMFile() {
