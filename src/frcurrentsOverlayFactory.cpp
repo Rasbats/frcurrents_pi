@@ -759,7 +759,6 @@ wxImage &frcurrentsOverlayFactory::DrawGLTextDir(double value, int precision) {
 wxImage &frcurrentsOverlayFactory::DrawGLTextString(wxString myText) {
   wxString labels;
   labels = myText;
-  // wxMessageBox(labels);
   std::map<wxString, wxImage>::iterator it;
 
   it = m_labelCacheText.find(labels);
@@ -778,7 +777,6 @@ wxImage &frcurrentsOverlayFactory::DrawGLTextString(wxString myText) {
   mdc.SelectObject(bm);
   mdc.Clear();
 
-  m_text_color = wxColour("BLACK");
   wxPen penText(m_text_color);
   mdc.SetPen(penText);
 
