@@ -71,7 +71,6 @@ static bool glQueried = false;
 //----------------------------------------------------------------------------------------------------------
 frcurrentsOverlayFactory::frcurrentsOverlayFactory(frcurrentsUIDialog &dlg)
     : m_dlg(dlg) {
- 
   pTCFont = new wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                        wxFONTWEIGHT_BOLD);
   m_last_vp_scale = 0.;
@@ -304,21 +303,20 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp,
       bool rendered =
           drawCurrentArrow(pixxc, pixyc, dir - 90, scale / 100, myCurrent);
 
-      int shift = 0;     
+      int shift = 0;
 
       if (!m_pdc) {
         if (rendered && m_bShowFillColour)
           drawGLPolygons(this, m_pdc, vp, DrawGLPolygon(), latF, lonF, shift);
 
         if (m_bShowRate) {
-          DrawGLLabels(this, m_pdc, vp, DrawGLText(myCurrent, 1), latF,
-                       lonF, 0);
-
-          if (!m_bHighResolution) {
-            shift = 13;
-          } else {
-            shift = 26;
-          }
+          DrawGLLabels(this, m_pdc, vp, DrawGLText(myCurrent, 1), latF, lonF,
+                       10);
+        }
+        if (!m_bHighResolution) {
+          shift = 23;
+        } else {
+          shift = 36;
         }
         if (m_bShowDirection) {
           DrawGLLabels(this, m_pdc, vp, DrawGLTextDir(dir, 0), latF, lonF,
@@ -329,6 +327,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp,
         if (m_bShowRate) {
           snprintf(sbuf, 19, "%3.1f", fabs(myCurrent));
           m_pdc->DrawText(wxString(sbuf, wxConvUTF8), pixxc, pixyc);
+
           if (!m_bHighResolution) {
             shift = 13;
           } else {
@@ -759,6 +758,7 @@ wxImage &frcurrentsOverlayFactory::DrawGLTextDir(double value, int precision) {
 wxImage &frcurrentsOverlayFactory::DrawGLTextString(wxString myText) {
   wxString labels;
   labels = myText;
+  // wxMessageBox(labels);
   std::map<wxString, wxImage>::iterator it;
 
   it = m_labelCacheText.find(labels);
@@ -777,6 +777,7 @@ wxImage &frcurrentsOverlayFactory::DrawGLTextString(wxString myText) {
   mdc.SelectObject(bm);
   mdc.Clear();
 
+  m_text_color = wxColour("BLACK");
   wxPen penText(m_text_color);
   mdc.SetPen(penText);
 
