@@ -454,6 +454,9 @@ bool frcurrents_pi::LoadConfig(void) {
     my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
     my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
     
+    pConf->Read("frcurrentsAreaID", &m_AreaID, 0);
+    pConf->Read("frcurrentsPort", &m_Port);
+
     m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
     m_frcurrents_dialog_sx = pConf->Read("frcurrentsDialogSizeX", 300L);
@@ -494,6 +497,8 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->Write("frcurrentsIconscalefactor", my_IconsScaleFactor);
     pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
 
+    pConf->Write("frcurrentsAreaID", m_AreaID);
+    pConf->Write("frcurrentsPort", m_Port);
     pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 
     pConf->Write("frcurrentsDialogSizeX", m_frcurrents_dialog_sx);

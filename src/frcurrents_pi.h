@@ -125,8 +125,8 @@ public:
     return m_pfrcurrentsOverlayFactory;
   }
 
-  //wxString m_Port;
-  //int m_AreaID;
+  wxString m_Port;
+  int m_AreaID;
 
   wxString m_CopyFolderSelected;
 
