@@ -229,6 +229,10 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id,
       wxEVT_COMMAND_CHOICE_SELECTED,
       wxCommandEventHandler(frcurrentsUIDialogBase::OnAreaSelected), NULL,
       this);
+  m_buttonClose->Connect(
+      wxEVT_COMMAND_BUTTON_CLICKED,
+      wxCommandEventHandler(frcurrentsUIDialogBase::OnSaveData), NULL, this);
+
   m_button8->Connect(
       wxEVT_COMMAND_BUTTON_CLICKED,
       wxCommandEventHandler(frcurrentsUIDialogBase::OnInformation), NULL, this);
@@ -298,6 +302,10 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase() {
       wxEVT_COMMAND_CHOICE_SELECTED,
       wxCommandEventHandler(frcurrentsUIDialogBase::OnAreaSelected), NULL,
       this);
+  m_buttonClose->Disconnect(
+      wxEVT_COMMAND_BUTTON_CLICKED,
+      wxCommandEventHandler(frcurrentsUIDialogBase::OnSaveData), NULL, this);
+
   m_button8->Disconnect(
       wxEVT_COMMAND_BUTTON_CLICKED,
       wxCommandEventHandler(frcurrentsUIDialogBase::OnInformation), NULL, this);

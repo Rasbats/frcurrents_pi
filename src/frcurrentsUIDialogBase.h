@@ -60,6 +60,7 @@ protected:
   virtual void OnMove(wxMoveEvent& event) { event.Skip(); }
   virtual void OnSize(wxSizeEvent& event) { event.Skip(); }
   virtual void OnAreaSelected(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnSaveData(wxCommandEvent& event) { event.Skip(); }
   virtual void OnInformation(wxCommandEvent& event) { event.Skip(); }
   virtual void OnPortChanged(wxCommandEvent& event) { event.Skip(); }
   virtual void OnDateSelChanged(wxDateEvent& event) { event.Skip(); }
@@ -74,6 +75,7 @@ protected:
 
 public:
   wxChoice* m_choiceArea;
+  wxButton* m_buttonClose;
   wxChoice* m_choice1;
   wxTextCtrl* m_textCtrlCoefficient;
   wxStaticBoxSizer* sbSizerFolder;

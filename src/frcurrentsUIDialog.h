@@ -211,6 +211,7 @@ public:
 #endif
 
 private:
+  void OnSaveData(wxCommandEvent& event);
   void OnClose(wxCloseEvent& event);
   void OnMove(wxMoveEvent& event);
   bool m_bOnStart;
