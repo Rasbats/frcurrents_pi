@@ -183,6 +183,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsAreaID", &m_AreaIDSelected, 0);
     pConf->Read("frcurrentsPort", &m_PortSelected);
+    wxMessageBox(m_PortSelected);
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
     pConf->Read("VColour0", &myVColour[0], myVColour[0]);
