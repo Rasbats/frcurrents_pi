@@ -54,7 +54,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id,
 
   wxStaticBoxSizer* sbSizer6;
   sbSizer6 = new wxStaticBoxSizer(
-      new wxStaticBox(this, wxID_ANY, _("Standard Port")), wxVERTICAL);
+      new wxStaticBox(this, wxID_ANY, _("Standard Port")), wxHORIZONTAL);
 
   wxArrayString m_choice1Choices;
   m_choice1 =
@@ -71,8 +71,6 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id,
                    wxDefaultPosition, wxDefaultSize, 0);
   m_buttonClose->SetToolTip(_("Save Area/Port"));
   sbSizer6->Add(m_buttonClose, 0, wxALL, 5);
-
-
 
   bSizerMain->Add(sbSizer6, 0, wxEXPAND, 5);
 
