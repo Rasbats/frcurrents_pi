@@ -454,7 +454,7 @@ bool frcurrents_pi::LoadConfig(void) {
     my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
     my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
     
-    pConf->Read("frcurrentsAreaID", &m_AreaID, 0);
+    pConf->Read("frcurrentsAreaID", &m_AreaID, 0.);
     m_Port = pConf->Read("frcurrentsPort", "");
     m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
