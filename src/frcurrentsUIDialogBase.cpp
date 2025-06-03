@@ -42,12 +42,6 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id,
   sbSizer71->Add(m_choiceArea, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,
                  5);
 
-  m_buttonClose =
-      new wxButton(sbSizer71->GetStaticBox(), wxID_ANY, _("Save Area/Port"),
-                   wxDefaultPosition, wxDefaultSize, 0);
-  m_buttonClose->SetToolTip(_("Save Area/Port"));
-  sbSizer71->Add(m_buttonClose, 0, wxALL, 5);
-
   sbSizer71->Add(0, 0, 1, wxEXPAND, 5);
 
   m_button8 =
@@ -69,6 +63,16 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id,
   m_choice1->SetToolTip(_("Select Port"));
   m_choice1->SetSelection(0);
   sbSizer6->Add(m_choice1, 0, wxALL, 5);
+
+  sbSizer6->Add(0, 0, 1, wxEXPAND, 5);
+
+  m_buttonClose =
+      new wxButton(sbSizer71->GetStaticBox(), wxID_ANY, _("Save Area/Port"),
+                   wxDefaultPosition, wxDefaultSize, 0);
+  m_buttonClose->SetToolTip(_("Save Area/Port"));
+  sbSizer6->Add(m_buttonClose, 0, wxALL, 5);
+
+
 
   bSizerMain->Add(sbSizer6, 0, wxEXPAND, 5);
 
