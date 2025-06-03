@@ -506,14 +506,15 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   //  find area ID and select it
   int id;
   int c = m_choiceArea->GetCount();
-  if (m_AreaIDSelected < 0 || m_AreaIDSelected > (c - 1)) m_AreaIDSelected = 0;
-  m_choiceArea->SetSelection(m_AreaIDSelected);
-  wxString s = m_Areas[m_AreaIDSelected];
+  if (pPlugIn->m_AreaID < 0 || pPlugIn->m_AreaID > (c - 1))
+    m_AreaIDSelected = 0;
+  m_choiceArea->SetSelection(pPlugIn->m_AreaID);
+  wxString s = m_Areas[pPlugIn->m_AreaID];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
   //  find port ID and select it
-  id = m_choice1->FindString(m_PortSelected, true);
+  id = m_choice1->FindString(pPlugIn->m_Port, true);
   if (id == wxNOT_FOUND) id = 0;
   m_choice1->SetSelection(id);
 
