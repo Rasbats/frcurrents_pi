@@ -437,8 +437,6 @@ void frcurrentsUIDialog::OnSaveData(wxCommandEvent& event) {
   pPlugIn->m_AreaID = b;
   pPlugIn->m_Port = myP;
 
-  m_FolderSelected = m_dirPicker1->GetValue();
-  pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   pPlugIn->SaveConfig();
 }
 
