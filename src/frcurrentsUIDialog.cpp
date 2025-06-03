@@ -181,9 +181,8 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
-    pConf->Read("frcurrentsArea", &m_UseArea);
-    //pConf->Read("frcurrentsPort", &m_PortSelected);
-
+    pConf->Read("frcurrentsAreaID", &m_AreaIDSelected, 0);
+    pConf->Read("frcurrentsPort", &m_PortSelected);
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
     pConf->Read("VColour0", &myVColour[0], myVColour[0]);
@@ -197,10 +196,9 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     myUseColour[2] = myVColour[2];
     myUseColour[3] = myVColour[3];
     myUseColour[4] = myVColour[4];
-
   }
   ptcmgr = NULL;
-  m_choiceArea->SetSelection(m_UseArea);
+  
   m_dirPicker1->SetValue(m_FolderSelected);
   m_bOnStart = false;
   m_myChoice = 0;
@@ -220,7 +218,6 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
   if (pConf) {
     pConf->SetPath("/PlugIns/frcurrents");
 
-    pConf->Write("frcurrentsArea", m_UseArea);
     pConf->Write("frcurrentsUseRate", m_bUseRate);
     pConf->Write("frcurrentsUseDirection", m_bUseDirection);
     pConf->Write("frcurrentsUseHighResolution", m_bUseHighRes);
@@ -234,19 +231,15 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     pConf->Write("VColour3", myVColour[3]);
     pConf->Write("VColour4", myVColour[4]);
 
-    
-   int b = m_choiceArea->GetCurrentSelection();
-    pConf->Write("frcurrentsArea", b);
+    int b = m_choiceArea->GetCurrentSelection();
+    pConf->Write("frcurrentsAreaID", b);
     int c = m_choice1->GetCurrentSelection();
-   // wxString myP = m_choice1->GetString(c);
-   // pConf->Write("frcurrentsPort", myP);
-    //wxMessageBox(myP);
-    
+    wxString myP = m_choice1->GetString(c);
+    pConf->Write("frcurrentsPort", myP);
+    pConf->Write("frcurrentsFolder", m_FolderSelected);
 
     pConf->Write("frcurrentsFolder", m_FolderSelected);
-    
   }
-  
 }
 
 #ifdef __ANDROID__
@@ -440,16 +433,6 @@ void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
 
 void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
   m_FolderSelected = m_dirPicker1->GetValue();
-
-  
-  //m_UseArea = m_choiceArea->GetCurrentSelection();
-
-  //int c = m_choice1->GetCurrentSelection();
-  //m_PortSelected = m_choice1->GetString(c);
-
-  pPlugIn->m_CopyArea = m_UseArea;
-  //pPlugIn->m_CopyPort = m_PortSelected;
-  
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   pPlugIn->OnfrcurrentsDialogClose();
 }
@@ -474,8 +457,6 @@ void frcurrentsUIDialog::OnSize( wxSizeEvent& event )
 }*/
 
 void frcurrentsUIDialog::OpenFile(bool newestFile) {
-
-  m_UseArea = pPlugIn->GetCopyArea();
   m_bUseRate = pPlugIn->GetCopyRate();
   m_bUseDirection = pPlugIn->GetCopyDirection();
   m_bUseHighRes = pPlugIn->GetCopyResolution();
@@ -516,19 +497,18 @@ void frcurrentsUIDialog::OpenFile(bool newestFile) {
 
 void frcurrentsUIDialog::OnStartSetupHW() {
   //  find area ID and select it
-  //int id;
-  //int count = m_choiceArea->GetCount() -1;
-  //if (m_UseArea < 0 || m_UseArea > count)
-  //  m_UseArea = 0;
-  m_choiceArea->SetSelection(m_UseArea);
-  wxString s = m_Areas[m_UseArea];
+  int id;
+  int c = m_choiceArea->GetCount();
+  if (m_AreaIDSelected < 0 || m_AreaIDSelected > (c - 1)) m_AreaIDSelected = 0;
+  m_choiceArea->SetSelection(m_AreaIDSelected);
+  wxString s = m_Areas[m_AreaIDSelected];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
   //  find port ID and select it
-  //id = m_choice1->FindString(m_PortSelected, true);
-  //if (id == wxNOT_FOUND) id = 0;
-  m_choice1->SetSelection(0);
+  id = m_choice1->FindString(m_PortSelected, true);
+  if (id == wxNOT_FOUND) id = 0;
+  m_choice1->SetSelection(id);
 
   SetNow();
 }
@@ -1977,15 +1957,11 @@ bool frcurrentsUIDialog::OpenXML() {
 
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
   int a = m_choiceArea->GetSelection();
-  m_UseArea = a;
-
   wxString s = m_Areas[a];
 
-  int id = FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
+  FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
-  m_choice1->SetSelection(id);
-  wxString myP = m_choice1->GetString(id);
-  m_PortSelected = myP;
+  m_choice1->SetSelection(0);
 
   SetNow();
 }
