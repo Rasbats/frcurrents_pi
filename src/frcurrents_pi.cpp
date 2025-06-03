@@ -498,7 +498,6 @@ bool frcurrents_pi::SaveConfig(void) {
 
     pConf->Write("frcurrentsAreaID", m_AreaID);
     pConf->Write("frcurrentsPort", m_Port);
-    wxMessageBox(m_Port);
     pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 
     pConf->Write("frcurrentsDialogSizeX", m_frcurrents_dialog_sx);

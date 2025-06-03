@@ -42,6 +42,7 @@
 class frcurrentsUIDialogBase : public wxDialog {
 private:
 protected:
+  wxButton* m_buttonClose;
   wxBitmapButton* m_button8;
   wxDatePickerCtrl* m_datePicker1;
   wxStaticText* m_staticTextHW;
@@ -75,7 +76,6 @@ protected:
 
 public:
   wxChoice* m_choiceArea;
-  wxButton* m_buttonClose;
   wxChoice* m_choice1;
   wxTextCtrl* m_textCtrlCoefficient;
   wxStaticBoxSizer* sbSizerFolder;
