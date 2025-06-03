@@ -430,10 +430,16 @@ void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
 }
 
 void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
+
+  int b = m_choiceArea->GetCurrentSelection();
+  int c = m_choice1->GetCurrentSelection();
+  wxString myP = m_choice1->GetString(c);
+
+  pPlugIn->m_AreaID = b;
+  pPlugIn->m_Port = myP;
+
   m_FolderSelected = m_dirPicker1->GetValue();
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-  pPlugIn->m_AreaID = m_AreaIDSelected;
-  pPlugIn->m_Port = m_PortSelected;
   pPlugIn->OnfrcurrentsDialogClose();
 }
 
