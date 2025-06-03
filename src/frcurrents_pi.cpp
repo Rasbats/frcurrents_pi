@@ -455,8 +455,7 @@ bool frcurrents_pi::LoadConfig(void) {
     my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
     
     pConf->Read("frcurrentsAreaID", &m_AreaID, 0);
-    pConf->Read("frcurrentsPort", &m_Port);
-
+    m_Port = pConf->Read("frcurrentsPort", "");
     m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
     m_frcurrents_dialog_sx = pConf->Read("frcurrentsDialogSizeX", 300L);
