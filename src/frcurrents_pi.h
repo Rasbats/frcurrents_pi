@@ -119,16 +119,17 @@ public:
   bool GetCopyResolution() { return m_bCopyUseHighRes; }
   bool GetCopyColour() { return m_bCopyUseFillColour; }
   int GetCopyArrowStyle() { return m_CopyArrowStyle; }
-  int GetCopyArea() { return m_CopyArea; }
 
   wxString GetFolderSelected() { return m_CopyFolderSelected; }
   frcurrentsOverlayFactory *GetfrcurrentsOverlayFactory() {
     return m_pfrcurrentsOverlayFactory;
   }
-  int m_CopyArea;
-  wxString m_CopyPort;
+
+  //wxString m_Port;
+  //int m_AreaID;
+
   wxString m_CopyFolderSelected;
-  
+
   int m_frcurrents_dialog_x, m_frcurrents_dialog_y;
   int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
   bool LoadConfig(void);
@@ -145,8 +146,6 @@ public:
   wxSize prefsize;
 
   bool g_bOpenGL;
-  
-
 
 private:
   int m_position_menu_id;

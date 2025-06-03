@@ -216,8 +216,6 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   Pref->SetSize(prefsize);
   Pref->Move(0, 0);
 
-  Pref->m_choice_area->SetSelection(m_CopyArea);
-
   Pref->m_cbUseRate->SetValue(m_bCopyUseRate);
   Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
   Pref->m_cbFillColour->SetValue(m_bCopyUseFillColour);
@@ -262,10 +260,6 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
 
     int ArrowStyle = Pref->m_cStyle->GetSelection();
 
-    if (m_CopyArea != copyarea) {
-      m_CopyArea = copyarea;
-    }
-
     if (m_bCopyUseRate != copyrate) {
       m_bCopyUseRate = copyrate;
     }
@@ -287,8 +281,6 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     }
 
     if (m_pfrcurrentsDialog) {
-      m_pfrcurrentsDialog->m_UseArea = m_CopyArea;
-      m_pfrcurrentsDialog->m_choiceArea->SetSelection(m_CopyArea);
 
       m_pfrcurrentsDialog->m_bUseRate = m_bCopyUseRate;
       m_pfrcurrentsDialog->m_bUseDirection = m_bCopyUseDirection;
@@ -461,9 +453,6 @@ bool frcurrents_pi::LoadConfig(void) {
 
     my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
     my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
-
-    m_CopyArea = pConf->Read("frcurrentsArea", 0.);
-   // m_CopyPort = pConf->Read("frcurrentsPort", "");
     
     m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
@@ -480,8 +469,6 @@ bool frcurrents_pi::LoadConfig(void) {
       m_frcurrents_dialog_y = 140;
 
     pConf->Read("VColour0", &myVColour[0], myVColour[0]);
-    // g_colourArrowColour0.Set(myVColour[0]);
-
     pConf->Read("VColour1", &myVColour[1], myVColour[1]);
     pConf->Read("VColour2", &myVColour[2], myVColour[2]);
     pConf->Read("VColour3", &myVColour[3], myVColour[3]);
@@ -507,8 +494,6 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->Write("frcurrentsIconscalefactor", my_IconsScaleFactor);
     pConf->Write("frcurrentsFontpointsizefactor", my_FontpointSizeFactor);
 
-    pConf->Write("frcurrentsArea", m_CopyArea);
-    //pConf->Write("frcurrentsPort", m_CopyPort);
     pConf->Write("frcurrentsFolder", m_CopyFolderSelected);
 
     pConf->Write("frcurrentsDialogSizeX", m_frcurrents_dialog_sx);

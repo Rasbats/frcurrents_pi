@@ -237,8 +237,6 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     wxString myP = m_choice1->GetString(c);
     pConf->Write("frcurrentsPort", myP);
     pConf->Write("frcurrentsFolder", m_FolderSelected);
-
-    pConf->Write("frcurrentsFolder", m_FolderSelected);
   }
 }
 
