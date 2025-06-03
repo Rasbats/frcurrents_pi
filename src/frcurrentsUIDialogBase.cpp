@@ -42,6 +42,11 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id,
   sbSizer71->Add(m_choiceArea, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL,
                  5);
 
+  m_buttonClose =
+      new wxButton(sbSizer71->GetStaticBox(), wxID_ANY, _("Save Area/Port"),
+                   wxDefaultPosition, wxDefaultSize, 0);
+  sbSizer71->Add(m_buttonClose, 0, wxALL, 5);
+
   sbSizer71->Add(0, 0, 1, wxEXPAND, 5);
 
   m_button8 =
@@ -363,19 +368,19 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
   bSizer7 = new wxBoxSizer(wxVERTICAL);
 
   m_staticTextChoice = new wxStaticText(this, wxID_ANY, _("Tidal Area ..."),
-                                    wxDefaultPosition, wxDefaultSize, 0);
+                                        wxDefaultPosition, wxDefaultSize, 0);
   m_staticTextChoice->Wrap(-1);
   bSizer7->Add(m_staticTextChoice, 0, wxALL, 5);
 
   wxString m_choice_areaChoices[] = {_("Strait of Dover"),
-                                    _("English Channel"),
-                                    _("Fecamp to La Hague"),
-                                    _("La Hague to Hx-de-Brehat"),
-                                    _("Hx-de-Brehat to Brignogan"),
-                                    _("Tip of Brittany"),
-                                    _("South Brittany"),
-                                    _("Vendee-Gironde"),
-                                    _("Bay of Biscay")};
+                                     _("English Channel"),
+                                     _("Fecamp to La Hague"),
+                                     _("La Hague to Hx-de-Brehat"),
+                                     _("Hx-de-Brehat to Brignogan"),
+                                     _("Tip of Brittany"),
+                                     _("South Brittany"),
+                                     _("Vendee-Gironde"),
+                                     _("Bay of Biscay")};
 
   int m_choice_areaNChoices = sizeof(m_choice_areaChoices) / sizeof(wxString);
   m_choice_area = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
@@ -429,7 +434,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 
   myColourPicker0 = new ODColourPickerCtrl(
       sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition,
-                             wxDefaultSize, wxBU_AUTODRAW | 0);
+      wxDefaultSize, wxBU_AUTODRAW | 0);
   fgSizerColours->Add(myColourPicker0, 1, wxALL | wxEXPAND, 5);
 
   staticText0515 = new wxStaticText(sbSizerColours->GetStaticBox(), wxID_ANY,
@@ -440,7 +445,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 
   myColourPicker1 = new ODColourPickerCtrl(
       sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition,
-                             wxDefaultSize, wxBU_AUTODRAW | 0);
+      wxDefaultSize, wxBU_AUTODRAW | 0);
   fgSizerColours->Add(myColourPicker1, 1, wxALL | wxEXPAND, 5);
 
   staticText1525 = new wxStaticText(sbSizerColours->GetStaticBox(), wxID_ANY,
@@ -451,7 +456,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 
   myColourPicker2 = new ODColourPickerCtrl(
       sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition,
-                             wxDefaultSize, wxBU_AUTODRAW | 0);
+      wxDefaultSize, wxBU_AUTODRAW | 0);
   fgSizerColours->Add(myColourPicker2, 1, wxALL | wxEXPAND, 5);
 
   staticText2535 = new wxStaticText(sbSizerColours->GetStaticBox(), wxID_ANY,
@@ -462,7 +467,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 
   myColourPicker3 = new ODColourPickerCtrl(
       sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition,
-                             wxDefaultSize, wxBU_AUTODRAW | 0);
+      wxDefaultSize, wxBU_AUTODRAW | 0);
 
   fgSizerColours->Add(myColourPicker3, 1, wxALL | wxEXPAND, 5);
 
@@ -475,7 +480,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 
   myColourPicker4 = new ODColourPickerCtrl(
       sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition,
-                             wxDefaultSize, wxBU_AUTODRAW | 0);
+      wxDefaultSize, wxBU_AUTODRAW | 0);
 
   fgSizerColours->Add(myColourPicker4, 1, wxALL | wxEXPAND, 5);
 
@@ -576,7 +581,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase(
 
   // Connect Events
 
-  	m_choice_area->Connect(
+  m_choice_area->Connect(
       wxEVT_COMMAND_CHOICE_SELECTED,
       wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnChoiceArea),
       NULL, this);
