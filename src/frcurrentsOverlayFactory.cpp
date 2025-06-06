@@ -99,8 +99,7 @@ frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 void frcurrentsOverlayFactory::Reset() {}
 
 void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
-
-  #ifdef ocpnUSE_GL
+#ifdef ocpnUSE_GL
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
   int width = 4;
@@ -108,8 +107,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   int j = 0;
   wxPoint r;
 
-  wxFont font(20, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD,
-              false, "Arial");
+  wxFont font(20, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 
   g_pDC->SetFont(font);
   g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
@@ -118,8 +116,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   g_pDC->SetGLStipple();
 
   RenderMyArrows(&g_VP);
-  #endif
-
+#endif
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
@@ -289,7 +286,6 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
   }
   return true;
 }
-
 
 void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   wxPoint p;
