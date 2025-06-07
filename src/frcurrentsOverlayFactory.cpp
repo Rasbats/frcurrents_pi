@@ -99,6 +99,7 @@ frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 void frcurrentsOverlayFactory::Reset() {}
 
 void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
+
 #ifdef ocpnUSE_GL
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
@@ -107,9 +108,9 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   int j = 0;
   wxPoint r;
 
-  wxFont font(20, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+  wxFont* font =  GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
 
-  g_pDC->SetFont(font);
+  g_pDC->SetFont(*font);
   g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
   g_pDC->SetBrush(
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
