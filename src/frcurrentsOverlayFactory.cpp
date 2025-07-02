@@ -178,7 +178,8 @@ wxColour frcurrentsOverlayFactory::GetSpeedColour(double my_speed) {
 }
 
 bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
-                                                double scale, double rate) {
+  double scale, double rate, double vp_rotate_angle)
+{
   double m_rate = fabs(rate);
 
   GetArrowStyle(m_ShowArrowStyle);
@@ -198,8 +199,8 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     m_dc->SetPen(pen);
     m_dc->SetBrush(brush);
   }
-  float sin_rot = sin(rot_angle * PI / 180.);
-  float cos_rot = cos(rot_angle * PI / 180.);
+  float sin_rot = sin((rot_angle * PI / 180.) + vp_rotate_angle);
+  float cos_rot = cos((rot_angle * PI / 180.) + vp_rotate_angle);
 
   // Move to the first point
 
@@ -391,7 +392,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       // dir = 45.00;
       // myCurrent = 0.5;
 
-      bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent);
+      bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent, vp->rotation);
 
       int shift = 0;
 
