@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenCPN version 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-15 20:52+0100\n"
+"POT-Creation-Date: 2025-07-07 10:18+0100\n"
 "PO-Revision-Date: 2013-10-20 22:24+0100\n"
 "Last-Translator: Anders Arnell <anders.arnell@bredband.net>\n"
 "Language-Team: AB Torsk & Bäver <anders.arnell@bredband.net>\n"
@@ -20,71 +20,11 @@ msgstr ""
 msgid "      < 0.5 knots"
 msgstr ""
 #
-msgid "   Coeff"
-msgstr ""
-#
-#
-#
-#
-#
-#
-#
-#
-msgid "1"
-msgstr "1"
-#
 msgid ""
 "1: Normal\n"
 "2: Small \n"
 "3: Normal length, \n"
 "    narrow width"
-msgstr ""
-#
-#
-#
-#
-#
-#
-#
-#
-msgid "2"
-msgstr "2"
-#
-#
-#
-#
-#
-#
-#
-#
-msgid "3"
-msgstr "3"
-#
-msgid "557"
-msgstr ""
-#
-msgid "558"
-msgstr ""
-#
-msgid "559"
-msgstr ""
-#
-msgid "560"
-msgstr ""
-#
-msgid "561"
-msgstr ""
-#
-msgid "562"
-msgstr ""
-#
-msgid "563"
-msgstr ""
-#
-msgid "564"
-msgstr ""
-#
-msgid "565"
 msgstr ""
 #
 msgid ">= 0.5 and < 1.5"
@@ -112,14 +52,20 @@ msgstr "Tidsinställningar"
 msgid "Arrow Style"
 msgstr ""
 #
-msgid "Choose Date"
+msgid "Bay of Biscay"
 msgstr ""
 #
-msgid "Choose a directory"
+msgid "Choose Harmonics Directory"
 msgstr ""
 #
-msgid "Choose the tcdata directory"
+msgid "Coeff:"
 msgstr ""
+#
+msgid "Dialog"
+msgstr ""
+#
+#
+#
 #
 #
 #
@@ -128,13 +74,26 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "Display date/time"
+msgid "Display Controls"
+msgstr "Visa Isobarer"
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Display Time: UTC"
 msgstr "Visa Isobarer"
 #
 msgid "Display tidal direction"
 msgstr ""
 #
 msgid "Display tidal rates (knots)"
+msgstr ""
+#
+msgid "English Channel"
 msgstr ""
 #
 #
@@ -149,19 +108,19 @@ msgstr ""
 msgid "Failed to load file: "
 msgstr "Mislyckades att skicka epost"
 #
+msgid "Fecamp to La Hague"
+msgstr ""
+#
 msgid "Fill Colour"
+msgstr ""
+#
+msgid "Font Size Factor"
 msgstr ""
 #
 msgid "French Tidal Streams"
 msgstr ""
 #
 msgid "HW"
-msgstr ""
-#
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
 msgstr ""
 #
 msgid "HW+1"
@@ -213,7 +172,10 @@ msgstr "Upplösning"
 msgid "High Water"
 msgstr ""
 #
-msgid "High Water +-"
+msgid "Hx-de-Brehat to Brignogan"
+msgstr ""
+#
+msgid "Icons Size Factor"
 msgstr ""
 #
 msgid "Information"
@@ -258,19 +220,38 @@ msgstr ""
 msgid "LW-6"
 msgstr ""
 #
+msgid "La Hague to Hx-de-Brehat"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Local"
+msgstr "Lokal tid"
+#
 msgid "Low Water"
 msgstr ""
 #
 msgid "Next"
 msgstr "Nästa"
 #
+msgid ""
+"No Harmonics\n"
+"Select the directory containing HARMONIC.IDX\n"
+" Using the dialog that follows"
+msgstr ""
+#
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
-msgid "No tidal data for this port"
+msgid "No Tidal Data for BREST"
 msgstr ""
 #
 msgid "Now"
@@ -286,9 +267,6 @@ msgstr "Nu"
 msgid "Options:   "
 msgstr "Tidsinställningar"
 #
-msgid "Please choose a new date"
-msgstr ""
-#
 msgid "Port finder"
 msgstr ""
 #
@@ -300,8 +278,80 @@ msgstr ""
 msgid "Preferences"
 msgstr "GRIB Inställningar"
 #
+#
+#, fuzzy
+msgid "Preferences..."
+msgstr "GRIB Inställningar"
+#
 msgid "Previous"
 msgstr "Föregående"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Resize..."
+msgstr "storlek"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Save Area"
+msgstr "Spara"
+#
+msgid "Save Area/Port"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select Date"
+msgstr "GRIB Filkatalog"
 #
 #
 #
@@ -340,39 +390,81 @@ msgstr "Föregående"
 msgid "Select Directory"
 msgstr "GRIB Filkatalog"
 #
-msgid "Select High Water"
-msgstr ""
 #
-msgid "Select Low Water"
-msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select Port"
+msgstr "GRIB Filkatalog"
 #
 msgid "Select tidal area"
 msgstr ""
 #
-msgid "Standard Ports"
+msgid "South Brittany"
+msgstr ""
+#
+msgid "Standard Port"
+msgstr ""
+#
+msgid "Strait of Dover"
 msgstr ""
 #
 msgid "Tidal Area"
+msgstr ""
+#
+msgid "Tidal Area ..."
 msgstr ""
 #
 #, fuzzy
 msgid "Tidal Current Arrow Colour"
 msgstr "GRIB Visningskontroll"
 #
+msgid "Tidal Data Finder"
+msgstr ""
+#
+msgid "Tide Date"
+msgstr ""
+#
 msgid "Tide Harmonics IDX Directory"
 msgstr ""
 #
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "Time Zone"
-msgstr "Avstånd"
+msgid "Tip of Brittany"
+msgstr ""
 #
 msgid "Using Tide/Current data from:  "
+msgstr ""
+#
+msgid "Vendee-Gironde"
 msgstr ""
 #
 #, fuzzy
@@ -401,8 +493,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid " (Dup)"
 #~ msgstr " (Dup)"
+#
 #
 #
 #
@@ -425,8 +519,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid " Mo )"
 #~ msgstr " MB)"
+#
 #
 #
 #
@@ -443,9 +539,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Ström"
+#
 #
 #
 #
@@ -470,6 +568,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "0.5"
 #~ msgstr "0.5"
 #
@@ -483,8 +582,21 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "0.8"
 #~ msgstr "0.8"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "1"
+#~ msgstr "1"
+#
 #
 #
 #
@@ -509,8 +621,21 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "12"
 #~ msgstr "12"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "2"
+#~ msgstr "2"
+#
 #
 #
 #
@@ -524,6 +649,18 @@ msgstr ""
 #
 #~ msgid "24"
 #~ msgstr "24"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#~ msgid "3"
+#~ msgstr "3"
+#
 #
 #
 #
@@ -548,8 +685,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "5"
 #~ msgstr "5"
+#
 #
 #
 #
@@ -574,8 +713,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "7"
 #~ msgstr "7"
+#
 #
 #
 #
@@ -601,8 +742,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Action"
 #~ msgstr "Åtgärd"
+#
 #
 #
 #
@@ -627,6 +770,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Air Temperature"
 #~ msgstr "Lufttemperatur"
 #
@@ -639,8 +783,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Air Temperature(2m)"
 #~ msgstr "Lufttemperatur(2m)"
+#
 #
 #
 #
@@ -667,6 +813,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "AirTemperature"
 #~ msgstr "Lufttemperatur"
 #
@@ -679,8 +826,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Barbed Arrows"
 #~ msgstr "Pilar med hakar"
+#
 #
 #
 #
@@ -710,6 +859,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Building Isobar map"
 #~ msgstr "Skapar isobar-karta"
 #
@@ -723,8 +873,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "COAMPS"
 #~ msgstr "COAMPS"
+#
 #
 #
 #
@@ -751,8 +903,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Cloud"
 #~ msgstr "Moln"
+#
 #
 #
 #
@@ -777,8 +931,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "CloudCover"
 #~ msgstr "Molntäcke"
+#
 #
 #
 #
@@ -825,8 +981,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Colors"
 #~ msgstr "Färger"
+#
 #
 #
 #
@@ -849,6 +1007,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Copy Missing Wave Records"
 #~ msgstr "Kopiera saknad våginformation"
 #
@@ -861,8 +1020,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Current"
 #~ msgstr "Ström"
+#
 #
 #
 #
@@ -892,9 +1053,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Data Display Preferences"
 #~ msgstr "GRIB Inställningar"
+#
 #
 #
 #
@@ -918,8 +1081,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Days"
 #~ msgstr "Dagar"
+#
 #
 #
 #
@@ -942,6 +1107,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Direction Arrows"
 #~ msgstr "Riktningspilar"
 #
@@ -954,8 +1120,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Display"
 #~ msgstr "Visa"
+#
 #
 #
 #
@@ -980,20 +1148,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Display Iso Temp. Lines"
 #~ msgstr "Visa Iso templinjer"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Display Isobars"
-#~ msgstr "Visa Isobarer"
 #
 #
 #
@@ -1019,8 +1177,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Error"
 #~ msgstr "Fel"
+#
 #
 #
 #
@@ -1043,8 +1203,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Error:  File does not exist!"
 #~ msgstr "Fel: Filen finns inte!"
+#
 #
 #
 #
@@ -1067,8 +1229,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Estimated File Size"
 #~ msgstr "Beräknad filstorlek"
+#
 #
 #
 #
@@ -1091,6 +1255,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Feet"
 #~ msgstr "Fot"
 #
@@ -1103,8 +1268,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Forecast Model "
 #~ msgstr "Prognosmodell"
+#
 #
 #
 #
@@ -1131,6 +1298,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
 #
@@ -1143,8 +1311,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Generic"
 #~ msgstr "Generell"
+#
 #
 #
 #
@@ -1169,8 +1339,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
 #
 #
 #
@@ -1193,8 +1365,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Inches"
 #~ msgstr "Tum"
+#
 #
 #
 #
@@ -1218,8 +1392,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Interval"
 #~ msgstr "Intervall"
+#
 #
 #
 #
@@ -1245,8 +1421,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "KPH"
 #~ msgstr "km/t"
+#
 #
 #
 #
@@ -1269,8 +1447,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Load File Options"
 #~ msgstr "Inställningar för laddning av fil"
+#
 #
 #
 #
@@ -1294,20 +1474,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Load the More Recent File in Directory"
 #~ msgstr "Ladda nyare fil i katalogen"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Local Time"
-#~ msgstr "Lokal tid"
 #
 #
 #
@@ -1321,6 +1491,7 @@ msgstr ""
 #
 #~ msgid "Login you use to connect to Zygrib's forum"
 #~ msgstr "Inloggning som du använder för att ansluta till Zygrib's forum"
+#
 #
 #
 #
@@ -1345,8 +1516,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "M/S"
 #~ msgstr "m/s"
+#
 #
 #
 #
@@ -1371,8 +1544,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "MPH"
 #~ msgstr "mph"
+#
 #
 #
 #
@@ -1395,8 +1570,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Mail To "
 #~ msgstr "Epost Till"
+#
 #
 #
 #
@@ -1419,8 +1596,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "MilliBars"
 #~ msgstr "MilliBar"
+#
 #
 #
 #
@@ -1445,8 +1624,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "MyLabel"
 #~ msgstr "Egen beteckning"
+#
 #
 #
 #
@@ -1469,8 +1650,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Numbers"
 #~ msgstr "Nummer"
+#
 #
 #
 #
@@ -1495,6 +1678,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "OpenCpn failed to logon! Please verify your eMail environment"
 #~ msgstr "OpenCpn kunde inte logga in! Kontrollera din epostinställning"
 #
@@ -1507,8 +1691,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Overlay Transparency"
 #~ msgstr "Transparent väderinformation"
+#
 #
 #
 #
@@ -1533,8 +1719,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Parameters"
 #~ msgstr "Parametrar"
+#
 #
 #
 #
@@ -1559,8 +1747,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Period"
 #~ msgstr "Period"
+#
 #
 #
 #
@@ -1583,9 +1773,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view invisible overlays:"
 #~ msgstr "Zooma ut eller öka skalan för att visa GRIB "
+#
 #
 #
 #
@@ -1619,9 +1811,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
 #~ msgstr "Zooma ut eller öka skalan för att visa GRIB regninformation"
+#
 #
 #
 #
@@ -1655,9 +1849,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
 #~ msgstr "Zooma ut eller öka skalan för att visa GRIB yttemperatur"
+#
 #
 #
 #
@@ -1688,6 +1884,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Precipitation"
 #~ msgstr "Nederbörd"
 #
@@ -1700,8 +1897,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Pressure"
 #~ msgstr "Lufttryck"
+#
 #
 #
 #
@@ -1730,8 +1929,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Profile"
 #~ msgstr "Profil"
+#
 #
 #
 #
@@ -1757,8 +1958,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "RTOFS"
 #~ msgstr "RTOFS"
+#
 #
 #
 #
@@ -1783,8 +1986,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Rainfall"
 #~ msgstr "Regn"
+#
 #
 #
 #
@@ -1809,8 +2014,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Ref : "
 #~ msgstr "Ref : "
+#
 #
 #
 #
@@ -1835,8 +2042,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Request Pofile"
 #~ msgstr "Begär Pofil"
+#
 #
 #
 #
@@ -1866,20 +2075,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Saildocs"
 #~ msgstr "Saildocs"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Save"
-#~ msgstr "Spara"
 #
 #
 #
@@ -1912,6 +2111,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Sea Temperature"
 #~ msgstr "Vattentemperatur"
 #
@@ -1924,8 +2124,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Sea Temperature(surf.)"
 #~ msgstr "Vattentemperatur(ytan)"
+#
 #
 #
 #
@@ -1952,8 +2154,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "SeaTemperature"
 #~ msgstr "Vattentemperatur"
+#
 #
 #
 #
@@ -1977,6 +2181,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Send"
 #~ msgstr "Skicka"
 #
@@ -1989,8 +2194,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Settings"
 #~ msgstr "Inställningar"
+#
 #
 #
 #
@@ -2067,8 +2274,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Show metres/sec for Wind Speed"
 #~ msgstr "Visa m/s för vindstyrka"
+#
 #
 #
 #
@@ -2097,8 +2306,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Size"
 #~ msgstr "Storlek"
+#
 #
 #
 #
@@ -2121,8 +2332,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Slices per hour"
 #~ msgstr "Antal delar/timme"
+#
 #
 #
 #
@@ -2145,8 +2358,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Stop"
 #~ msgstr "Stopp"
+#
 #
 #
 #
@@ -2173,6 +2388,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid ""
 #~ "This file contains data for particular time intervals but you have chosen "
@@ -2188,8 +2404,21 @@ msgstr ""
 #
 #
 #
+#
+#
+#, fuzzy
+#~ msgid "Time Zone"
+#~ msgstr "Avstånd"
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "UTC"
 #~ msgstr "UTC"
+#
 #
 #
 #
@@ -2212,8 +2441,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Updates per Second"
 #~ msgstr "Uppdateringar/sekund"
+#
 #
 #
 #
@@ -2236,8 +2467,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Använd högupplöst grafik"
+#
 #
 #
 #
@@ -2262,6 +2495,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "WW3-MEDIT"
 #~ msgstr "WW3-MEDIT"
 #
@@ -2274,8 +2508,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Warning!"
 #~ msgstr "Varning"
+#
 #
 #
 #
@@ -2300,8 +2536,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Wave"
 #~ msgstr "Våghöjd"
+#
 #
 #
 #
@@ -2324,6 +2562,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "WavesModel"
 #~ msgstr "Vågmodell"
 #
@@ -2336,8 +2575,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Wind"
 #~ msgstr "Vind"
+#
 #
 #
 #
@@ -2366,6 +2607,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Wind Gust"
 #~ msgstr "Vindby"
 #
@@ -2380,8 +2622,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Wind Scat"
 #~ msgstr "Vind Scat"
+#
 #
 #
 #
@@ -2415,9 +2659,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Vindstyrka, m/s."
+#
 #
 #
 #
@@ -2442,9 +2688,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Write and send eMail request"
 #~ msgstr "Spara och skicka inställningar för GRIB-begäran"
+#
 #
 #
 #
@@ -2465,6 +2713,7 @@ msgstr ""
 #~ "Klicka 'Sänd' för att skicka meddelandet.\n"
 #~ "Spara eller Avbryt för att fortsätta... eller nya parametrar för ett nytt "
 #~ "meddelande"
+#
 #
 #
 #
@@ -2497,8 +2746,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Zone"
 #~ msgstr "Zone"
+#
 #
 #
 #
@@ -2525,8 +2776,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "eMail error"
 #~ msgstr "epostfel"
+#
 #
 #
 #
@@ -2549,8 +2802,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "m/s"
 #~ msgstr "m/s"
+#
 #
 #
 #
@@ -2573,8 +2828,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "mph"
 #~ msgstr "mph"
+#
 #
 #
 #
@@ -2588,18 +2845,6 @@ msgstr ""
 #~ msgid "playback"
 #~ msgstr "Spela upp"
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "size"
-#~ msgstr "storlek"
 #
 #
 #
@@ -2635,9 +2880,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrent Data at Cursor"
 #~ msgstr "GRIB-data vid markör"
+#
 #
 #
 #
@@ -2693,9 +2940,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrent Preferences"
 #~ msgstr "GRIB Inställningar"
+#
 #
 #
 #
@@ -2707,6 +2956,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Ström"
@@ -2714,9 +2964,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "Grib-inställningar"
+#
 #
 #
 #
@@ -2734,9 +2986,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "zytcurrent Code"
 #~ msgstr "Ditt ZyGrib lösenord"
+#
 #
 #
 #

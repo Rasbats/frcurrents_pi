@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 11:23+0000\n"
+"POT-Creation-Date: 2025-07-07 10:18+0100\n"
 "PO-Revision-Date: 2025-01-14 10:20\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
@@ -16,349 +16,301 @@ msgstr ""
 "X-Crowdin-Language: nb\n"
 "X-Crowdin-File: /plugins/frcurrents_pi/po/frcurrents_pi.pot\n"
 "X-Crowdin-File-ID: 421\n"
-
-#: src/frcurrentsUIDialog.cpp:405 src/frcurrentsUIDialog.cpp:2066
-#: src/frcurrentsUIDialogBase.cpp:139
-msgid "HW-6"
-msgstr "HV-6"
-
-#: src/frcurrentsUIDialog.cpp:406
-msgid "HW-5"
-msgstr "HV-5"
-
-#: src/frcurrentsUIDialog.cpp:407
-msgid "HW-4"
-msgstr "HV-4"
-
-#: src/frcurrentsUIDialog.cpp:408
-msgid "HW-3"
-msgstr "HV-3"
-
-#: src/frcurrentsUIDialog.cpp:409
-msgid "HW-2"
-msgstr "HV-2"
-
-#: src/frcurrentsUIDialog.cpp:410
-msgid "HW-1"
-msgstr "HV-1"
-
-#: src/frcurrentsUIDialog.cpp:411 src/frcurrentsUIDialog.cpp:2343
-msgid "High Water"
-msgstr "Høyvann"
-
-#: src/frcurrentsUIDialog.cpp:412
-msgid "HW+1"
-msgstr "HV+1"
-
-#: src/frcurrentsUIDialog.cpp:413
-msgid "HW+2"
-msgstr "HV+2"
-
-#: src/frcurrentsUIDialog.cpp:414
-msgid "HW+3"
-msgstr "HV+3"
-
-#: src/frcurrentsUIDialog.cpp:415
-msgid "HW+4"
-msgstr "HV+4"
-
-#: src/frcurrentsUIDialog.cpp:416
-msgid "HW+5"
-msgstr "HV+5"
-
-#: src/frcurrentsUIDialog.cpp:417 src/frcurrentsUIDialog.cpp:2067
-#: src/frcurrentsUIDialogBase.cpp:145
-msgid "HW+6"
-msgstr "HV+6"
-
-#: src/frcurrentsUIDialog.cpp:419 src/frcurrentsUIDialog.cpp:2061
-msgid "LW-6"
-msgstr "LV-6"
-
-#: src/frcurrentsUIDialog.cpp:420
-msgid "LW-5"
-msgstr "LV-5"
-
-#: src/frcurrentsUIDialog.cpp:421
-msgid "LW-4"
-msgstr "LV-4"
-
-#: src/frcurrentsUIDialog.cpp:422
-msgid "LW-3"
-msgstr "LV-3"
-
-#: src/frcurrentsUIDialog.cpp:423
-msgid "LW-2"
-msgstr "LV-2"
-
-#: src/frcurrentsUIDialog.cpp:424
-msgid "LW-1"
-msgstr "LV-1"
-
-#: src/frcurrentsUIDialog.cpp:425 src/frcurrentsUIDialog.cpp:2341
-msgid "Low Water"
-msgstr "Lavvann"
-
-#: src/frcurrentsUIDialog.cpp:426
-msgid "LW+1"
-msgstr "LV+1"
-
-#: src/frcurrentsUIDialog.cpp:427
-msgid "LW+2"
-msgstr "LV+2"
-
-#: src/frcurrentsUIDialog.cpp:428
-msgid "LW+3"
-msgstr "LV+3"
-
-#: src/frcurrentsUIDialog.cpp:429
-msgid "LW+4"
-msgstr "LV+4"
-
-#: src/frcurrentsUIDialog.cpp:430
-msgid "LW+5"
-msgstr "LV+5"
-
-#: src/frcurrentsUIDialog.cpp:431 src/frcurrentsUIDialog.cpp:2062
-msgid "LW+6"
-msgstr "LV+6"
-
-#: src/frcurrentsUIDialog.cpp:654 src/frcurrentsUIDialog.cpp:776
-msgid "No tidal data"
-msgstr "Ingen tidevannsdata"
-
-#: src/frcurrentsUIDialog.cpp:769 src/frcurrentsUIDialog.cpp:2330
-msgid "Port not found"
-msgstr "Havn ikke funnet"
-
-#: src/frcurrentsUIDialog.cpp:769 src/frcurrentsUIDialog.cpp:2330
-msgid "Port finder"
-msgstr "Havnesøk"
-
-#: src/frcurrentsUIDialog.cpp:1025
-msgid "Choose a directory"
-msgstr "Velg en mappe"
-
-#: src/frcurrentsUIDialog.cpp:1100
-msgid "Choose the tcdata directory"
-msgstr "Velg tcdata mappen"
-
-#: src/frcurrentsUIDialog.cpp:1116
-msgid "Using Tide/Current data from:  "
-msgstr "Bruker tidevann/strømdata fra:"
-
-#: src/frcurrentsUIDialog.cpp:1233 src/frcurrentsUIDialog.cpp:1340
-#: src/frcurrentsUIDialog.cpp:1460
-msgid "No tidal data for this port"
-msgstr "Ingen tidevannsdata for denne havn"
-
-#: src/frcurrentsUIDialog.cpp:1233 src/frcurrentsUIDialog.cpp:1340
-#: src/frcurrentsUIDialog.cpp:1460
-msgid "No Tidal Data"
-msgstr "Ingen tidevannsdata"
-
-#: src/frcurrentsUIDialog.cpp:1778
-msgid "Failed to load file: "
-msgstr "Kunne ikke laste fil:"
-
-#: src/frcurrentsUIDialog.cpp:2059
-msgid "LW"
-msgstr "LV"
-
-#: src/frcurrentsUIDialog.cpp:2060
-msgid "Select Low Water"
-msgstr "Velg lavvann"
-
-#: src/frcurrentsUIDialog.cpp:2064 src/frcurrentsUIDialogBase.cpp:133
-msgid "HW"
-msgstr "HV"
-
-#: src/frcurrentsUIDialog.cpp:2065 src/frcurrentsUIDialogBase.cpp:79
-msgid "Select High Water"
-msgstr "Velg høyvann"
-
-#: src/frcurrentsUIDialogBase.cpp:20
-msgid "Tidal Area"
-msgstr "Tidevannsområde"
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "557 Strait of Dover"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "558 South Brittany"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:23
-msgid "559 Vendee-Gironde"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:23
-msgid "560 Tip of Britanny"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:23
-msgid "561 Fecamp to Cherbourg"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:24
-msgid "562 La Hague to Hx-de-Breat"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:24
-msgid "563 Hx-de-Breat to Brignogan"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:24
-msgid "564 English Channel"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:25
-msgid "565 Bay of Biscay"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:29
-msgid "Select tidal area"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:36
-msgid "Information"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:45
-msgid "Standard Ports"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:56
-msgid "Choose Date"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:66
-msgid "   Coeff"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:95
-msgid "Now"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:103
-msgid "Time Zone"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:113
-msgid "Previous"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:119
-msgid "Next"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:157
-msgid "Display date/time"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:161
-msgid "High Water +-"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:172
-msgid "Tide Harmonics IDX Directory"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:174
-msgid "Select Directory"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:239
-msgid "Display tidal rates (knots)"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:242
-msgid "Display tidal direction"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:245
-msgid "Fill Colour"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:248
-msgid "High Resolution Display"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:258
-msgid "Tidal Current Arrow Colour"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:266
+#
 msgid "      < 0.5 knots"
 msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:273
-msgid ">= 0.5 and < 1.5"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:280
-msgid ">= 1.5 and < 2.5"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:287
-msgid ">= 2.5 and < 3.5"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:294
-msgid ">= 3.5 knots    "
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:308
-msgid "Arrow Style"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:316
-msgid "Options:   "
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:320
-msgid "1"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:320
-msgid "2"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:320
-msgid "3"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:330
-msgid "Arrow Options :"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:332
-msgid "1: Normal\n"
+#
+msgid ""
+"1: Normal\n"
 "2: Small \n"
 "3: Normal length, \n"
 "    narrow width"
 msgstr ""
-
-#: src/frcurrentsUIDialogBase.h:84
+#
+msgid ">= 0.5 and < 1.5"
+msgstr ""
+#
+msgid ">= 1.5 and < 2.5"
+msgstr ""
+#
+msgid ">= 2.5 and < 3.5"
+msgstr ""
+#
+msgid ">= 3.5 knots    "
+msgstr ""
+#
+msgid "Arrow Options :"
+msgstr ""
+#
+msgid "Arrow Style"
+msgstr ""
+#
+msgid "Bay of Biscay"
+msgstr ""
+#
+#, fuzzy
+msgid "Choose Harmonics Directory"
+msgstr "Velg en mappe"
+#
+msgid "Coeff:"
+msgstr ""
+#
+msgid "Dialog"
+msgstr ""
+#
+msgid "Display Controls"
+msgstr ""
+#
+msgid "Display Time: UTC"
+msgstr ""
+#
+msgid "Display tidal direction"
+msgstr ""
+#
+msgid "Display tidal rates (knots)"
+msgstr ""
+#
+msgid "English Channel"
+msgstr ""
+#
+msgid "Failed to load file: "
+msgstr "Kunne ikke laste fil:"
+#
+msgid "Fecamp to La Hague"
+msgstr ""
+#
+msgid "Fill Colour"
+msgstr ""
+#
+msgid "Font Size Factor"
+msgstr ""
+#
 msgid "French Tidal Streams"
 msgstr ""
-
-#: src/frcurrentsUIDialogBase.h:125
+#
+msgid "HW"
+msgstr "HV"
+#
+msgid "HW+1"
+msgstr "HV+1"
+#
+msgid "HW+2"
+msgstr "HV+2"
+#
+msgid "HW+3"
+msgstr "HV+3"
+#
+msgid "HW+4"
+msgstr "HV+4"
+#
+msgid "HW+5"
+msgstr "HV+5"
+#
+msgid "HW+6"
+msgstr "HV+6"
+#
+msgid "HW-1"
+msgstr "HV-1"
+#
+msgid "HW-2"
+msgstr "HV-2"
+#
+msgid "HW-3"
+msgstr "HV-3"
+#
+msgid "HW-4"
+msgstr "HV-4"
+#
+msgid "HW-5"
+msgstr "HV-5"
+#
+msgid "HW-6"
+msgstr "HV-6"
+#
+msgid "High Resolution Display"
+msgstr ""
+#
+msgid "High Water"
+msgstr "Høyvann"
+#
+msgid "Hx-de-Brehat to Brignogan"
+msgstr ""
+#
+msgid "Icons Size Factor"
+msgstr ""
+#
+msgid "Information"
+msgstr ""
+#
+msgid "LW"
+msgstr "LV"
+#
+msgid "LW+1"
+msgstr "LV+1"
+#
+msgid "LW+2"
+msgstr "LV+2"
+#
+msgid "LW+3"
+msgstr "LV+3"
+#
+msgid "LW+4"
+msgstr "LV+4"
+#
+msgid "LW+5"
+msgstr "LV+5"
+#
+msgid "LW+6"
+msgstr "LV+6"
+#
+msgid "LW-1"
+msgstr "LV-1"
+#
+msgid "LW-2"
+msgstr "LV-2"
+#
+msgid "LW-3"
+msgstr "LV-3"
+#
+msgid "LW-4"
+msgstr "LV-4"
+#
+msgid "LW-5"
+msgstr "LV-5"
+#
+msgid "LW-6"
+msgstr "LV-6"
+#
+msgid "La Hague to Hx-de-Brehat"
+msgstr ""
+#
+msgid "Local"
+msgstr ""
+#
+msgid "Low Water"
+msgstr "Lavvann"
+#
+msgid "Next"
+msgstr ""
+#
+msgid ""
+"No Harmonics\n"
+"Select the directory containing HARMONIC.IDX\n"
+" Using the dialog that follows"
+msgstr ""
+#
+msgid "No Tidal Data"
+msgstr "Ingen tidevannsdata"
+#
+#, fuzzy
+msgid "No Tidal Data for BREST"
+msgstr "Ingen tidevannsdata"
+#
+msgid "Now"
+msgstr ""
+#
+msgid "Options:   "
+msgstr ""
+#
+msgid "Port finder"
+msgstr "Havnesøk"
+#
+msgid "Port not found"
+msgstr "Havn ikke funnet"
+#
 msgid "Preferences"
 msgstr ""
-
-#: src/frcurrents_pi.cpp:136 src/frcurrents_pi.cpp:140
+#
+msgid "Preferences..."
+msgstr ""
+#
+msgid "Previous"
+msgstr ""
+#
+msgid "Resize..."
+msgstr ""
+#
+#, fuzzy
+msgid "Save Area"
+msgstr "Tidevannsområde"
+#
+msgid "Save Area/Port"
+msgstr ""
+#
+#, fuzzy
+msgid "Select Date"
+msgstr "Velg lavvann"
+#
+msgid "Select Directory"
+msgstr ""
+#
+#, fuzzy
+msgid "Select Port"
+msgstr "Velg lavvann"
+#
+msgid "Select tidal area"
+msgstr ""
+#
+msgid "South Brittany"
+msgstr ""
+#
+msgid "Standard Port"
+msgstr ""
+#
+msgid "Strait of Dover"
+msgstr ""
+#
+msgid "Tidal Area"
+msgstr "Tidevannsområde"
+#
+#, fuzzy
+msgid "Tidal Area ..."
+msgstr "Tidevannsområde"
+#
+msgid "Tidal Current Arrow Colour"
+msgstr ""
+#
+#, fuzzy
+msgid "Tidal Data Finder"
+msgstr "Ingen tidevannsdata"
+#
+#, fuzzy
+msgid "Tide Date"
+msgstr "Ingen tidevannsdata"
+#
+msgid "Tide Harmonics IDX Directory"
+msgstr ""
+#
+msgid "Tip of Brittany"
+msgstr ""
+#
+msgid "Using Tide/Current data from:  "
+msgstr "Bruker tidevann/strømdata fra:"
+#
+msgid "Vendee-Gironde"
+msgstr ""
+#
 msgid "frcurrents"
 msgstr ""
-
-#: src/frcurrents_pi.cpp:186
+#
 msgid "frcurrents PlugIn for OpenCPN"
 msgstr ""
-
-#: src/frcurrents_pi.cpp:191
-msgid "frcurrents PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+#
+msgid ""
+"frcurrents PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n"
+"\n"
 "\t\t\t   "
 msgstr ""
-
+#
+#~ msgid "Choose the tcdata directory"
+#~ msgstr "Velg tcdata mappen"
+#
+#~ msgid "No tidal data"
+#~ msgstr "Ingen tidevannsdata"
+#
+#~ msgid "No tidal data for this port"
+#~ msgstr "Ingen tidevannsdata for denne havn"
+#
+#~ msgid "Select High Water"
+#~ msgstr "Velg høyvann"

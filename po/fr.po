@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn : Plugin TCurrent\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-15 20:52+0100\n"
+"POT-Creation-Date: 2025-07-07 10:18+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gilletarom et  EdelVoilier <contact@gilletarom.fr et  "
 "pascaljouin74@gmail.com>\n"
@@ -17,50 +17,11 @@ msgstr ""
 msgid "      < 0.5 knots"
 msgstr ""
 #
-msgid "   Coeff"
-msgstr ""
-#
-msgid "1"
-msgstr ""
-#
 msgid ""
 "1: Normal\n"
 "2: Small \n"
 "3: Normal length, \n"
 "    narrow width"
-msgstr ""
-#
-msgid "2"
-msgstr ""
-#
-msgid "3"
-msgstr ""
-#
-msgid "557"
-msgstr ""
-#
-msgid "558"
-msgstr ""
-#
-msgid "559"
-msgstr ""
-#
-msgid "560"
-msgstr ""
-#
-msgid "561"
-msgstr ""
-#
-msgid "562"
-msgstr ""
-#
-msgid "563"
-msgstr ""
-#
-msgid "564"
-msgstr ""
-#
-msgid "565"
 msgstr ""
 #
 msgid ">= 0.5 and < 1.5"
@@ -88,17 +49,33 @@ msgstr "Zone horaire"
 msgid "Arrow Style"
 msgstr ""
 #
-msgid "Choose Date"
+msgid "Bay of Biscay"
 msgstr ""
 #
-msgid "Choose a directory"
+msgid "Choose Harmonics Directory"
 msgstr ""
 #
-msgid "Choose the tcdata directory"
+msgid "Coeff:"
 msgstr ""
+#
+msgid "Dialog"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #, fuzzy
-msgid "Display date/time"
+msgid "Display Controls"
+msgstr "Afficher les isobarres"
+#
+#, fuzzy
+msgid "Display Time: UTC"
 msgstr "Afficher la direction des courants (degrés)"
 #
 msgid "Display tidal direction"
@@ -107,23 +84,26 @@ msgstr "Afficher la direction des courants (degrés)"
 msgid "Display tidal rates (knots)"
 msgstr "Afficher les vitesses des courants de marée  (noeuds)"
 #
+msgid "English Channel"
+msgstr ""
+#
 msgid "Failed to load file: "
+msgstr ""
+#
+msgid "Fecamp to La Hague"
 msgstr ""
 #
 msgid "Fill Colour"
 msgstr "Remplissage en couleur des flèches"
+#
+msgid "Font Size Factor"
+msgstr ""
 #
 msgid "French Tidal Streams"
 msgstr ""
 #
 msgid "HW"
 msgstr "PM"
-#
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
-msgstr ""
 #
 msgid "HW+1"
 msgstr ""
@@ -174,7 +154,10 @@ msgstr "Resolution"
 msgid "High Water"
 msgstr ""
 #
-msgid "High Water +-"
+msgid "Hx-de-Brehat to Brignogan"
+msgstr ""
+#
+msgid "Icons Size Factor"
 msgstr ""
 #
 msgid "Information"
@@ -220,19 +203,38 @@ msgstr ""
 msgid "LW-6"
 msgstr ""
 #
+msgid "La Hague to Hx-de-Brehat"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Local"
+msgstr "Heure Locale"
+#
 msgid "Low Water"
 msgstr ""
 #
 msgid "Next"
 msgstr "Suivant"
 #
+msgid ""
+"No Harmonics\n"
+"Select the directory containing HARMONIC.IDX\n"
+" Using the dialog that follows"
+msgstr ""
+#
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
-msgid "No tidal data for this port"
+msgid "No Tidal Data for BREST"
 msgstr ""
 #
 msgid "Now"
@@ -248,9 +250,6 @@ msgstr "Maintenant"
 msgid "Options:   "
 msgstr "Zone horaire"
 #
-msgid "Please choose a new date"
-msgstr ""
-#
 msgid "Port finder"
 msgstr ""
 #
@@ -260,45 +259,89 @@ msgstr ""
 msgid "Preferences"
 msgstr "Préférences"
 #
+#, fuzzy
+msgid "Preferences..."
+msgstr "Préférences"
+#
 msgid "Previous"
 msgstr "Précédent"
+#
+msgid "Resize..."
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Save Area"
+msgstr "Sauvegarder"
+#
+msgid "Save Area/Port"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select Date"
+msgstr "Sélectionnez un fichier GRIB"
 #
 msgid "Select Directory"
 msgstr ""
 #
-msgid "Select High Water"
-msgstr ""
-#
-msgid "Select Low Water"
+msgid "Select Port"
 msgstr ""
 #
 msgid "Select tidal area"
 msgstr ""
 #
-msgid "Standard Ports"
+msgid "South Brittany"
+msgstr ""
+#
+msgid "Standard Port"
+msgstr ""
+#
+msgid "Strait of Dover"
 msgstr ""
 #
 msgid "Tidal Area"
+msgstr ""
+#
+msgid "Tidal Area ..."
 msgstr ""
 #
 #, fuzzy
 msgid "Tidal Current Arrow Colour"
 msgstr "Gestion de zone et de marée"
 #
+msgid "Tidal Data Finder"
+msgstr ""
+#
+msgid "Tide Date"
+msgstr ""
+#
 msgid "Tide Harmonics IDX Directory"
 msgstr ""
 #
-#
-#
-#
-#
-#
-#
-#, fuzzy
-msgid "Time Zone"
-msgstr "Zone horaire"
+msgid "Tip of Brittany"
+msgstr ""
 #
 msgid "Using Tide/Current data from:  "
+msgstr ""
+#
+msgid "Vendee-Gironde"
 msgstr ""
 #
 #, fuzzy
@@ -330,8 +373,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid " (Max size )"
 #~ msgstr "(Taille maximale)"
+#
 #
 #
 #
@@ -354,8 +399,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "( Max "
 #~ msgstr "( Max "
+#
 #
 #
 #
@@ -363,6 +410,7 @@ msgstr ""
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "tcurrent"
+#
 #
 #
 #
@@ -386,8 +434,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Air Temp"
 #~ msgstr "Temp. Air"
+#
 #
 #
 #
@@ -410,6 +460,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Apply"
 #~ msgstr "Appliquer"
 #
@@ -422,8 +473,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Barbed Arrows"
 #~ msgstr "Flèches à barbules"
+#
 #
 #
 #
@@ -453,8 +506,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Building Isobar map"
 #~ msgstr "Construire la carte des isobarres"
+#
 #
 #
 #
@@ -477,8 +532,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Cloud Cover"
 #~ msgstr "Couverture nuageuse"
+#
 #
 #
 #
@@ -501,8 +558,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Copy First Cumulative Missing Record"
 #~ msgstr "Copier le premier enregistrement cumulatif manquant"
+#
 #
 #
 #
@@ -525,8 +584,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Current"
 #~ msgstr "Courant"
+#
 #
 #
 #
@@ -549,8 +610,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Days"
 #~ msgstr "Jours"
+#
 #
 #
 #
@@ -573,6 +636,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Direction Arrows"
 #~ msgstr "Direction des flèches"
 #
@@ -585,8 +649,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Display"
 #~ msgstr "Afficher"
+#
 #
 #
 #
@@ -610,8 +676,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Display Isobars"
 #~ msgstr "Afficher les isobarres"
+#
 #
 #
 #
@@ -635,21 +703,10 @@ msgstr ""
 #
 #
 #
-#, fuzzy
-#~ msgid "Display Isotherms"
-#~ msgstr "Afficher les isobarres"
-#
-#
-#
-#
-#
-#
-#
-#
-#
 #
 #~ msgid "Error:  Can't read this File!"
 #~ msgstr "Erreur : Impossible de lire ce fichier !"
+#
 #
 #
 #
@@ -672,8 +729,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Error:  No valid data in this file!"
 #~ msgstr "Erreur : Pas de donnée valide dans ce fichier !"
+#
 #
 #
 #
@@ -696,8 +755,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Fahrenheit"
 #~ msgstr "Fahrenheit"
+#
 #
 #
 #
@@ -720,6 +781,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Forecast Model "
 #~ msgstr "Model des prévisions"
 #
@@ -732,8 +794,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Generic"
 #~ msgstr "Générique"
+#
 #
 #
 #
@@ -758,6 +822,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Hours"
 #~ msgstr "heures"
 #
@@ -770,8 +835,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Inches"
 #~ msgstr "Pouces"
+#
 #
 #
 #
@@ -795,8 +862,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Interval"
 #~ msgstr "Intervalle"
+#
 #
 #
 #
@@ -819,6 +888,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Knots"
 #~ msgstr "Noeuds"
 #
@@ -831,8 +901,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Load File Options"
 #~ msgstr "Option de fichier"
+#
 #
 #
 #
@@ -856,6 +928,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Load the More Recent File in Directory"
 #~ msgstr "Chargez le plus récent fichier du dossier"
 #
@@ -868,20 +941,10 @@ msgstr ""
 #
 #
 #
-#~ msgid "Local Time"
-#~ msgstr "Heure Locale"
-#
-#
-#
-#
-#
-#
-#
-#
-#
 #
 #~ msgid "Loop Mode"
 #~ msgstr "Mode en boucle"
+#
 #
 #
 #
@@ -905,8 +968,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Mail"
 #~ msgstr "Mail"
+#
 #
 #
 #
@@ -929,8 +994,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Meters"
 #~ msgstr "Mètres"
+#
 #
 #
 #
@@ -953,8 +1020,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Millimeters"
 #~ msgstr "Millimètres"
+#
 #
 #
 #
@@ -977,8 +1046,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Numbers"
 #~ msgstr "Nombres"
+#
 #
 #
 #
@@ -1001,8 +1072,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Overlay Transparency"
 #~ msgstr "Transparence de superposition"
+#
 #
 #
 #
@@ -1025,6 +1098,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Percentage"
 #~ msgstr "Pourcentage"
 #
@@ -1037,8 +1111,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Play"
 #~ msgstr "Jouer"
+#
 #
 #
 #
@@ -1065,8 +1141,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Pressure"
 #~ msgstr "Pression"
+#
 #
 #
 #
@@ -1089,8 +1167,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Rainfall"
 #~ msgstr "Précipitations"
+#
 #
 #
 #
@@ -1113,8 +1193,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Request"
 #~ msgstr "Requête"
+#
 #
 #
 #
@@ -1144,20 +1226,10 @@ msgstr ""
 #
 #
 #
-#~ msgid "Save"
-#~ msgstr "Sauvegarder"
-#
-#
-#
-#
-#
-#
-#
-#
-#
 #
 #~ msgid "Sea Temp"
 #~ msgstr "Temp. eau"
+#
 #
 #
 #
@@ -1180,21 +1252,10 @@ msgstr ""
 #
 #
 #
-#, fuzzy
-#~ msgid "Select a tcurrent file"
-#~ msgstr "Sélectionnez un fichier GRIB"
-#
-#
-#
-#
-#
-#
-#
-#
-#
 #
 #~ msgid "Send"
 #~ msgstr "Envoyer"
+#
 #
 #
 #
@@ -1217,8 +1278,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Settings"
 #~ msgstr "Préférences"
+#
 #
 #
 #
@@ -1241,8 +1304,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Slices per Update"
 #~ msgstr "Tranches par jour"
+#
 #
 #
 #
@@ -1265,8 +1330,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Spacing"
 #~ msgstr "Espacement"
+#
 #
 #
 #
@@ -1289,12 +1356,14 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid ""
 #~ "The file size limit is overcome!\n"
 #~ "You can zoom in and/or change parameters..."
 #~ msgstr ""
 #~ "La taille du fichier est trop grande !\n"
 #~ "Vous devez effectuer un zoom + et/ou changer les paramètres ... "
+#
 #
 #
 #
@@ -1323,6 +1392,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "This is your zytcurrent's forum access Login"
 #~ msgstr "Ceci est votre login d'accès au forum de Zygrib"
@@ -1332,8 +1402,21 @@ msgstr ""
 #
 #
 #
+#
+#
+#, fuzzy
+#~ msgid "Time Zone"
+#~ msgstr "Zone horaire"
+#
+#
+#
+#
+#
+#
+#
 #~ msgid "UTC"
 #~ msgstr "UTC"
+#
 #
 #
 #
@@ -1356,8 +1439,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Updates per Second"
 #~ msgstr "Mises à jour par seconde"
+#
 #
 #
 #
@@ -1381,8 +1466,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Utiliser le graphisme haute définition"
+#
 #
 #
 #
@@ -1405,8 +1492,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Warning:  Empty directory!"
 #~ msgstr "Attention : Ce dossier est vide !"
+#
 #
 #
 #
@@ -1429,8 +1518,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "WavesModel"
 #~ msgstr "Modèle des vagues"
+#
 #
 #
 #
@@ -1453,6 +1544,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Wind Gust"
 #~ msgstr "Rafale de vent"
 #
@@ -1465,8 +1557,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Write and send eMail request"
 #~ msgstr "Préparation et envoi des caractéristiques de la requête GRIB"
+#
 #
 #
 #
@@ -1497,6 +1591,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid ""
 #~ "Your request was sent \n"
@@ -1507,6 +1602,7 @@ msgstr ""
 #~ "(si votre systeme a un MTA configuré et est capable d'envoyer des mails).\n"
 #~ "Sauvegardez ou annulez pour continuer ... ou entrez de nouveaux paramètres "
 #~ "pour un nouvel email ..."
+#
 #
 #
 #
@@ -1529,8 +1625,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "m/s"
 #~ msgstr "m/s"
+#
 #
 #
 #
@@ -1553,8 +1651,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "mph"
 #~ msgstr "mph"
+#
 #
 #
 #
@@ -1577,9 +1677,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrent Data at Cursor"
 #~ msgstr "Valeurs des données sous la souris"
+#
 #
 #
 #
@@ -1615,8 +1717,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "tcurrent Settings"
 #~ msgstr "Réglages de TCurrent"
+#
 #
 #
 #
@@ -1628,6 +1732,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "Réglages de TCurrent"
@@ -1635,9 +1740,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrentUseFillColour"
 #~ msgstr "Remplissage en couleur des flèches"
+#
 #
 #
 #
@@ -1655,9 +1762,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "zytcurrent Code"
 #~ msgstr "Votre code Zygrib"
+#
 #
 #
 #

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.6.1718\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-15 20:52+0100\n"
+"POT-Creation-Date: 2025-07-07 10:18+0100\n"
 "PO-Revision-Date: 2013-01-10 15:09+0100\n"
 "Last-Translator: opencpn.es <opencpn.es@gmx.com>\n"
 "Language-Team: SpanishTeam LaTabernadelPuerto.com <opencpn.es@gmx.com>\n"
@@ -20,50 +20,11 @@ msgstr ""
 msgid "      < 0.5 knots"
 msgstr ""
 #
-msgid "   Coeff"
-msgstr ""
-#
-msgid "1"
-msgstr ""
-#
 msgid ""
 "1: Normal\n"
 "2: Small \n"
 "3: Normal length, \n"
 "    narrow width"
-msgstr ""
-#
-msgid "2"
-msgstr ""
-#
-msgid "3"
-msgstr ""
-#
-msgid "557"
-msgstr ""
-#
-msgid "558"
-msgstr ""
-#
-msgid "559"
-msgstr ""
-#
-msgid "560"
-msgstr ""
-#
-msgid "561"
-msgstr ""
-#
-msgid "562"
-msgstr ""
-#
-msgid "563"
-msgstr ""
-#
-msgid "564"
-msgstr ""
-#
-msgid "565"
 msgstr ""
 #
 msgid ">= 0.5 and < 1.5"
@@ -84,16 +45,22 @@ msgstr ""
 msgid "Arrow Style"
 msgstr ""
 #
-msgid "Choose Date"
+msgid "Bay of Biscay"
 msgstr ""
 #
-msgid "Choose a directory"
+msgid "Choose Harmonics Directory"
 msgstr ""
 #
-msgid "Choose the tcdata directory"
+msgid "Coeff:"
 msgstr ""
 #
-msgid "Display date/time"
+msgid "Dialog"
+msgstr ""
+#
+msgid "Display Controls"
+msgstr ""
+#
+msgid "Display Time: UTC"
 msgstr ""
 #
 msgid "Display tidal direction"
@@ -102,22 +69,25 @@ msgstr ""
 msgid "Display tidal rates (knots)"
 msgstr ""
 #
+msgid "English Channel"
+msgstr ""
+#
 msgid "Failed to load file: "
 msgstr ""
 #
+msgid "Fecamp to La Hague"
+msgstr ""
+#
 msgid "Fill Colour"
+msgstr ""
+#
+msgid "Font Size Factor"
 msgstr ""
 #
 msgid "French Tidal Streams"
 msgstr ""
 #
 msgid "HW"
-msgstr ""
-#
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
 msgstr ""
 #
 msgid "HW+1"
@@ -162,7 +132,10 @@ msgstr ""
 msgid "High Water"
 msgstr ""
 #
-msgid "High Water +-"
+msgid "Hx-de-Brehat to Brignogan"
+msgstr ""
+#
+msgid "Icons Size Factor"
 msgstr ""
 #
 msgid "Information"
@@ -207,28 +180,34 @@ msgstr ""
 msgid "LW-6"
 msgstr ""
 #
+msgid "La Hague to Hx-de-Brehat"
+msgstr ""
+#
+msgid "Local"
+msgstr ""
+#
 msgid "Low Water"
 msgstr ""
 #
 msgid "Next"
 msgstr ""
 #
+msgid ""
+"No Harmonics\n"
+"Select the directory containing HARMONIC.IDX\n"
+" Using the dialog that follows"
+msgstr ""
+#
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
-msgid "No tidal data for this port"
+msgid "No Tidal Data for BREST"
 msgstr ""
 #
 msgid "Now"
 msgstr ""
 #
 msgid "Options:   "
-msgstr ""
-#
-msgid "Please choose a new date"
 msgstr ""
 #
 msgid "Port finder"
@@ -242,8 +221,61 @@ msgstr ""
 msgid "Preferences"
 msgstr "Preferencias GRIB"
 #
+#
+#, fuzzy
+msgid "Preferences..."
+msgstr "Preferencias GRIB"
+#
 msgid "Previous"
 msgstr ""
+#
+msgid "Resize..."
+msgstr ""
+#
+msgid "Save Area"
+msgstr ""
+#
+msgid "Save Area/Port"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select Date"
+msgstr "Carpeta Ficheros GRIB"
 #
 #
 #
@@ -284,19 +316,61 @@ msgstr ""
 msgid "Select Directory"
 msgstr "Carpeta Ficheros GRIB"
 #
-msgid "Select High Water"
-msgstr ""
 #
-msgid "Select Low Water"
-msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select Port"
+msgstr "Carpeta Ficheros GRIB"
 #
 msgid "Select tidal area"
 msgstr ""
 #
-msgid "Standard Ports"
+msgid "South Brittany"
+msgstr ""
+#
+msgid "Standard Port"
+msgstr ""
+#
+msgid "Strait of Dover"
 msgstr ""
 #
 msgid "Tidal Area"
+msgstr ""
+#
+msgid "Tidal Area ..."
 msgstr ""
 #
 #
@@ -305,13 +379,22 @@ msgstr ""
 msgid "Tidal Current Arrow Colour"
 msgstr "Control Visualización GRIB"
 #
+msgid "Tidal Data Finder"
+msgstr ""
+#
+msgid "Tide Date"
+msgstr ""
+#
 msgid "Tide Harmonics IDX Directory"
 msgstr ""
 #
-msgid "Time Zone"
+msgid "Tip of Brittany"
 msgstr ""
 #
 msgid "Using Tide/Current data from:  "
+msgstr ""
+#
+msgid "Vendee-Gironde"
 msgstr ""
 #
 #
@@ -336,9 +419,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Velocidad Actual, Nds."
+#
 #
 #
 #
@@ -388,9 +473,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Velocidad Actual, Nds."
+#
 #
 #
 #
@@ -424,8 +511,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
+#
 #
 #
 #
@@ -451,9 +540,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view invisible overlays:"
 #~ msgstr "Ajuste Zoom o Escala para ver HTSGW GRIB eliminado"
+#
 #
 #
 #
@@ -491,9 +582,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed CURRENT GRIB"
 #~ msgstr "Ajuste Zoom o Escala para ver CRAIN GRIB eliminado"
+#
 #
 #
 #
@@ -531,9 +624,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Sea Surf.Temp. GRIB"
 #~ msgstr "Ajuste Zoom o Escala para ver SEATEMP GRIB eliminado"
+#
 #
 #
 #
@@ -566,9 +661,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Presión, mBar"
+#
 #
 #
 #
@@ -609,6 +706,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Temperatura Superficie Mar, C"
@@ -624,9 +722,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Seleccionar Carpeta GRIB"
+#
 #
 #
 #
@@ -705,8 +805,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Show metres/sec for Wind Speed"
 #~ msgstr "Mostrar metros/seg para Velocidad Viento"
+#
 #
 #
 #
@@ -739,8 +841,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Usar Gráficos Alta Definición"
+#
 #
 #
 #
@@ -778,6 +882,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Wind Speed and Direction(10m)"
 #~ msgstr "Dirección Viento"
@@ -798,9 +903,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Velocidad Viento, m/seg."
+#
 #
 #
 #
@@ -866,9 +973,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "Datos GRIB"
+#
 #
 #
 #
@@ -906,6 +1015,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Velocidad Actual, Nds."
@@ -930,9 +1040,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "Preferencias GRIB"
+#
 #
 #
 #

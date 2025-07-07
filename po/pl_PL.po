@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-06 10:32+0000\n"
+"POT-Creation-Date: 2025-07-07 10:18+0100\n"
 "PO-Revision-Date: 2025-01-06 10:48\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
@@ -10,355 +10,318 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Crowdin-Project: opencpn\n"
 "X-Crowdin-Project-ID: 49843\n"
 "X-Crowdin-Language: pl\n"
 "X-Crowdin-File: /plugins/frcurrents_pi/po/frcurrents_pi.pot\n"
 "X-Crowdin-File-ID: 421\n"
-
-#: src/frcurrentsUIDialog.cpp:397 src/frcurrentsUIDialog.cpp:1985
-#: src/frcurrentsUIDialogBase.cpp:136
-msgid "HW-6"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:398
-msgid "HW-5"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:399
-msgid "HW-4"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:400
-msgid "HW-3"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:401
-msgid "HW-2"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:402
-msgid "HW-1"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:403 src/frcurrentsUIDialog.cpp:2262
-msgid "High Water"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:404
-msgid "HW+1"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:405
-msgid "HW+2"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:406
-msgid "HW+3"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:407
-msgid "HW+4"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:408
-msgid "HW+5"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:409 src/frcurrentsUIDialog.cpp:1986
-#: src/frcurrentsUIDialogBase.cpp:142
-msgid "HW+6"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:411 src/frcurrentsUIDialog.cpp:1980
-msgid "LW-6"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:412
-msgid "LW-5"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:413
-msgid "LW-4"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:414
-msgid "LW-3"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:415
-msgid "LW-2"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:416
-msgid "LW-1"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:417 src/frcurrentsUIDialog.cpp:2260
-msgid "Low Water"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:418
-msgid "LW+1"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:419
-msgid "LW+2"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:420
-msgid "LW+3"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:421
-msgid "LW+4"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:422
-msgid "LW+5"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:423 src/frcurrentsUIDialog.cpp:1981
-msgid "LW+6"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:596 src/frcurrentsUIDialog.cpp:703
-msgid "No tidal data"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:696 src/frcurrentsUIDialog.cpp:2249
-msgid "Port not found"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:696 src/frcurrentsUIDialog.cpp:2249
-msgid "Port finder"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:950
-msgid "Choose a directory"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:1025
-msgid "Choose the tcdata directory"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:1041
-msgid "Using Tide/Current data from:  "
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:1158 src/frcurrentsUIDialog.cpp:1265
-#: src/frcurrentsUIDialog.cpp:1382
-msgid "No tidal data for this port"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:1158 src/frcurrentsUIDialog.cpp:1265
-#: src/frcurrentsUIDialog.cpp:1382
-msgid "No Tidal Data"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:1697
-msgid "Failed to load file: "
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:1978
-msgid "LW"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:1979
-msgid "Select Low Water"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:1983 src/frcurrentsUIDialogBase.cpp:130
-msgid "HW"
-msgstr ""
-
-#: src/frcurrentsUIDialog.cpp:1984 src/frcurrentsUIDialogBase.cpp:76
-msgid "Select High Water"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:20
-msgid "Tidal Area"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "557"
-msgstr "557"
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "558"
-msgstr "558"
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "559"
-msgstr "559"
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "560"
-msgstr "560"
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "561"
-msgstr "561"
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "562"
-msgstr "562"
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "563"
-msgstr "563"
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "564"
-msgstr "564"
-
-#: src/frcurrentsUIDialogBase.cpp:22
-msgid "565"
-msgstr "565"
-
-#: src/frcurrentsUIDialogBase.cpp:26
-msgid "Select tidal area"
-msgstr "Wybierz obszar pływowy"
-
-#: src/frcurrentsUIDialogBase.cpp:33
-msgid "Information"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:42
-msgid "Standard Ports"
-msgstr "Porty zasadnicze"
-
-#: src/frcurrentsUIDialogBase.cpp:53
-msgid "Choose Date"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:63
-msgid "   Coeff"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:92
-msgid "Now"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:100
-msgid "Time Zone"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:110
-msgid "Previous"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:116
-msgid "Next"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:154
-msgid "Display date/time"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:158
-msgid "High Water +-"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:169
-msgid "Tide Harmonics IDX Directory"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:171
-msgid "Select Directory"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:236
-msgid "Display tidal rates (knots)"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:239
-msgid "Display tidal direction"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:242
-msgid "Fill Colour"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:245
-msgid "High Resolution Display"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:255
-msgid "Tidal Current Arrow Colour"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:263
+#
 msgid "      < 0.5 knots"
 msgstr "      < 0,5 węzłów"
-
-#: src/frcurrentsUIDialogBase.cpp:270
-msgid ">= 0.5 and < 1.5"
-msgstr ">= 0,5 i < 1,5"
-
-#: src/frcurrentsUIDialogBase.cpp:277
-msgid ">= 1.5 and < 2.5"
-msgstr "> = 1,5 i < 2,5"
-
-#: src/frcurrentsUIDialogBase.cpp:284
-msgid ">= 2.5 and < 3.5"
-msgstr "> = 2,5 i < 3,5"
-
-#: src/frcurrentsUIDialogBase.cpp:291
-msgid ">= 3.5 knots    "
-msgstr "> = 3,5 węzłów    "
-
-#: src/frcurrentsUIDialogBase.cpp:305
-msgid "Arrow Style"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:313
-msgid "Options:   "
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:317
-msgid "1"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:317
-msgid "2"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:317
-msgid "3"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:327
-msgid "Arrow Options :"
-msgstr ""
-
-#: src/frcurrentsUIDialogBase.cpp:329
-msgid "1: Normal\n"
+#
+msgid ""
+"1: Normal\n"
 "2: Small \n"
 "3: Normal length, \n"
 "    narrow width"
 msgstr ""
-
-#: src/frcurrentsUIDialogBase.h:84
+#
+msgid ">= 0.5 and < 1.5"
+msgstr ">= 0,5 i < 1,5"
+#
+msgid ">= 1.5 and < 2.5"
+msgstr "> = 1,5 i < 2,5"
+#
+msgid ">= 2.5 and < 3.5"
+msgstr "> = 2,5 i < 3,5"
+#
+msgid ">= 3.5 knots    "
+msgstr "> = 3,5 węzłów    "
+#
+msgid "Arrow Options :"
+msgstr ""
+#
+msgid "Arrow Style"
+msgstr ""
+#
+msgid "Bay of Biscay"
+msgstr ""
+#
+msgid "Choose Harmonics Directory"
+msgstr ""
+#
+msgid "Coeff:"
+msgstr ""
+#
+msgid "Dialog"
+msgstr ""
+#
+msgid "Display Controls"
+msgstr ""
+#
+msgid "Display Time: UTC"
+msgstr ""
+#
+msgid "Display tidal direction"
+msgstr ""
+#
+msgid "Display tidal rates (knots)"
+msgstr ""
+#
+msgid "English Channel"
+msgstr ""
+#
+msgid "Failed to load file: "
+msgstr ""
+#
+msgid "Fecamp to La Hague"
+msgstr ""
+#
+msgid "Fill Colour"
+msgstr ""
+#
+msgid "Font Size Factor"
+msgstr ""
+#
 msgid "French Tidal Streams"
 msgstr ""
-
-#: src/frcurrentsUIDialogBase.h:125
+#
+msgid "HW"
+msgstr ""
+#
+msgid "HW+1"
+msgstr ""
+#
+msgid "HW+2"
+msgstr ""
+#
+msgid "HW+3"
+msgstr ""
+#
+msgid "HW+4"
+msgstr ""
+#
+msgid "HW+5"
+msgstr ""
+#
+msgid "HW+6"
+msgstr ""
+#
+msgid "HW-1"
+msgstr ""
+#
+msgid "HW-2"
+msgstr ""
+#
+msgid "HW-3"
+msgstr ""
+#
+msgid "HW-4"
+msgstr ""
+#
+msgid "HW-5"
+msgstr ""
+#
+msgid "HW-6"
+msgstr ""
+#
+msgid "High Resolution Display"
+msgstr ""
+#
+msgid "High Water"
+msgstr ""
+#
+msgid "Hx-de-Brehat to Brignogan"
+msgstr ""
+#
+msgid "Icons Size Factor"
+msgstr ""
+#
+msgid "Information"
+msgstr ""
+#
+msgid "LW"
+msgstr ""
+#
+msgid "LW+1"
+msgstr ""
+#
+msgid "LW+2"
+msgstr ""
+#
+msgid "LW+3"
+msgstr ""
+#
+msgid "LW+4"
+msgstr ""
+#
+msgid "LW+5"
+msgstr ""
+#
+msgid "LW+6"
+msgstr ""
+#
+msgid "LW-1"
+msgstr ""
+#
+msgid "LW-2"
+msgstr ""
+#
+msgid "LW-3"
+msgstr ""
+#
+msgid "LW-4"
+msgstr ""
+#
+msgid "LW-5"
+msgstr ""
+#
+msgid "LW-6"
+msgstr ""
+#
+msgid "La Hague to Hx-de-Brehat"
+msgstr ""
+#
+msgid "Local"
+msgstr ""
+#
+msgid "Low Water"
+msgstr ""
+#
+msgid "Next"
+msgstr ""
+#
+msgid ""
+"No Harmonics\n"
+"Select the directory containing HARMONIC.IDX\n"
+" Using the dialog that follows"
+msgstr ""
+#
+msgid "No Tidal Data"
+msgstr ""
+#
+msgid "No Tidal Data for BREST"
+msgstr ""
+#
+msgid "Now"
+msgstr ""
+#
+msgid "Options:   "
+msgstr ""
+#
+msgid "Port finder"
+msgstr ""
+#
+msgid "Port not found"
+msgstr ""
+#
 msgid "Preferences"
 msgstr ""
-
-#: src/frcurrents_pi.cpp:136 src/frcurrents_pi.cpp:140
+#
+msgid "Preferences..."
+msgstr ""
+#
+msgid "Previous"
+msgstr ""
+#
+msgid "Resize..."
+msgstr ""
+#
+msgid "Save Area"
+msgstr ""
+#
+msgid "Save Area/Port"
+msgstr ""
+#
+#, fuzzy
+msgid "Select Date"
+msgstr "Wybierz obszar pływowy"
+#
+msgid "Select Directory"
+msgstr ""
+#
+msgid "Select Port"
+msgstr ""
+#
+msgid "Select tidal area"
+msgstr "Wybierz obszar pływowy"
+#
+msgid "South Brittany"
+msgstr ""
+#
+#, fuzzy
+msgid "Standard Port"
+msgstr "Porty zasadnicze"
+#
+msgid "Strait of Dover"
+msgstr ""
+#
+msgid "Tidal Area"
+msgstr ""
+#
+msgid "Tidal Area ..."
+msgstr ""
+#
+msgid "Tidal Current Arrow Colour"
+msgstr ""
+#
+msgid "Tidal Data Finder"
+msgstr ""
+#
+msgid "Tide Date"
+msgstr ""
+#
+msgid "Tide Harmonics IDX Directory"
+msgstr ""
+#
+msgid "Tip of Brittany"
+msgstr ""
+#
+msgid "Using Tide/Current data from:  "
+msgstr ""
+#
+msgid "Vendee-Gironde"
+msgstr ""
+#
 msgid "frcurrents"
 msgstr ""
-
-#: src/frcurrents_pi.cpp:186
+#
 msgid "frcurrents PlugIn for OpenCPN"
 msgstr ""
-
-#: src/frcurrents_pi.cpp:191
-msgid "frcurrents PlugIn for OpenCPN\n"
-"Provides an overlay of Tidal Current (Stream) Arrows.\n\n"
+#
+msgid ""
+"frcurrents PlugIn for OpenCPN\n"
+"Provides an overlay of Tidal Current (Stream) Arrows.\n"
+"\n"
 "\t\t\t   "
 msgstr ""
-
+#
+#~ msgid "557"
+#~ msgstr "557"
+#
+#~ msgid "558"
+#~ msgstr "558"
+#
+#~ msgid "559"
+#~ msgstr "559"
+#
+#~ msgid "560"
+#~ msgstr "560"
+#
+#~ msgid "561"
+#~ msgstr "561"
+#
+#~ msgid "562"
+#~ msgstr "562"
+#
+#~ msgid "563"
+#~ msgstr "563"
+#
+#~ msgid "564"
+#~ msgstr "564"
+#
+#~ msgid "565"
+#~ msgstr "565"

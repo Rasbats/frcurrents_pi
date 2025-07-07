@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: grib_pi 2.2.1111\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-15 20:52+0100\n"
+"POT-Creation-Date: 2025-07-07 10:18+0100\n"
 "PO-Revision-Date: 2010-12-09 22:34+0200\n"
 "Last-Translator: Asko Laite <alaite@netti.fi>\n"
 "Language-Team: Asko Laite <alaite@netti.fi>\n"
@@ -21,50 +21,11 @@ msgstr ""
 msgid "      < 0.5 knots"
 msgstr ""
 #
-msgid "   Coeff"
-msgstr ""
-#
-msgid "1"
-msgstr ""
-#
 msgid ""
 "1: Normal\n"
 "2: Small \n"
 "3: Normal length, \n"
 "    narrow width"
-msgstr ""
-#
-msgid "2"
-msgstr ""
-#
-msgid "3"
-msgstr ""
-#
-msgid "557"
-msgstr ""
-#
-msgid "558"
-msgstr ""
-#
-msgid "559"
-msgstr ""
-#
-msgid "560"
-msgstr ""
-#
-msgid "561"
-msgstr ""
-#
-msgid "562"
-msgstr ""
-#
-msgid "563"
-msgstr ""
-#
-msgid "564"
-msgstr ""
-#
-msgid "565"
 msgstr ""
 #
 msgid ">= 0.5 and < 1.5"
@@ -85,16 +46,22 @@ msgstr ""
 msgid "Arrow Style"
 msgstr ""
 #
-msgid "Choose Date"
+msgid "Bay of Biscay"
 msgstr ""
 #
-msgid "Choose a directory"
+msgid "Choose Harmonics Directory"
 msgstr ""
 #
-msgid "Choose the tcdata directory"
+msgid "Coeff:"
 msgstr ""
 #
-msgid "Display date/time"
+msgid "Dialog"
+msgstr ""
+#
+msgid "Display Controls"
+msgstr ""
+#
+msgid "Display Time: UTC"
 msgstr ""
 #
 msgid "Display tidal direction"
@@ -103,22 +70,25 @@ msgstr ""
 msgid "Display tidal rates (knots)"
 msgstr ""
 #
+msgid "English Channel"
+msgstr ""
+#
 msgid "Failed to load file: "
 msgstr ""
 #
+msgid "Fecamp to La Hague"
+msgstr ""
+#
 msgid "Fill Colour"
+msgstr ""
+#
+msgid "Font Size Factor"
 msgstr ""
 #
 msgid "French Tidal Streams"
 msgstr ""
 #
 msgid "HW"
-msgstr ""
-#
-msgid "HW +6"
-msgstr ""
-#
-msgid "HW -6"
 msgstr ""
 #
 msgid "HW+1"
@@ -163,7 +133,10 @@ msgstr ""
 msgid "High Water"
 msgstr ""
 #
-msgid "High Water +-"
+msgid "Hx-de-Brehat to Brignogan"
+msgstr ""
+#
+msgid "Icons Size Factor"
 msgstr ""
 #
 msgid "Information"
@@ -208,28 +181,34 @@ msgstr ""
 msgid "LW-6"
 msgstr ""
 #
+msgid "La Hague to Hx-de-Brehat"
+msgstr ""
+#
+msgid "Local"
+msgstr ""
+#
 msgid "Low Water"
 msgstr ""
 #
 msgid "Next"
 msgstr ""
 #
+msgid ""
+"No Harmonics\n"
+"Select the directory containing HARMONIC.IDX\n"
+" Using the dialog that follows"
+msgstr ""
+#
 msgid "No Tidal Data"
 msgstr ""
 #
-msgid "No tidal data"
-msgstr ""
-#
-msgid "No tidal data for this port"
+msgid "No Tidal Data for BREST"
 msgstr ""
 #
 msgid "Now"
 msgstr ""
 #
 msgid "Options:   "
-msgstr ""
-#
-msgid "Please choose a new date"
 msgstr ""
 #
 msgid "Port finder"
@@ -243,8 +222,59 @@ msgstr ""
 msgid "Preferences"
 msgstr "GRIB asetukset"
 #
+#
+#, fuzzy
+msgid "Preferences..."
+msgstr "GRIB asetukset"
+#
 msgid "Previous"
 msgstr ""
+#
+msgid "Resize..."
+msgstr ""
+#
+msgid "Save Area"
+msgstr ""
+#
+msgid "Save Area/Port"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select Date"
+msgstr "GRIB-tiedostohakemisto"
 #
 #
 #
@@ -283,32 +313,81 @@ msgstr ""
 msgid "Select Directory"
 msgstr "GRIB-tiedostohakemisto"
 #
-msgid "Select High Water"
-msgstr ""
 #
-msgid "Select Low Water"
-msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Select Port"
+msgstr "GRIB-tiedostohakemisto"
 #
 msgid "Select tidal area"
 msgstr ""
 #
-msgid "Standard Ports"
+msgid "South Brittany"
+msgstr ""
+#
+msgid "Standard Port"
+msgstr ""
+#
+msgid "Strait of Dover"
 msgstr ""
 #
 msgid "Tidal Area"
+msgstr ""
+#
+msgid "Tidal Area ..."
 msgstr ""
 #
 #, fuzzy
 msgid "Tidal Current Arrow Colour"
 msgstr "GRIB Näyttöohjaus"
 #
+msgid "Tidal Data Finder"
+msgstr ""
+#
+msgid "Tide Date"
+msgstr ""
+#
 msgid "Tide Harmonics IDX Directory"
 msgstr ""
 #
-msgid "Time Zone"
+msgid "Tip of Brittany"
 msgstr ""
 #
 msgid "Using Tide/Current data from:  "
+msgstr ""
+#
+msgid "Vendee-Gironde"
 msgstr ""
 #
 #, fuzzy
@@ -329,9 +408,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "/Settings/tcurrent"
 #~ msgstr "Virran nopeus, solmua"
+#
 #
 #
 #
@@ -377,9 +458,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Current"
 #~ msgstr "Virran nopeus, solmua"
+#
 #
 #
 #
@@ -411,6 +494,7 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
 #
@@ -424,8 +508,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Grib"
 #~ msgstr "Grib"
+#
 #
 #
 #
@@ -454,9 +540,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Air Temp.(2m) GRIB"
 #~ msgstr "Zoomaa ulos nähdäksesi GRIB pintalämpötilan"
+#
 #
 #
 #
@@ -492,9 +580,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Clouds Cover GRIB"
 #~ msgstr "Zoomaa ulos nähdäksesi GRIB virtatiedot"
+#
 #
 #
 #
@@ -528,6 +618,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Please Zoom or Scale Out to view suppressed Total Rainfall GRIB"
 #~ msgstr "Zoomaa ulos nähdäksesi GRIB sadetiedon"
@@ -541,9 +632,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Pressure"
 #~ msgstr "Ilampaine, mbar"
+#
 #
 #
 #
@@ -580,6 +673,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Sea Temp"
 #~ msgstr "Meriveden pintalämpötila, C"
@@ -593,9 +687,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Select a tcurrent file"
 #~ msgstr "Valitse GRIB-hakemisto"
+#
 #
 #
 #
@@ -650,6 +746,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Sign.Wave Height"
 #~ msgstr "Merkitsevä aallonkorkeus, m"
@@ -663,8 +760,10 @@ msgstr ""
 #
 #
 #
+#
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Käytä tarkkuusgrafiikkaa"
+#
 #
 #
 #
@@ -720,9 +819,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Wind Direction(10m)"
 #~ msgstr "Tuulen suunta"
+#
 #
 #
 #
@@ -756,9 +857,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "Wind Speed(10m)"
 #~ msgstr "Tuulen nopeus, solmua"
+#
 #
 #
 #
@@ -820,9 +923,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcdata"
 #~ msgstr "GRIB Data"
+#
 #
 #
 #
@@ -857,6 +962,7 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrentPort"
 #~ msgstr "Virran nopeus, solmua"
@@ -881,9 +987,11 @@ msgstr ""
 #
 #
 #
+#
 #, fuzzy
 #~ msgid "tcurrentUseDirection"
 #~ msgstr "GRIB asetukset"
+#
 #
 #
 #
