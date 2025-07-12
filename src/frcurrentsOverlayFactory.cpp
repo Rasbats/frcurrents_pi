@@ -101,7 +101,7 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
     glEnable(GL_BLEND);
   }
 
-  wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
+  wxFont *font = GetOCPNScaledFont_PlugIn(_("CurrentValue"), 0);
   m_dc->SetFont(*font);
 
   wxColour myColour = wxColour("RED");
