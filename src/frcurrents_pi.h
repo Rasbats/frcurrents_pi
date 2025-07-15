@@ -41,12 +41,34 @@
 #include "wx/string.h"
 #include <wx/window.h>
 #include <wx/font.h>
+#include "globals.h"
+#include "ODPlatform.h"
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
 
 #include "config.h"
+
+#ifdef __ANDROID__
+#include <qopengl.h>
+typedef double GLdouble;
+#define GL_GLEXT_LEGACY 1
+#include "GLES2/gl2.h"
+#include "glu_gl.h"
+#include "GL/glu.h"
+
+#elif defined(__WXOSX__)
+#include "OpenGL/gl.h"
+#include "OpenGL/glu.h"
+#include "OpenGL/glext.h"
+typedef void (*_GLUfuncptr)();
+
+#else
+#include "GL/gl.h"
+#include "GL/glu.h"
+#include "GL/glext.h"
+#endif
 
 extern wxString myVColour[5];
 
@@ -72,8 +94,9 @@ public:
   wxString GetLongDescription();
 
   //    The override PlugIn Methods
-  bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
   bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
+  bool RenderGLOverlays(wxGLContext *pcontext, PlugIn_ViewPort *pivp);
+  void SetCursorLatLon(double lat, double lon);
   void SetDefaults(void);
   int GetToolbarToolCount(void);
   void ShowPreferencesDialog(wxWindow *parent);
@@ -105,6 +128,9 @@ public:
     return m_pfrcurrentsOverlayFactory;
   }
 
+  wxString m_Port;
+  int m_AreaID;
+
   wxString m_CopyFolderSelected;
 
   int m_frcurrents_dialog_x, m_frcurrents_dialog_y;
@@ -115,6 +141,14 @@ public:
   frcurrentsUIDialog *m_pfrcurrentsDialog;
   double my_IconsScaleFactor;
   int my_FontpointSizeFactor;
+
+  wxGLContext *m_pcontext;
+  double m_chart_scale;
+  double m_view_scale;
+  PlugIn_ViewPort m_VP;
+  wxSize prefsize;
+
+  bool g_bOpenGL;
 
 private:
   int m_position_menu_id;

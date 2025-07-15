@@ -112,30 +112,30 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
-  switch (my_style) {
-    case 0:
-      myArrowArray[0] = wxPoint(0, 0);
-      myArrowArray[1] = wxPoint(0, -10);
-      myArrowArray[2] = wxPoint(55, -10);
-      myArrowArray[3] = wxPoint(55, -25);
-      myArrowArray[4] = wxPoint(100, 0);
-      myArrowArray[5] = wxPoint(55, 25);
-      myArrowArray[6] = wxPoint(55, 10);
-      myArrowArray[7] = wxPoint(0, 10);
-      myArrowArray[8] = wxPoint(0, 0);
-      break;
+	switch (my_style){		
+		case 0:
+		myArrowArray[0] = wxPoint( 0, 0 );
+		myArrowArray[1] = wxPoint( 0, -10 );
+		myArrowArray[2] = wxPoint( 55, -10 );
+		myArrowArray[3] = wxPoint( 55, -25 );
+		myArrowArray[4] = wxPoint( 100, 0 );
+		myArrowArray[5] = wxPoint( 55, 25 );
+		myArrowArray[6] = wxPoint( 55, 10 );
+		myArrowArray[7] = wxPoint( 0, 10 );
+		myArrowArray[8] = wxPoint( 0, 0 );
+		break;
 
-    case 1:
-      myArrowArray[0] = wxPoint(0, 0);
-      myArrowArray[1] = wxPoint(0, -5);
-      myArrowArray[2] = wxPoint(30, -5);
-      myArrowArray[3] = wxPoint(30, -12);
-      myArrowArray[4] = wxPoint(50, 0);
-      myArrowArray[5] = wxPoint(30, 12);
-      myArrowArray[6] = wxPoint(30, 5);
-      myArrowArray[7] = wxPoint(0, 5);
-      myArrowArray[8] = wxPoint(0, 0);
-      break;
+		case 1:
+		myArrowArray[0] = wxPoint( 0, 0 );
+		myArrowArray[1] = wxPoint(0, -5);
+		myArrowArray[2] = wxPoint( 30, -5 );
+		myArrowArray[3] = wxPoint( 30, -12 );
+		myArrowArray[4] = wxPoint( 50, 0 );
+		myArrowArray[5] = wxPoint( 30, 12 );
+		myArrowArray[6] = wxPoint( 30, 5 );
+		myArrowArray[7] = wxPoint( 0, 5 );
+		myArrowArray[8] = wxPoint( 0, 0 );
+		break;
 
     case 2:
       myArrowArray[0] = wxPoint(0, 0);
