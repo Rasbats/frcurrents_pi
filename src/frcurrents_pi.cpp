@@ -427,31 +427,29 @@ void frcurrents_pi::OnfrcurrentsDialogClose() {
   RequestRefresh(m_parent_window);  // refresh mainn window
 }
 
+bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
+  if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
+      !m_pfrcurrentsOverlayFactory)
+    return false;
+  m_pfrcurrentsDialog->SetViewPort(vp);
+  piDC pidc(dc);
+  m_pfrcurrentsOverlayFactory->RenderOverlay(pidc, *vp);
+  return true;
+}
+
 bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
-                                    PlugIn_ViewPort *pivp) {
+                                    PlugIn_ViewPort *vp) {
   if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
       !m_pfrcurrentsOverlayFactory)
     return false;
 
-  g_bOpenGL = true;
-  return RenderGLOverlays(pcontext, pivp);
-}
+  m_pfrcurrentsDialog->SetViewPort(vp);
+  piDC piDC;
+  glEnable(GL_BLEND);
+  piDC.SetVP(vp);
 
-bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
-                                     PlugIn_ViewPort *pivp) {
-  m_pcontext = pcontext;
-  m_VP = *pivp;
-  g_VP = *pivp;
-  m_chart_scale = pivp->chart_scale;
-  m_view_scale = pivp->view_scale_ppm;
-
-  g_pDC = new piDC(pcontext);
-  g_pDC->SetVP(pivp);
-
-  m_pfrcurrentsOverlayFactory->DrawGL(*pivp);
-
-  delete g_pDC;
-  return TRUE;
+  m_pfrcurrentsOverlayFactory->RenderOverlay(piDC, *vp);
+  return true;
 }
 
 bool frcurrents_pi::LoadConfig(void) {

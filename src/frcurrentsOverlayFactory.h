@@ -114,8 +114,7 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-  void DrawGL(PlugIn_ViewPort &piVP);
-
+  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
 
 private:
   bool inGL;
@@ -124,7 +123,7 @@ private:
   int m_fromHW;
   void GetArrowStyle(int my_style);
   wxColour GetSpeedColour(double my_speed);
-
+  
   bool drawCurrentArrow(int x, int y, double rot_angle, double scale,
     double rate, double vp_rotate_angle);
 
