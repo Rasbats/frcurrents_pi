@@ -88,6 +88,8 @@ set(SRC
         src/georef.cpp
         src/georef.h
         src/folder.xpm
+        ODPlatform.cpp
+        ODPlatform.h
 )
 
 set(PKG_API_LIB api-18)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
