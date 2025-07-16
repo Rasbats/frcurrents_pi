@@ -32,7 +32,6 @@
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
 
-#include "globals.h"
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
@@ -98,6 +97,8 @@ public:
     m_ParentSize.SetWidth(w);
     m_ParentSize.SetHeight(h);
   }
+  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
+
   bool m_bShowRate;
   bool m_bShowDirection;
   bool m_bHighResolution;
@@ -114,12 +115,11 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-  void DrawGL(PlugIn_ViewPort &piVP);
-
 
 private:
   bool inGL;
   wxPoint myArrowArray[9];
+  //bool DoRenderfrcurrentsOverlay(PlugIn_ViewPort *vp);
   void RenderMyArrows(PlugIn_ViewPort *vp);
   int m_fromHW;
   void GetArrowStyle(int my_style);
@@ -137,6 +137,10 @@ private:
   wxString m_Message;
   wxString m_Message_Hiden;
   wxSize m_ParentSize;
+
+#if wxUSE_GRAPHICS_CONTEXT
+  wxGraphicsContext *m_gdc;
+#endif
 
   wxFont *m_dFont_map;
   wxFont *m_dFont_war;

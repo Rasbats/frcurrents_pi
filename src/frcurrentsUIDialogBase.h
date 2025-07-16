@@ -33,7 +33,7 @@
 #include <wx/clrpicker.h>
 #include <wx/event.h>
 #include <wx/slider.h>
-
+#include <wx/radiobox.h>
 ///////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,6 @@
 class frcurrentsUIDialogBase : public wxDialog {
 private:
 protected:
-  wxButton* m_buttonClose;
   wxBitmapButton* m_button8;
   wxDatePickerCtrl* m_datePicker1;
   wxStaticText* m_staticTextHW;
@@ -61,7 +60,6 @@ protected:
   virtual void OnMove(wxMoveEvent& event) { event.Skip(); }
   virtual void OnSize(wxSizeEvent& event) { event.Skip(); }
   virtual void OnAreaSelected(wxCommandEvent& event) { event.Skip(); }
-  virtual void OnSaveData(wxCommandEvent& event) { event.Skip(); }
   virtual void OnInformation(wxCommandEvent& event) { event.Skip(); }
   virtual void OnPortChanged(wxCommandEvent& event) { event.Skip(); }
   virtual void OnDateSelChanged(wxDateEvent& event) { event.Skip(); }
@@ -87,7 +85,7 @@ public:
   frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                          const wxString& title = _("French Tidal Streams"),
                          const wxPoint& pos = wxDefaultPosition,
-                         const wxSize& size = wxSize(500,420),
+                         const wxSize& size = wxSize(-1, -1),
                          long style = wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER);
 
   ~frcurrentsUIDialogBase();
@@ -105,31 +103,27 @@ private:
   wxStaticText* m_staticTextMore35;
 
 protected:
-  wxStaticText* m_staticTextChoice;
   wxStaticText* m_staticText8;
   wxStaticText* m_staticText13;
   wxStdDialogButtonSizer* m_sdbSizerButtons;
   wxButton* m_sdbSizerButtonsOK;
   wxButton* m_sdbSizerButtonsCancel;
 
-
   // Virtual event handlers, override them in your derived class
-  virtual void OnChoiceArea(wxCommandEvent& event) { event.Skip(); }
   virtual void OnChoice(wxCommandEvent& event) { event.Skip(); }
   virtual void OnIconsSlidersChange(wxCommandEvent& event) { event.Skip(); }
   virtual void OnFontSlidersChange(wxCommandEvent & event) { event.Skip(); }
   virtual void OnTimeZoneChange(wxCommandEvent& event) { event.Skip(); }
 public:
-  wxChoice* m_choice_area;
   wxCheckBox* m_cbUseRate;
   wxCheckBox* m_cbUseDirection;
   wxCheckBox* m_cbFillColour;
   wxCheckBox* m_cbUseHighRes;
-  ODColourPickerCtrl* myColourPicker0;
-  ODColourPickerCtrl* myColourPicker1;
-  ODColourPickerCtrl* myColourPicker2;
-  ODColourPickerCtrl* myColourPicker3;
-  ODColourPickerCtrl* myColourPicker4;
+  wxColourPickerCtrl* myColourPicker0;
+  wxColourPickerCtrl* myColourPicker1;
+  wxColourPickerCtrl* myColourPicker2;
+  wxColourPickerCtrl* myColourPicker3;
+  wxColourPickerCtrl* myColourPicker4;
   wxChoice* m_cStyle;
   wxSlider* m_sIconSizeFactor;
   wxSlider * m_sFontSizeFactor;

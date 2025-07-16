@@ -104,8 +104,8 @@ enum {
   LAST_MONTH_IN_YEAR = 11   //  to 11
 };
 
-wxString m_Areas[] = {_T("557"), _T("564"), _T("561"), _T("562"), _T("563"),
-                      _T("560"), _T("558"), _T("559"), _T("565")};
+wxString m_Areas[] = { _T("557"), _T("564"), _T("561"), _T("562"), _T("563"),
+    _T("560"), _T("558"), _T("559"), _T("565") };
 
 // Handle to DLL
 using namespace std;
@@ -155,7 +155,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseArrowStyle", &m_UseArrowStyle);
 
-    pConf->Read("frcurrentsAreaID", &m_AreaIDSelected, 0);
+    pConf->Read("frcurrentsAreaID", &m_AreaIDSelected,0);
     pConf->Read("frcurrentsPort", &m_PortSelected);
     pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
@@ -172,7 +172,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     myUseColour[4] = myVColour[4];
   }
   ptcmgr = NULL;
-  
+
   m_dirPicker1->SetValue(m_FolderSelected);
   m_myChoice = 0;
 
@@ -369,7 +369,7 @@ void frcurrentsUIDialog::SetScaledBitmaps(double scalefactor) {
   //  Round to the nearest "quarter", to avoid rendering artifacts
   double myscaledFactor = wxRound(scalefactor * 4.0) / 4.0;
   int w, h;
-  w = 32 * scalefactor;  // 32x32 is the standard bitmap's size
+  w = 32 * scalefactor; // 32x32 is the standard bitmap's size
   h = 32 * scalefactor;
 
 #ifdef ocpnUSE_SVG
@@ -382,17 +382,13 @@ void frcurrentsUIDialog::SetScaledBitmaps(double scalefactor) {
   bitmap = GetBitmapFromSVGFile(_svg_frcurrents_now, w, h);
   m_bpNow->SetBitmap(bitmap);
 #else
-  wxImage im0 =
-      wxBitmap(prev_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  wxImage im0 = wxBitmap(prev_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
   m_bpPrev->SetBitmap(wxBitmap(im0));
-  wxImage im1 =
-      wxBitmap(next_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  wxImage im1 = wxBitmap(next_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
   m_bpNext->SetBitmap(wxBitmap(im1));
-  wxImage im2 =
-      wxBitmap(info_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  wxImage im2 = wxBitmap(info_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
   m_button8->SetBitmap(wxBitmap(im2));
-  wxImage im3 =
-      wxBitmap(now_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  wxImage im3 = wxBitmap(now_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
   m_bpNow->SetBitmap(wxBitmap(im3));
 #endif
 
@@ -405,26 +401,7 @@ void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
   m_vp = new PlugIn_ViewPort(*vp);
 }
 
-void frcurrentsUIDialog::OnSaveData(wxCommandEvent& event) {
-  int b = m_choiceArea->GetCurrentSelection();
-  int c = m_choice1->GetCurrentSelection();
-  wxString myP = m_choice1->GetString(c);
-
-  pPlugIn->m_AreaID = b;
-  pPlugIn->m_Port = myP;
-
-  pPlugIn->SaveConfig();
-}
-
 void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
-
-  int b = m_choiceArea->GetCurrentSelection();
-  int c = m_choice1->GetCurrentSelection();
-  wxString myP = m_choice1->GetString(c);
-
-  pPlugIn->m_AreaID = b;
-  pPlugIn->m_Port = myP;
-
   m_FolderSelected = m_dirPicker1->GetValue();
   pPlugIn->m_CopyFolderSelected = m_FolderSelected;
   pPlugIn->OnfrcurrentsDialogClose();
@@ -482,14 +459,15 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   //  find area ID and select it
   int id;
   int c = m_choiceArea->GetCount();
+  if (m_AreaIDSelected < 0 || m_AreaIDSelected >(c - 1))
     m_AreaIDSelected = 0;
-  m_choiceArea->SetSelection(pPlugIn->m_AreaID);
-  wxString s = m_Areas[pPlugIn->m_AreaID];
+  m_choiceArea->SetSelection(m_AreaIDSelected);
+  wxString s = m_Areas[m_AreaIDSelected];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
 
   //  find port ID and select it
-  id = m_choice1->FindString(pPlugIn->m_Port, true);
+  id = m_choice1->FindString(m_PortSelected, true);
   if (id == wxNOT_FOUND) id = 0;
   m_choice1->SetSelection(id);
 
@@ -497,7 +475,8 @@ void frcurrentsUIDialog::OnStartSetupHW() {
 }
 
 void frcurrentsUIDialog::SetNow() {
-  if (!SetDateForNowButton()) return;
+  if (!SetDateForNowButton())
+    return;
 
   // calc coefficient
   BrestRange = CalcRange_Brest();
@@ -682,9 +661,13 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
     m_staticText211->SetLabel(t + label_array[button_id]);
 
   RequestRefresh(pParent);
+
 }
 
-void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) { SetNow(); }
+void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) {
+
+  SetNow();
+}
 
 bool frcurrentsUIDialog::SetDateForNowButton() {
   m_staticText2->SetLabel("");
@@ -714,6 +697,8 @@ bool frcurrentsUIDialog::SetDateForNowButton() {
     return false;
   } else {
     GetCurrentsData(sa);
+
+    CalcHW(id);
 
     int i, c, s, t, t1, t2, t10, t20;
     wxDateTime d1, d2, d10, d20;
@@ -846,16 +831,12 @@ StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName) {
   return myCPort;
 }
 
-void frcurrentsUIDialog::OnInformation(wxCommandEvent& WXUNUSED(event)) {
-  // wxString s = wxFileName::GetPathSeparator();
-  // wxString infolocation = GetPluginDataDir("frcurrents_pi") + s + "data" + s
-  // +
-  //  "Information" + s + "frcurrentsInformation.html";
-
-  wxString help =
-      "For a source of harmonics and other information: "
-      "\n\nhttps://opencpn-manuals.github.io/main/frcurrents/index.html";
-  wxMessageBox(help);
+void frcurrentsUIDialog::OnInformation(wxCommandEvent& event) {
+  wxString s = wxFileName::GetPathSeparator();
+  wxString infolocation = GetPluginDataDir("frcurrents_pi") + s + "data" + s +
+                          "Information" + s + "frcurrentsInformation.html";
+  bool m_bFound = wxLaunchDefaultBrowser("file://" + infolocation);
+  if (!m_bFound) wxMessageBox(_("No Information Found"), _("Internet Browser"));
 }
 
 wxString frcurrentsUIDialog::FindPortXMLUsingChoice(wxString inPortName) {
@@ -928,8 +909,8 @@ int frcurrentsUIDialog::FindPortIDUsingChoice(wxString inPortName) {
 
 void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
 #ifndef __ANDROID__
-  wxDirDialog* d = new wxDirDialog(this, _("Choose Harmonics Directory"), "", 0,
-                                   wxDefaultPosition);
+  wxDirDialog* d =
+      new wxDirDialog(this, _("Choose Harmonics Directory"), "", 0, wxDefaultPosition);
   if (d->ShowModal() == wxID_OK) {
     m_dirPicker1->SetValue(d->GetPath());
 
@@ -938,9 +919,8 @@ void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
   }
 #else
   wxString dir_spec;
-  int response = PlatformDirSelectorDialog(g_Window, &dir_spec,
-                                           _("Choose Harmonics Directory"),
-                                           m_dirPicker1->GetValue());
+  int response = PlatformDirSelectorDialog(
+      g_Window, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
   if (response == wxID_OK) {
     m_dirPicker1->SetValue(dir_spec);
     m_FolderSelected = dir_spec;
@@ -1004,7 +984,7 @@ void frcurrentsUIDialog::LoadTCMFile() {
   if (TCDir == wxEmptyString) {
     wxMessageBox(
         _("No Harmonics\nSelect the directory containing "
-          "HARMONIC.IDX\n Using the dialog that follows"));
+        "HARMONIC.IDX\n Using the dialog that follows"));
 
 #ifndef __ANDROID__
     TCDir = pPlugIn->GetFolderSelected();
@@ -1054,15 +1034,13 @@ int frcurrentsUIDialog::FindPortID(wxString myPort) {
 void frcurrentsUIDialog::SetTimeFactors() {
   //    Figure out this computer timezone minute offset
 
-  /*  wxDatePicker's Time is O0h, but the summer time occurs at 00h +/- TZ
-   * offset. What's more, the change is effective at time decided by contries
-   * (ex: England and France make the change at the same time whereas they are
-   * not on the same meridien) Thus to be sure to spot the change the first day,
-   * the best way is to look at the end of the day;  */
+  /*  wxDatePicker's Time is O0h, but the summer time occurs at 00h +/- TZ offset.
+  * What's more, the change is effective at time decided by contries (ex: England and France
+  * make the change at the same time whereas they are not on the same meridien) Thus to be sure
+  * to spot the change the first day, the best way is to look at the end of the day;  */
 
   wxDateTime this_now = m_datePicker1->GetValue();
-  this_now.Add(wxTimeSpan().Minutes(
-      (22 * 60) + 59));  //	set the time very near the end of the day
+  this_now.Add(wxTimeSpan().Minutes((22 * 60) + 59));	//	set the time very near the end of the day
   wxDateTime this_gmt = this_now.ToGMT();
 
 #if wxCHECK_VERSION(2, 6, 2)
@@ -1081,7 +1059,7 @@ void frcurrentsUIDialog::SetTimeFactors() {
 #endif
   //   End of this computer timezone minute offset calculation
 
-  // find the first day with summer time
+  //find the first day with summer time
   m_diff_first_dst_sec = 0;
   wxDateTime dtn = this_now;
   if (this_now.IsDST() && !dtn.Subtract(wxTimeSpan().Days(1)).IsDST())
@@ -1098,7 +1076,6 @@ void frcurrentsUIDialog::SetTimeFactors() {
   //    Establish the inital drawing day as today, in the timezone of the
   //    station
   m_graphday = m_datePicker1->GetValue();
-
   wxDateTime graphday_00 = m_graphday;  // this_gmt;
   graphday_00.ResetTime();
   m_t_graphday_GMT = graphday_00.GetTicks();
@@ -1137,7 +1114,7 @@ double frcurrentsUIDialog::CalcRange_Brest() {
   // The tide/current modules calculate values based on PC local time
   // We need  LMT at station, so adjust accordingly
   int tt_localtz = m_t_graphday_GMT + (m_diff_mins * 60);
-  // tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
+  //tt_localtz -= m_stationOffset_mins * 60;  // LMT at station
 
   // get tide flow sens ( flood or ebb ? )
   ptcmgr->GetTideFlowSens(tt_localtz, BACKWARD_TEN_MINUTES_STEP,
@@ -1195,7 +1172,8 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   m_choice2->Clear();
   m_choice2_dt.clear();
 
-  if (PortCode == 0) return;
+  if (PortCode == 0)
+    return;
 
   myPortCode = PortCode;
   SetTimeFactors();
@@ -1214,7 +1192,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
     diffloc = -diffloc;
   }
   if (diffloc != 0) {
-
+    m_stz << (diffloc < 0 ? _T(" -") : _T(" +"));
     int h = abs(diffloc / 60);
     int h1 = abs(diffloc % 60);
     m_stz << wxString::Format("%01d", h);
@@ -1269,8 +1247,10 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
                                   BACKWARD_ONE_MINUTES_STEP, tcv[i], wt,
                                   pIDX->IDX_rec_num, tcvalue, tctime);
         if (tctime >= tt_localtz &&
-
-          tctime < tt_nextlocaltzday) {  
+          tctime < tt_nextlocaltzday) {  // Only keep events in the current day
+          /* tweak to correct tide on the first hour of the day thrown back to the previous
+          * day by the summer time offset  */
+          if (tctime < (tt_localtz + m_diff_first_dst_sec)) tctime += m_diff_first_dst_sec;
 
           // presently shown
           wxDateTime tcd;  // write date
@@ -1281,7 +1261,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
             tcd.Set(tctime);  // Local TZ
           s = tcd.Format("%a %d %b %Y  %H:%M  ");
           s1.Printf("%05.2f ", tcvalue);  // write value
-          pmsd = pIDX->pref_sta_data;     // write unit
+          pmsd = pIDX->pref_sta_data;  // write unit
           if (pmsd) s1.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
 
           (wt) ? sHWLW = "HW" : sHWLW = "LW";  // write HW or LT
@@ -1306,7 +1286,6 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   }
 }
 
-
 double frcurrentsUIDialog::CalcCurrent(double VE, double ME, double spRate,
                                        double npRate, double coefficient) {
   // y = mx + c
@@ -1317,10 +1296,13 @@ double frcurrentsUIDialog::CalcCurrent(double VE, double ME, double spRate,
   x = (coefficient - c) / m;
   if (isnan(x)) x = 0.01;
   return x;
+
 }
 
 wxString frcurrentsUIDialog::CalcCoefficient() {
-  if (BrestRange == 999) return wxString(_("No Tidal Data for BREST"));
+
+  if (BrestRange == 999)
+    return wxString(_("No Tidal Data for BREST"));
 
   double PMVE, PMME, BMVE, BMME;
 
@@ -1505,6 +1487,7 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
 }
 
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
+
   int a = m_choiceArea->GetSelection();
   wxString s = m_Areas[a];
 
@@ -1833,14 +1816,14 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
       m_myChoice = m_choice2->GetSelection();
       m_ts = wxTimeSpan::Hours(6);
       m_dt.Add(m_ts);
-      if (st_mydate != "") {
+      if (st_mydate != ""){
         m_staticText2->SetLabel(m_dt.Format("%a %d %b %Y"));
         t1 = m_dt.Format("%H:%M") + "    ";
       }
       break;
     }
   }
-  if (m_bUseBM) {
+  if(m_bUseBM) {
     m_staticText211->SetLabel(t1 + label_lw[button_id]);
   } else {
     m_staticText211->SetLabel(t1 + label_array[button_id]);
@@ -1859,6 +1842,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   wxString s = m_choice1->GetString(p);
   m_portXML = FindPortXMLUsingChoice(s);
 
+
   int f = FindPortIDUsingChoice(s);
   if (f == 0) return;
 
@@ -1868,10 +1852,11 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   button_id--;
 
   // Test if we have gone beyond the current list of HW
-  if (button_id == -1) {
-    if (m_myChoice > 0) {  //  we stay in the same tide day
+  if (button_id == - 1) {
+    if (m_myChoice > 0) { //  we stay in the same tide day
       m_myChoice--;
-    } else {
+    }
+    else {
       // we have gone beyond the current list of HW. so go to previous day
       wxDateTime myDate;
       wxDateSpan myOneDay = wxDateSpan::Days(1);
@@ -1887,7 +1872,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
 
       c = m_choice2->GetCount();
       if (c == 0) return;
-      m_myChoice = c - 1;
+      m_myChoice = c -1;
     }
     button_id = 12;
   }
@@ -1907,7 +1892,8 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
 
   if (m_bUseBM) {
     m_staticText211->SetLabel(t1 + label_lw[button_id]);
-  } else {
+  }
+  else {
     m_staticText211->SetLabel(t1 + label_array[button_id]);
   }
   RequestRefresh(pParent);
@@ -1931,9 +1917,10 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
 
   // Test if we have gone beyond the current list of HW
   if (button_id == 13) {
-    if (m_myChoice < c - 1) {  //  we stay in the same tide day
+    if (m_myChoice < c - 1) { //  we stay in the same tide day
       m_myChoice++;
-    } else if (m_myChoice == c - 1) {
+    }
+    else if (m_myChoice == c - 1) {
       // we have gone beyond the current list of HW. so go to next day
       wxDateTime myDate;
       wxDateSpan myOneDay = wxDateSpan::Days(1);
@@ -1968,7 +1955,8 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   }
   if (m_bUseBM) {
     m_staticText211->SetLabel(t1 + label_lw[button_id]);
-  } else {
+  }
+  else {
     m_staticText211->SetLabel(t1 + label_array[button_id]);
   }
 
