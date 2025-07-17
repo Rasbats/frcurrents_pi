@@ -178,8 +178,8 @@ wxColour frcurrentsOverlayFactory::GetSpeedColour(double my_speed) {
 }
 
 bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
-  double scale, double rate, double vp_rotate_angle)
-{
+                                                double scale, double rate,
+                                                double vp_rotate_angle) {
   double m_rate = fabs(rate);
 
   GetArrowStyle(m_ShowArrowStyle);
@@ -278,6 +278,10 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
 }
 
 void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
+  if (vp->chart_scale > 900000) {
+    return;
+  }
+
   wxPoint p;
 
   double myX, myY;
@@ -392,25 +396,29 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       // dir = 45.00;
       // myCurrent = 0.5;
 
-      bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent, vp->rotation);
+       wxRect my_rectangle = vp->rv_rect;
+      if (my_rectangle.Contains(p.x, p.y)) {
+        bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent,
+                                  vp->rotation);
 
-      int shift = 0;
+        int shift = 0;
 
-      char sbuf[20];
-      if (m_bShowRate) {
-        snprintf(sbuf, 19, "%3.1f", myCurrent);
-        m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y);
-        if (!m_bHighResolution) {
-          shift = 13;
-        } else {
-          shift = 26;
+        char sbuf[20];
+        if (m_bShowRate) {
+          snprintf(sbuf, 19, "%3.1f", myCurrent);
+          m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y);
+          if (!m_bHighResolution) {
+            shift = 13;
+          } else {
+            shift = 26;
+          }
         }
-      }
 
-      if (m_bShowDirection) {
-        snprintf(sbuf, 19, "%03.0f", dir);
-        m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y + shift);
-      }  // end scaled current
+        if (m_bShowDirection) {
+          snprintf(sbuf, 19, "%03.0f", dir);
+          m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y + shift);
+        }  // end scaled current
+      }
     }  // end if
 
   }  // end for
