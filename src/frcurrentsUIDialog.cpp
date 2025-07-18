@@ -1507,7 +1507,7 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
       break;
     case 2:
       myLat = 50.1;
-      myLon = -0.8;
+      myLon = -0.09;
       JumpToPosition(myLat, myLon, myScale);
       break;
     case 3:
