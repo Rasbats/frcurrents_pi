@@ -278,10 +278,6 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
 }
 
 void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
-  if (vp->chart_scale > 900000) {
-    return;
-  }
-
   wxPoint p;
 
   double myX, myY;
@@ -396,7 +392,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       // dir = 45.00;
       // myCurrent = 0.5;
 
-       wxRect my_rectangle = vp->rv_rect;
+      wxRect my_rectangle = vp->rv_rect;
       if (my_rectangle.Contains(p.x, p.y)) {
         bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent,
                                   vp->rotation);
@@ -420,6 +416,5 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
         }  // end scaled current
       }
     }  // end if
-
   }  // end for
 }

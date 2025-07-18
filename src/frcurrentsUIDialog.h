@@ -186,6 +186,8 @@ public:
   wxString m_FolderSelected;
   double m_coeff;
   double m_jumpLat, m_jumpLon;
+  PlugIn_ViewPort* m_vp;
+
   
 #ifdef __ANDROID__
   void OnContextMenu(wxContextMenuEvent& event);
@@ -253,7 +255,6 @@ private:
   wxWindow* pParent;
   frcurrents_pi* pPlugIn;
 
-  PlugIn_ViewPort* m_vp;
 
   // preference data
   bool m_bfrcurrentsUseHiDef;

@@ -32,7 +32,6 @@
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
 
-
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
 #include "GL/gl_private.h"
@@ -103,7 +102,7 @@ public:
   bool m_bShowDirection;
   bool m_bHighResolution;
   bool m_bShowFillColour;
-  int m_ShowArrowStyle;
+  int m_ShowArrowStyle;  
   wxDateTime m_dtUseNew;
   wxColour m_text_color;
   std::map<double, wxImage> m_labelCache;

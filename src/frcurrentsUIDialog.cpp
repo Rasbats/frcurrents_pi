@@ -1489,6 +1489,61 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
 
   int a = m_choiceArea->GetSelection();
+  int m_area_chosen = a;
+  double myLat, myLon;
+  myLat = 50.0, myLon = -2.0;
+  double myScale = m_vp->view_scale_ppm;
+
+  switch (m_area_chosen) {
+    case 0:
+      myLat = 51.1;
+      myLon = 2.2;
+      JumpToPosition(myLat, myLon, myScale);
+      break;
+    case 1:
+      myLat = 51.1;
+      myLon = 2.2;
+      JumpToPosition(myLat, myLon, myScale);
+      break;
+    case 2:
+      myLat = 50.1;
+      myLon = -0.8;
+      JumpToPosition(myLat, myLon, myScale);
+      break;
+    case 3:
+      myLat = 49.3;
+      myLon = -2.4;
+      JumpToPosition(myLat, myLon, myScale);
+      break;
+    case 4:
+      myLat = 48.9;
+      myLon = -3.7;
+      JumpToPosition(myLat, myLon, myScale);
+      break;
+    case 5:
+      myLat = 48.2;
+      myLon = -5.0;
+      JumpToPosition(myLat, myLon, myScale);
+      break;
+    case 6:
+      myLat = 47.5;
+      myLon = -4.1;
+      JumpToPosition(myLat, myLon, myScale);
+      break;
+    case 7:
+      myLat = 47.0;
+      myLon = -2.5;
+      JumpToPosition(myLat, myLon, myScale);
+      break;
+    case 8:
+      myLat = 46.0;
+      myLon = -3.7;
+      JumpToPosition(myLat, myLon, myScale);
+      break;
+    default:
+      JumpToPosition(myLat, myLon, myScale);
+  }
+
   wxString s = m_Areas[a];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)

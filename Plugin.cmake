@@ -31,13 +31,13 @@ set(OCPN_RELEASE_REPO
 # -------  Plugin setup --------
 #
 set(PKG_NAME frcurrents_pi)
-set(PKG_VERSION  1.15.9)
+set(PKG_VERSION  1.15.10)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME frcurrents)    # Dialogs, installer artifacts, ...
 set(PLUGIN_API_NAME frcurrents) # As of GetCommonName() in plugin API
 set(PKG_SUMMARY "French Tidal Currents")
-set(PKG_DESCRIPTION [=[Shows French Tidal Currents.
+set(PKG_DESCRIPTION [=[French Tidal Currents from SHOM.
 ]=])
 
 set(PKG_AUTHOR "Mike Rossiter")
@@ -88,8 +88,6 @@ set(SRC
         src/georef.cpp
         src/georef.h
         src/folder.xpm
-        src/ODPlatform.cpp
-        src/ODPlatform.h
 )
 
 set(PKG_API_LIB api-18)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
