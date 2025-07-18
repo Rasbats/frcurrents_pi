@@ -1492,7 +1492,7 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
   int m_area_chosen = a;
   double myLat, myLon;
   myLat = 50.0, myLon = -2.0;
-  double myScale = m_vp->view_scale_ppm;
+  double myScale = vp->chart_scale;
 
   switch (m_area_chosen) {
     case 0:

@@ -278,39 +278,10 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
 }
 
 void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
-  int m_area = m_dlg.m_choiceArea->GetSelection();
-  double view_scale = vp->view_scale_ppm;
-  bool view_good = false;
-  switch (m_area) {
-    case 0:
-      if (view_scale < 0.900) view_good = true;
-      break;
-    case 1:
-      if (view_scale < 0.435) view_good = true;
-      break;
-    case 2:
-      if (view_scale < 0.155) view_good = true;
-      break;
-    case 3:
-      if (view_scale < 0.410) view_good = true;
-      break;
-    case 4:
-      if (view_scale < 0.190) view_good = true;
-      break;
-    case 5:
-      if (view_scale < 0.190) view_good = true;
-      break;
-    case 6:
-      if (view_scale < 0.195) view_good = true;
-      break;
-    case 7:
-      if (view_scale < 0.195) view_good = true;
-      break;
-    case 8:
-      if (view_scale < 0.950) view_good = true;
-      break;
-    default:
-      view_good = false;
+  double view_scale = vp->chart_scale;
+
+  if (view_scale > 1000000) {
+    return;
   }
 
   wxPoint p;
@@ -428,7 +399,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       // myCurrent = 0.5;
 
       wxRect my_rectangle = vp->rv_rect;
-      if (my_rectangle.Contains(p.x, p.y) && view_good) {
+      if (my_rectangle.Contains(p.x, p.y)) {
         bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent,
                                   vp->rotation);
 
