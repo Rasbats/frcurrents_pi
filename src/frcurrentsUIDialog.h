@@ -63,7 +63,6 @@
 #include <wx/event.h>
 #include "ocpn_plugin.h"
 
-
 enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
 
 
@@ -143,7 +142,6 @@ public:
   void SetScaledBitmaps(double scalefactor);
 
   void SetViewPort(PlugIn_ViewPort* vp);
-  PlugIn_ViewPort* vp;
 
   bool m_bUseRate;
   bool m_bUseDirection;
@@ -187,6 +185,7 @@ public:
   double m_coeff;
   double m_jumpLat, m_jumpLon;
   PlugIn_ViewPort* m_vp;
+ // float my_chart_scale;
 
   
 #ifdef __ANDROID__

@@ -1489,11 +1489,15 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
 
   int a = m_choiceArea->GetSelection();
+  
+  /*
   int m_area_chosen = a;
   double myLat, myLon;
   myLat = 50.0, myLon = -2.0;
-  double myScale = vp->chart_scale;
-
+  
+  double scale_factor = GetOCPNChartScaleFactor_Plugin();
+  double myScale = scale_factor;
+  
   switch (m_area_chosen) {
     case 0:
       myLat = 51.1;
@@ -1521,8 +1525,8 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
       JumpToPosition(myLat, myLon, myScale);
       break;
     case 5:
-      myLat = 48.2;
-      myLon = -5.0;
+      myLat = 48.3;
+      myLon = -4.5;
       JumpToPosition(myLat, myLon, myScale);
       break;
     case 6:
@@ -1543,7 +1547,7 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
     default:
       JumpToPosition(myLat, myLon, myScale);
   }
-
+  */
   wxString s = m_Areas[a];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
