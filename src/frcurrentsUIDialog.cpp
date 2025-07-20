@@ -1501,8 +1501,8 @@ void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
       JumpToPosition(myLat, myLon, my_chart_scale);
       break;
     case 1:
-      myLat = 51.1;
-      myLon = 2.2;
+      myLat = 50.0;
+      myLon = -0.9;
       JumpToPosition(myLat, myLon, my_chart_scale);
       break;
     case 2:
