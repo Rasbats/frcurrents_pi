@@ -421,6 +421,7 @@ bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
       !m_pfrcurrentsOverlayFactory)
     return false;
   m_pfrcurrentsDialog->SetViewPort(vp);
+  m_pfrcurrentsDialog->my_chart_scale = vp->view_scale_ppm;
   piDC pidc(dc);
   m_pfrcurrentsOverlayFactory->RenderOverlay(pidc, *vp);
   return true;
@@ -433,6 +434,7 @@ bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
     return false;
 
   m_pfrcurrentsDialog->SetViewPort(vp);
+  m_pfrcurrentsDialog->my_chart_scale = vp->view_scale_ppm;    
   piDC piDC;
   glEnable(GL_BLEND);
   piDC.SetVP(vp);

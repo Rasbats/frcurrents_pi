@@ -185,7 +185,7 @@ public:
   double m_coeff;
   double m_jumpLat, m_jumpLon;
   PlugIn_ViewPort* m_vp;
- // float my_chart_scale;
+  float my_chart_scale;
 
   
 #ifdef __ANDROID__

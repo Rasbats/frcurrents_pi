@@ -399,7 +399,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       // myCurrent = 0.5;
 
       wxRect my_rectangle = vp->rv_rect;
-      if (my_rectangle.Contains(p.x, p.y)) {
+      if (my_rectangle.Contains(p.x, p.y) && (myCurrent > 0.09)) {
         bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent,
                                   vp->rotation);
 
