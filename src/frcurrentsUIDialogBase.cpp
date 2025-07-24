@@ -154,19 +154,6 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	bSizerMain->Add( bSizer5, 0, wxEXPAND, 5 );
 
-	wxStaticBoxSizer* sbSizer61;
-	sbSizer61 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tide Harmonics IDX Directory") ), wxVERTICAL );
-
-	m_button7 = new wxButton( sbSizer61->GetStaticBox(), wxID_ANY, _("Select Directory"), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer61->Add( m_button7, 0, wxALL, 5 );
-
-	m_dirPicker1 = new wxTextCtrl( sbSizer61->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer61->Add( m_dirPicker1, 0, wxALL|wxEXPAND, 5 );
-
-
-	bSizerMain->Add( sbSizer61, 1, wxEXPAND, 5 );
-
-
 	this->SetSizer( bSizerMain );
 	this->Layout();
 	bSizerMain->Fit( this );
@@ -188,7 +175,6 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	m_button5->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button6->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
-	m_button7->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnSelectData ), NULL, this );
         this->Connect(
             wxEVT_CONTEXT_MENU,
             wxContextMenuEventHandler(frcurrentsUIDialogBase::OnContextMenu),
@@ -212,7 +198,7 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
 	this->Disconnect( wxEVT_LEFT_DCLICK, wxMouseEventHandler( frcurrentsUIDialogBase::OnDLeftClick ) );
 	this->Disconnect( wxEVT_MOVE, wxMoveEventHandler( frcurrentsUIDialogBase::OnMove ) );
 	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( frcurrentsUIDialogBase::OnSize ) );
-        this->Disconnect(
+	this->Disconnect(
             wxEVT_LEFT_DOWN,
             wxMouseEventHandler(frcurrentsUIDialogBase::OnMouseEvent));
         this->Disconnect(wxEVT_LEFT_UP,
@@ -229,8 +215,6 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
 	m_button5->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
 	m_button6->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnChooseTideButton ), NULL, this );
-	m_button7->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnSelectData ), NULL, this );
-
 
   this->Disconnect(
             wxEVT_CONTEXT_MENU,
@@ -355,6 +339,17 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 
 	bSizerMain->Add( bSizer4, 0, wxEXPAND, 5 );
 
+	wxStaticBoxSizer* sbSizerHarmonics;
+	sbSizerHarmonics = new wxStaticBoxSizer(new wxStaticBox(this, wxID_ANY, _("Tide Harmonics IDX Directory")), wxVERTICAL);
+
+	m_button7 = new wxButton(sbSizerHarmonics->GetStaticBox(), wxID_ANY, _("Select Directory"), wxDefaultPosition, wxDefaultSize, 0);
+	sbSizerHarmonics->Add(m_button7, 0, wxALL, 5);
+
+	m_dirPicker1 = new wxTextCtrl(sbSizerHarmonics->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+	sbSizerHarmonics->Add(m_dirPicker1, 0, wxALL | wxEXPAND, 5);
+
+	bSizerMain->Add(sbSizerHarmonics, 1, wxEXPAND, 5);
+
 	wxStaticBoxSizer* sbSizerScale;
 	sbSizerScale = new wxStaticBoxSizer(new wxStaticBox(this, wxID_ANY, wxEmptyString), wxHORIZONTAL);
 
@@ -412,6 +407,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	m_sIconSizeFactor->Connect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnIconsSlidersChange), NULL, this);
 	m_sFontSizeFactor->Connect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnFontSlidersChange), NULL, this);
 	m_rTimeZoneOptions->Connect(wxEVT_RADIOBOX, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnTimeZoneChange), NULL, this);
+	m_button7->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnSelectData), NULL, this);
 }
 
 frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase()
@@ -421,4 +417,5 @@ frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase()
 	m_sIconSizeFactor->Disconnect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnIconsSlidersChange), NULL, this);
 	m_sFontSizeFactor->Disconnect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnFontSlidersChange), NULL, this);
 	m_rTimeZoneOptions->Disconnect(wxEVT_RADIOBOX, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnTimeZoneChange), NULL, this);
+	m_button7->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnSelectData), NULL, this);
 }
