@@ -137,6 +137,8 @@ public:
   ~frcurrentsUIDialog();
 
   void OpenFile(bool newestFile = false);
+  void LoadTCMFile();
+  void LoadHarmonics();
   wxDateTime GetNow();
   void SetNow();
   void SetScaledBitmaps(double scalefactor);
@@ -181,7 +183,6 @@ public:
   vector<SHOMport> portLines;
   wxString g_SData_Locn;
   TCMgr* ptcmgr;
-  wxString m_FolderSelected;
   double m_coeff;
   double m_jumpLat, m_jumpLon;
   PlugIn_ViewPort* m_vp;
@@ -223,10 +224,6 @@ private:
   int FindPortIDUsingChoice(wxString inPortName);
   int FindTidePortUsingChoice(wxString inAreaNumber);
 
-  void OnSelectData(wxCommandEvent& event);
-  bool m_harmonics;
-  void LoadTCMFile();
-  void LoadHarmonics();
   int FindPortID(wxString myPort);
   bool LoadStandardPorts();
   void OnAreaSelected(wxCommandEvent& event);

@@ -90,7 +90,7 @@ public:
   void SetfrcurrentsDialogSizeY(int x) { m_frcurrents_dialog_sy = x; }
   void SetColorScheme(PI_ColorScheme cs);
 
-  void OnfrcurrentsDialogClose();
+  void OnfrcurrentsDialogClose(bool cancel);
 
   bool GetCopyRate() { return m_bCopyUseRate; }
   bool GetCopyDirection() { return m_bCopyUseDirection; }
@@ -162,11 +162,14 @@ class frcurrentsPreferencesDialog : public frcurrentsPreferencesDialogBase {
 public:
   frcurrentsPreferencesDialog(wxWindow *pparent)
       : frcurrentsPreferencesDialogBase(pparent) {}
+
+
   ~frcurrentsPreferencesDialog() {}
 
 private:
   void OnIconsSlidersChange(wxCommandEvent &event);
   void OnFontSlidersChange(wxCommandEvent &event);
   void OnTimeZoneChange(wxCommandEvent& event);
+  void OnSelectData(wxCommandEvent& event);
 };
 #endif

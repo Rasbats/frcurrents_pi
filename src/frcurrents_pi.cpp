@@ -211,6 +211,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   Pref->m_sIconSizeFactor->SetValue(my_IconsScaleFactor);
   Pref->m_sFontSizeFactor->SetValue(my_FontpointSizeFactor);
   Pref->m_rTimeZoneOptions->SetSelection(g_pi->GetTZoptionID());
+  Pref->m_dirPicker1->SetValue(m_CopyFolderSelected);
 
   wxColour myC0 = wxColour(myVColour[0]);
   Pref->myColourPicker0->SetColour(myC0);
@@ -397,7 +398,7 @@ int frcurrents_pi::VerifyTimeZoneID( int id) {
   return id;
 }
 
-void frcurrents_pi::OnfrcurrentsDialogClose() {
+void frcurrents_pi::OnfrcurrentsDialogClose(bool cancel) {
   m_bShowfrcurrents = false;
   SetToolbarItemState(m_leftclick_tool_id, m_bShowfrcurrents);
 
@@ -412,6 +413,11 @@ void frcurrents_pi::OnfrcurrentsDialogClose() {
   SetfrcurrentsDialogSizeY(r.GetHeight());
 
   SaveConfig();
+
+  if (cancel) {
+    delete m_pfrcurrentsDialog;
+    m_pfrcurrentsDialog = NULL;
+  }
 
   RequestRefresh(m_parent_window);  // refresh mainn window
 }
@@ -560,6 +566,32 @@ void frcurrentsPreferencesDialog::OnTimeZoneChange(wxCommandEvent& event) {
       m_rTimeZoneOptions->SetSelection(idx);
       if (g_pi->m_pfrcurrentsDialog)
         g_pi->m_pfrcurrentsDialog->SetNow(); // force returning to now to activate new TZ chosen
+    }
+  }
+}
+
+void frcurrentsPreferencesDialog::OnSelectData(wxCommandEvent& event) {
+  wxString m_HarmonicsSelected = m_dirPicker1->GetValue();
+#ifndef __ANDROID__
+  wxDirDialog* d =
+    new wxDirDialog(this, _("Choose Harmonics Directory"), "", 0, wxDefaultPosition);
+  if (d->ShowModal() == wxID_OK) {
+    m_HarmonicsSelected = d->GetPath();
+  }
+#else
+  wxString dir_spec;
+  int response = PlatformDirSelectorDialog(
+    g_Window, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
+  if (response == wxID_OK) {
+    m_HarmonicsSelected = dir_spec;
+  }
+#endif
+  m_dirPicker1->SetValue(m_HarmonicsSelected);
+  if (g_pi) {
+    if(g_pi->m_CopyFolderSelected != m_HarmonicsSelected){
+      g_pi->m_CopyFolderSelected = m_HarmonicsSelected;
+      if (g_pi->m_pfrcurrentsDialog)
+        g_pi->OnfrcurrentsDialogClose(true);
     }
   }
 }

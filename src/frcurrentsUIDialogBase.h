@@ -67,7 +67,6 @@ protected:
   virtual void OnPrev(wxCommandEvent& event) { event.Skip(); }
   virtual void OnNext(wxCommandEvent& event) { event.Skip(); }
   virtual void OnChooseTideButton(wxCommandEvent& event) { event.Skip(); }
-  virtual void OnSelectData(wxCommandEvent& event) { event.Skip(); }
   virtual void OnContextMenu(wxContextMenuEvent& event) { event.Skip(); }
   virtual void OnContextMenuSelect(wxCommandEvent& event) { event.Skip(); }
   virtual void OnMouseEvent(wxMouseEvent& event) { event.Skip(); }
@@ -108,12 +107,14 @@ protected:
   wxStdDialogButtonSizer* m_sdbSizerButtons;
   wxButton* m_sdbSizerButtonsOK;
   wxButton* m_sdbSizerButtonsCancel;
+  wxButton* m_button7;
 
   // Virtual event handlers, override them in your derived class
   virtual void OnChoice(wxCommandEvent& event) { event.Skip(); }
   virtual void OnIconsSlidersChange(wxCommandEvent& event) { event.Skip(); }
   virtual void OnFontSlidersChange(wxCommandEvent & event) { event.Skip(); }
   virtual void OnTimeZoneChange(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnSelectData(wxCommandEvent& event) { event.Skip(); }
 public:
   wxCheckBox* m_cbUseRate;
   wxCheckBox* m_cbUseDirection;
@@ -124,6 +125,7 @@ public:
   wxColourPickerCtrl* myColourPicker2;
   wxColourPickerCtrl* myColourPicker3;
   wxColourPickerCtrl* myColourPicker4;
+  wxTextCtrl* m_dirPicker1;
   wxChoice* m_cStyle;
   wxSlider* m_sIconSizeFactor;
   wxSlider * m_sFontSizeFactor;

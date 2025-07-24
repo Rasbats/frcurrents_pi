@@ -157,7 +157,6 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsAreaID", &m_AreaIDSelected, 0);
     pConf->Read("frcurrentsPort", &m_PortSelected);
-    pConf->Read("frcurrentsFolder", &m_FolderSelected);
 
     pConf->Read("VColour0", &myVColour[0], myVColour[0]);
     pConf->Read("VColour1", &myVColour[1], myVColour[1]);
@@ -173,7 +172,6 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
   }
   ptcmgr = NULL;
 
-  m_dirPicker1->SetValue(m_FolderSelected);
   m_myChoice = 0;
 
   LoadStandardPorts();  // From StandardPorts.xml Load the port choice control
@@ -209,7 +207,6 @@ frcurrentsUIDialog::~frcurrentsUIDialog() {
     int c = m_choice1->GetCurrentSelection();
     wxString myP = m_choice1->GetString(c);
     pConf->Write("frcurrentsPort", myP);
-    pConf->Write("frcurrentsFolder", m_FolderSelected);
   }
 }
 
@@ -406,9 +403,7 @@ void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
 }
 
 void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
-  m_FolderSelected = m_dirPicker1->GetValue();
-  pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-  pPlugIn->OnfrcurrentsDialogClose();
+  pPlugIn->OnfrcurrentsDialogClose(false);
 }
 
 void frcurrentsUIDialog::OnMove(wxMoveEvent& event) {
@@ -689,7 +684,11 @@ bool frcurrentsUIDialog::SetDateForNowButton() {
   int id = FindPortIDUsingChoice(string);
 
   if (id == 0) {
-    wxMessageBox(_("No Tidal Data"), _("Tidal Data Finder"));
+    wxMessageBox(_("No Tidal Data\n"
+    "The Directory Selected do not Contain the Harmonic file Needed\n"
+    "Please Go to frcurrents_pi Preferences to Select Another One")
+      , _("Tidal Data Finder"));
+
     button_id = 6;
     RequestRefresh(pParent);
     return false;
@@ -905,33 +904,6 @@ int frcurrentsUIDialog::FindPortIDUsingChoice(wxString inPortName) {
   return 0;
 }
 
-void frcurrentsUIDialog::OnSelectData(wxCommandEvent& event) {
-#ifndef __ANDROID__
-  wxDirDialog* d = new wxDirDialog(this, _("Choose Harmonics Directory"), "", 0,
-                                   wxDefaultPosition);
-  if (d->ShowModal() == wxID_OK) {
-    m_dirPicker1->SetValue(d->GetPath());
-
-    m_FolderSelected = m_dirPicker1->GetValue();
-    pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-  }
-#else
-  wxString dir_spec;
-  int response = PlatformDirSelectorDialog(g_Window, &dir_spec,
-                                           _("Choose Harmonics Directory"),
-                                           m_dirPicker1->GetValue());
-  if (response == wxID_OK) {
-    m_dirPicker1->SetValue(dir_spec);
-    m_FolderSelected = dir_spec;
-    pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-  }
-#endif
-
-  LoadTCMFile();
-  LoadHarmonics();
-  RequestRefresh(pParent);
-}
-
 void frcurrentsUIDialog::LoadHarmonics() {
   if (!ptcmgr) {
     ptcmgr = new TCMgr;
@@ -978,7 +950,7 @@ void frcurrentsUIDialog::LoadHarmonics() {
 }
 
 void frcurrentsUIDialog::LoadTCMFile() {
-  wxString TCDir = m_FolderSelected;
+  wxString TCDir = pPlugIn->m_CopyFolderSelected;
 
   if (TCDir == wxEmptyString) {
     wxMessageBox(
@@ -986,13 +958,10 @@ void frcurrentsUIDialog::LoadTCMFile() {
           "HARMONIC.IDX\n Using the dialog that follows"));
 
 #ifndef __ANDROID__
-    TCDir = pPlugIn->GetFolderSelected();
-    m_dirPicker1->SetValue(TCDir);
     wxDirDialog* d = new wxDirDialog(this, _("Choose Harmonics Directory"), "",
                                      0, wxDefaultPosition);
     if (d->ShowModal() == wxID_OK) {
-      m_dirPicker1->SetValue(d->GetPath());
-      TCDir = m_dirPicker1->GetValue();
+      TCDir = d->GetPath();
     }
 #else
     wxString dir_spec;
@@ -1000,13 +969,11 @@ void frcurrentsUIDialog::LoadTCMFile() {
                                              _("Choose Harmonics Directory"),
                                              m_dirPicker1->GetValue());
     if (response == wxID_OK) {
-      m_dirPicker1->SetValue(dir_spec);
-      m_FolderSelected = dir_spec;
-      pPlugIn->m_CopyFolderSelected = m_FolderSelected;
-      TCDir = m_dirPicker1->GetValue();
+      TCDir = dir_spec;
     }
 
 #endif
+    pPlugIn->m_CopyFolderSelected = TCDir;
   }
   TCDir.Append(wxFileName::GetPathSeparator());
   wxLogMessage(_("Using Tide/Current data from:  ") + TCDir);
