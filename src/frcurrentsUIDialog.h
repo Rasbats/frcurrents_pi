@@ -194,6 +194,7 @@ public:
   wxString m_FolderSelected;
   double m_coeff;
   double m_jumpLat, m_jumpLon;
+  double my_chart_scale;
 
 #ifdef __ANDROID__
   void OnContextMenu(wxContextMenuEvent& event);

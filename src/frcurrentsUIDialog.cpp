@@ -1975,6 +1975,59 @@ bool frcurrentsUIDialog::OpenXML() {
 
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
   int a = m_choiceArea->GetSelection();
+
+  int m_area_chosen = a;
+  double myLat, myLon;
+  myLat = 50.0, myLon = -2.0;
+
+  switch (m_area_chosen) {
+    case 0:
+      myLat = 51.1;
+      myLon = 2.2;
+      JumpToPosition(myLat, myLon, my_chart_scale);
+      break;
+    case 1:
+      myLat = 50.0;
+      myLon = -0.9;
+      JumpToPosition(myLat, myLon, my_chart_scale);
+      break;
+    case 2:
+      myLat = 49.5403;
+      myLon = -0.0766;
+      JumpToPosition(myLat, myLon, my_chart_scale);
+      break;
+    case 3:
+      myLat = 49.3;
+      myLon = -2.4;
+      JumpToPosition(myLat, myLon, my_chart_scale);
+      break;
+    case 4:
+      myLat = 48.9;
+      myLon = -3.7;
+      JumpToPosition(myLat, myLon, my_chart_scale);
+      break;
+    case 5:
+      myLat = 48.362570;
+      myLon = -4.500263;
+      JumpToPosition(myLat, myLon, my_chart_scale);
+      break;
+    case 6:
+      myLat = 47.5;
+      myLon = -4.1;
+      JumpToPosition(myLat, myLon, my_chart_scale);
+      break;
+    case 7:
+      myLat = 47.0;
+      myLon = -2.5;
+      JumpToPosition(myLat, myLon, my_chart_scale);
+      break;
+    case 8:
+      myLat = 46.0;
+      myLon = -3.7;
+      JumpToPosition(myLat, myLon, my_chart_scale);
+      break;
+  }
+
   wxString s = m_Areas[a];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)
