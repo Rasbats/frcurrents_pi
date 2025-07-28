@@ -1,0 +1,8 @@
+src/frcurrentsOverlayFactory.cpp
+src/frcurrentsOverlayFactory.h
+src/frcurrentsUIDialog.cpp
+src/frcurrentsUIDialog.h
+src/frcurrentsUIDialogBase.cpp
+src/frcurrentsUIDialogBase.h
+src/frcurrents_pi.cpp
+src/frcurrents_pi.h

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-07 10:18+0100\n"
-"PO-Revision-Date: 2025-07-14 07:26\n"
+"POT-Creation-Date: 2025-07-28 12:29+0100\n"
+"PO-Revision-Date: 2025-07-28 11:33\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -17,10 +17,9 @@ msgstr ""
 "X-Crowdin-File: /plugins/frcurrents_pi/po/frcurrents_pi.pot\n"
 "X-Crowdin-File-ID: 421\n"
 
-#: src/frcurrentsOverlayFactory.cpp:111 src/frcurrents_pi.cpp:337
-#: src/frcurrents_pi.cpp:362 src/frcurrents_pi.cpp:545
-msgid "Dialog"
-msgstr "Boîte de dialogue"
+#: src/frcurrentsOverlayFactory.cpp:111
+msgid "CurrentValue"
+msgstr "Force du courant"
 
 #: src/frcurrentsUIDialog.cpp:374
 msgid "Preferences..."
@@ -30,7 +29,7 @@ msgstr "Preferences"
 msgid "Resize..."
 msgstr "Redimensionner"
 
-#: src/frcurrentsUIDialog.cpp:486 src/frcurrentsUIDialog.cpp:2054
+#: src/frcurrentsUIDialog.cpp:486 src/frcurrentsUIDialog.cpp:2107
 #: src/frcurrentsUIDialogBase.cpp:170
 msgid "HW-6"
 msgstr "PM-6"
@@ -55,7 +54,7 @@ msgstr "PM-2"
 msgid "HW-1"
 msgstr "PM-1"
 
-#: src/frcurrentsUIDialog.cpp:492 src/frcurrentsUIDialog.cpp:2052
+#: src/frcurrentsUIDialog.cpp:492 src/frcurrentsUIDialog.cpp:2105
 #: src/frcurrentsUIDialogBase.cpp:176
 msgid "HW"
 msgstr "PM"
@@ -80,12 +79,12 @@ msgstr "PM+4"
 msgid "HW+5"
 msgstr "PM+5"
 
-#: src/frcurrentsUIDialog.cpp:498 src/frcurrentsUIDialog.cpp:2055
+#: src/frcurrentsUIDialog.cpp:498 src/frcurrentsUIDialog.cpp:2108
 #: src/frcurrentsUIDialogBase.cpp:182
 msgid "HW+6"
 msgstr "PM+6"
 
-#: src/frcurrentsUIDialog.cpp:500 src/frcurrentsUIDialog.cpp:2048
+#: src/frcurrentsUIDialog.cpp:500 src/frcurrentsUIDialog.cpp:2101
 msgid "LW-6"
 msgstr "BM-6"
 
@@ -109,7 +108,7 @@ msgstr "BM-2"
 msgid "LW-1"
 msgstr "BM-1"
 
-#: src/frcurrentsUIDialog.cpp:506 src/frcurrentsUIDialog.cpp:2046
+#: src/frcurrentsUIDialog.cpp:506 src/frcurrentsUIDialog.cpp:2099
 msgid "LW"
 msgstr "BM"
 
@@ -133,25 +132,25 @@ msgstr "BM+4"
 msgid "LW+5"
 msgstr "BM+5"
 
-#: src/frcurrentsUIDialog.cpp:512 src/frcurrentsUIDialog.cpp:2049
+#: src/frcurrentsUIDialog.cpp:512 src/frcurrentsUIDialog.cpp:2102
 msgid "LW+6"
 msgstr "BM+6"
 
 #: src/frcurrentsUIDialog.cpp:731 src/frcurrentsUIDialog.cpp:792
-#: src/frcurrentsUIDialog.cpp:2273
+#: src/frcurrentsUIDialog.cpp:2326
 msgid "No Tidal Data"
 msgstr "Pas de donnée"
 
 #: src/frcurrentsUIDialog.cpp:731 src/frcurrentsUIDialog.cpp:792
-#: src/frcurrentsUIDialog.cpp:2273
+#: src/frcurrentsUIDialog.cpp:2326
 msgid "Tidal Data Finder"
 msgstr "Dossier des marees"
 
-#: src/frcurrentsUIDialog.cpp:785 src/frcurrentsUIDialog.cpp:2265
+#: src/frcurrentsUIDialog.cpp:785 src/frcurrentsUIDialog.cpp:2318
 msgid "Port not found"
 msgstr "Port inconnu"
 
-#: src/frcurrentsUIDialog.cpp:785 src/frcurrentsUIDialog.cpp:2265
+#: src/frcurrentsUIDialog.cpp:785 src/frcurrentsUIDialog.cpp:2318
 msgid "Port finder"
 msgstr "Recherche de port"
 
@@ -190,11 +189,11 @@ msgstr "Coeff:"
 msgid "Failed to load file: "
 msgstr "Erreur lecture fichier : "
 
-#: src/frcurrentsUIDialog.cpp:2047
+#: src/frcurrentsUIDialog.cpp:2100
 msgid "Low Water"
 msgstr "Marée basse"
 
-#: src/frcurrentsUIDialog.cpp:2053
+#: src/frcurrentsUIDialog.cpp:2106
 msgid "High Water"
 msgstr "Marée haute"
 
@@ -390,4 +389,8 @@ msgid "frcurrents PlugIn for OpenCPN\n"
 "\t\t\t   "
 msgstr "L'extension Courants FR pour OpenCPN\n"
 "visualise les courants de marées "
+
+#: src/frcurrents_pi.cpp:337 src/frcurrents_pi.cpp:362 src/frcurrents_pi.cpp:546
+msgid "Dialog"
+msgstr "Boîte de dialogue"
 
