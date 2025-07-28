@@ -52,7 +52,6 @@ protected:
   wxButton* m_button5;
   wxButton* m_button4;
   wxButton* m_button6;
-  wxButton* m_button7;
 
   // Virtual event handlers, override them in your derived class
   virtual void OnClose(wxCloseEvent& event) { event.Skip(); }
@@ -60,7 +59,7 @@ protected:
   virtual void OnMove(wxMoveEvent& event) { event.Skip(); }
   virtual void OnSize(wxSizeEvent& event) { event.Skip(); }
   virtual void OnAreaSelected(wxCommandEvent& event) { event.Skip(); }
-  virtual void OnInformation(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnPreferences(wxCommandEvent& event) { event.Skip(); }
   virtual void OnPortChanged(wxCommandEvent& event) { event.Skip(); }
   virtual void OnDateSelChanged(wxDateEvent& event) { event.Skip(); }
   virtual void OnNow(wxCommandEvent& event) { event.Skip(); }
@@ -107,7 +106,8 @@ protected:
   wxStdDialogButtonSizer* m_sdbSizerButtons;
   wxButton* m_sdbSizerButtonsOK;
   wxButton* m_sdbSizerButtonsCancel;
-  wxButton* m_button7;
+  wxButton* m_button01;
+  wxButton* m_button02;
 
   // Virtual event handlers, override them in your derived class
   virtual void OnChoice(wxCommandEvent& event) { event.Skip(); }
@@ -115,6 +115,7 @@ protected:
   virtual void OnFontSlidersChange(wxCommandEvent & event) { event.Skip(); }
   virtual void OnTimeZoneChange(wxCommandEvent& event) { event.Skip(); }
   virtual void OnSelectData(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnShowInformation(wxCommandEvent& event) { event.Skip(); }
 public:
   wxCheckBox* m_cbUseRate;
   wxCheckBox* m_cbUseDirection;

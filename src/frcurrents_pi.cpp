@@ -590,8 +590,17 @@ void frcurrentsPreferencesDialog::OnSelectData(wxCommandEvent& event) {
   if (g_pi) {
     if(g_pi->m_CopyFolderSelected != m_HarmonicsSelected){
       g_pi->m_CopyFolderSelected = m_HarmonicsSelected;
-      if (g_pi->m_pfrcurrentsDialog)
+      if (g_pi->m_pfrcurrentsDialog) {
         g_pi->OnfrcurrentsDialogClose(true);
+      }
     }
   }
+}
+
+void frcurrentsPreferencesDialog::OnShowInformation(wxCommandEvent& event) {
+  wxString s = wxFileName::GetPathSeparator();
+  wxString infolocation = GetPluginDataDir("frcurrents_pi") + s + "data" + s +
+                          "Information" + s + "frcurrentsInformation.html";
+  bool m_bFound = wxLaunchDefaultBrowser("file://" + infolocation);
+  if (!m_bFound) wxMessageBox(_("No Information Found"), _("Internet Browser"));
 }

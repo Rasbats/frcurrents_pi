@@ -33,7 +33,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	sbSizer71->Add( 0, 0, 1, wxEXPAND, 5 );
 
 	m_button8 = new wxBitmapButton(sbSizer71->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
-	m_button8->SetToolTip(_("Information"));
+	m_button8->SetToolTip(_("Preferences"));
 	sbSizer71->Add(m_button8, 0, wxALIGN_RIGHT | wxALL, 5);
 
 	bSizerMain->Add( sbSizer71, 0, wxEXPAND, 5 );
@@ -166,7 +166,7 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	this->Connect( wxEVT_MOVE, wxMoveEventHandler( frcurrentsUIDialogBase::OnMove ) );
 	this->Connect( wxEVT_SIZE, wxSizeEventHandler( frcurrentsUIDialogBase::OnSize ) );
 	m_choiceArea->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnAreaSelected ), NULL, this );
-	m_button8->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnInformation ), NULL, this );
+	m_button8->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnPreferences ), NULL, this );
 	m_choice1->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnPortChanged ), NULL, this );
 	m_datePicker1->Connect( wxEVT_DATE_CHANGED, wxDateEventHandler( frcurrentsUIDialogBase::OnDateSelChanged ), NULL, this );
 	m_bpNow->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnNow ), NULL, this );
@@ -206,7 +206,7 @@ frcurrentsUIDialogBase::~frcurrentsUIDialogBase()
         this->Disconnect(wxEVT_MOTION, wxMouseEventHandler(
                                         frcurrentsUIDialogBase::OnMouseEvent));
 	m_choiceArea->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnAreaSelected ), NULL, this );
-	m_button8->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnInformation ), NULL, this );
+	m_button8->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnPreferences ), NULL, this );
 	m_choice1->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsUIDialogBase::OnPortChanged ), NULL, this );
 	m_datePicker1->Disconnect( wxEVT_DATE_CHANGED, wxDateEventHandler( frcurrentsUIDialogBase::OnDateSelChanged ), NULL, this );
 	m_bpNow->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( frcurrentsUIDialogBase::OnNow ), NULL, this );
@@ -236,8 +236,17 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	wxBoxSizer* bSizerCheckboxes;
 	bSizerCheckboxes = new wxBoxSizer( wxVERTICAL );
 
+	wxBoxSizer* bSizerDoubleParam = new wxBoxSizer( wxHORIZONTAL );
+
 	m_cbUseRate = new wxCheckBox( this, wxID_ANY, _("Display tidal rates (knots)"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizerCheckboxes->Add( m_cbUseRate, 0, wxALL, 5 );
+	bSizerDoubleParam->Add( m_cbUseRate, 0, wxALL, 5 );
+
+	bSizerDoubleParam->Add(0, 0, 1, wxEXPAND, 0);
+
+	m_button01 = new wxButton(this, wxID_ANY, _("Information"), wxDefaultPosition, wxDefaultSize, 0);
+	bSizerDoubleParam->Add(m_button01, 0, wxALIGN_RIGHT|wxALL, 5);
+
+	bSizerCheckboxes->Add(bSizerDoubleParam, 0, wxEXPAND, 0);
 
 	m_cbUseDirection = new wxCheckBox( this, wxID_ANY, _("Display tidal direction"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizerCheckboxes->Add( m_cbUseDirection, 0, wxALL, 5 );
@@ -342,8 +351,8 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	wxStaticBoxSizer* sbSizerHarmonics;
 	sbSizerHarmonics = new wxStaticBoxSizer(new wxStaticBox(this, wxID_ANY, _("Tide Harmonics IDX Directory")), wxVERTICAL);
 
-	m_button7 = new wxButton(sbSizerHarmonics->GetStaticBox(), wxID_ANY, _("Select Directory"), wxDefaultPosition, wxDefaultSize, 0);
-	sbSizerHarmonics->Add(m_button7, 0, wxALL, 5);
+	m_button02 = new wxButton(sbSizerHarmonics->GetStaticBox(), wxID_ANY, _("Select Directory"), wxDefaultPosition, wxDefaultSize, 0);
+	sbSizerHarmonics->Add(m_button02, 0, wxALL, 5);
 
 	m_dirPicker1 = new wxTextCtrl(sbSizerHarmonics->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
 	sbSizerHarmonics->Add(m_dirPicker1, 0, wxALL | wxEXPAND, 5);
@@ -407,7 +416,8 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	m_sIconSizeFactor->Connect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnIconsSlidersChange), NULL, this);
 	m_sFontSizeFactor->Connect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnFontSlidersChange), NULL, this);
 	m_rTimeZoneOptions->Connect(wxEVT_RADIOBOX, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnTimeZoneChange), NULL, this);
-	m_button7->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnSelectData), NULL, this);
+	m_button01->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnShowInformation), NULL, this);
+	m_button02->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnSelectData), NULL, this);
 }
 
 frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase()
@@ -417,5 +427,6 @@ frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase()
 	m_sIconSizeFactor->Disconnect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnIconsSlidersChange), NULL, this);
 	m_sFontSizeFactor->Disconnect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnFontSlidersChange), NULL, this);
 	m_rTimeZoneOptions->Disconnect(wxEVT_RADIOBOX, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnTimeZoneChange), NULL, this);
-	m_button7->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnSelectData), NULL, this);
+	m_button01->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnShowInformation), NULL, this);
+	m_button02->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnSelectData), NULL, this);
 }

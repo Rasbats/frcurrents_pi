@@ -370,7 +370,7 @@ void frcurrentsUIDialog::SetScaledBitmaps(double scalefactor) {
   h = 32 * scalefactor;
 
 #ifdef ocpnUSE_SVG
-  wxBitmap bitmap = GetBitmapFromSVGFile(_svg_frcurrents_info, w, h);
+  wxBitmap bitmap = GetBitmapFromSVGFile(_svg_frcurrents_prefs, w, h);
   m_button8->SetBitmap(bitmap);
   bitmap = GetBitmapFromSVGFile(_svg_frcurrents_next, w, h);
   m_bpNext->SetBitmap(bitmap);
@@ -828,12 +828,8 @@ StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName) {
   return myCPort;
 }
 
-void frcurrentsUIDialog::OnInformation(wxCommandEvent& event) {
-  wxString s = wxFileName::GetPathSeparator();
-  wxString infolocation = GetPluginDataDir("frcurrents_pi") + s + "data" + s +
-                          "Information" + s + "frcurrentsInformation.html";
-  bool m_bFound = wxLaunchDefaultBrowser("file://" + infolocation);
-  if (!m_bFound) wxMessageBox(_("No Information Found"), _("Internet Browser"));
+void frcurrentsUIDialog::OnPreferences(wxCommandEvent& event) {
+  pPlugIn->ShowPreferencesDialog(pParent);
 }
 
 wxString frcurrentsUIDialog::FindPortXMLUsingChoice(wxString inPortName) {
