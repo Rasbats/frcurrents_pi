@@ -17,7 +17,7 @@ extern wxBitmap *_xpm_frcurrents_pi;
 extern wxString _svg_frcurrents;
 extern wxString _svg_frcurrents_rollover;
 extern wxString _svg_frcurrents_toggled;
-extern wxString _svg_frcurrents_info;
+extern wxString _svg_frcurrents_prefs;
 extern wxString _svg_frcurrents_now;
 extern wxString _svg_frcurrents_prev;
 extern wxString _svg_frcurrents_next;

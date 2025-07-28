@@ -171,5 +171,6 @@ private:
   void OnFontSlidersChange(wxCommandEvent &event);
   void OnTimeZoneChange(wxCommandEvent& event);
   void OnSelectData(wxCommandEvent& event);
+  void OnShowInformation(wxCommandEvent& event);
 };
 #endif
