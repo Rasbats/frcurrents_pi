@@ -532,7 +532,7 @@ void frcurrentsOverlayFactory::DrawAllCurrentsInViewPort(
             double scale = current_draw_scaler * a2;
 
             bool rendered = drawCurrentArrow(pixxc, pixyc, dir - 90 + rot_vp,
-                                             scale / 100, tcvalue);
+                                             scale / 100, tcvalue, g_VP.rotation);
 
             int shift = 0;
 
