@@ -398,7 +398,7 @@ int frcurrents_pi::VerifyTimeZoneID( int id) {
   return id;
 }
 
-void frcurrents_pi::OnfrcurrentsDialogClose(bool cancel) {
+void frcurrents_pi::OnfrcurrentsDialogClose() {
   m_bShowfrcurrents = false;
   SetToolbarItemState(m_leftclick_tool_id, m_bShowfrcurrents);
 
@@ -413,11 +413,6 @@ void frcurrents_pi::OnfrcurrentsDialogClose(bool cancel) {
   SetfrcurrentsDialogSizeY(r.GetHeight());
 
   SaveConfig();
-
-  if (cancel) {
-    delete m_pfrcurrentsDialog;
-    m_pfrcurrentsDialog = NULL;
-  }
 
   RequestRefresh(m_parent_window);  // refresh mainn window
 }
@@ -591,7 +586,11 @@ void frcurrentsPreferencesDialog::OnSelectData(wxCommandEvent& event) {
     if(g_pi->m_CopyFolderSelected != m_HarmonicsSelected){
       g_pi->m_CopyFolderSelected = m_HarmonicsSelected;
       if (g_pi->m_pfrcurrentsDialog) {
-        g_pi->OnfrcurrentsDialogClose(true);
+        g_pi->m_pfrcurrentsDialog->LoadTCMFile();
+        g_pi->m_pfrcurrentsDialog->LoadHarmonics();
+        g_pi->m_pfrcurrentsDialog->SetNow();
+        if (g_pi->m_pfrcurrentsDialog->IsShown())
+          g_pi->m_pfrcurrentsDialog->Layout();
       }
     }
   }

@@ -90,7 +90,7 @@ public:
   void SetfrcurrentsDialogSizeY(int x) { m_frcurrents_dialog_sy = x; }
   void SetColorScheme(PI_ColorScheme cs);
 
-  void OnfrcurrentsDialogClose(bool cancel);
+  void OnfrcurrentsDialogClose();
 
   bool GetCopyRate() { return m_bCopyUseRate; }
   bool GetCopyDirection() { return m_bCopyUseDirection; }

@@ -187,6 +187,7 @@ public:
   double m_jumpLat, m_jumpLon;
   PlugIn_ViewPort* m_vp;
   float my_chart_scale;
+  bool m_IsNotShowable;
 
   
 #ifdef __ANDROID__
