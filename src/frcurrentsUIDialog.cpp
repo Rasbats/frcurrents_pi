@@ -403,7 +403,7 @@ void frcurrentsUIDialog::SetViewPort(PlugIn_ViewPort* vp) {
 }
 
 void frcurrentsUIDialog::OnClose(wxCloseEvent& event) {
-  pPlugIn->OnfrcurrentsDialogClose(false);
+  pPlugIn->OnfrcurrentsDialogClose();
 }
 
 void frcurrentsUIDialog::OnMove(wxMoveEvent& event) {
@@ -663,6 +663,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
 void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) { SetNow(); }
 
 bool frcurrentsUIDialog::SetDateForNowButton() {
+  m_IsNotShowable = false;
   m_staticText2->SetLabel("");
   m_staticText211->SetLabel("");
   wxDateTime this_now = GetNow();
@@ -678,17 +679,19 @@ bool frcurrentsUIDialog::SetDateForNowButton() {
 
   if (m_portXML == "") {
     wxMessageBox(_("Port not found"), _("Port finder"));
+    m_IsNotShowable = true;
     return false;
   }
 
   int id = FindPortIDUsingChoice(string);
 
   if (id == 0) {
+    m_IsNotShowable = true;
     wxMessageBox(_("No Tidal Data\n"
-    "The Directory Selected do not Contain the Harmonic file Needed\n"
-    "Please Go to frcurrents_pi Preferences to Select Another One")
+      "The Directory Selected do not Contain the HARMONIC.IDX file Needed\n"
+      "Please Select Another One\n"
+      "'Information' could Help you to Find it.")
       , _("Tidal Data Finder"));
-
     button_id = 6;
     RequestRefresh(pParent);
     return false;
@@ -772,6 +775,7 @@ bool frcurrentsUIDialog::SetDateForNowButton() {
       }
     }
   }
+  m_IsNotShowable = true;
   return false;
 }
 
@@ -976,6 +980,8 @@ void frcurrentsUIDialog::LoadTCMFile() {
 
   wxString default_tcdata1 = TCDir + "HARMONIC.IDX";
   wxLogMessage(default_tcdata1);
+
+  TideCurrentDataSet.Clear();
 
   TideCurrentDataSet.Add(default_tcdata1);
 }

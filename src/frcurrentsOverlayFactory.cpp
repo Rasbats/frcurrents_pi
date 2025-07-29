@@ -278,6 +278,7 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
 }
 
 void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
+  if (m_dlg.m_IsNotShowable) return;
   double view_scale = vp->chart_scale;
 
   if (view_scale > 1000000) {
