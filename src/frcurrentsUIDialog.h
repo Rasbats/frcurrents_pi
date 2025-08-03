@@ -127,7 +127,7 @@ public:
 
 class StandardPort {
 public:
-  wxString PORT_NUMBER, PORT_NAME, LAT, LON, IDX, PMVE, PMME, BMVE, BMME;
+  wxString PORT_NUMBER, PORT_NAME, LAT, LON, A_LAT, A_LON, IDX, PMVE, PMME, BMVE, BMME;
   double spRange, npRange;
 };
 
@@ -140,7 +140,7 @@ public:
   void LoadTCMFile();
   void LoadHarmonics();
   wxDateTime GetNow();
-  void SetNow();
+  void SetNow(bool m_acenter = true);
   void SetScaledBitmaps(double scalefactor);
 
   void SetViewPort(PlugIn_ViewPort* vp);
@@ -186,7 +186,6 @@ public:
   double m_coeff;
   double m_jumpLat, m_jumpLon;
   PlugIn_ViewPort* m_vp;
-  float my_chart_scale;
   bool m_IsNotShowable;
 
   
@@ -210,20 +209,21 @@ private:
   void OnClose(wxCloseEvent& event);
   void OnMove(wxMoveEvent& event);
   void OnStartSetupHW();
-  void OnNow(wxCommandEvent& event) { SetNow(); }
+  void OnNow(wxCommandEvent& event) { SetNow(false); }
 
   void CalcHW(int PortCode);
   double CalcRange_Brest();
   void SetCorrectHWSelection();
   void OnDateSelChanged(wxDateEvent& event);
   void OnPortChanged(wxCommandEvent& event);
-  bool SetDateForNowButton();
+  bool SetDateForNowButton(bool m_bcenter);
 
   void OnPreferences(wxCommandEvent& event);
   wxString FindPortXMLUsingChoice(wxString inPortName);
 
   int FindPortIDUsingChoice(wxString inPortName);
   int FindTidePortUsingChoice(wxString inAreaNumber);
+  void FindPortAreaCenter(wxString area, wxString port, double &jump_LAT, double &Jump_LON);
 
   int FindPortID(wxString myPort);
   bool LoadStandardPorts();

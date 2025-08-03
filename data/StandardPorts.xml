@@ -4,6 +4,8 @@
     <PORT_NAME>DUNKERQUE, France</PORT_NAME>
     <LAT>51.039995</LAT>
     <LON>2.346700</LON>
+	<A_LAT>51.1</A_LAT>
+	<A_LON>2.2</A_LON>
     <PMVE>6.05</PMVE>
     <PMME>5.0</PMME>
     <BMME>1.5</BMME>
@@ -15,6 +17,8 @@
     <PORT_NAME>CALAIS, France</PORT_NAME>
     <LAT>50.969333</LAT>
     <LON>1.8675</LON>
+	<A_LAT>50.95</A_LAT>
+	<A_LON>1.75</A_LON>
     <PMVE>7.3</PMVE>
     <PMME>6.05</PMME>
     <BMME>2.05</BMME>
@@ -26,6 +30,8 @@
     <PORT_NAME>BOULOGNE-SUR-MER, France</PORT_NAME>
     <LAT>50.72745</LAT>
     <LON>1.5777</LON>
+	<A_LAT>50.727</A_LAT>
+	<A_LON>1.578</A_LON>
     <PMVE>9.0</PMVE>
     <PMME>7.3</PMME>
     <BMME>2.7</BMME>
@@ -37,6 +43,8 @@
     <PORT_NAME>CONCARNEAU, France</PORT_NAME>
     <LAT>47.875500</LAT>
     <LON>-3.92070</LON>
+	<A_LAT>47.4</A_LAT>
+	<A_LON>-4.135</A_LON>
     <PMVE>5.1</PMVE>
     <PMME>4.0</PMME>
     <BMME>2.0</BMME>
@@ -48,6 +56,8 @@
     <PORT_NAME>ILE de GROIX (Port Tudy), France</PORT_NAME>
     <LAT>47.644583</LAT>
     <LON>-3.4</LON>
+	<A_LAT>47.645</A_LAT>
+	<A_LON>-3.4</A_LON>
     <PMVE>5.2</PMVE>
     <PMME>4.15</PMME>
     <BMME>2.10</BMME>
@@ -59,6 +69,8 @@
     <PORT_NAME>PORT-NAVALO, France</PORT_NAME>
     <LAT>47.55300</LAT>
     <LON>-2.90520</LON>
+	<A_LAT>47.467</A_LAT>
+	<A_LON>-2.9</A_LON>
     <PMVE>05.05</PMVE>
     <PMME>4.0</PMME>
     <BMME>1.9</BMME>
@@ -70,6 +82,8 @@
     <PORT_NAME>SAINT-NAZAIRE, France</PORT_NAME>
     <LAT>47.277400</LAT>
     <LON>-2.21700</LON>
+	<A_LAT>47.091</A_LAT>
+	<A_LON>-2.56</A_LON>
     <PMVE>5.90</PMVE>
     <PMME>4.70</PMME>
     <BMME>2.25</BMME>
@@ -81,6 +95,8 @@
     <PORT_NAME>LES SABLES-D'OLONNE, France</PORT_NAME>
     <LAT>46.50</LAT>
     <LON>-1.80</LON>
+	<A_LAT>46.130</A_LAT>
+	<A_LON>-2.373</A_LON>
     <PMVE>05.35</PMVE>
     <PMME>4.30</PMME>
     <BMME>2.15</BMME>
@@ -92,6 +108,8 @@
     <PORT_NAME>LA ROCHELLE - LA PALLICE, France</PORT_NAME>
     <LAT>46.166695</LAT>
     <LON>-1.21670</LON>
+	<A_LAT>46.096</A_LAT>
+	<A_LON>-1.454</A_LON>
     <PMVE>6.10</PMVE>
     <PMME>4.95</PMME>
     <BMME>2.50</BMME>
@@ -103,6 +121,8 @@
     <PORT_NAME>POINTE DE GRAVE, France</PORT_NAME>
     <LAT>45.566700</LAT>
     <LON>-1.06670</LON>
+	<A_LAT>45.591</A_LAT>
+	<A_LON>-1.356</A_LON>
     <PMVE>5.30</PMVE>
     <PMME>4.35</PMME>
     <BMME>2.10</BMME>
@@ -114,6 +134,8 @@
     <PORT_NAME>BREST, France</PORT_NAME>
     <LAT>48.383297</LAT>
     <LON>-4.50</LON>
+	<A_LAT>48.2</A_LAT>
+	<A_LON>-4.835</A_LON>
     <PMVE>7.05</PMVE>
     <PMME>5.50</PMME>
     <BMME>2.70</BMME>
@@ -125,6 +147,8 @@
     <PORT_NAME>LE HAVRE, France</PORT_NAME>
     <LAT>49.4833</LAT>
     <LON>0.1167</LON>
+	<A_LAT>49.572</A_LAT>
+	<A_LON>0.0</A_LON>
     <PMVE>8.00</PMVE>
     <PMME>6.70</PMME>
     <BMME>2.95</BMME>
@@ -136,6 +160,8 @@
     <PORT_NAME>CHERBOURG, France</PORT_NAME>
     <LAT>49.649998</LAT>
     <LON>-1.63330</LON>
+	<A_LAT>49.721</A_LAT>
+	<A_LON>-1.412</A_LON>
     <PMVE>6.45</PMVE>
     <PMME>5.10</PMME>
     <BMME>2.60</BMME>
@@ -147,6 +173,8 @@
     <PORT_NAME>SAINT-MALO, France</PORT_NAME>
     <LAT>48.633297</LAT>
     <LON>-2.01670</LON>
+	<A_LAT>49.459</A_LAT>
+	<A_LON>-2.4</A_LON>
     <PMVE>12.2</PMVE>
     <PMME>9.3</PMME>
     <BMME>4.3</BMME>
@@ -158,6 +186,8 @@
     <PORT_NAME>PAIMPOL, France</PORT_NAME>
     <LAT>48.790333</LAT>
     <LON>-2.955333</LON>
+	<A_LAT>48.95</A_LAT>
+	<A_LON>-2.95</A_LON>
     <PMVE>10.95</PMVE>
     <PMME>8.45</PMME>
     <BMME>4.0</BMME>
@@ -169,6 +199,8 @@
     <PORT_NAME>ROSCOFF, France</PORT_NAME>
     <LAT>48.716698</LAT>
     <LON>-3.97670</LON>
+	<A_LAT>48.9</A_LAT>
+	<A_LON>-3.7</A_LON>
     <PMVE>8.90</PMVE>
     <PMME>7.10</PMME>
     <BMME>3.40</BMME>
@@ -180,6 +212,8 @@
     <PORT_NAME>CHERBOURG, France</PORT_NAME>
     <LAT>49.649998</LAT>
     <LON>-1.63330</LON>
+	<A_LAT>50.0</A_LAT>
+	<A_LON>-2.5</A_LON>
     <PMVE>6.45</PMVE>
     <PMME>5.10</PMME>
     <BMME>2.60</BMME>
@@ -191,6 +225,8 @@
     <PORT_NAME>CONCARNEAU, France</PORT_NAME>
     <LAT>47.2</LAT>
     <LON>-5.0</LON>
+	<A_LAT>46.2</A_LAT>
+	<A_LON>-4.43</A_LON>
     <PMVE>5.10</PMVE>
     <PMME>4.00</PMME>
     <BMME>2.00</BMME>
