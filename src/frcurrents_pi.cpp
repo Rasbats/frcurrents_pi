@@ -418,11 +418,11 @@ void frcurrents_pi::OnfrcurrentsDialogClose() {
 }
 
 bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
+  my_chart_scale = vp->view_scale_ppm;
   if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
       !m_pfrcurrentsOverlayFactory)
     return false;
   m_pfrcurrentsDialog->SetViewPort(vp);
-  m_pfrcurrentsDialog->my_chart_scale = vp->view_scale_ppm;
   piDC pidc(dc);
   m_pfrcurrentsOverlayFactory->RenderOverlay(pidc, *vp);
   return true;
@@ -430,12 +430,12 @@ bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
 
 bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
                                     PlugIn_ViewPort *vp) {
+  my_chart_scale = vp->view_scale_ppm;
   if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
       !m_pfrcurrentsOverlayFactory)
     return false;
 
   m_pfrcurrentsDialog->SetViewPort(vp);
-  m_pfrcurrentsDialog->my_chart_scale = vp->view_scale_ppm;    
   piDC piDC;
   glEnable(GL_BLEND);
   piDC.SetVP(vp);
@@ -560,7 +560,7 @@ void frcurrentsPreferencesDialog::OnTimeZoneChange(wxCommandEvent& event) {
     if (id != idx) {
       m_rTimeZoneOptions->SetSelection(idx);
       if (g_pi->m_pfrcurrentsDialog)
-        g_pi->m_pfrcurrentsDialog->SetNow(); // force returning to now to activate new TZ chosen
+        g_pi->m_pfrcurrentsDialog->SetNow(false); // force returning to now to activate new TZ chosen
     }
   }
 }

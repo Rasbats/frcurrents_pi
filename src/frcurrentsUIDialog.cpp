@@ -472,8 +472,9 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   SetNow();
 }
 
-void frcurrentsUIDialog::SetNow() {
-  if (!SetDateForNowButton()) return;
+void frcurrentsUIDialog::SetNow(bool m_acenter) {
+
+  if (!SetDateForNowButton(m_acenter)) return;
 
   // calc coefficient
   BrestRange = CalcRange_Brest();
@@ -662,7 +663,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
 
 void frcurrentsUIDialog::OnPortChanged(wxCommandEvent& event) { SetNow(); }
 
-bool frcurrentsUIDialog::SetDateForNowButton() {
+bool frcurrentsUIDialog::SetDateForNowButton(bool m_bcenter) {
   m_IsNotShowable = false;
   m_staticText2->SetLabel("");
   m_staticText211->SetLabel("");
@@ -696,6 +697,13 @@ bool frcurrentsUIDialog::SetDateForNowButton() {
     RequestRefresh(pParent);
     return false;
   } else {
+
+    if (m_bcenter) {
+      double inLAT, inLON;
+      FindPortAreaCenter(sa, string, inLAT, inLON);
+      JumpToPosition(inLAT, inLON, pPlugIn->my_chart_scale);
+    }
+
     GetCurrentsData(sa);
 
     CalcHW(id);
@@ -879,6 +887,27 @@ int frcurrentsUIDialog::FindTidePortUsingChoice(wxString inAreaNumber) {
   }
   m_choice1->Fit();
   return 0;
+}
+
+void frcurrentsUIDialog::FindPortAreaCenter(wxString area, wxString port, double &outLAT,
+  double &outLON) {
+  PortTides myPortTides;
+  for (std::vector<StandardPort>::iterator it = my_ports.begin();
+    it != my_ports.end(); it++) {
+    myPortTides.m_portID = (*it).PORT_NUMBER;
+    myPortTides.m_portName = (*it).PORT_NAME;
+
+    if (myPortTides.m_portID == area && myPortTides.m_portName == port) {
+      double value;
+      wxString svalue;
+      svalue = (*it).A_LAT;
+      svalue.ToDouble(&value);
+      outLAT = value;
+      svalue = (*it).A_LON;
+      svalue.ToDouble(&value);
+      outLON = value;
+    }
+  }
 }
 
 int frcurrentsUIDialog::FindPortIDUsingChoice(wxString inPortName) {
@@ -1394,7 +1423,7 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
 
   int count = 0;
 
-  wxString wxPORT_NUMBER, wxPORT_NAME, wxPORT_LAT, wxPORT_LON, PMVE, PMME, BMVE,
+  wxString wxPORT_NUMBER, wxPORT_NAME, wxPORT_LAT, wxPORT_LON, wxA_LAT, wxA_LON, PMVE, PMME, BMVE,
       BMME, IDX;
 
   int i = 0;
@@ -1420,6 +1449,16 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
       if (!strcmp(f->Value(), "LON")) {
         wxPORT_LON = wxString::FromUTF8(f->GetText());
         my_port.LON = wxPORT_LON;
+      }
+
+      if (!strcmp(f->Value(), "A_LAT")) {
+        wxA_LAT = wxString::FromUTF8(f->GetText());
+        my_port.A_LAT = wxA_LAT;
+      }
+
+      if (!strcmp(f->Value(), "A_LON")) {
+        wxA_LON = wxString::FromUTF8(f->GetText());
+        my_port.A_LON = wxA_LON;
       }
 
       if (!strcmp(f->Value(), "PMVE")) {
@@ -1458,59 +1497,6 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
 
 void frcurrentsUIDialog::OnAreaSelected(wxCommandEvent& event) {
   int a = m_choiceArea->GetSelection();
-
-  int m_area_chosen = a;
-  double myLat, myLon;
-  myLat = 50.0, myLon = -2.0;
-
-  switch (m_area_chosen) {
-    case 0:
-      myLat = 51.1;
-      myLon = 2.2;
-      JumpToPosition(myLat, myLon, my_chart_scale);
-      break;
-    case 1:
-      myLat = 50.0;
-      myLon = -0.9;
-      JumpToPosition(myLat, myLon, my_chart_scale);
-      break;
-    case 2:
-      myLat = 49.5403;
-      myLon = -0.0766;
-      JumpToPosition(myLat, myLon, my_chart_scale);
-      break;
-    case 3:
-      myLat = 49.3;
-      myLon = -2.4;
-      JumpToPosition(myLat, myLon, my_chart_scale);
-      break;
-    case 4:
-      myLat = 48.9;
-      myLon = -3.7;
-      JumpToPosition(myLat, myLon, my_chart_scale);
-      break;
-    case 5:
-      myLat = 48.362570;
-      myLon = -4.500263;
-      JumpToPosition(myLat, myLon, my_chart_scale);
-      break;
-    case 6:
-      myLat = 47.5;
-      myLon = -4.1;
-      JumpToPosition(myLat, myLon, my_chart_scale);
-      break;
-    case 7:
-      myLat = 47.0;
-      myLon = -2.5;
-      JumpToPosition(myLat, myLon, my_chart_scale);
-      break;
-    case 8:
-      myLat = 46.0;
-      myLon = -3.7;
-      JumpToPosition(myLat, myLon, my_chart_scale);
-      break;
-  }
-
   wxString s = m_Areas[a];
 
   FindTidePortUsingChoice(s);  // populate m_choice1 (this area's ports list)

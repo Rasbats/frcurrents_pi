@@ -115,6 +115,7 @@ public:
   frcurrentsUIDialog *m_pfrcurrentsDialog;
   double my_IconsScaleFactor;
   int my_FontpointSizeFactor;
+  float my_chart_scale;
 
 private:
   int m_position_menu_id;
