@@ -108,7 +108,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   int j = 0;
   wxPoint r;
 
-  wxFont* font = OCPNGetFont(_("CurrentValue"), 10);
+  wxFont* font =  GetOCPNScaledFont_PlugIn(_("CurrentValue"), 16);
 
   g_pDC->SetFont(*font);
   g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
