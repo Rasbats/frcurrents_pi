@@ -185,17 +185,9 @@ const char *GetPlugInVersionBuild() { return PKG_BUILD_INFO; }
 
 wxBitmap *frcurrents_pi::GetPlugInBitmap() { return &m_panelBitmap; }
 
-wxString frcurrents_pi::GetCommonName() { return "frcurrents"; }
-
-wxString frcurrents_pi::GetShortDescription() {
-  return _("frcurrents PlugIn for OpenCPN");
-}
-
-wxString frcurrents_pi::GetLongDescription() {
-  return _(
-      "frcurrents PlugIn for OpenCPN\nProvides an overlay of Tidal Current (Stream) Arrows.\n\n\
-			   ");
-}
+wxString frcurrents_pi::GetCommonName() { return PLUGIN_API_NAME; }
+wxString frcurrents_pi::GetShortDescription() { return PKG_SUMMARY; }
+wxString frcurrents_pi::GetLongDescription() { return PKG_DESCRIPTION; }
 
 void frcurrents_pi::SetDefaults(void) {}
 
