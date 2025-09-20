@@ -1668,7 +1668,7 @@ void frcurrentsUIDialog::ParseCurrentsVE(wxString inCurrents) {
     currentN = splits[n];
     int i = 0;
     int ii = 0;
-    wxStringTokenizer tokenizer(currentN, " ");
+    wxStringTokenizer tokenizer(currentN);
     while (tokenizer.HasMoreTokens()) {
       token[i] = tokenizer.GetNextToken();
       int len = token[i].length();
@@ -1727,7 +1727,7 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
     currentN = splits[n];
     int i = 0;
     int ii = 0;
-    wxStringTokenizer tokenizer(currentN, " ");
+    wxStringTokenizer tokenizer(currentN);
     while (tokenizer.HasMoreTokens()) {
       token[i] = tokenizer.GetNextToken();
       int len = token[i].length();
