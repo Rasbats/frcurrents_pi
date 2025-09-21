@@ -473,7 +473,6 @@ void frcurrentsUIDialog::OnStartSetupHW() {
 }
 
 void frcurrentsUIDialog::SetNow(bool m_acenter) {
-
   if (!SetDateForNowButton(m_acenter)) return;
 
   // calc coefficient
@@ -688,16 +687,16 @@ bool frcurrentsUIDialog::SetDateForNowButton(bool m_bcenter) {
 
   if (id == 0) {
     m_IsNotShowable = true;
-    wxMessageBox(_("No Tidal Data\n"
-      "The Directory Selected do not Contain the HARMONIC.IDX file Needed\n"
-      "Please Select Another One\n"
-      "'Information' could Help you to Find it.")
-      , _("Tidal Data Finder"));
+    wxMessageBox(
+        _("No Tidal Data\n"
+          "The Directory Selected do not Contain the HARMONIC.IDX file Needed\n"
+          "Please Select Another One\n"
+          "'Information' could Help you to Find it."),
+        _("Tidal Data Finder"));
     button_id = 6;
     RequestRefresh(pParent);
     return false;
   } else {
-
     if (m_bcenter) {
       double inLAT, inLON;
       FindPortAreaCenter(sa, string, inLAT, inLON);
@@ -889,11 +888,11 @@ int frcurrentsUIDialog::FindTidePortUsingChoice(wxString inAreaNumber) {
   return 0;
 }
 
-void frcurrentsUIDialog::FindPortAreaCenter(wxString area, wxString port, double &outLAT,
-  double &outLON) {
+void frcurrentsUIDialog::FindPortAreaCenter(wxString area, wxString port,
+                                            double& outLAT, double& outLON) {
   PortTides myPortTides;
   for (std::vector<StandardPort>::iterator it = my_ports.begin();
-    it != my_ports.end(); it++) {
+       it != my_ports.end(); it++) {
     myPortTides.m_portID = (*it).PORT_NUMBER;
     myPortTides.m_portName = (*it).PORT_NAME;
 
@@ -1423,8 +1422,8 @@ bool frcurrentsUIDialog::LoadStandardPorts() {
 
   int count = 0;
 
-  wxString wxPORT_NUMBER, wxPORT_NAME, wxPORT_LAT, wxPORT_LON, wxA_LAT, wxA_LON, PMVE, PMME, BMVE,
-      BMME, IDX;
+  wxString wxPORT_NUMBER, wxPORT_NAME, wxPORT_LAT, wxPORT_LON, wxA_LAT, wxA_LON,
+      PMVE, PMME, BMVE, BMME, IDX;
 
   int i = 0;
   for (TiXmlElement* e = root->FirstChildElement(); e;
@@ -1673,9 +1672,8 @@ void frcurrentsUIDialog::ParseCurrentsVE(wxString inCurrents) {
       token[i] = tokenizer.GetNextToken();
       int len = token[i].length();
       wxString curr = token[i].Left(1);
-      if (len > 2 && curr == "-") {
-        //
-
+      // Test for long - string
+      if (len > 2 && curr == "-") {  // String like "-12-13-12"
         wxStringTokenizer tokenizer2(token[i], "-");
         while (tokenizer2.HasMoreTokens()) {
           token[ii] = tokenizer2.GetNextToken();
@@ -1692,15 +1690,33 @@ void frcurrentsUIDialog::ParseCurrentsVE(wxString inCurrents) {
           }
           ii++;
         }
-      } else {
-        if (token[i].Trim() != "-") {
-          if (n == 0) {
-            token[i].Trim().ToDouble(&PMVEew[t]);
-          } else if (n == 1) {
-            token[i].Trim().ToDouble(&PMVEns[t]);
+      } else if (len > 2 && curr != "-") {  // String like "12-13-12-10"
+        wxStringTokenizer tokenizer2(token[i], "-");
+        while (tokenizer2.HasMoreTokens()) {
+          token[ii] = tokenizer2.GetNextToken();
+          int p = tokenizer2.GetPosition();
+          if (token[ii].Trim() != "-" &&
+              p != 1) {  // We don't want to prepend a "-" if the string does
+                         // not start with "-"
+            token[ii].Prepend("-");
           }
-          t++;
+          if (token[ii].Trim() != "-") {  // The others need "-" prepending
+            if (n == 0) {
+              token[ii].Trim().ToDouble(&PMVEew[t]);
+            } else if (n == 1) {
+              token[ii].Trim().ToDouble(&PMVEns[t]);
+            }
+            t++;
+          }
+          ii++;
         }
+      } else {
+        if (n == 0) {  // String like "-10" or "12"
+          token[i].Trim().ToDouble(&PMVEew[t]);
+        } else if (n == 1) {
+          token[i].Trim().ToDouble(&PMVEns[t]);
+        }
+        t++;
       }
       ii = 0;
       i++;
@@ -1733,9 +1749,7 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
       int len = token[i].length();
       wxString curr = token[i].Left(1);
       // Test for long - string
-      if (len > 2 && curr == "-") {
-        //
-
+      if (len > 2 && curr == "-") {  // String like "-12-13-12"
         wxStringTokenizer tokenizer2(token[i], "-");
         while (tokenizer2.HasMoreTokens()) {
           token[ii] = tokenizer2.GetNextToken();
@@ -1752,15 +1766,33 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
           }
           ii++;
         }
-      } else {
-        if (token[i].Trim() != "-") {
-          if (n == 0) {
-            token[i].Trim().ToDouble(&PMMEew[t]);
-          } else if (n == 1) {
-            token[i].Trim().ToDouble(&PMMEns[t]);
+      } else if (len > 2 && curr != "-") {  // String like "12-13-12-10"
+        wxStringTokenizer tokenizer2(token[i], "-");
+        while (tokenizer2.HasMoreTokens()) {
+          token[ii] = tokenizer2.GetNextToken();
+          int p = tokenizer2.GetPosition();
+          if (token[ii].Trim() != "-" &&
+              p != 1) {  // We don't want to prepend a "-" if the string does
+                         // not start with "-"
+            token[ii].Prepend("-");
           }
-          t++;
+          if (token[ii].Trim() != "-") {  // The others need "-" prepending
+            if (n == 0) {
+              token[ii].Trim().ToDouble(&PMMEew[t]);
+            } else if (n == 1) {
+              token[ii].Trim().ToDouble(&PMMEns[t]);
+            }
+            t++;
+          }
+          ii++;
         }
+      } else {
+        if (n == 0) {  // String like "-10" or "12"
+          token[i].Trim().ToDouble(&PMMEew[t]);
+        } else if (n == 1) {
+          token[i].Trim().ToDouble(&PMMEns[t]);
+        }
+        t++;
       }
       ii = 0;
       i++;
