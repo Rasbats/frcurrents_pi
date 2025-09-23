@@ -2201,14 +2201,13 @@ void frcurrentsUIDialog::ParseCurrentsVE(wxString inCurrents) {
     currentN = splits[n];
     int i = 0;
     int ii = 0;
-    wxStringTokenizer tokenizer(currentN, " ");
+    wxStringTokenizer tokenizer(currentN);
     while (tokenizer.HasMoreTokens()) {
       token[i] = tokenizer.GetNextToken();
       int len = token[i].length();
       wxString curr = token[i].Left(1);
-      if (len > 2 && curr == "-") {
-        //
-
+      // Test for long - string
+      if (len > 2 && curr == "-") {  // String like "-12-13-12"
         wxStringTokenizer tokenizer2(token[i], "-");
         while (tokenizer2.HasMoreTokens()) {
           token[ii] = tokenizer2.GetNextToken();
@@ -2225,15 +2224,33 @@ void frcurrentsUIDialog::ParseCurrentsVE(wxString inCurrents) {
           }
           ii++;
         }
-      } else {
-        if (token[i].Trim() != "-") {
-          if (n == 0) {
-            token[i].Trim().ToDouble(&PMVEew[t]);
-          } else if (n == 1) {
-            token[i].Trim().ToDouble(&PMVEns[t]);
+      } else if (len > 2 && curr != "-") {  // String like "12-13-12-10"
+        wxStringTokenizer tokenizer2(token[i], "-");
+        while (tokenizer2.HasMoreTokens()) {
+          token[ii] = tokenizer2.GetNextToken();
+          int p = tokenizer2.GetPosition();
+          if (token[ii].Trim() != "-" &&
+              p != 1) {  // We don't want to prepend a "-" if the string does
+                         // not start with "-"
+            token[ii].Prepend("-");
           }
-          t++;
+          if (token[ii].Trim() != "-") {  // The others need "-" prepending
+            if (n == 0) {
+              token[ii].Trim().ToDouble(&PMVEew[t]);
+            } else if (n == 1) {
+              token[ii].Trim().ToDouble(&PMVEns[t]);
+            }
+            t++;
+          }
+          ii++;
         }
+      } else {
+        if (n == 0) {  // String like "-10" or "12"
+          token[i].Trim().ToDouble(&PMVEew[t]);
+        } else if (n == 1) {
+          token[i].Trim().ToDouble(&PMVEns[t]);
+        }
+        t++;
       }
       ii = 0;
       i++;
@@ -2260,15 +2277,13 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
     currentN = splits[n];
     int i = 0;
     int ii = 0;
-    wxStringTokenizer tokenizer(currentN, " ");
+    wxStringTokenizer tokenizer(currentN);
     while (tokenizer.HasMoreTokens()) {
       token[i] = tokenizer.GetNextToken();
       int len = token[i].length();
       wxString curr = token[i].Left(1);
       // Test for long - string
-      if (len > 2 && curr == "-") {
-        //
-
+      if (len > 2 && curr == "-") {  // String like "-12-13-12"
         wxStringTokenizer tokenizer2(token[i], "-");
         while (tokenizer2.HasMoreTokens()) {
           token[ii] = tokenizer2.GetNextToken();
@@ -2285,15 +2300,33 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
           }
           ii++;
         }
-      } else {
-        if (token[i].Trim() != "-") {
-          if (n == 0) {
-            token[i].Trim().ToDouble(&PMMEew[t]);
-          } else if (n == 1) {
-            token[i].Trim().ToDouble(&PMMEns[t]);
+      } else if (len > 2 && curr != "-") {  // String like "12-13-12-10"
+        wxStringTokenizer tokenizer2(token[i], "-");
+        while (tokenizer2.HasMoreTokens()) {
+          token[ii] = tokenizer2.GetNextToken();
+          int p = tokenizer2.GetPosition();
+          if (token[ii].Trim() != "-" &&
+              p != 1) {  // We don't want to prepend a "-" if the string does
+                         // not start with "-"
+            token[ii].Prepend("-");
           }
-          t++;
+          if (token[ii].Trim() != "-") {  // The others need "-" prepending
+            if (n == 0) {
+              token[ii].Trim().ToDouble(&PMMEew[t]);
+            } else if (n == 1) {
+              token[ii].Trim().ToDouble(&PMMEns[t]);
+            }
+            t++;
+          }
+          ii++;
         }
+      } else {
+        if (n == 0) {  // String like "-10" or "12"
+          token[i].Trim().ToDouble(&PMMEew[t]);
+        } else if (n == 1) {
+          token[i].Trim().ToDouble(&PMMEns[t]);
+        }
+        t++;
       }
       ii = 0;
       i++;
@@ -2301,7 +2334,6 @@ void frcurrentsUIDialog::ParseCurrentsME(wxString inCurrents) {
     t = 0;
   }
 }
-
 vector<Position> frcurrentsUIDialog::OnRecord() { return my_positions; }
 
 void frcurrentsUIDialog::SetFromHW(int fromHW) { button_id = fromHW; }
