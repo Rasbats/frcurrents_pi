@@ -62,6 +62,7 @@
 #include <wx/statbox.h>
 #include <wx/event.h>
 #include "ocpn_plugin.h"
+#include <wx/window.h>
 
 enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
 
@@ -133,6 +134,9 @@ public:
 
 class frcurrentsUIDialog : public frcurrentsUIDialogBase {
 public:
+#ifdef __ANDROID__
+  wxWindow* g_Window;
+#endif
 
   frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi);
   ~frcurrentsUIDialog();
