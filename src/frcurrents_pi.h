@@ -43,7 +43,9 @@
 #include <wx/font.h>
 #include <wx/window.h>
 
-
+#ifdef __ANDROID__
+wxWindow *g_Window;
+#endif
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
@@ -118,10 +120,6 @@ public:
   double my_IconsScaleFactor;
   int my_FontpointSizeFactor;
   float my_chart_scale;
-
-#ifdef __ANDROID__
-  wxWindow *g_Window;
-#endif
 
 private:
   int m_position_menu_id;
