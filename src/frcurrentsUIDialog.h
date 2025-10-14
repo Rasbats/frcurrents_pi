@@ -62,10 +62,8 @@
 #include <wx/statbox.h>
 #include <wx/event.h>
 #include "ocpn_plugin.h"
-#include <wx/window.h>
 
 enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
-
 
 using namespace std;
 
@@ -128,12 +126,14 @@ public:
 
 class StandardPort {
 public:
-  wxString PORT_NUMBER, PORT_NAME, LAT, LON, A_LAT, A_LON, IDX, PMVE, PMME, BMVE, BMME;
+  wxString PORT_NUMBER, PORT_NAME, LAT, LON, A_LAT, A_LON, IDX, PMVE, PMME,
+      BMVE, BMME;
   double spRange, npRange;
 };
 
 class frcurrentsUIDialog : public frcurrentsUIDialogBase {
 public:
+
   frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi);
   ~frcurrentsUIDialog();
 
@@ -189,14 +189,10 @@ public:
   PlugIn_ViewPort* m_vp;
   bool m_IsNotShowable;
 
-  
 #ifdef __ANDROID__
-
-  wxWindow* g_Window;
 
   void OnContextMenu(wxContextMenuEvent& event);
   void OnContextMenuSelect(wxCommandEvent& event);
-
 
   void OnMouseEvent(wxMouseEvent& event);
   wxPoint m_resizeStartPoint;
@@ -227,7 +223,8 @@ private:
 
   int FindPortIDUsingChoice(wxString inPortName);
   int FindTidePortUsingChoice(wxString inAreaNumber);
-  void FindPortAreaCenter(wxString area, wxString port, double &jump_LAT, double &Jump_LON);
+  void FindPortAreaCenter(wxString area, wxString port, double& jump_LAT,
+                          double& Jump_LON);
 
   int FindPortID(wxString myPort);
   bool LoadStandardPorts();
@@ -256,7 +253,6 @@ private:
   wxWindow* pParent;
   frcurrents_pi* pPlugIn;
 
-
   // preference data
   bool m_bfrcurrentsUseHiDef;
   bool m_bfrcurrentsUseGradualColors;
@@ -271,8 +267,8 @@ private:
   wxString label_lw[13];
   float tcv[26];
 
-  wxDateTime m_SelectedDate; //  to store the current selected date
-  wxString euTC[8][4];  // Date.Time, Height, Units, HW.LW
+  wxDateTime m_SelectedDate;  //  to store the current selected date
+  wxString euTC[8][4];        // Date.Time, Height, Units, HW.LW
   wxDateTime m_dt;
   vector<wxDateTime> m_choice2_dt;
   wxDateTime back_dt;
