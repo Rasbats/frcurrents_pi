@@ -31,6 +31,7 @@
 #include "pidc.h"
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
+#include "globals.h"
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>

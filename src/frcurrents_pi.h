@@ -41,13 +41,33 @@
 #include "wx/string.h"
 #include <wx/window.h>
 #include <wx/font.h>
-
+#include "globals.h"
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
 
 #include "config.h"
+
+#ifdef __ANDROID__
+#include <qopengl.h>
+typedef double GLdouble;
+#define GL_GLEXT_LEGACY 1
+#include "GLES2/gl2.h"
+#include "glu_gl.h"
+#include "GL/glu.h"
+
+#elif defined(__WXOSX__)
+#include "OpenGL/gl.h"
+#include "OpenGL/glu.h"
+#include "OpenGL/glext.h"
+typedef void (*_GLUfuncptr)();
+
+#else
+#include "GL/gl.h"
+#include "GL/glu.h"
+#include "GL/glext.h"
+#endif
 
 extern wxString myVColour[5];
 
