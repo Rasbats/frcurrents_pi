@@ -276,42 +276,64 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	staticTextLess05->Wrap( -1 );
 	fgSizerColours->Add( staticTextLess05, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 
-	myColourPicker0 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
-	fgSizerColours->Add( myColourPicker0, 1, wxALL|wxEXPAND, 5 );
+	myColourPicker0 = new ODColourPickerCtrl(
+            sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap,
+            wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
+        fgSizerColours->Add(myColourPicker0, 1, wxALL | wxEXPAND, 5);
 
-	staticText0515 = new wxStaticText( sbSizerColours->GetStaticBox(), wxID_ANY, _(">= 0.5 and < 1.5"), wxDefaultPosition, wxDefaultSize, 0 );
-	staticText0515->Wrap( -1 );
-	fgSizerColours->Add( staticText0515, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+        staticText0515 = new wxStaticText(sbSizerColours->GetStaticBox(),
+                                          wxID_ANY, _(">= 0.5 and < 1.5"),
+                                          wxDefaultPosition, wxDefaultSize, 0);
+        staticText0515->Wrap(-1);
+        fgSizerColours->Add(staticText0515, 0, wxALIGN_CENTER_VERTICAL | wxALL,
+                            5);
 
-	myColourPicker1 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
-	fgSizerColours->Add( myColourPicker1, 1, wxALL|wxEXPAND, 5 );
+        myColourPicker1 = new ODColourPickerCtrl(
+            sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap,
+            wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
+        fgSizerColours->Add(myColourPicker1, 1, wxALL | wxEXPAND, 5);
 
-	staticText1525  = new wxStaticText( sbSizerColours->GetStaticBox(), wxID_ANY, _(">= 1.5 and < 2.5"), wxDefaultPosition, wxDefaultSize, 0 );
-	staticText1525 ->Wrap( -1 );
-	fgSizerColours->Add( staticText1525 , 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+        staticText1525 = new wxStaticText(sbSizerColours->GetStaticBox(),
+                                          wxID_ANY, _(">= 1.5 and < 2.5"),
+                                          wxDefaultPosition, wxDefaultSize, 0);
+        staticText1525->Wrap(-1);
+        fgSizerColours->Add(staticText1525, 0, wxALIGN_CENTER_VERTICAL | wxALL,
+                            5);
 
-	myColourPicker2 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
-	fgSizerColours->Add( myColourPicker2, 1, wxALL|wxEXPAND, 5 );
+        myColourPicker2 = new ODColourPickerCtrl(
+            sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap,
+            wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
+        fgSizerColours->Add(myColourPicker2, 1, wxALL | wxEXPAND, 5);
 
-	staticText2535 = new wxStaticText( sbSizerColours->GetStaticBox(), wxID_ANY, _(">= 2.5 and < 3.5"), wxDefaultPosition, wxDefaultSize, 0 );
-	staticText2535->Wrap( -1 );
-	fgSizerColours->Add( staticText2535, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+        staticText2535 = new wxStaticText(sbSizerColours->GetStaticBox(),
+                                          wxID_ANY, _(">= 2.5 and < 3.5"),
+                                          wxDefaultPosition, wxDefaultSize, 0);
+        staticText2535->Wrap(-1);
+        fgSizerColours->Add(staticText2535, 0, wxALIGN_CENTER_VERTICAL | wxALL,
+                            5);
 
-	myColourPicker3 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
-	fgSizerColours->Add( myColourPicker3, 1, wxALL|wxEXPAND, 5 );
+        myColourPicker3 = new ODColourPickerCtrl(
+            sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap,
+            wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
 
-	m_staticTextMore35 = new wxStaticText( sbSizerColours->GetStaticBox(), wxID_ANY, _(">= 3.5 knots    "), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticTextMore35->Wrap( -1 );
-	fgSizerColours->Add( m_staticTextMore35, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+        fgSizerColours->Add(myColourPicker3, 1, wxALL | wxEXPAND, 5);
 
-	myColourPicker4 = new wxColourPickerCtrl( sbSizerColours->GetStaticBox(), wxID_ANY, wxColour( 255, 0, 0 ), wxDefaultPosition, wxDefaultSize, wxCLRP_DEFAULT_STYLE );
-	fgSizerColours->Add( myColourPicker4, 1, wxALL|wxEXPAND, 5 );
+        m_staticTextMore35 = new wxStaticText(
+            sbSizerColours->GetStaticBox(), wxID_ANY, _(">= 3.5 knots    "),
+            wxDefaultPosition, wxDefaultSize, 0);
+        m_staticTextMore35->Wrap(-1);
+        fgSizerColours->Add(m_staticTextMore35, 0,
+                            wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
+        myColourPicker4 = new ODColourPickerCtrl(
+            sbSizerColours->GetStaticBox(), wxID_ANY, wxNullBitmap,
+            wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
 
-	sbSizerColours->Add( fgSizerColours, 1, wxEXPAND, 5 );
+        fgSizerColours->Add(myColourPicker4, 1, wxALL | wxEXPAND, 5);
 
+        sbSizerColours->Add(fgSizerColours, 1, wxEXPAND, 5);
 
-	bSizer4->Add( sbSizerColours, 0, wxALL|wxEXPAND, 5 );
+        bSizer4->Add(sbSizerColours, 0, wxALL | wxEXPAND, 5);
 
 	wxStaticBoxSizer* sbSizer5;
 	sbSizer5 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Arrow Style") ), wxVERTICAL );
