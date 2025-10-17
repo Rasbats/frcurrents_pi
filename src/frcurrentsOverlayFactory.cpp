@@ -289,11 +289,11 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
               wxFONTWEIGHT_NORMAL);
 
-  g_pDC->SetFont(font);
-  g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
-  g_pDC->SetBrush(
+  m_dc->SetFont(font);
+  m_dc->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
+  m_dc->SetBrush(
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
-  g_pDC->SetGLStipple();
+  m_dc->SetGLStipple();
 
   RenderMyArrows(&g_VP);
 #endif
