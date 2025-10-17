@@ -431,8 +431,11 @@ bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
   piDC piDC;
   glEnable(GL_BLEND);
   piDC.SetVP(vp);
-
+  #ifdef __ANDROID__
+  m_pfrcurrentsOverlayFactory->DrawGL(piDC, *vp);
+  #else
   m_pfrcurrentsOverlayFactory->RenderOverlay(piDC, *vp);
+  #endif
   return true;
 }
 

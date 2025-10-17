@@ -120,6 +120,7 @@ private:
   bool inGL;
   wxPoint myArrowArray[9];
   //bool DoRenderfrcurrentsOverlay(PlugIn_ViewPort *vp);
+  void DrawGL(PlugIn_ViewPort &piVP); 
   void RenderMyArrows(PlugIn_ViewPort *vp);
   int m_fromHW;
   void GetArrowStyle(int my_style);

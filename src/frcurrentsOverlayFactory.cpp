@@ -277,6 +277,29 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
   return true;
 }
 
+void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
+#ifdef ocpnUSE_GL
+  /* determine color and width */
+  wxPenStyle style = wxPENSTYLE_SOLID;
+  int width = 4;
+
+  int j = 0;
+  wxPoint r;
+
+  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+              wxFONTWEIGHT_NORMAL);
+
+  g_pDC->SetFont(font);
+  g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
+  g_pDC->SetBrush(
+      *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
+  g_pDC->SetGLStipple();
+
+  RenderMyArrows(&g_VP);
+#endif
+}
+
+
 void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   if (m_dlg.m_IsNotShowable) return;
   double view_scale = vp->chart_scale;
