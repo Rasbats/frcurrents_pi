@@ -167,7 +167,7 @@ wxImage &frcurrentsOverlayFactory::getLabel(double value, int settings,
   it = m_labelCache.find(value);
   if (it != m_labelCache.end()) return m_labelCache[value];
 
-  wxString labels = "Here it is";//getLabelString(value, settings);
+  wxString labels = "H";//getLabelString(value, settings);
 
   wxColour text_color;
   GetGlobalColor(_T ( "UBLCK" ), &text_color);
