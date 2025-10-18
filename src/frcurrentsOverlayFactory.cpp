@@ -100,7 +100,7 @@ void frcurrentsOverlayFactory::Reset() {}
 
 void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
 
-#ifdef ocpnUSE_GL
+
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
   int width = 4;
@@ -120,7 +120,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   g_pDC->DrawText("here", 200, 200);
 
   RenderMyArrows(&g_VP);
-#endif
+
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
