@@ -123,7 +123,7 @@ public:
   void DrawGL(PlugIn_ViewPort &piVP);
   void DrawNumbers(wxPoint p, double value,
                                              int settings, wxColour back_color);
-  wxImage &frcurrentsOverlayFactory::getLabel(double value, int settings,
+  wxImage &getLabel(double value, int settings,
                                               wxColour back_color);
 
 private:
