@@ -263,25 +263,25 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
 
     wxString label = getLabelString(value, settings);
 
-    m_oDC->SetFont(font);
+    g_pDC->SetFont(font);
     int w, h;
-    m_oDC->GetTextExtent(label, &w, &h);
+    g_pDC->GetTextExtent(label, &w, &h);
 
     int label_offsetx = 5, label_offsety = 1;
     int x = p.x - label_offsetx, y = p.y - label_offsety;
     w += 2 * label_offsetx, h += 2 * label_offsety;
 
-    m_oDC->SetBrush(wxBrush(back_color));
-    m_oDC->DrawRoundedRectangle(x, y, w, h, 0);
+    g_pDC->SetBrush(wxBrush(back_color));
+    g_pDC->DrawRoundedRectangle(x, y, w, h, 0);
 
     /* draw bounding rectangle */
-    m_oDC->SetPen(wxPen(wxColour(0, 0, 0), 1));
-    m_oDC->DrawLine(x, y, x + w, y);
-    m_oDC->DrawLine(x + w, y, x + w, y + h);
-    m_oDC->DrawLine(x + w, y + h, x, y + h);
-    m_oDC->DrawLine(x, y + h, x, y);
+    g_pDC->SetPen(wxPen(wxColour(0, 0, 0), 1));
+    g_pDC->DrawLine(x, y, x + w, y);
+    g_pDC->DrawLine(x + w, y, x + w, y + h);
+    g_pDC->DrawLine(x + w, y + h, x, y + h);
+    g_pDC->DrawLine(x, y + h, x, y);
 
-    m_oDC->DrawText(label, p.x, p.y);
+    g_pDC->DrawText(label, p.x, p.y);
 
 #endif
 #endif
