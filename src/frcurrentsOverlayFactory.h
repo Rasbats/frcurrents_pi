@@ -121,7 +121,10 @@ public:
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
   void DrawGL(PlugIn_ViewPort &piVP);
-
+  void DrawNumbers(wxPoint p, double value,
+                                             int settings, wxColour back_color);
+  wxImage &frcurrentsOverlayFactory::getLabel(double value, int settings,
+                                              wxColour back_color);
 
 private:
   bool inGL;

@@ -99,7 +99,8 @@ frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 void frcurrentsOverlayFactory::Reset() {}
 
 void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
-
+  wxPoint myPoint(200, 200);
+  DrawNumbers(myPoint, 200., 1, "RED");
 #ifdef ocpnUSE_GL
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
@@ -159,6 +160,134 @@ void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
       break;
   }
 }
+
+wxImage &frcurrentsOverlayFactory::getLabel(double value, int settings,
+                                      wxColour back_color) {
+  std::map<double, wxImage>::iterator it;
+  it = m_labelCache.find(value);
+  if (it != m_labelCache.end()) return m_labelCache[value];
+
+  wxString labels = "Here it is";//getLabelString(value, settings);
+
+  wxColour text_color;
+  GetGlobalColor(_T ( "UBLCK" ), &text_color);
+  wxPen penText(text_color);
+
+  wxBrush backBrush(back_color);
+
+  wxFont mfont(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+               wxFONTWEIGHT_NORMAL);
+
+  wxScreenDC sdc;
+  int w, h;
+  sdc.GetTextExtent(labels, &w, &h, nullptr, nullptr, &mfont);
+
+  int label_offset = 5;
+
+  wxBitmap bm(w + label_offset * 2, h + 2);
+  wxMemoryDC mdc(bm);
+  mdc.Clear();
+
+  mdc.SetFont(mfont);
+  mdc.SetPen(penText);
+  mdc.SetBrush(backBrush);
+  mdc.SetTextForeground(text_color);
+  mdc.SetTextBackground(back_color);
+
+  int xd = 0;
+  int yd = 0;
+  //    mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
+  mdc.DrawRectangle(xd, yd, w + (label_offset * 2), h + 2);
+  mdc.DrawText(labels, label_offset + xd, yd + 1);
+
+  mdc.SelectObject(wxNullBitmap);
+
+  m_labelCache[value] = bm.ConvertToImage();
+
+  m_labelCache[value].InitAlpha();
+
+  return m_labelCache[value];
+}
+
+
+void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
+                                           int settings,
+                                     wxColour back_color) {
+  
+#ifdef ocpnUSE_GL
+#if 0  // ndef USE_ANDROID_GLES2
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4ub(back_color.Red(), back_color.Green(), back_color.Blue(),
+               m_Settings.m_iOverlayTransparency);
+
+    glLineWidth(1);
+
+    wxString label = getLabelString(value, settings);
+    int w, h;
+    m_TexFontNumbers.GetTextExtent(label, &w, &h);
+
+    int label_offsetx = 5, label_offsety = 1;
+    int x = p.x - label_offsetx, y = p.y - label_offsety;
+    w += 2 * label_offsetx, h += 2 * label_offsety;
+
+    /* draw bounding rectangle */
+    glBegin(GL_QUADS);
+    glVertex2i(x, y);
+    glVertex2i(x + w, y);
+    glVertex2i(x + w, y + h);
+    glVertex2i(x, y + h);
+    glEnd();
+
+    glColor4ub(0, 0, 0, m_Settings.m_iOverlayTransparency);
+
+    glBegin(GL_LINE_LOOP);
+    glVertex2i(x, y);
+    glVertex2i(x + w, y);
+    glVertex2i(x + w, y + h);
+    glVertex2i(x, y + h);
+    glEnd();
+
+    glEnable(GL_TEXTURE_2D);
+    m_TexFontNumbers.RenderString(label, p.x, p.y);
+    glDisable(GL_TEXTURE_2D);
+#else
+
+#ifdef __WXQT__
+    wxFont font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
+#else
+    wxFont font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_NORMAL);
+#endif
+
+    wxString label = getLabelString(value, settings);
+
+    m_oDC->SetFont(font);
+    int w, h;
+    m_oDC->GetTextExtent(label, &w, &h);
+
+    int label_offsetx = 5, label_offsety = 1;
+    int x = p.x - label_offsetx, y = p.y - label_offsety;
+    w += 2 * label_offsetx, h += 2 * label_offsety;
+
+    m_oDC->SetBrush(wxBrush(back_color));
+    m_oDC->DrawRoundedRectangle(x, y, w, h, 0);
+
+    /* draw bounding rectangle */
+    m_oDC->SetPen(wxPen(wxColour(0, 0, 0), 1));
+    m_oDC->DrawLine(x, y, x + w, y);
+    m_oDC->DrawLine(x + w, y, x + w, y + h);
+    m_oDC->DrawLine(x + w, y + h, x, y + h);
+    m_oDC->DrawLine(x, y + h, x, y);
+
+    m_oDC->DrawText(label, p.x, p.y);
+
+#endif
+#endif
+  
+}
+
 
 wxColour frcurrentsOverlayFactory::GetSpeedColour(double my_speed) {
   wxColour c_blue = wxColour(m_dlg.myUseColour[0]);           // 127, 0, 255);
