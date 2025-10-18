@@ -116,6 +116,9 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
   g_pDC->SetGLStipple();
 
+  wxMessageBox("here");
+  g_pDC->DrawText("here", 200, 200);
+
   RenderMyArrows(&g_VP);
 #endif
 }
