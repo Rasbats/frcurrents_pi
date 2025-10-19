@@ -149,7 +149,6 @@ public:
 
 private:
 
-  wxDC m_dc;
   int m_position_menu_id;
   int m_position_menu_id2;
 
