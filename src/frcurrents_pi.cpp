@@ -106,7 +106,7 @@ frcurrents_pi::frcurrents_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
 }
 
 frcurrents_pi::~frcurrents_pi(void) {
-  if (_xpm_frcurrents_pi) delete _xpm_frcurrents_pi;
+  
 }
 
 int frcurrents_pi::Init(void) {
@@ -141,10 +141,7 @@ int frcurrents_pi::Init(void) {
         "frcurrents", _svg_frcurrents, _svg_frcurrents_rollover,
         _svg_frcurrents_toggled, wxITEM_CHECK, _("frcurrents"), _T( "" ), NULL,
         frcurrents_TOOL_POSITION, 0, this);
-#else
-    m_leftclick_tool_id = InsertPlugInTool(
-        "", _xpm_frcurrents_pi, _xpm_frcurrents_pi, wxITEM_CHECK,
-        _("frcurrents"), "", NULL, frcurrents_TOOL_POSITION, 0, this);
+   
 #endif
   }
   return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK |

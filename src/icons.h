@@ -7,11 +7,8 @@
 #	include <wx/wx.h>
 #endif
 
-#include "folder.xpm"
-
 extern void initialize_images(void);
 
-extern wxBitmap *_xpm_frcurrents_pi;
 
 #ifdef ocpnUSE_SVG
 extern wxString _svg_frcurrents;
