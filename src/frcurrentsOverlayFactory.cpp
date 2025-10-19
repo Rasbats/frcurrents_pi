@@ -313,6 +313,15 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
   }
 }
 
+wxString frcurrentsOverlayFactory::getLabelString(double value, int settings) {
+  int p;
+  wxString f = _T("%.*f");
+
+  
+  return wxString::Format(f, p, value);
+}
+
+/* return cached wxImage
 
 wxColour frcurrentsOverlayFactory::GetSpeedColour(double my_speed) {
   wxColour c_blue = wxColour(m_dlg.myUseColour[0]);           // 127, 0, 255);
