@@ -312,6 +312,10 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   int n = 0;
   int m_len;
 
+  wxPen pen("BLACK", 2);
+  m_dc->SetPen(pen);
+
+
   wxFont *font = GetOCPNScaledFont_PlugIn("CurrentValue", 0);
   m_dc->SetFont(*font);
 
@@ -380,12 +384,12 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       double dir = (*it).spDir[m_fromHW];
 
       wxString showDir = wxString::Format("%f", dir);
-      // wxMessageBox(showDir);
+      wxMessageBox(showDir);
 
       double m_spdSpring = (*it).spRate[m_fromHW];
 
       wxString showspdsp = wxString::Format("%f", m_spdSpring);
-      // wxMessageBox(showspdsp);
+      wxMessageBox(showspdsp);
 
       double m_spdNeap = (*it).npRate[m_fromHW];
 
@@ -435,7 +439,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       char sbuf[20];
       if (m_bShowRate) {
         snprintf(sbuf, 19, "%3.1f", myCurrent);
-        m_dc->DrawText("123", p.x, p.y);
+        m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y);
         if (!m_bHighResolution) {
           shift = 13;
         } else {
@@ -445,7 +449,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
 
       if (m_bShowDirection) {
         snprintf(sbuf, 19, "%03.0f", dir);
-        m_dc->DrawText("123", p.x, p.y + shift);
+        m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y + shift);
       }  // end scaled current
     }  // end if
 
