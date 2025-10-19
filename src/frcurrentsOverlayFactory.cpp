@@ -98,7 +98,7 @@ frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 
 void frcurrentsOverlayFactory::Reset() {}
 
-void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
+void frcurrentsOverlayFactory::DrawGL(piDC &g_pDC,PlugIn_ViewPort &piVP) {
 
 #ifdef ocpnUSE_GL
   /* determine color and width */
@@ -116,7 +116,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
   g_pDC->SetGLStipple();
 
-  RenderMyArrows(&g_VP);
+  RenderMyArrows( &g_VP);
 #endif
 }
 

@@ -87,6 +87,7 @@ public:
 class frcurrentsUIDialog;
 class wxGLContext;
 class frcurrentsOverlayFactory;
+class piDC;
 
 class frcurrentsOverlayFactory {
 public:
@@ -120,7 +121,7 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-  void DrawGL(PlugIn_ViewPort &piVP);
+  void DrawGL(piDC &g_pDC, PlugIn_ViewPort &piVP);
 
 
 private:

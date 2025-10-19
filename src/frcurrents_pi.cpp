@@ -429,7 +429,7 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   g_pDC->SetVP(pivp);
 
   m_pfrcurrentsDialog->my_chart_scale = pivp->view_scale_ppm;
-  m_pfrcurrentsOverlayFactory->DrawGL(*pivp);
+  m_pfrcurrentsOverlayFactory->DrawGL(*g_pDC,*pivp);
 
   delete g_pDC;
   return TRUE;
