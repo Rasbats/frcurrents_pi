@@ -435,7 +435,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       char sbuf[20];
       if (m_bShowRate) {
         snprintf(sbuf, 19, "%3.1f", myCurrent);
-        m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y);
+        m_dc->DrawText("123", p.x, p.y);
         if (!m_bHighResolution) {
           shift = 13;
         } else {
@@ -445,7 +445,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
 
       if (m_bShowDirection) {
         snprintf(sbuf, 19, "%03.0f", dir);
-        m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y + shift);
+        m_dc->DrawText("123", p.x, p.y + shift);
       }  // end scaled current
     }  // end if
 
