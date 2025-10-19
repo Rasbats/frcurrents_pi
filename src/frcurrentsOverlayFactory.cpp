@@ -131,7 +131,7 @@ void frcurrentsOverlayFactory::DrawGL(piDC &g_pDC,PlugIn_ViewPort &piVP) {
 
   m_dc->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
 
-  m_dc->DrawText("Testing", 200, 200);
+  m_dc->DrawTextEx("Testing", 200, 200, 20);
   m_dc->SetBrush(
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
   m_dc->SetGLStipple();
