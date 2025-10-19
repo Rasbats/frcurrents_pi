@@ -87,7 +87,6 @@ set(SRC
         src/TCDS_Binary_Harmonic.h
         src/georef.cpp
         src/georef.h
-        src/folder.xpm
         src/ODPlatform.cpp
         src/ODPlatform.h
 )
