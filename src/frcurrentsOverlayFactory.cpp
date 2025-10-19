@@ -122,6 +122,7 @@ void frcurrentsOverlayFactory::DrawGL(piDC &g_pDC,PlugIn_ViewPort &piVP) {
   wxPenStyle style = wxPENSTYLE_SOLID;
   int width = 4;
   m_dc = &g_pDC;
+  m_dc->SetVP(&piVP);
   int j = 0;
   wxPoint r;
 
