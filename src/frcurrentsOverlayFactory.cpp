@@ -321,8 +321,6 @@ wxString frcurrentsOverlayFactory::getLabelString(double value, int settings) {
   return wxString::Format(f, p, value);
 }
 
-/* return cached wxImage
-
 wxColour frcurrentsOverlayFactory::GetSpeedColour(double my_speed) {
   wxColour c_blue = wxColour(m_dlg.myUseColour[0]);           // 127, 0, 255);
   wxColour c_green = wxColour(m_dlg.myUseColour[1]);          // 0, 166, 80);
