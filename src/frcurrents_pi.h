@@ -41,8 +41,6 @@
 #include "wx/string.h"
 #include <wx/window.h>
 #include <wx/font.h>
-#include <wx/window.h>
-
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
@@ -119,10 +117,6 @@ public:
   int my_FontpointSizeFactor;
   float my_chart_scale;
 
-#ifdef __ANDROID__
-  wxWindow *g_Window;
-#endif
-
 private:
   int m_position_menu_id;
   int m_position_menu_id2;
@@ -170,13 +164,14 @@ public:
   frcurrentsPreferencesDialog(wxWindow *pparent)
       : frcurrentsPreferencesDialogBase(pparent) {}
 
+
   ~frcurrentsPreferencesDialog() {}
 
 private:
   void OnIconsSlidersChange(wxCommandEvent &event);
   void OnFontSlidersChange(wxCommandEvent &event);
-  void OnTimeZoneChange(wxCommandEvent &event);
-  void OnSelectData(wxCommandEvent &event);
-  void OnShowInformation(wxCommandEvent &event);
+  void OnTimeZoneChange(wxCommandEvent& event);
+  void OnSelectData(wxCommandEvent& event);
+  void OnShowInformation(wxCommandEvent& event);
 };
 #endif
