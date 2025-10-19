@@ -315,9 +315,11 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   wxPen pen("BLACK", 2);
   m_dc->SetPen(pen);
 
+  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+              wxFONTWEIGHT_BOLD);
 
-  wxFont *font = GetOCPNScaledFont_PlugIn("CurrentValue", 0);
-  m_dc->SetFont(*font);
+  //wxFont *font = GetOCPNScaledFont_PlugIn("CurrentValue", 0);
+  m_dc->SetFont(font);
 
   int m = m_dlg.m_choice1->GetSelection();
   wxString s = m_dlg.m_choice1->GetString(m);
@@ -384,12 +386,12 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       double dir = (*it).spDir[m_fromHW];
 
       wxString showDir = wxString::Format("%f", dir);
-      wxMessageBox(showDir);
+      //wxMessageBox(showDir);
 
       double m_spdSpring = (*it).spRate[m_fromHW];
 
       wxString showspdsp = wxString::Format("%f", m_spdSpring);
-      wxMessageBox(showspdsp);
+      //wxMessageBox(showspdsp);
 
       double m_spdNeap = (*it).npRate[m_fromHW];
 
