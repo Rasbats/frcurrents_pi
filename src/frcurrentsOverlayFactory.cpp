@@ -112,7 +112,7 @@ bool frcurrentsOverlayFactory::DrawGL(wxGLContext *pcontext, PlugIn_ViewPort *pi
 #else
     glGetIntegerv(GL_ALIASED_LINE_WIDTH_RANGE, &parms[0]);
 #endif
-    g_piGLMinSymbolLineWidth = wxMax(parms[0], 1);
+    //g_piGLMinSymbolLineWidth = wxMax(parms[0], 1);
 #endif
     m_oDC = new piDC();
   }
