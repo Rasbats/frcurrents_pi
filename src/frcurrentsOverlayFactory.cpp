@@ -100,7 +100,24 @@ void frcurrentsOverlayFactory::Reset() {}
 
 void frcurrentsOverlayFactory::DrawGL(piDC &g_pDC,PlugIn_ViewPort &piVP) {
 
-#ifdef ocpnUSE_GL
+    if (!g_pDC.GetDC()) {
+    if (!glQueried) {
+      glQueried = true;
+    }
+#ifndef USE_GLSL
+    glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT | GL_HINT_BIT);  // Save state
+
+    //      Enable anti-aliased lines, at best quality
+    glEnable(GL_LINE_SMOOTH);
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+#endif
+    glEnable(GL_BLEND);
+  }
+
+
+//#ifdef ocpnUSE_GL
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
   int width = 4;
@@ -108,16 +125,19 @@ void frcurrentsOverlayFactory::DrawGL(piDC &g_pDC,PlugIn_ViewPort &piVP) {
   int j = 0;
   wxPoint r;
 
-  wxFont* font =  GetOCPNScaledFont_PlugIn(_("CurrentValue"), 16);
+  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+              wxFONTWEIGHT_NORMAL);
+  m_dc->SetFont(font);
 
-  m_dc->SetFont(*font);
   m_dc->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
+
+  m_dc->DrawText("Testing", 200, 200);
   m_dc->SetBrush(
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
   m_dc->SetGLStipple();
 
   RenderMyArrows( &g_VP);
-#endif
+//#endif
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
