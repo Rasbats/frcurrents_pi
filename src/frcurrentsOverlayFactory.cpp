@@ -306,7 +306,7 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
     m_oDC->DrawLine(x + w, y + h, x, y + h);
     m_oDC->DrawLine(x, y + h, x, y);
 
-    m_oDC->DrawTextEx(label, p.x, p.y);
+    m_oDC->DrawTextEx(label, p.x, p.y,  20.);
 
 #endif
 #endif
