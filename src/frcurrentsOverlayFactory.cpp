@@ -312,6 +312,9 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   int n = 0;
   int m_len;
 
+  wxFont *font = GetOCPNScaledFont_PlugIn("CurrentValue", 0);
+  m_dc->SetFont(*font);
+
   int m = m_dlg.m_choice1->GetSelection();
   wxString s = m_dlg.m_choice1->GetString(m);
 
