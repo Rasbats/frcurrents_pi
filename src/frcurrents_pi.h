@@ -41,8 +41,11 @@
 #include "wx/string.h"
 #include <wx/window.h>
 #include <wx/font.h>
+#include <wx/window.h>
 
-
+#ifdef __ANDROID__
+wxWindow *g_Window;
+#endif
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
 //----------------------------------------------------------------------------------------------------------
