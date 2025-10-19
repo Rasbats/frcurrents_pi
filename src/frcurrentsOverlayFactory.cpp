@@ -100,7 +100,7 @@ void frcurrentsOverlayFactory::Reset() {}
 
 void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
 
-
+#ifdef ocpnUSE_GL
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
   int width = 4;
@@ -108,7 +108,7 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
   int j = 0;
   wxPoint r;
 
-  wxFont* font =  GetOCPNScaledFont_PlugIn(_("Dialog"), 16);
+  wxFont* font =  GetOCPNScaledFont_PlugIn(_("CurrentValue"), 16);
 
   g_pDC->SetFont(*font);
   g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
@@ -116,11 +116,8 @@ void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
   g_pDC->SetGLStipple();
 
-  wxMessageBox("here");
-  g_pDC->DrawText("here", 200, 200);
-
   RenderMyArrows(&g_VP);
-
+#endif
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
@@ -190,7 +187,8 @@ wxColour frcurrentsOverlayFactory::GetSpeedColour(double my_speed) {
 }
 
 bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
-                                                double scale, double rate) {
+                                                double scale, double rate,
+                                                double vp_rotate_angle) {
   double m_rate = fabs(rate);
 
   GetArrowStyle(m_ShowArrowStyle);
@@ -213,9 +211,8 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     g_pDC->SetPen(pen);
     g_pDC->SetBrush(brush);
   }
-  float sin_rot = sin(rot_angle * PI / 180.);
-  float cos_rot = cos(rot_angle * PI / 180.);
-
+  float sin_rot = sin((rot_angle * PI / 180.) + vp_rotate_angle);
+  float cos_rot = cos((rot_angle * PI / 180.) + vp_rotate_angle);
   // Move to the first point
 
   float xt = myArrowArray[0].x;
@@ -425,7 +422,8 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       // dir = 45.00;
       // myCurrent = 0.5;
 
-      bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent);
+      bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent,
+                                vp->rotation);
       // if (d) wxMessageBox("Drawing");
       // else { wxMessageBox("Not Drawing"); }
 
@@ -534,7 +532,7 @@ void frcurrentsOverlayFactory::DrawAllCurrentsInViewPort(
             double scale = current_draw_scaler * a2;
 
             bool rendered = drawCurrentArrow(pixxc, pixyc, dir - 90 + rot_vp,
-                                             scale / 100, tcvalue);
+                                             scale / 100, tcvalue, g_VP.rotation);
 
             int shift = 0;
 

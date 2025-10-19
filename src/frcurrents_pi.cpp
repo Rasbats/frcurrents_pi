@@ -412,7 +412,7 @@ bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
   if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
       !m_pfrcurrentsOverlayFactory)
     return false;
-
+  m_pfrcurrentsDialog->my_chart_scale = pivp->view_scale_ppm;
   g_bOpenGL = true;
   return RenderGLOverlays(pcontext, pivp);
 }
@@ -428,6 +428,7 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   g_pDC = new piDC(pcontext);
   g_pDC->SetVP(pivp);
 
+  m_pfrcurrentsDialog->my_chart_scale = pivp->view_scale_ppm;
   m_pfrcurrentsOverlayFactory->DrawGL(*pivp);
 
   delete g_pDC;
