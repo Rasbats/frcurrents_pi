@@ -98,27 +98,43 @@ frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 
 void frcurrentsOverlayFactory::Reset() {}
 
-void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
-  wxPoint myPoint(200, 200);
-  DrawNumbers(myPoint, 200., 1, "RED");
+bool frcurrentsOverlayFactory::DrawGL(wxGLContext *pcontext, PlugIn_ViewPort *piVP) {
+
+   if (!m_oDC) {
+    if (m_oDC) {
+      delete m_oDC;
+    }
 #ifdef ocpnUSE_GL
-  /* determine color and width */
-  wxPenStyle style = wxPENSTYLE_SOLID;
-  int width = 4;
-
-  int j = 0;
-  wxPoint r;
-
-  wxFont* font =  GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
-
-  g_pDC->SetFont(*font);
-  g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
-  g_pDC->SetBrush(
-      *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
-  g_pDC->SetGLStipple();
-
-  RenderMyArrows(&g_VP);
+    //  Set the minimum line width
+    GLint parms[2];
+#ifndef USE_ANDROID_GLES2
+    glGetIntegerv(GL_SMOOTH_LINE_WIDTH_RANGE, &parms[0]);
+#else
+    glGetIntegerv(GL_ALIASED_LINE_WIDTH_RANGE, &parms[0]);
 #endif
+    g_piGLMinSymbolLineWidth = wxMax(parms[0], 1);
+#endif
+    m_oDC = new piDC();
+  }
+
+  m_oDC->SetVP(piVP);
+  m_oDC->SetDC(nullptr);
+
+  m_pdc = nullptr;  // inform lower layers that this is OpenGL render
+
+  bool rv = RenderNumbers(piVP);
+
+  // qDebug() << "RenderGLGribOverlayDone" << sw.GetTime();
+
+  return rv;
+}
+
+bool frcurrentsOverlayFactory::RenderNumbers(PlugIn_ViewPort *vp) {
+
+  wxPoint p(200, 200);
+
+  DrawNumbers(p, 123., 1, "RED");
+
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
@@ -211,9 +227,18 @@ wxImage &frcurrentsOverlayFactory::getLabel(double value, int settings,
 
 
 void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
-                                           int settings,
-                                     wxColour back_color) {
-  
+  int settings, wxColour back_color) {
+
+    if (m_pdc) {
+    wxImage &label = getLabel(value, settings, back_color);
+    // set alpha chanel
+    int w = label.GetWidth(), h = label.GetHeight();
+    for (int y = 0; y < h; y++)
+      for (int x = 0; x < w; x++)
+        label.SetAlpha(x, y,0);
+
+    m_pdc->DrawBitmap(label, p.x, p.y, true);
+  } else {
 #ifdef ocpnUSE_GL
 #if 0  // ndef USE_ANDROID_GLES2
 
@@ -263,29 +288,29 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
 
     wxString label = getLabelString(value, settings);
 
-    g_pDC->SetFont(font);
+    m_oDC->SetFont(font);
     int w, h;
-    g_pDC->GetTextExtent(label, &w, &h);
+    m_oDC->GetTextExtent(label, &w, &h);
 
     int label_offsetx = 5, label_offsety = 1;
     int x = p.x - label_offsetx, y = p.y - label_offsety;
     w += 2 * label_offsetx, h += 2 * label_offsety;
 
-    g_pDC->SetBrush(wxBrush(back_color));
-    g_pDC->DrawRoundedRectangle(x, y, w, h, 0);
+    m_oDC->SetBrush(wxBrush(back_color));
+    m_oDC->DrawRoundedRectangle(x, y, w, h, 0);
 
     /* draw bounding rectangle */
-    g_pDC->SetPen(wxPen(wxColour(0, 0, 0), 1));
-    g_pDC->DrawLine(x, y, x + w, y);
-    g_pDC->DrawLine(x + w, y, x + w, y + h);
-    g_pDC->DrawLine(x + w, y + h, x, y + h);
-    g_pDC->DrawLine(x, y + h, x, y);
+    m_oDC->SetPen(wxPen(wxColour(0, 0, 0), 1));
+    m_oDC->DrawLine(x, y, x + w, y);
+    m_oDC->DrawLine(x + w, y, x + w, y + h);
+    m_oDC->DrawLine(x + w, y + h, x, y + h);
+    m_oDC->DrawLine(x, y + h, x, y);
 
-    g_pDC->DrawText(label, p.x, p.y);
+    m_oDC->DrawText(label, p.x, p.y);
 
 #endif
 #endif
-  
+  }
 }
 
 

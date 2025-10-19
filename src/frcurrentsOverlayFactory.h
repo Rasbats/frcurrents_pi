@@ -120,13 +120,16 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-  void DrawGL(PlugIn_ViewPort &piVP);
+  bool DrawGL(wxGLContext *pcontext, PlugIn_ViewPort *piVP);
   void DrawNumbers(wxPoint p, double value,
                                              int settings, wxColour back_color);
   wxImage &getLabel(double value, int settings,
                                               wxColour back_color);
 
 private:
+  bool RenderNumbers(PlugIn_ViewPort *vp);
+  piDC *m_oDC;
+  wxDC *m_pdc;
   bool inGL;
   wxPoint myArrowArray[9];
   void RenderMyArrows(PlugIn_ViewPort *vp);
