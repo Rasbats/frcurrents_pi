@@ -473,9 +473,8 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   glDisable(GL_BLEND);
   glDisable(GL_TEXTURE_2D);
 
-#ifdef __WXQT__
-  wxMessageBox("wxqt");
-  wxFont*font = GetOCPNScaledFont_PlugIn("Dialog", 0);
+#ifdef __WXQT__  
+  wxFont *font = font(9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 #else
   wxFont* font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 #endif
