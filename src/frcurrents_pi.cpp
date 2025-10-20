@@ -496,7 +496,9 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   m_oDC->DrawLine(x + w, y + h, x, y + h);
   m_oDC->DrawLine(x, y + h, x, y);
 
-  m_oDC->DrawText(label, p.x, p.y);
+  m_oDC.SetTextForeground("BLACK");
+
+  m_oDC->DrawTextEx(label, p.x, p.y, 20);
 
 
 #endif
