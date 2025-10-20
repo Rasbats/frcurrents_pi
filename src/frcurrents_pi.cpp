@@ -469,6 +469,21 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
     glDisable(GL_TEXTURE_2D);
     */
 #else
+  glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+  glColor3f(1, 1, 1);
+  glBegin(GL_QUADS);
+  glTexCoord2f(0, 0);
+  glVertex2f(xs, ys);
+  glTexCoord2f(u, 0);
+  glVertex2f(xs + ws, ys);
+  glTexCoord2f(u, v);
+  glVertex2f(xs + ws, ys + hs);
+  glTexCoord2f(0, v);
+  glVertex2f(xs, ys + hs);
+  glEnd();
+#endif
+  glDisable(GL_BLEND);
+  glDisable(GL_TEXTURE_2D);
 
 #ifdef __WXQT__
   wxFont*font = GetOCPNScaledFont_PlugIn("Dialog", 0);
@@ -501,7 +516,6 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   m_oDC->DrawTextEx(label, p.x, p.y, 20);
 
 
-#endif
 #endif
 
   delete g_pDC;
