@@ -435,7 +435,7 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   wxColour m_FontColor = GetFontColour_PlugIn("Marks");
   dc.SetTextForeground(m_FontColor);
 
-  dc.DrawText("testing", 200, 200);
+  dc.DrawTextEx("testing", 200, 200, 20);
 
   delete g_pDC;
   return TRUE;
