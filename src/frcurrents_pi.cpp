@@ -419,6 +419,9 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   m_chart_scale = pivp->chart_scale;
   m_view_scale = pivp->view_scale_ppm;
 
+  wxPoint p(200, 200);
+  wxColour back_color = wxColour("RED");
+
   g_pDC = new piDC(pcontext);
   g_pDC->SetVP(pivp);
 
