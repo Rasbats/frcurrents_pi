@@ -428,11 +428,23 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
 #ifdef __WXQT__
   wxFont font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
 #else
-  wxFont font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+  wxFont font(26, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+#endif
+
+  #ifdef ocpnUSE_GL
+  wxMessageBox("Using GL");
+  //  Set the minimum line width
+  GLint parms[2];
+#ifndef USE_ANDROID_GLES2
+  glGetIntegerv(GL_SMOOTH_LINE_WIDTH_RANGE, &parms[0]);
+#else
+  glGetIntegerv(GL_ALIASED_LINE_WIDTH_RANGE, &parms[0]);
+#endif
+  // g_piGLMinSymbolLineWidth = wxMax(parms[0], 1);
 #endif
 
   dc.SetFont(font);
-  wxColour m_FontColor = GetFontColour_PlugIn("Marks");
+  wxColour m_FontColor = wxColour("BLACK");
   dc.SetTextForeground(m_FontColor);
 
   dc.DrawTextEx("testing", 200, 200, 20);
