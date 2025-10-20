@@ -425,29 +425,78 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   piDC dc;
   dc.SetVP(pivp);
 
+#ifdef ocpnUSE_GL
+#if 0  // ndef USE_ANDROID_GLES2
+  wxMessageBox("ndef");
+  /*
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4ub(back_color.Red(), back_color.Green(), back_color.Blue(),
+               m_Settings.m_iOverlayTransparency);
+
+    glLineWidth(1);
+
+    wxString label = "testing";
+    int w, h;
+    m_TexFontNumbers.GetTextExtent(label, &w, &h);
+
+    int label_offsetx = 5, label_offsety = 1;
+    int x = p.x - label_offsetx, y = p.y - label_offsety;
+    w += 2 * label_offsetx, h += 2 * label_offsety;
+
+    /* draw bounding rectangle */
+    glBegin(GL_QUADS);
+    glVertex2i(x, y);
+    glVertex2i(x + w, y);
+    glVertex2i(x + w, y + h);
+    glVertex2i(x, y + h);
+    glEnd();
+
+    glColor4ub(0, 0, 0, m_Settings.m_iOverlayTransparency);
+
+    glBegin(GL_LINE_LOOP);
+    glVertex2i(x, y);
+    glVertex2i(x + w, y);
+    glVertex2i(x + w, y + h);
+    glVertex2i(x, y + h);
+    glEnd();
+
+    glEnable(GL_TEXTURE_2D);
+    m_TexFontNumbers.RenderString(label, p.x, p.y);
+    glDisable(GL_TEXTURE_2D);
+    */
+#else
+
 #ifdef __WXQT__
   wxFont font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
 #else
-  wxFont font(26, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+  wxFont font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 #endif
 
-  #ifdef ocpnUSE_GL
-  wxMessageBox("Using GL");
-  //  Set the minimum line width
-  GLint parms[2];
-#ifndef USE_ANDROID_GLES2
-  glGetIntegerv(GL_SMOOTH_LINE_WIDTH_RANGE, &parms[0]);
-#else
-  glGetIntegerv(GL_ALIASED_LINE_WIDTH_RANGE, &parms[0]);
-#endif
-  // g_piGLMinSymbolLineWidth = wxMax(parms[0], 1);
-#endif
+  wxString label = "testing";
 
-  dc.SetFont(font);
-  wxColour m_FontColor = wxColour("BLACK");
-  dc.SetTextForeground(m_FontColor);
+  dc->SetFont(font);
+  int w, h;
+  dc->GetTextExtent(label, &w, &h);
 
-  dc.DrawTextEx("testing", 200, 200, 20);
+  int label_offsetx = 5, label_offsety = 1;
+  int x = p.x - label_offsetx, y = p.y - label_offsety;
+  w += 2 * label_offsetx, h += 2 * label_offsety;
+
+  dc->SetBrush(wxBrush(back_color));
+  dc->DrawRoundedRectangle(x, y, w, h, 0);
+
+  /* draw bounding rectangle */
+  dc->SetPen(wxPen(wxColour(0, 0, 0), 1));
+  dc->DrawLine(x, y, x + w, y);
+  dc->DrawLine(x + w, y, x + w, y + h);
+  dc->DrawLine(x + w, y + h, x, y + h);
+  dc->DrawLine(x, y + h, x, y);
+
+  dc->DrawText(label, p.x, p.y);
+
+#endif
+#endif
 
   delete g_pDC;
   return TRUE;
