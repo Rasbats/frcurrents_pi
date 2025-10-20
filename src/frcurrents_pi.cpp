@@ -425,8 +425,8 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   g_pDC = new piDC(pcontext);
   g_pDC->SetVP(pivp);
 
-  piDC* dc;
-  dc->SetVP(pivp);
+  m_oDC = new piDC(pcontext);
+  m_oDC->SetVP(pivp);
 
 #ifdef ocpnUSE_GL
 #if 0  // ndef USE_ANDROID_GLES2
@@ -476,27 +476,28 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   wxFont font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 #endif
 
-  wxString label = "testing";
+  wxString label = "123";
 
-  dc->SetFont(font);
+  m_oDC->SetFont(font);
   int w, h;
-  dc->GetTextExtent(label, &w, &h);
+  m_oDC->GetTextExtent(label, &w, &h);
 
   int label_offsetx = 5, label_offsety = 1;
   int x = p.x - label_offsetx, y = p.y - label_offsety;
   w += 2 * label_offsetx, h += 2 * label_offsety;
 
-  dc->SetBrush(wxBrush(back_color));
-  dc->DrawRoundedRectangle(x, y, w, h, 0);
+  m_oDC->SetBrush(wxBrush(back_color));
+  m_oDC->DrawRoundedRectangle(x, y, w, h, 0);
 
   /* draw bounding rectangle */
-  dc->SetPen(wxPen(wxColour(0, 0, 0), 1));
-  dc->DrawLine(x, y, x + w, y);
-  dc->DrawLine(x + w, y, x + w, y + h);
-  dc->DrawLine(x + w, y + h, x, y + h);
-  dc->DrawLine(x, y + h, x, y);
+  m_oDC->SetPen(wxPen(wxColour(0, 0, 0), 1));
+  m_oDC->DrawLine(x, y, x + w, y);
+  m_oDC->DrawLine(x + w, y, x + w, y + h);
+  m_oDC->DrawLine(x + w, y + h, x, y + h);
+  m_oDC->DrawLine(x, y + h, x, y);
 
-  dc->DrawText(label, p.x, p.y);
+  m_oDC->DrawText(label, p.x, p.y);
+
 
 #endif
 #endif

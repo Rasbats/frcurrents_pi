@@ -125,12 +125,12 @@ public:
                                              int settings, wxColour back_color);
   wxImage &getLabel(double value, int settings,
                                               wxColour back_color);
-
+  piDC *m_oDC;
 private:
   wxString getLabelString(double value, int settings);
 
   bool RenderNumbers(PlugIn_ViewPort *vp);
-  piDC *m_oDC;
+  
   wxDC *m_pdc;
   bool inGL;
   wxPoint myArrowArray[9];
