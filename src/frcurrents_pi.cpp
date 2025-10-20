@@ -471,14 +471,14 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
 #else
 
 #ifdef __WXQT__
-  wxFont font = GetOCPNScaledFont_PlugIn("Dialog", 0);
+  wxFont*font = GetOCPNScaledFont_PlugIn("Dialog", 0);
 #else
-  wxFont font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+  wxFont* font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 #endif
 
   wxString label = "123";
 
-  m_oDC->SetFont(font);
+  m_oDC->SetFont(*font);
   int w, h;
   m_oDC->GetTextExtent(label, &w, &h);
 
