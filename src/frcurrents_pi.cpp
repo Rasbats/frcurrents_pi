@@ -105,9 +105,7 @@ frcurrents_pi::frcurrents_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
   g_pi = this;
 }
 
-frcurrents_pi::~frcurrents_pi(void) {
-  
-}
+frcurrents_pi::~frcurrents_pi(void) {}
 
 int frcurrents_pi::Init(void) {
   AddLocaleCatalog("opencpn-frcurrents_pi");
@@ -141,7 +139,7 @@ int frcurrents_pi::Init(void) {
         "frcurrents", _svg_frcurrents, _svg_frcurrents_rollover,
         _svg_frcurrents_toggled, wxITEM_CHECK, _("frcurrents"), _T( "" ), NULL,
         frcurrents_TOOL_POSITION, 0, this);
-   
+
 #endif
   }
   return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK |
@@ -248,7 +246,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
     // #endif
 
-    int copyarea =  Pref->m_choice_area->GetSelection();
+    int copyarea = Pref->m_choice_area->GetSelection();
 
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
@@ -278,7 +276,6 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     }
 
     if (m_pfrcurrentsDialog) {
-
       m_pfrcurrentsDialog->m_bUseRate = m_bCopyUseRate;
       m_pfrcurrentsDialog->m_bUseDirection = m_bCopyUseDirection;
       m_pfrcurrentsDialog->m_bUseHighRes = m_bCopyUseHighRes;
@@ -416,9 +413,32 @@ bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
 
 bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
                                      PlugIn_ViewPort *pivp) {
+  m_pcontext = pcontext;
+  m_VP = *pivp;
+  g_VP = *pivp;
+  m_chart_scale = pivp->chart_scale;
+  m_view_scale = pivp->view_scale_ppm;
 
-  m_pfrcurrentsOverlayFactory->DrawGL(pcontext, pivp);
+  g_pDC = new piDC(pcontext);
+  g_pDC->SetVP(pivp);
 
+  piDC dc;
+  dc.SetVP(pivp);
+
+#ifdef __WXQT__
+  wxFont font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
+#else
+  wxFont font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+#endif
+
+  dc.SetFont(font);
+  wxColour m_FontColor = GetFontColour_PlugIn("Marks");
+  dc.SetTextForeground(m_FontColor);
+
+  dc.DrawText("testing", 200, 200);
+
+  delete g_pDC;
+  return TRUE;
 }
 
 void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
@@ -440,7 +460,7 @@ bool frcurrents_pi::LoadConfig(void) {
 
     my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
     my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
-    
+
     pConf->Read("frcurrentsAreaID", &m_AreaID, 0.);
     m_Port = pConf->Read("frcurrentsPort", "");
     m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");

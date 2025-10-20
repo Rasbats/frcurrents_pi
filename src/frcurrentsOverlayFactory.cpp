@@ -135,6 +135,8 @@ bool frcurrentsOverlayFactory::RenderNumbers(PlugIn_ViewPort *vp) {
 
   DrawNumbers(p, 123., 1, "RED");
 
+  return true;
+
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
@@ -314,7 +316,7 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
 }
 
 wxString frcurrentsOverlayFactory::getLabelString(double value, int settings) {
-  int p;
+  int p = 1;
   wxString f = _T("%.*f");
 
   
