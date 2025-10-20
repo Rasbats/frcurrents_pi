@@ -422,8 +422,8 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   g_pDC = new piDC(pcontext);
   g_pDC->SetVP(pivp);
 
-  piDC dc;
-  dc.SetVP(pivp);
+  piDC* dc;
+  dc->SetVP(pivp);
 
 #ifdef ocpnUSE_GL
 #if 0  // ndef USE_ANDROID_GLES2
