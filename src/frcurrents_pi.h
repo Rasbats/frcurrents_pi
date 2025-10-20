@@ -147,6 +147,8 @@ public:
 
   bool g_bOpenGL;
 
+  piDC *m_oDC;
+
 private:
 
   int m_position_menu_id;
