@@ -474,7 +474,7 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   glDisable(GL_TEXTURE_2D);
 
 #ifdef __WXQT__  
-  wxFont* font(9, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+  wxFont *font = OCPNGetFont(_("Dialog"), 10);
 #else
   wxFont* font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 #endif
