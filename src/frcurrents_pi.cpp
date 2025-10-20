@@ -420,7 +420,7 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
   m_view_scale = pivp->view_scale_ppm;
 
   wxPoint p(200, 200);
-  wxColour back_color = wxColour("RED");
+  wxColour back_color = wxColour("WHITE");
 
   g_pDC = new piDC(pcontext);
   g_pDC->SetVP(pivp);
@@ -471,7 +471,7 @@ bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
 #else
 
 #ifdef __WXQT__
-  wxFont font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
+  wxFont font = GetOCPNScaledFont_PlugIn("Dialog", 0);
 #else
   wxFont font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 #endif
