@@ -111,7 +111,6 @@ public:
   int m_ShowArrowStyle;
   wxDateTime m_dtUseNew;
   wxColour m_text_color;
-  std::map<double, wxImage> m_labelCache;
   std::map<wxString, wxImage> m_labelCacheText;
 
   piDC *m_dc;
@@ -120,17 +119,16 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-  bool DrawGL(wxGLContext *pcontext, PlugIn_ViewPort *piVP);
-  void DrawNumbers(wxPoint p, double value,
-                                             int settings, wxColour back_color);
-  wxImage &getLabel(double value, int settings,
-                                              wxColour back_color);
+  wxImage &getLabel(double value, int settings, wxColour back_color);
   piDC *m_oDC;
-private:
-  wxString getLabelString(double value, int settings);
+  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
 
-  bool RenderNumbers(PlugIn_ViewPort *vp);
-  
+private:
+  void DrawIndexTargets(PlugIn_ViewPort *BBox);
+  wxImage &DrawLabel(double value, int precision);
+  std::map<double, wxImage> m_labelCache;
+
+  wxString getLabelString(double value, int settings);  
   wxDC *m_pdc;
   bool inGL;
   wxPoint myArrowArray[9];

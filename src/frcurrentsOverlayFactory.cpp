@@ -98,47 +98,6 @@ frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 
 void frcurrentsOverlayFactory::Reset() {}
 
-bool frcurrentsOverlayFactory::DrawGL(wxGLContext *pcontext, PlugIn_ViewPort *piVP) {
-
-   if (!m_oDC) {
-    if (m_oDC) {
-      delete m_oDC;
-    }
-#ifdef ocpnUSE_GL
-    //  Set the minimum line width
-    GLint parms[2];
-#ifndef USE_ANDROID_GLES2
-    glGetIntegerv(GL_SMOOTH_LINE_WIDTH_RANGE, &parms[0]);
-#else
-    glGetIntegerv(GL_ALIASED_LINE_WIDTH_RANGE, &parms[0]);
-#endif
-    //g_piGLMinSymbolLineWidth = wxMax(parms[0], 1);
-#endif
-    m_oDC = new piDC();
-  }
-
-  m_oDC->SetVP(piVP);
-  m_oDC->SetDC(nullptr);
-
-  m_pdc = nullptr;  // inform lower layers that this is OpenGL render
-
-  bool rv = RenderNumbers(piVP);
-
-  // qDebug() << "RenderGLGribOverlayDone" << sw.GetTime();
-
-  return rv;
-}
-
-bool frcurrentsOverlayFactory::RenderNumbers(PlugIn_ViewPort *vp) {
-
-  wxPoint p(200, 200);
-
-  DrawNumbers(p, 123., 1, "RED");
-
-  return true;
-
-}
-
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
   switch (my_style) {
     case 0:
@@ -180,12 +139,12 @@ void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
 }
 
 wxImage &frcurrentsOverlayFactory::getLabel(double value, int settings,
-                                      wxColour back_color) {
+                                            wxColour back_color) {
   std::map<double, wxImage>::iterator it;
   it = m_labelCache.find(value);
   if (it != m_labelCache.end()) return m_labelCache[value];
 
-  wxString labels = "H";//getLabelString(value, settings);
+  wxString labels = "H";  // getLabelString(value, settings);
 
   wxColour text_color;
   GetGlobalColor(_T ( "UBLCK" ), &text_color);
@@ -227,99 +186,156 @@ wxImage &frcurrentsOverlayFactory::getLabel(double value, int settings,
   return m_labelCache[value];
 }
 
+bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
+  m_dc = &dc;
 
-void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
-  int settings, wxColour back_color) {
+  if (!dc.GetDC()) {
+    if (!glQueried) {
+      glQueried = true;
+    }
+#ifndef USE_GLSL
+    glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT | GL_HINT_BIT);  // Save state
 
-    if (m_pdc) {
-    wxImage &label = getLabel(value, settings, back_color);
-    // set alpha chanel
-    int w = label.GetWidth(), h = label.GetHeight();
-    for (int y = 0; y < h; y++)
-      for (int x = 0; x < w; x++)
-        label.SetAlpha(x, y,0);
+    //      Enable anti-aliased lines, at best quality
+    glEnable(GL_LINE_SMOOTH);
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 
-    m_pdc->DrawBitmap(label, p.x, p.y, true);
-  } else {
-#ifdef ocpnUSE_GL
-#if 0  // ndef USE_ANDROID_GLES2
-
-    glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4ub(back_color.Red(), back_color.Green(), back_color.Blue(),
-               m_Settings.m_iOverlayTransparency);
-
-    glLineWidth(1);
-
-    wxString label = getLabelString(value, settings);
-    int w, h;
-    m_TexFontNumbers.GetTextExtent(label, &w, &h);
-
-    int label_offsetx = 5, label_offsety = 1;
-    int x = p.x - label_offsetx, y = p.y - label_offsety;
-    w += 2 * label_offsetx, h += 2 * label_offsety;
-
-    /* draw bounding rectangle */
-    glBegin(GL_QUADS);
-    glVertex2i(x, y);
-    glVertex2i(x + w, y);
-    glVertex2i(x + w, y + h);
-    glVertex2i(x, y + h);
-    glEnd();
-
-    glColor4ub(0, 0, 0, m_Settings.m_iOverlayTransparency);
-
-    glBegin(GL_LINE_LOOP);
-    glVertex2i(x, y);
-    glVertex2i(x + w, y);
-    glVertex2i(x + w, y + h);
-    glVertex2i(x, y + h);
-    glEnd();
-
-    glEnable(GL_TEXTURE_2D);
-    m_TexFontNumbers.RenderString(label, p.x, p.y);
-    glDisable(GL_TEXTURE_2D);
-#else
-
-#ifdef __WXQT__
-    wxFont font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
-#else
-    wxFont font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-                wxFONTWEIGHT_NORMAL);
 #endif
-
-    wxString label = getLabelString(value, settings);
-
-    m_oDC->SetFont(font);
-    int w, h;
-    m_oDC->GetTextExtent(label, &w, &h);
-
-    int label_offsetx = 5, label_offsety = 1;
-    int x = p.x - label_offsetx, y = p.y - label_offsety;
-    w += 2 * label_offsetx, h += 2 * label_offsety;
-
-    m_oDC->SetBrush(wxBrush(back_color));
-    m_oDC->DrawRoundedRectangle(x, y, w, h, 0);
-
-    /* draw bounding rectangle */
-    m_oDC->SetPen(wxPen(wxColour(0, 0, 0), 1));
-    m_oDC->DrawLine(x, y, x + w, y);
-    m_oDC->DrawLine(x + w, y, x + w, y + h);
-    m_oDC->DrawLine(x + w, y + h, x, y + h);
-    m_oDC->DrawLine(x, y + h, x, y);
-
-    m_oDC->DrawTextEx(label, p.x, p.y,  20.);
-
-#endif
-#endif
+    glEnable(GL_BLEND);
   }
+
+  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+              wxFONTWEIGHT_NORMAL);
+  m_dc->SetFont(font);
+
+  // DrawAllLinesInViewPort(&vp);  // The cross-hairs (not needed for ops?)
+
+  DrawIndexTargets(&vp);
+
+  return true;
+}
+
+void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
+  wxColour colour1 = wxColour("BLACK");
+  wxColour colour2 = wxColour("WHITE");
+
+  wxPen pen1(colour1, 2);
+  wxPen pen2(colour2, 2);
+
+  pen1.SetStyle(wxPENSTYLE_SHORT_DASH);
+
+  // c_GLcolour = colour;  // for filling GL arrows
+  if (m_dc) {
+    m_dc->SetPen(pen1);
+  }
+  double dist = 123.0;
+  wxPoint il;
+  double dlat = 50.0;
+  double dlon = -4.0;
+  GetCanvasPixLL(BBox, &il, dlat, dlon); 
+  wxString dist_text = wxString::Format("%3.0f", dist);
+
+  dist_text = " " + dist_text;
+
+  wxImage image = DrawLabel(dist, 1);
+  wxCoord w = image.GetWidth();
+  wxCoord h = image.GetHeight();
+
+  wxBitmap bm(image);
+  m_dc->DrawBitmap(bm, il.x - w / 4, il.y - h / 4, true);
+
+  wxFont font(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+  m_dc->SetFont(font);
+  m_dc->SetTextForeground("WHITE");
+  m_dc->SetPen(pen2);
+  m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);
+}
+
+wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
+  wxString labels;
+
+  int p = precision;
+
+  value *= 100;
+
+  labels = wxString::Format("%3.0f", value);
+  labels = " " + labels + " ";
+
+  if (value < 0.01) {
+    labels = " " + labels;
+  }
+  // labels.Printf("%.*f", p, value);
+
+  wxMemoryDC mdc(wxNullBitmap);
+
+  wxFont font(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+  mdc.SetFont(font);
+
+  wxCoord w, h;
+  mdc.GetTextExtent(labels, &w, &h);
+
+  wxBitmap bm(w * 2, w * 2);
+
+  mdc.SelectObject(bm);
+  mdc.Clear();
+
+  wxColour disk_color = wxColour("BLACK");
+  wxColour text_color = wxColour("WHITE");
+
+  mdc.SetBackground(*wxTRANSPARENT_BRUSH);
+  mdc.SetBrush(disk_color);
+
+  wxCoord r = w / 2 - w / 200 - 1;
+
+  //mdc.DrawCircle(w / 2, w / 2, r);
+
+  //
+  // Now drawing in DrawIndexTargets to avoid transparency of text
+  //
+
+  // mdc.SetTextForeground(text_color);
+  // mdc.SetPen(text_color);
+
+  int xd = 0;
+  int yd = w / 2;
+
+  // mdc.DrawText(labels, xd, yd - 12);
+  mdc.SelectObject(wxNullBitmap);
+
+  m_labelCache[value] = bm.ConvertToImage();
+
+  // Setup the alpha channel.
+  unsigned char *alphaData = new unsigned char[bm.GetWidth() * bm.GetHeight()];
+  memset(alphaData, wxIMAGE_ALPHA_TRANSPARENT, bm.GetWidth() * bm.GetHeight());
+
+  // Create an image with alpha.
+  m_labelCache[value].SetAlpha(alphaData);
+
+  wxImage &image = m_labelCache[value];
+
+  unsigned char *d = image.GetData();
+  unsigned char *a = image.GetAlpha();
+
+  w = image.GetWidth(), h = image.GetHeight();
+  for (int y = 0; y < h; y++)
+    for (int x = 0; x < w; x++) {
+      int r, g, b;
+      int ioff = (y * w + x);
+      r = d[ioff * 3 + 0];
+      g = d[ioff * 3 + 1];
+      b = d[ioff * 3 + 2];
+
+      a[ioff] = 255 - (r + g + b) / 3;
+    }
+
+  return image;
 }
 
 wxString frcurrentsOverlayFactory::getLabelString(double value, int settings) {
   int p = 1;
   wxString f = _T("%.*f");
 
-  
   return wxString::Format(f, p, value);
 }
 

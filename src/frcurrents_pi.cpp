@@ -413,101 +413,12 @@ bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
 
 bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
                                      PlugIn_ViewPort *pivp) {
-  m_pcontext = pcontext;
-  m_VP = *pivp;
-  g_VP = *pivp;
-  m_chart_scale = pivp->chart_scale;
-  m_view_scale = pivp->view_scale_ppm;
+  piDC piDC;
+  glEnable(GL_BLEND);
+  piDC.SetVP(pivp);
 
-  wxPoint p(200, 200);
-  wxColour back_color = wxColour("WHITE");
-
-  g_pDC = new piDC(pcontext);
-  g_pDC->SetVP(pivp);
-
-  m_oDC = new piDC(pcontext);
-  m_oDC->SetVP(pivp);
-
-#ifdef ocpnUSE_GL
-#if 0  // ndef USE_ANDROID_GLES2
-  wxMessageBox("ndef");
-  /*
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4ub(back_color.Red(), back_color.Green(), back_color.Blue(),
-               m_Settings.m_iOverlayTransparency);
-
-    glLineWidth(1);
-
-    wxString label = "testing";
-    int w, h;
-    m_TexFontNumbers.GetTextExtent(label, &w, &h);
-
-    int label_offsetx = 5, label_offsety = 1;
-    int x = p.x - label_offsetx, y = p.y - label_offsety;
-    w += 2 * label_offsetx, h += 2 * label_offsety;
-
-    /* draw bounding rectangle */
-    glBegin(GL_QUADS);
-    glVertex2i(x, y);
-    glVertex2i(x + w, y);
-    glVertex2i(x + w, y + h);
-    glVertex2i(x, y + h);
-    glEnd();
-
-    glColor4ub(0, 0, 0, m_Settings.m_iOverlayTransparency);
-
-    glBegin(GL_LINE_LOOP);
-    glVertex2i(x, y);
-    glVertex2i(x + w, y);
-    glVertex2i(x + w, y + h);
-    glVertex2i(x, y + h);
-    glEnd();
-
-    glEnable(GL_TEXTURE_2D);
-    m_TexFontNumbers.RenderString(label, p.x, p.y);
-    glDisable(GL_TEXTURE_2D);
-    */
-
-#endif
-  glDisable(GL_BLEND);
-  glDisable(GL_TEXTURE_2D);
-
-#ifdef __WXQT__  
-  wxFont *font = OCPNGetFont(_("Dialog"), 10);
-#else
-  wxFont* font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-#endif
-
-  wxString label = "123";
-
-  m_oDC->SetFont(*font);
-  int w, h;
-  m_oDC->GetTextExtent(label, &w, &h);
-
-  int label_offsetx = 5, label_offsety = 1;
-  int x = p.x - label_offsetx, y = p.y - label_offsety;
-  w += 2 * label_offsetx, h += 2 * label_offsety;
-
-  m_oDC->SetBrush(wxBrush(back_color));
-  m_oDC->DrawRoundedRectangle(x, y, w, h, 0);
-
-  /* draw bounding rectangle */
-  m_oDC->SetPen(wxPen(wxColour(0, 0, 0), 1));
-  m_oDC->DrawLine(x, y, x + w, y);
-  m_oDC->DrawLine(x + w, y, x + w, y + h);
-  m_oDC->DrawLine(x + w, y + h, x, y + h);
-  m_oDC->DrawLine(x, y + h, x, y);
-
-  m_oDC->SetTextForeground("BLACK");
-
-  m_oDC->DrawText(label, p.x, p.y);
-
-
-#endif
-
-  delete g_pDC;
-  return TRUE;
+  m_pfrcurrentsOverlayFactory->RenderOverlay(piDC, *pivp);
+  return true;
 }
 
 void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
