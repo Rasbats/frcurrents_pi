@@ -407,12 +407,11 @@ bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
       !m_pfrcurrentsOverlayFactory)
     return false;
 
-  g_bOpenGL = true;
-  return RenderGLOverlays(pcontext, pivp);
-}
+   
+  if (m_pfrcurrentsDialog) {
+    m_pfrcurrentsDialog->SetViewPort(pivp);
+  }
 
-bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
-                                     PlugIn_ViewPort *pivp) {
   piDC piDC;
   glEnable(GL_BLEND);
   piDC.SetVP(pivp);
