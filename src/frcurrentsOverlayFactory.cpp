@@ -236,7 +236,7 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
   GetCanvasPixLL(BBox, &il, dlat, dlon); 
   wxString dist_text = wxString::Format("%3.0f", dist);
 
-  dist_text = " " + dist_text;
+  //dist_text = " " + dist_text;
 
   wxImage image = DrawLabel(dist, 1);
   wxCoord w = image.GetWidth();
@@ -288,7 +288,7 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
 
   wxCoord r = w / 2 - w / 200 - 1;
 
-  //mdc.DrawCircle(w / 2, w / 2, r);
+  mdc.DrawCircle(w / 2, w / 2, r);
 
   //
   // Now drawing in DrawIndexTargets to avoid transparency of text
