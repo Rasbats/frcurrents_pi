@@ -306,7 +306,7 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
   int xd = 0;
   int yd = 0;
   //    mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
- // mdc.DrawRectangle(xd, yd, w + (label_offset * 2), h + 2);
+  mdc.DrawRectangle(xd, yd, w + (label_offset * 2), h + 2);
   mdc.DrawText(labels, label_offset + xd, yd + 1);
 
   mdc.SelectObject(wxNullBitmap);
@@ -322,24 +322,9 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
 
   m_labelCache[value] = bm.ConvertToImage();
   m_labelCache[value].SetAlpha(alphaData);
-  wxImage &image = m_labelCache[value];
-
-  unsigned char *d = image.GetData();
-  unsigned char *a = image.GetAlpha();
-
-  w = image.GetWidth(), h = image.GetHeight();
-  for (int y = 0; y < h; y++)
-    for (int x = 0; x < w; x++) {
-      int r, g, b;
-      int ioff = (y * w + x);
-      r = d[ioff * 3 + 0];
-      g = d[ioff * 3 + 1];
-      b = d[ioff * 3 + 2];
-
-      a[ioff] = 255 - (r + g + b) / 3;
-    }
-
-  return image;
+  m_labelCache[value].InitAlpha();
+  
+  return m_labelCache[value];
 }
 
 wxString frcurrentsOverlayFactory::getLabelString(double value, int settings) {
