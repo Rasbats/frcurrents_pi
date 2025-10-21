@@ -267,40 +267,48 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
   }
   // labels.Printf("%.*f", p, value);
 
-  wxMemoryDC mdc(wxNullBitmap);
+
+  wxColour text_color;
+  GetGlobalColor(_T ( "UBLCK" ), &text_color);
+  wxPen penText(text_color);
+
+  wxColour back_color("WHITE");
+  wxBrush backBrush(back_color);
+
 
  wxFont mfont(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
                wxFONTWEIGHT_NORMAL);
 
-  wxCoord w, h;
-  mdc.GetTextExtent(labels, &w, &h);
+ wxScreenDC sdc;
+  int w, h;
+ sdc.GetTextExtent(labels, &w, &h, nullptr, nullptr, &mfont);
 
+ int label_offset = 5;
   wxBitmap bm(w * 2, w * 2);
 
-  mdc.SelectObject(bm);
+  wxMemoryDC mdc(bm);
   mdc.Clear();
 
-  wxColour disk_color = wxColour("BLACK");
-  wxColour text_color = wxColour("WHITE");
+ // wxCoord r = w / 2 - w / 200 - 1;
 
-  mdc.SetBackground(*wxTRANSPARENT_BRUSH);
-  mdc.SetBrush(disk_color);
-
-  wxCoord r = w / 2 - w / 200 - 1;
-
-  mdc.DrawCircle(w / 2, w / 2, r);
+ // mdc.DrawCircle(w / 2, w / 2, r);
 
   //
   // Now drawing in DrawIndexTargets to avoid transparency of text
   //
 
+ mdc.SetFont(mfont);
+  mdc.SetPen(penText);
+  mdc.SetBrush(backBrush);
   mdc.SetTextForeground(text_color);
-  mdc.SetPen(text_color);
+  mdc.SetTextBackground(back_color);
 
   int xd = 0;
-  int yd = w / 2;
+  int yd = 0;
+  //    mdc.DrawRoundedRectangle(xd, yd, w+(label_offset * 2), h+2, -.25);
+ // mdc.DrawRectangle(xd, yd, w + (label_offset * 2), h + 2);
+  mdc.DrawText(labels, label_offset + xd, yd + 1);
 
-  mdc.DrawText(labels, xd, yd - 12);
   mdc.SelectObject(wxNullBitmap);
 
   m_labelCache[value] = bm.ConvertToImage();
@@ -310,8 +318,10 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
   memset(alphaData, wxIMAGE_ALPHA_TRANSPARENT, bm.GetWidth() * bm.GetHeight());
 
   // Create an image with alpha.
-  m_labelCache[value].SetAlpha(alphaData);
+  //
 
+  m_labelCache[value] = bm.ConvertToImage();
+  m_labelCache[value].SetAlpha(alphaData);
   wxImage &image = m_labelCache[value];
 
   unsigned char *d = image.GetData();
