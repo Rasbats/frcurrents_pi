@@ -269,8 +269,8 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
 
   wxMemoryDC mdc(wxNullBitmap);
 
-  wxFont font(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
-  mdc.SetFont(font);
+ wxFont mfont(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+               wxFONTWEIGHT_NORMAL);
 
   wxCoord w, h;
   mdc.GetTextExtent(labels, &w, &h);
@@ -294,13 +294,13 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
   // Now drawing in DrawIndexTargets to avoid transparency of text
   //
 
-  // mdc.SetTextForeground(text_color);
-  // mdc.SetPen(text_color);
+  mdc.SetTextForeground(text_color);
+  mdc.SetPen(text_color);
 
   int xd = 0;
   int yd = w / 2;
 
-  // mdc.DrawText(labels, xd, yd - 12);
+  mdc.DrawText(labels, xd, yd - 12);
   mdc.SelectObject(wxNullBitmap);
 
   m_labelCache[value] = bm.ConvertToImage();
