@@ -321,8 +321,13 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
   //
 
   m_labelCache[value] = bm.ConvertToImage();
-  m_labelCache[value].SetAlpha(alphaData);
   m_labelCache[value].InitAlpha();
+
+  wxBitmap newbm(m_labelCache[value]);
+  m_dc->DrawBitmap(newbm, 200, 200, true);
+
+  
+  mdc.SelectObject(wxNullBitmap);
   
   return m_labelCache[value];
 }
