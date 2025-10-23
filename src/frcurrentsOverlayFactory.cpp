@@ -353,8 +353,100 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
 
   AlphaBlending(*m_dc, 200, 200, 30, 30, 2.0, "RED", transparency);
 
-  m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);
+  //m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);
+  wxPoint p(200, 200);
+  DrawNumbers(p, 124., 1, "WHITE");
 }
+
+void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
+                                           int settings,
+                                     wxColour back_color) {
+  unsigned char transparency = 150;
+
+  if (m_dc) {
+    wxImage &label = getLabel(value, settings, back_color);
+    // set alpha chanel
+    int w = label.GetWidth(), h = label.GetHeight();
+    for (int y = 0; y < h; y++)
+      for (int x = 0; x < w; x++)
+        label.SetAlpha(x, y, transparency);
+
+    m_dc->DrawBitmap(label, p.x, p.y, true);
+  } else {
+#ifdef ocpnUSE_GL
+#if 0  // ndef USE_ANDROID_GLES2
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4ub(back_color.Red(), back_color.Green(), back_color.Blue(),
+               m_Settings.m_iOverlayTransparency);
+
+    glLineWidth(1);
+
+    wxString label = getLabelString(value, settings);
+    int w, h;
+    m_TexFontNumbers.GetTextExtent(label, &w, &h);
+
+    int label_offsetx = 5, label_offsety = 1;
+    int x = p.x - label_offsetx, y = p.y - label_offsety;
+    w += 2 * label_offsetx, h += 2 * label_offsety;
+
+    /* draw bounding rectangle */
+    glBegin(GL_QUADS);
+    glVertex2i(x, y);
+    glVertex2i(x + w, y);
+    glVertex2i(x + w, y + h);
+    glVertex2i(x, y + h);
+    glEnd();
+
+    glColor4ub(0, 0, 0, m_Settings.m_iOverlayTransparency);
+
+    glBegin(GL_LINE_LOOP);
+    glVertex2i(x, y);
+    glVertex2i(x + w, y);
+    glVertex2i(x + w, y + h);
+    glVertex2i(x, y + h);
+    glEnd();
+
+    glEnable(GL_TEXTURE_2D);
+    m_TexFontNumbers.RenderString(label, p.x, p.y);
+    glDisable(GL_TEXTURE_2D);
+#else
+
+#ifdef __WXQT__
+    wxFont font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
+#else
+    wxFont font(9, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_NORMAL);
+#endif
+
+    wxString label = getLabelString(value, settings);
+
+    m_dc->SetFont(font);
+    int w, h;
+    m_dc->GetTextExtent(label, &w, &h);
+
+    int label_offsetx = 5, label_offsety = 1;
+    int x = p.x - label_offsetx, y = p.y - label_offsety;
+    w += 2 * label_offsetx, h += 2 * label_offsety;
+
+    m_dc->SetBrush(wxBrush(back_color));
+    m_dc->DrawRoundedRectangle(x, y, w, h, 0);
+
+    /* draw bounding rectangle */
+    m_dc->SetPen(wxPen(wxColour(0, 0, 0), 1));
+    m_dc->DrawLine(x, y, x + w, y);
+    m_dc->DrawLine(x + w, y, x + w, y + h);
+    m_dc->DrawLine(x + w, y + h, x, y + h);
+    m_dc->DrawLine(x, y + h, x, y);
+
+    m_dc->DrawText(label, p.x, p.y);
+
+#endif
+#endif
+  }
+}
+
 
 wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
   wxString labels;

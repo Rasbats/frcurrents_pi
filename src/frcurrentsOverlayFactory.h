@@ -130,6 +130,7 @@ private:
                                                unsigned char transparency);
 
   void DrawIndexTargets(PlugIn_ViewPort *BBox);
+  void DrawNumbers(wxPoint p, double value, int settings, wxColour back_color); 
   wxImage &DrawLabel(double value, int precision);
   std::map<double, wxImage> m_labelCache;
 
