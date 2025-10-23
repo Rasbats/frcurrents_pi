@@ -31,7 +31,7 @@
 #include "pidc.h"
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
-
+#include "GL/gl.h"
 #include "globals.h"
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
@@ -128,6 +128,7 @@ private:
                                                int size_x, int size_y,
                                                float radius, wxColour color,
                                                unsigned char transparency);
+
   void DrawIndexTargets(PlugIn_ViewPort *BBox);
   wxImage &DrawLabel(double value, int precision);
   std::map<double, wxImage> m_labelCache;

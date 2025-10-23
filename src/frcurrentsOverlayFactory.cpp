@@ -311,6 +311,10 @@ void frcurrentsOverlayFactory::AlphaBlending(piDC &dc, int x, int y, int size_x,
   }
 #endif
 }
+  
+
+  
+
 void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
   wxColour colour1 = wxColour("BLACK");
   wxColour colour2 = wxColour("WHITE");

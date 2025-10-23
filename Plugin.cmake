@@ -96,6 +96,7 @@ set(PKG_API_LIB api-18)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
 macro(late_init)
   # Perform initialization after the PACKAGE_NAME library, compilers
   # and ocpn::api is available.
+  ADD_DEFINITIONS(-DocpnUSE_GL)
 endmacro ()
 
 macro(add_plugin_libraries)
