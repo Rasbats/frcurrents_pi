@@ -211,11 +211,106 @@ bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
 
   // DrawAllLinesInViewPort(&vp);  // The cross-hairs (not needed for ops?)
 
+  
   DrawIndexTargets(&vp);
 
   return true;
 }
+/* render a rectangle at a given color and transparency */
+void frcurrentsOverlayFactory::AlphaBlending(piDC &dc, int x, int y, int size_x,
+                                             int size_y,
+                                 float radius, wxColour color,
+                                 unsigned char transparency) {
+#if 1
+  wxDC *pdc = dc.GetDC();
+  if (pdc) {
+    //    Get wxImage of area of interest
+    wxBitmap obm(size_x, size_y);
+    wxMemoryDC mdc1;
+    mdc1.SelectObject(obm);
+    mdc1.Blit(0, 0, size_x, size_y, pdc, x, y);
+    mdc1.SelectObject(wxNullBitmap);
+    wxImage oim = obm.ConvertToImage();
 
+    //    Create destination image
+    wxBitmap olbm(size_x, size_y);
+    wxMemoryDC oldc(olbm);
+    if (!oldc.IsOk()) return;
+
+    oldc.SetBackground(*wxBLACK_BRUSH);
+    oldc.SetBrush(*wxWHITE_BRUSH);
+    oldc.Clear();
+
+    if (radius > 0.0) oldc.DrawRoundedRectangle(0, 0, size_x, size_y, radius);
+
+    wxImage dest = olbm.ConvertToImage();
+    unsigned char *dest_data =
+        (unsigned char *)malloc(size_x * size_y * 3 * sizeof(unsigned char));
+    unsigned char *bg = oim.GetData();
+    unsigned char *box = dest.GetData();
+    unsigned char *d = dest_data;
+
+    //  Sometimes, on Windows, the destination image is corrupt...
+    if (NULL == box) {
+      free(d);
+      return;
+    }
+
+    float alpha = 1.0 - (float)transparency / 255.0;
+    int sb = size_x * size_y;
+    for (int i = 0; i < sb; i++) {
+      float a = alpha;
+      if (*box == 0 && radius > 0.0) a = 1.0;
+      int r = ((*bg++) * a) + (1.0 - a) * color.Red();
+      *d++ = r;
+      box++;
+      int g = ((*bg++) * a) + (1.0 - a) * color.Green();
+      *d++ = g;
+      box++;
+      int b = ((*bg++) * a) + (1.0 - a) * color.Blue();
+      *d++ = b;
+      box++;
+    }
+
+    dest.SetData(dest_data);
+
+    //    Convert destination to bitmap and draw it
+    wxBitmap dbm(dest);
+    dc.DrawBitmap(dbm, x, y, false);
+
+    // on MSW, the dc Bounding box is not updated on DrawBitmap() method.
+    // Do it explicitely here for all platforms.
+    dc.CalcBoundingBox(x, y);
+    dc.CalcBoundingBox(x + size_x, y + size_y);
+  } else {
+#ifdef ocpnUSE_GL
+    /* opengl version */
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    if (radius > 1.0f) {
+      wxColour c(color.Red(), color.Green(), color.Blue(), transparency);
+      dc.SetBrush(wxBrush(c));
+      dc.DrawRoundedRectangle(x, y, size_x, size_y, radius);
+    } else {
+#ifndef USE_ANDROID_GLES2
+      glColor4ub(color.Red(), color.Green(), color.Blue(), transparency);
+      glBegin(GL_QUADS);
+      glVertex2i(x, y);
+      glVertex2i(x + size_x, y);
+      glVertex2i(x + size_x, y + size_y);
+      glVertex2i(x, y + size_y);
+      glEnd();
+#endif
+    }
+    glDisable(GL_BLEND);
+#else
+    wxLogMessage(
+        _("Alpha blending not drawn as OpenGL not available in this build"));
+#endif
+  }
+#endif
+}
 void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
   wxColour colour1 = wxColour("BLACK");
   wxColour colour2 = wxColour("WHITE");
@@ -249,6 +344,11 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
   m_dc->SetFont(font);
   m_dc->SetTextForeground("WHITE");
   m_dc->SetPen(pen2);
+
+  unsigned char transparency = 150;
+
+  AlphaBlending(*m_dc, 200, 200, 30, 30, 2.0, "RED", transparency);
+
   m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);
 }
 

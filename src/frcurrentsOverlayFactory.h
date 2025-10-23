@@ -124,6 +124,10 @@ public:
   bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
 
 private:
+  void AlphaBlending(piDC &dc, int x, int y,
+                                               int size_x, int size_y,
+                                               float radius, wxColour color,
+                                               unsigned char transparency);
   void DrawIndexTargets(PlugIn_ViewPort *BBox);
   wxImage &DrawLabel(double value, int precision);
   std::map<double, wxImage> m_labelCache;
