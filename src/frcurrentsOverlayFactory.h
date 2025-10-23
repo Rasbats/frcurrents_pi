@@ -33,6 +33,7 @@
 #include <wx/gdicmn.h>
 #include "GL/gl.h"
 #include "globals.h"
+#include "TexFont.h"
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
@@ -51,6 +52,7 @@ using namespace std;
 class plugIn_Viewport;
 class piDC;
 class wxDC;
+class TexFontPI;
 
 //----------------------------------------------------------------------------------------------------------
 //    frcurrents Overlay Specification
@@ -129,6 +131,7 @@ private:
                                                float radius, wxColour color,
                                                unsigned char transparency);
 
+  TexFontPI m_TexFontNumbers;
   void DrawIndexTargets(PlugIn_ViewPort *BBox);
   void DrawNumbers(wxPoint p, double value, int settings, wxColour back_color); 
   wxImage &DrawLabel(double value, int precision);

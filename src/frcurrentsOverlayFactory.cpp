@@ -363,23 +363,13 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
                                      wxColour back_color) {
   unsigned char transparency = 150;
 
-  if (m_dc) {
-    wxImage &label = getLabel(value, settings, back_color);
-    // set alpha chanel
-    int w = label.GetWidth(), h = label.GetHeight();
-    for (int y = 0; y < h; y++)
-      for (int x = 0; x < w; x++)
-        label.SetAlpha(x, y, transparency);
-
-    m_dc->DrawBitmap(label, p.x, p.y, true);
-  } else {
 #ifdef ocpnUSE_GL
-#if 0  // ndef USE_ANDROID_GLES2
+//#if 0  // ndef USE_ANDROID_GLES2
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4ub(back_color.Red(), back_color.Green(), back_color.Blue(),
-               m_Settings.m_iOverlayTransparency);
+               150);
 
     glLineWidth(1);
 
@@ -399,7 +389,7 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
     glVertex2i(x, y + h);
     glEnd();
 
-    glColor4ub(0, 0, 0, m_Settings.m_iOverlayTransparency);
+    glColor4ub(0, 0, 0, 150);
 
     glBegin(GL_LINE_LOOP);
     glVertex2i(x, y);
@@ -411,7 +401,7 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
     glEnable(GL_TEXTURE_2D);
     m_TexFontNumbers.RenderString(label, p.x, p.y);
     glDisable(GL_TEXTURE_2D);
-#else
+//#else
 
 #ifdef __WXQT__
     wxFont font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
@@ -420,31 +410,26 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
                 wxFONTWEIGHT_NORMAL);
 #endif
 
-    wxString label = getLabelString(value, settings);
-
     m_dc->SetFont(font);
-    int w, h;
     m_dc->GetTextExtent(label, &w, &h);
 
-    int label_offsetx = 5, label_offsety = 1;
-    int x = p.x - label_offsetx, y = p.y - label_offsety;
+    int x2 = p.x - label_offsetx, y2 = p.y - label_offsety;
     w += 2 * label_offsetx, h += 2 * label_offsety;
 
     m_dc->SetBrush(wxBrush(back_color));
-    m_dc->DrawRoundedRectangle(x, y, w, h, 0);
+    m_dc->DrawRoundedRectangle(x2, y2, w, h, 0);
 
-    /* draw bounding rectangle */
+    /* draw bounding rectangle 
     m_dc->SetPen(wxPen(wxColour(0, 0, 0), 1));
     m_dc->DrawLine(x, y, x + w, y);
     m_dc->DrawLine(x + w, y, x + w, y + h);
     m_dc->DrawLine(x + w, y + h, x, y + h);
     m_dc->DrawLine(x, y + h, x, y);
-
+*/
     m_dc->DrawText(label, p.x, p.y);
 
 #endif
-#endif
-  }
+  
 }
 
 
