@@ -38,6 +38,7 @@
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
 #include "GL/gl_private.h"
+#include "GL/gl.h"
 #elif defined(__APPLE__)
 #include "OpenGL/gl.h"
 #include "OpenGL/glu.h"
@@ -46,6 +47,7 @@
 #include "GL/glu.h"
 #include "GL/glext.h"
 #endif
+
 
 using namespace std;
 

@@ -351,8 +351,6 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
 
   unsigned char transparency = 150;
 
-  AlphaBlending(*m_dc, 200, 200, 30, 30, 2.0, "RED", transparency);
-
   //m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);
   wxPoint p(200, 200);
   DrawNumbers(p, 124., 1, "WHITE");
