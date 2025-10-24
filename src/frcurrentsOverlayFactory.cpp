@@ -201,6 +201,12 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
 }
 
 wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
+ 
+  wxColour colour1 = wxColour("BLACK");
+  wxColour colour2 = wxColour("WHITE");
+
+  wxPen pen1(colour1, 2);
+  wxPen pen2(colour2, 2);
   wxString labels;
 
   int p = precision;
@@ -240,6 +246,7 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
   mdc.SetBackgroundMode(wxPENSTYLE_SOLID);
   mdc.SetTextBackground("WHITE");
   mdc.SetTextForeground("BLACK");
+  mdc.SetPen(pen1);
   // We draw the string and get it as an image.
   // NOTE: OpenGL axis are bottom to up. Be aware when setting the texture
   // coords.
