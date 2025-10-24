@@ -31,14 +31,16 @@
 #include "pidc.h"
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
-#include "GL/gl.h"
 #include "globals.h"
 #include "TexFont.h"
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
-#include "GL/gl_private.h"
-#include <GL/gl.h>
+typedef double GLdouble;
+#define GL_GLEXT_LEGACY 1
+#include "GLES2/gl2.h"
+#include "glu_gl.h"
+#include "GL/glu.h"
 #elif defined(__APPLE__)
 #include "OpenGL/gl.h"
 #include "OpenGL/glu.h"
