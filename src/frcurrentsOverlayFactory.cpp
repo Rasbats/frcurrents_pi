@@ -362,44 +362,45 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
   unsigned char transparency = 150;
 
 #ifdef ocpnUSE_GL
-//#if 0  // ndef USE_ANDROID_GLES2
+#if 0  // ndef USE_ANDROID_GLES2
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4ub(back_color.Red(), back_color.Green(), back_color.Blue(),
-               150);
+     glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glColor4ub(back_color.Red(), back_color.Green(), back_color.Blue(),
+             150);
 
-    glLineWidth(1);
+  glLineWidth(1);
 
-    wxString label = getLabelString(value, settings);
-    int w, h;
-    m_TexFontNumbers.GetTextExtent(label, &w, &h);
+  wxString label = getLabelString(value, settings);
+  int w, h;
+  m_TexFontNumbers.GetTextExtent(label, &w, &h);
 
-    int label_offsetx = 5, label_offsety = 1;
-    int x = p.x - label_offsetx, y = p.y - label_offsety;
-    w += 2 * label_offsetx, h += 2 * label_offsety;
+  int label_offsetx = 5, label_offsety = 1;
+  int x = p.x - label_offsetx, y = p.y - label_offsety;
+  w += 2 * label_offsetx, h += 2 * label_offsety;
 
-    /* draw bounding rectangle */
-    glBegin(GL_QUADS);
-    glVertex2i(x, y);
-    glVertex2i(x + w, y);
-    glVertex2i(x + w, y + h);
-    glVertex2i(x, y + h);
-    glEnd();
+  /* draw bounding rectangle */
+  glBegin(GL_QUADS);
+  glVertex2i(x, y);
+  glVertex2i(x + w, y);
+  glVertex2i(x + w, y + h);
+  glVertex2i(x, y + h);
+  glEnd();
 
-    glColor4ub(0, 0, 0, 150);
+  glColor4ub(0, 0, 0, 150);
 
-    glBegin(GL_LINE_LOOP);
-    glVertex2i(x, y);
-    glVertex2i(x + w, y);
-    glVertex2i(x + w, y + h);
-    glVertex2i(x, y + h);
-    glEnd();
+  glBegin(GL_LINE_LOOP);
+  glVertex2i(x, y);
+  glVertex2i(x + w, y);
+  glVertex2i(x + w, y + h);
+  glVertex2i(x, y + h);
+  glEnd();
 
-    glEnable(GL_TEXTURE_2D);
-    m_TexFontNumbers.RenderString(label, p.x, p.y);
-    glDisable(GL_TEXTURE_2D);
-//#else
+  glEnable(GL_TEXTURE_2D);
+  m_TexFontNumbers.RenderString(label, p.x, p.y);
+  glDisable(GL_TEXTURE_2D);
+
+#else
 
 #ifdef __WXQT__
     wxFont font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
@@ -408,11 +409,14 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
                 wxFONTWEIGHT_NORMAL);
 #endif
 
+    wxString label = "123";
     m_dc->SetFont(font);
+
+    int w, h;
     m_dc->GetTextExtent(label, &w, &h);
 
-    int x2 = p.x - label_offsetx, y2 = p.y - label_offsety;
-    w += 2 * label_offsetx, h += 2 * label_offsety;
+    int x2 = p.x - 5, y2 = p.y - 1;
+    w += 2 * 5, h += 2 * 1;
 
     m_dc->SetBrush(wxBrush(back_color));
     m_dc->DrawRoundedRectangle(x2, y2, w, h, 0);
@@ -425,7 +429,7 @@ void frcurrentsOverlayFactory::DrawNumbers(wxPoint p, double value,
     m_dc->DrawLine(x, y + h, x, y);
 */
     m_dc->DrawText(label, p.x, p.y);
-
+#endif
 #endif
   
 }

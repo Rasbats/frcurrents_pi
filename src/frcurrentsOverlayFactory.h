@@ -31,6 +31,7 @@
 #include "pidc.h"
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
+#include "GL/gl.h"
 #include "globals.h"
 #include "TexFont.h"
 
