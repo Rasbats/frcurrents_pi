@@ -224,14 +224,7 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
   double dist = 123.0;
   wxString dist_text = wxString::Format("%3.0f", dist * 100);
 
-  if (dist < 0.10) {
-    std::string s = dist_text;
-    string r = s.substr(2, 1);
-    unsigned int number_of_zeros = 2 - r.length();  // add 1 zero
-
-    r.insert(0, number_of_zeros, '0');
-    dist_text = r;
-  }
+ 
   dist_text = " " + dist_text;
 
   wxImage image = DrawLabel(dist, 1);
@@ -240,7 +233,7 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
 
   wxBitmap bm(image);
   m_dc->DrawBitmap(bm, il.x - w / 4, il.y - h / 4, true);
-  wxFont *font;
+  /*  wxFont *font;
 #ifdef __WXQT__
   font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
 #else
@@ -250,7 +243,7 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
   m_dc->SetFont(*font);
   m_dc->SetTextForeground("WHITE");
   m_dc->SetPen(pen2);
-  m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);
+  m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);*/
 }
 
 wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
@@ -260,77 +253,53 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
 
   value *= 100;
 
-  labels = wxString::Format("%3.0f", value);
+  labels = "TESTING";
+  
   labels = " " + labels + " ";
 
-  if (value < 0.01) {
-    labels = " " + labels;
-  }
-  // labels.Printf("%.*f", p, value);
 
-  wxMemoryDC mdc(wxNullBitmap);
+  wxMemoryDC mdc;
 
-  wxFont font(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+  mdc.Clear();
+
+  wxFont font;
+#ifdef __WXQT__
+  font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
+#else
+  font = wxFont(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+
+#endif
+
   mdc.SetFont(font);
 
   wxCoord w, h;
   mdc.GetTextExtent(labels, &w, &h);
 
-  wxBitmap bm(w * 2, w * 2);
+  // Now we know dimensions, let's draw into a memory dc
+  wxBitmap bmp(w, h, 24);
+  mdc.SelectObject(bmp);
+  // If we have multiline string, perhaps not all of the bmp is used
+  wxBrush brush(wxTRANSPARENT);
+  mdc.SetBackground(brush);
+  mdc.Clear();  // Make sure all of bmp is cleared
+  // Colours
+  mdc.SetBackgroundMode(wxPENSTYLE_SOLID);
+  mdc.SetTextBackground("WHITE");
+  mdc.SetTextForeground("BLACK");
+  // We draw the string and get it as an image.
+  // NOTE: OpenGL axis are bottom to up. Be aware when setting the texture
+  // coords.
+  mdc.DrawText("TESTING", 0, 0);
+  mdc.SelectObject(wxNullBitmap);  // bmp must be detached from wxMemoryDC
+ 
+  wxBitmap memBmp = wxBitmap(bmp);
 
-  mdc.SelectObject(bm);
-  mdc.Clear();
 
-  wxColour disk_color = wxColour("BLACK");
-  wxColour text_color = wxColour("WHITE");
+ m_labelCache[value] = memBmp.ConvertToImage();
 
-  mdc.SetBackground(*wxTRANSPARENT_BRUSH);
-  mdc.SetBrush(disk_color);
 
-  wxCoord r = w / 2 - w / 200 - 1;
 
-  //mdc.DrawCircle(w / 2, w / 2, r);
-
-  //
-  // Now drawing in DrawIndexTargets to avoid transparency of text
-  //
-
-  // mdc.SetTextForeground(text_color);
-  // mdc.SetPen(text_color);
-
-  int xd = 0;
-  int yd = w / 2;
-
-  // mdc.DrawText(labels, xd, yd - 12);
-  mdc.SelectObject(wxNullBitmap);
-
-  m_labelCache[value] = bm.ConvertToImage();
-
-  // Setup the alpha channel.
-  unsigned char *alphaData = new unsigned char[bm.GetWidth() * bm.GetHeight()];
-  memset(alphaData, wxIMAGE_ALPHA_TRANSPARENT, bm.GetWidth() * bm.GetHeight());
-
-  // Create an image with alpha.
-  m_labelCache[value].SetAlpha(alphaData);
-
-  wxImage &image = m_labelCache[value];
-
-  unsigned char *d = image.GetData();
-  unsigned char *a = image.GetAlpha();
-
-  w = image.GetWidth(), h = image.GetHeight();
-  for (int y = 0; y < h; y++)
-    for (int x = 0; x < w; x++) {
-      int r, g, b;
-      int ioff = (y * w + x);
-      r = d[ioff * 3 + 0];
-      g = d[ioff * 3 + 1];
-      b = d[ioff * 3 + 2];
-
-      a[ioff] = 255 - (r + g + b) / 3;
-    }
-
-  return image;
+  return m_labelCache[value];
 }
 
 wxString frcurrentsOverlayFactory::getLabelString(double value, int settings) {
