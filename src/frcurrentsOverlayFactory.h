@@ -126,19 +126,14 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-  wxImage &getLabel(double value, int settings, wxColour back_color);
-  piDC *m_oDC;
+  
   bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
 
 private:
-  void AlphaBlending(piDC &dc, int x, int y,
-                                               int size_x, int size_y,
-                                               float radius, wxColour color,
-                                               unsigned char transparency);
-
+  wxFont *m_Font_Message;
+  piDC *m_oDC;
   TexFontPI m_TexFontNumbers;
   void DrawIndexTargets(PlugIn_ViewPort *BBox);
-  void DrawNumbers(wxPoint p, double value, int settings, wxColour back_color); 
   wxImage &DrawLabel(double value, int precision);
   std::map<double, wxImage> m_labelCache;
 
