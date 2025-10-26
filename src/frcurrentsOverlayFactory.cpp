@@ -140,12 +140,10 @@ void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
 
 bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
   
-    m_dc = &dc;
+    
+    m_dc2.SetVP(&vp);
 
-
-  wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-              wxFONTWEIGHT_NORMAL);
-  m_dc->SetFont(font);
+  
 
   DrawIndexTargets(&vp);
 
@@ -162,11 +160,8 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
   pen1.SetStyle(wxPENSTYLE_SHORT_DASH);
 
   // c_GLcolour = colour;  // for filling GL arrows
-  if (m_dc) {
-    m_dc->SetPen(pen1);
-  }
 
-  m_dc->SetPen(pen1);
+  m_dc2.SetPen(pen1);
 
   double dlat, dlon;
   dlat = 50.;
@@ -181,12 +176,12 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
  
   dist_text = " " + dist_text;
 
-  wxImage image = DrawLabel(dist, 1);
-  wxCoord w = image.GetWidth();
-  wxCoord h = image.GetHeight();
+  DrawLabel(dist, 1);
+ 
 
-  wxBitmap bm(image);
-  m_dc->DrawBitmap(bm, il.x - w / 4, il.y - h / 4, true);
+   
+
+ 
   /*  wxFont *font;
 #ifdef __WXQT__
   font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
@@ -200,24 +195,82 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
   m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);*/
 }
 
-wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
+VOID frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
  
   wxColour colour1 = wxColour("BLACK");
   wxColour colour2 = wxColour("WHITE");
+
 
   wxPen pen1(colour1, 2);
   wxPen pen2(colour2, 2);
   wxString labels;
 
-  int p = precision;
+  wxPoint p(200,200);
 
-  value *= 100;
-
-  labels = "TESTING";
+  labels = wxString::Format("%3.2f", value);
   
-  labels = " " + labels + " ";
+  #ifdef ocpnUSE_GL
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4ub(255, 255, 255, 255);
+
+    glLineWidth(1);
+
+    wxString label = labels;
+    int w, h;
+    m_TexFontNumbers.GetTextExtent(label, &w, &h);
+
+    int label_offsetx = 5, label_offsety = 1;
+    int x = p.x - label_offsetx, y = p.y - label_offsety;
+    w += 2 * label_offsetx, h += 2 * label_offsety;
+
+    /* draw bounding rectangle */
+    glBegin(GL_QUADS);
+    glVertex2i(x, y);
+    glVertex2i(x + w, y);
+    glVertex2i(x + w, y + h);
+    glVertex2i(x, y + h);
+    glEnd();
+
+    glColor4ub(0, 0, 0, 150);
+
+    glBegin(GL_LINE_LOOP);
+    glVertex2i(x, y);
+    glVertex2i(x + w, y);
+    glVertex2i(x + w, y + h);
+    glVertex2i(x, y + h);
+    glEnd();
+
+    glEnable(GL_TEXTURE_2D);
+    m_TexFontNumbers.RenderString(label, p.x, p.y);
+    glDisable(GL_TEXTURE_2D);
+#endif
+    wxFont font;
+#ifdef __WXQT__
+    font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
+#else
+  font = wxFont(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+#endif
+
+   m_dc2.SetFont(font);
+   
+
+    m_dc2.SetBrush(wxBrush("WHITE"));
+    //m_dc2.DrawRoundedRectangle(x, y, w, h, 0);
+
+  //  /* draw bounding rectangle */
+    m_dc2.SetPen(wxPen(wxColour(0, 0, 0), 1));
+    //m_dc2.DrawLine(x, y, x + w, y);
+    //m_dc2.DrawLine(x + w, y, x + w, y + h);
+    //m_dc2.DrawLine(x + w, y + h, x, y + h);
+    //m_dc2.DrawLine(x, y + h, x, y);
+
+    m_dc2.DrawText(label, p.x, p.y);
 
 
+
+  /*
   wxMemoryDC mdc;
 
   mdc.Clear();
@@ -250,7 +303,7 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
   // We draw the string and get it as an image.
   // NOTE: OpenGL axis are bottom to up. Be aware when setting the texture
   // coords.
-  mdc.DrawText("TESTING", 0, 0);
+  mdc.DrawText(labels, 0, 0);
   mdc.SelectObject(wxNullBitmap);  // bmp must be detached from wxMemoryDC
  
   wxBitmap memBmp = wxBitmap(bmp);
@@ -258,9 +311,9 @@ wxImage &frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
 
  m_labelCache[value] = memBmp.ConvertToImage();
 
+*/
 
-
-  return m_labelCache[value];
+  //return m_labelCache[value];
 }
 
 wxString frcurrentsOverlayFactory::getLabelString(double value, int settings) {

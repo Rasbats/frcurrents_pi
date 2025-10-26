@@ -132,9 +132,10 @@ public:
 private:
   wxFont *m_Font_Message;
   piDC *m_oDC;
+  piDC m_dc2;
   TexFontPI m_TexFontNumbers;
   void DrawIndexTargets(PlugIn_ViewPort *BBox);
-  wxImage &DrawLabel(double value, int precision);
+  void DrawLabel(double value, int precision);
   std::map<double, wxImage> m_labelCache;
 
   wxString getLabelString(double value, int settings);  
