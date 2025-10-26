@@ -225,23 +225,6 @@ void frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
     int x = p.x - label_offsetx, y = p.y - label_offsety;
     w += 2 * label_offsetx, h += 2 * label_offsety;
 
-    /* draw bounding rectangle */
-    glBegin(GL_QUADS);
-    glVertex2i(x, y);
-    glVertex2i(x + w, y);
-    glVertex2i(x + w, y + h);
-    glVertex2i(x, y + h);
-    glEnd();
-
-    glColor4ub(0, 0, 0, 150);
-
-    glBegin(GL_LINE_LOOP);
-    glVertex2i(x, y);
-    glVertex2i(x + w, y);
-    glVertex2i(x + w, y + h);
-    glVertex2i(x, y + h);
-    glEnd();
-
     glEnable(GL_TEXTURE_2D);
     m_TexFontNumbers.RenderString(label, p.x, p.y);
     glDisable(GL_TEXTURE_2D);
