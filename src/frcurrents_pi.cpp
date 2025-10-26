@@ -105,7 +105,9 @@ frcurrents_pi::frcurrents_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
   g_pi = this;
 }
 
-frcurrents_pi::~frcurrents_pi(void) {}
+frcurrents_pi::~frcurrents_pi(void) {
+  if (_xpm_frcurrents_pi) delete _xpm_frcurrents_pi;
+}
 
 int frcurrents_pi::Init(void) {
   AddLocaleCatalog("opencpn-frcurrents_pi");
@@ -139,7 +141,10 @@ int frcurrents_pi::Init(void) {
         "frcurrents", _svg_frcurrents, _svg_frcurrents_rollover,
         _svg_frcurrents_toggled, wxITEM_CHECK, _("frcurrents"), _T( "" ), NULL,
         frcurrents_TOOL_POSITION, 0, this);
-
+#else
+    m_leftclick_tool_id = InsertPlugInTool(
+        "", _xpm_frcurrents_pi, _xpm_frcurrents_pi, wxITEM_CHECK,
+        _("frcurrents"), "", NULL, frcurrents_TOOL_POSITION, 0, this);
 #endif
   }
   return (WANTS_OVERLAY_CALLBACK | WANTS_OPENGL_OVERLAY_CALLBACK |
@@ -246,7 +251,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
     // #endif
 
-    int copyarea = Pref->m_choice_area->GetSelection();
+    int copyarea =  Pref->m_choice_area->GetSelection();
 
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
@@ -276,6 +281,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
     }
 
     if (m_pfrcurrentsDialog) {
+
       m_pfrcurrentsDialog->m_bUseRate = m_bCopyUseRate;
       m_pfrcurrentsDialog->m_bUseDirection = m_bCopyUseDirection;
       m_pfrcurrentsDialog->m_bUseHighRes = m_bCopyUseHighRes;
@@ -407,17 +413,25 @@ bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
       !m_pfrcurrentsOverlayFactory)
     return false;
 
-   
-  if (m_pfrcurrentsDialog) {
-    m_pfrcurrentsDialog->SetViewPort(pivp);
-  }
+  g_bOpenGL = true;
+  return RenderGLOverlays(pcontext, pivp);
+}
 
-  piDC piDC;
-  glEnable(GL_BLEND);
-  piDC.SetVP(pivp);
+bool frcurrents_pi::RenderGLOverlays(wxGLContext *pcontext,
+                                     PlugIn_ViewPort *pivp) {
+  m_pcontext = pcontext;
+  m_VP = *pivp;
+  g_VP = *pivp;
+  m_chart_scale = pivp->chart_scale;
+  m_view_scale = pivp->view_scale_ppm;
 
-  m_pfrcurrentsOverlayFactory->RenderOverlay(piDC, *pivp);
-  return true;
+  g_pDC = new piDC(pcontext);
+  g_pDC->SetVP(pivp);
+
+  m_pfrcurrentsOverlayFactory->DrawGL(*pivp);
+
+  delete g_pDC;
+  return TRUE;
 }
 
 void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
@@ -439,7 +453,7 @@ bool frcurrents_pi::LoadConfig(void) {
 
     my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
     my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
-
+    
     pConf->Read("frcurrentsAreaID", &m_AreaID, 0.);
     m_Port = pConf->Read("frcurrentsPort", "");
     m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");

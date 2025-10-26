@@ -7,6 +7,7 @@
 #include <wx/mstream.h>
 #include "icons.h"
 
+wxBitmap *_xpm_frcurrents_pi;
 
 #ifdef ocpnUSE_SVG
 #include "ocpn_plugin.h"
@@ -56,6 +57,10 @@ void initialize_images(void)
 	_svg_frcurrents_prev = fn.GetFullPath();
 	fn.SetFullName("now_blue.svg");
 	_svg_frcurrents_now = fn.GetFullPath();
+
+	_xpm_frcurrents_pi = NULL;
+#else
+	_xpm_frcurrents_pi = new wxBitmap(wxBitmap(frcurrents));
 
 #endif
 

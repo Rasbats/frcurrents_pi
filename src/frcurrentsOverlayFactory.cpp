@@ -98,6 +98,28 @@ frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 
 void frcurrentsOverlayFactory::Reset() {}
 
+void frcurrentsOverlayFactory::DrawGL(PlugIn_ViewPort &piVP) {
+
+#ifdef ocpnUSE_GL
+  /* determine color and width */
+  wxPenStyle style = wxPENSTYLE_SOLID;
+  int width = 4;
+
+  int j = 0;
+  wxPoint r;
+
+  wxFont* font =  GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
+
+  g_pDC->SetFont(*font);
+  g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
+  g_pDC->SetBrush(
+      *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
+  g_pDC->SetGLStipple();
+
+  RenderMyArrows(&g_VP);
+#endif
+}
+
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
   switch (my_style) {
     case 0:
@@ -136,155 +158,6 @@ void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
       myArrowArray[8] = wxPoint(0, 0);
       break;
   }
-}
-
-bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
-  
-    m_dc2 = new piDC(dc);
-    m_dc2->SetVP(&vp);
-
-  
-
-  DrawIndexTargets(&vp);
-
-  return true;
-}
-
-void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
-  wxColour colour1 = wxColour("BLACK");
-  wxColour colour2 = wxColour("WHITE");
-
-  wxPen pen1(colour1, 2);
-  wxPen pen2(colour2, 2);
-
-  pen1.SetStyle(wxPENSTYLE_SHORT_DASH);
-
-  // c_GLcolour = colour;  // for filling GL arrows
-
-  m_dc2->SetPen(pen1);
-
-  double dlat, dlon;
-  dlat = 50.;
-  dlon = -4.;
-
-  wxPoint il;
-  GetCanvasPixLL(BBox, &il, dlat, dlon);
-
-  double dist = 123.0;
-  wxString dist_text = wxString::Format("%3.0f", dist * 100);
-
- 
-  dist_text = " " + dist_text;
-
-  DrawLabel(dist, 1);
- 
-
-   
-
- 
-  /*  wxFont *font;
-#ifdef __WXQT__
-  font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
-#else
-  font = OCPNGetFont("Dialog", 20);  
-#endif
-
-  m_dc->SetFont(*font);
-  m_dc->SetTextForeground("WHITE");
-  m_dc->SetPen(pen2);
-  m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);*/
-}
-
-void frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
- 
-  wxColour colour1 = wxColour("BLACK");
-  wxColour colour2 = wxColour("WHITE");
-
-
-  wxPen pen1(colour1, 2);
-  wxPen pen2(colour2, 2);
-  wxString labels;
-
-  wxPoint p(200,200);
-
-  labels = wxString::Format("%3.2f", value);
-  
- 
-    wxFont font;
-#ifdef __WXQT__
-    font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
-#else
-  font = wxFont(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
-#endif
-
-   m_dc2->SetFont(font);
-   
-
-   m_dc2->SetBrush(wxBrush("WHITE"));
-    //m_dc2.DrawRoundedRectangle(x, y, w, h, 0);
-
-  //  /* draw bounding rectangle */
-   m_dc2->SetPen(wxPen(wxColour(0, 0, 0), 1));
-    //m_dc2.DrawLine(x, y, x + w, y);
-    //m_dc2.DrawLine(x + w, y, x + w, y + h);
-    //m_dc2.DrawLine(x + w, y + h, x, y + h);
-    //m_dc2.DrawLine(x, y + h, x, y);
-
-    m_dc2->DrawText(labels, p.x, p.y);
-
-
-
-  /*
-  wxMemoryDC mdc;
-
-  mdc.Clear();
-
-  wxFont font;
-#ifdef __WXQT__
-  font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
-#else
-  font = wxFont(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
-
-#endif
-
-  mdc.SetFont(font);
-
-  wxCoord w, h;
-  mdc.GetTextExtent(labels, &w, &h);
-
-  // Now we know dimensions, let's draw into a memory dc
-  wxBitmap bmp(w, h, 24);
-  mdc.SelectObject(bmp);
-  // If we have multiline string, perhaps not all of the bmp is used
-  wxBrush brush(wxTRANSPARENT);
-  mdc.SetBackground(brush);
-  mdc.Clear();  // Make sure all of bmp is cleared
-  // Colours
-  mdc.SetBackgroundMode(wxPENSTYLE_SOLID);
-  mdc.SetTextBackground("WHITE");
-  mdc.SetTextForeground("BLACK");
-  mdc.SetPen(pen1);
-  // We draw the string and get it as an image.
-  // NOTE: OpenGL axis are bottom to up. Be aware when setting the texture
-  // coords.
-  mdc.DrawText(labels, 0, 0);
-  mdc.SelectObject(wxNullBitmap);  // bmp must be detached from wxMemoryDC
- 
-  wxBitmap memBmp = wxBitmap(bmp);
-
-
- m_labelCache[value] = memBmp.ConvertToImage();
-
-*/
-
-  //return m_labelCache[value];
-}
-
-wxString frcurrentsOverlayFactory::getLabelString(double value, int settings) {
-  int p = 1;
-  wxString f = _T("%.*f");
-
-  return wxString::Format(f, p, value);
 }
 
 wxColour frcurrentsOverlayFactory::GetSpeedColour(double my_speed) {

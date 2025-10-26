@@ -31,17 +31,12 @@
 #include "pidc.h"
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
-#include "GL/gl.h"
+
 #include "globals.h"
-#include "TexFont.h"
 
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
-typedef double GLdouble;
-#define GL_GLEXT_LEGACY 1
-#include "GLES2/gl2.h"
-#include "glu_gl.h"
-#include "GL/glu.h"
+#include "GL/gl_private.h"
 #elif defined(__APPLE__)
 #include "OpenGL/gl.h"
 #include "OpenGL/glu.h"
@@ -49,15 +44,13 @@ typedef double GLdouble;
 #include "GL/gl.h"
 #include "GL/glu.h"
 #include "GL/glext.h"
-#endif 
-
+#endif
 
 using namespace std;
 
 class plugIn_Viewport;
 class piDC;
 class wxDC;
-class TexFontPI;
 
 //----------------------------------------------------------------------------------------------------------
 //    frcurrents Overlay Specification
@@ -118,6 +111,7 @@ public:
   int m_ShowArrowStyle;
   wxDateTime m_dtUseNew;
   wxColour m_text_color;
+  std::map<double, wxImage> m_labelCache;
   std::map<wxString, wxImage> m_labelCacheText;
 
   piDC *m_dc;
@@ -126,20 +120,10 @@ public:
   wxPoint p[9];
   wxPoint polyPoints[7];
   wxPoint rectPoints[7];
-  
-  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
+  void DrawGL(PlugIn_ViewPort &piVP);
+
 
 private:
-  wxFont *m_Font_Message;
-  piDC *m_oDC;
-  piDC* m_dc2;
-  TexFontPI m_TexFontNumbers;
-  void DrawIndexTargets(PlugIn_ViewPort *BBox);
-  void DrawLabel(double value, int precision);
-  std::map<double, wxImage> m_labelCache;
-
-  wxString getLabelString(double value, int settings);  
-  wxDC *m_pdc;
   bool inGL;
   wxPoint myArrowArray[9];
   void RenderMyArrows(PlugIn_ViewPort *vp);
