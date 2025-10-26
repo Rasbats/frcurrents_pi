@@ -209,26 +209,7 @@ void frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
 
   labels = wxString::Format("%3.2f", value);
   
-  #ifdef ocpnUSE_GL
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4ub(255, 255, 255, 255);
-
-    glLineWidth(1);
-
-    wxString label = labels;
-    int w, h;
-    m_TexFontNumbers.GetTextExtent(label, &w, &h);
-
-    int label_offsetx = 5, label_offsety = 1;
-    int x = p.x - label_offsetx, y = p.y - label_offsety;
-    w += 2 * label_offsetx, h += 2 * label_offsety;
-
-    glEnable(GL_TEXTURE_2D);
-    m_TexFontNumbers.RenderString(label, p.x, p.y);
-    glDisable(GL_TEXTURE_2D);
-#endif
+ 
     wxFont font;
 #ifdef __WXQT__
     font = GetOCPNGUIScaledFont_PlugIn(_("Dialog"));
@@ -249,7 +230,7 @@ void frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
     //m_dc2.DrawLine(x + w, y + h, x, y + h);
     //m_dc2.DrawLine(x, y + h, x, y);
 
-    m_dc2.DrawText(label, p.x, p.y);
+    m_dc2.DrawText(labels, p.x, p.y);
 
 
 
