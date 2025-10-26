@@ -195,7 +195,7 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
   m_dc->DrawText(dist_text, il.x - w / 4, il.y - h / 4 + 6);*/
 }
 
-VOID frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
+void frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
  
   wxColour colour1 = wxColour("BLACK");
   wxColour colour2 = wxColour("WHITE");
