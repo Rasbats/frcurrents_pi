@@ -140,8 +140,8 @@ void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
 
 bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
   
-    
-    m_dc2.SetVP(&vp);
+    m_dc2 = new piDC(dc);
+    m_dc2->SetVP(&vp);
 
   
 
@@ -161,7 +161,7 @@ void frcurrentsOverlayFactory::DrawIndexTargets(PlugIn_ViewPort *BBox) {
 
   // c_GLcolour = colour;  // for filling GL arrows
 
-  m_dc2.SetPen(pen1);
+  m_dc2->SetPen(pen1);
 
   double dlat, dlon;
   dlat = 50.;
@@ -217,20 +217,20 @@ void frcurrentsOverlayFactory::DrawLabel(double value, int precision) {
   font = wxFont(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 #endif
 
-   m_dc2.SetFont(font);
+   m_dc2->SetFont(font);
    
 
-    m_dc2.SetBrush(wxBrush("WHITE"));
+   m_dc2->SetBrush(wxBrush("WHITE"));
     //m_dc2.DrawRoundedRectangle(x, y, w, h, 0);
 
   //  /* draw bounding rectangle */
-    m_dc2.SetPen(wxPen(wxColour(0, 0, 0), 1));
+   m_dc2->SetPen(wxPen(wxColour(0, 0, 0), 1));
     //m_dc2.DrawLine(x, y, x + w, y);
     //m_dc2.DrawLine(x + w, y, x + w, y + h);
     //m_dc2.DrawLine(x + w, y + h, x, y + h);
     //m_dc2.DrawLine(x, y + h, x, y);
 
-    m_dc2.DrawText(labels, p.x, p.y);
+    m_dc2->DrawText(labels, p.x, p.y);
 
 
 

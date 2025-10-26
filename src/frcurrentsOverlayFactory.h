@@ -132,7 +132,7 @@ public:
 private:
   wxFont *m_Font_Message;
   piDC *m_oDC;
-  piDC m_dc2;
+  piDC* m_dc2;
   TexFontPI m_TexFontNumbers;
   void DrawIndexTargets(PlugIn_ViewPort *BBox);
   void DrawLabel(double value, int precision);
