@@ -63,9 +63,6 @@
 #include <wx/event.h>
 #include "ocpn_plugin.h"
 
-#ifdef __ANDROID__
-wxWindow* g_Window;
-#endif
 
 
 enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
