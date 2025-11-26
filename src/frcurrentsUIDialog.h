@@ -194,6 +194,8 @@ public:
 
   
 #ifdef __ANDROID__
+  wxWindow* g_Window;
+
   void OnContextMenu(wxContextMenuEvent& event);
   void OnContextMenuSelect(wxCommandEvent& event);
 

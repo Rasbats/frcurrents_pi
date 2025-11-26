@@ -69,9 +69,7 @@
 #include "frcurrents_pi.h"
 #include "qtstylesheet.h"
 
-#ifdef __ANDROID__
-wxWindow* g_Window;
-#endif
+
 
 enum { TIDE_PLOT, CURRENT_PLOT };
 
