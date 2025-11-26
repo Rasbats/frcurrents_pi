@@ -570,7 +570,7 @@ void frcurrentsPreferencesDialog::OnSelectData(wxCommandEvent &event) {
   }
 #else
   wxString dir_spec;
-  if (g_pi) {
+  if (g_pi->m_pfrcurrentsDialog) {
     int response = PlatformDirSelectorDialog(
         g_pi->m_pfrcurrentsDialog->g_Window, &dir_spec,
         _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
