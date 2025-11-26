@@ -99,7 +99,7 @@ public:
     m_ParentSize.SetWidth(w);
     m_ParentSize.SetHeight(h);
   }
-  bool RenderOverlay(PlugIn_ViewPort &vp);
+  bool RenderOverlay(PlugIn_ViewPort &piVP);
 
   bool m_bShowRate;
   bool m_bShowDirection;

@@ -82,7 +82,7 @@ frcurrentsOverlayFactory::frcurrentsOverlayFactory(frcurrentsUIDialog &dlg)
 
 frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 
-bool frcurrentsOverlayFactory::RenderOverlay(PlugIn_ViewPort &vp) {
+bool frcurrentsOverlayFactory::RenderOverlay(PlugIn_ViewPort &piVP) {
 #ifdef ocpnUSE_GL
   /* determine color and width */
   wxPenStyle style = wxPENSTYLE_SOLID;
@@ -99,7 +99,7 @@ bool frcurrentsOverlayFactory::RenderOverlay(PlugIn_ViewPort &vp) {
       *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
   g_pDC->SetGLStipple();
 
-  DrawAllCurrentsInViewPort(&g_VP);
+  RenderMyArrows(&g_VP);
 
 #endif
 
