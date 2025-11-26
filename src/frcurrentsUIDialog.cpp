@@ -66,6 +66,13 @@
 #include <wx/tokenzr.h>
 #include <wx/txtstrm.h>
 #include <wx/wfstream.h>
+#include "frcurrents_pi.h"
+#include "qtstylesheet.h"
+
+#ifdef __ANDROID__
+wxWindow* g_Window;
+#endif
+
 
 enum { TIDE_PLOT, CURRENT_PLOT };
 
