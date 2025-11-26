@@ -227,13 +227,11 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
 
   if (Pref->ShowModal() == wxID_OK) {
 // bool copyFillColour = true;
-#ifndef __ANDROID__
     myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
     myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
     myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
     myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
     myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
-#endif
 
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
