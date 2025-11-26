@@ -36,6 +36,10 @@
 
 #include "frcurrents_pi.h"
 
+#ifdef __ANDROID__
+wxWindow *g_Window;
+#endif
+
 piDC *g_pDC;
 PlugIn_ViewPort g_VP;
 

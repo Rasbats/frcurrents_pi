@@ -50,11 +50,6 @@
 
 #include "config.h"
 
-#ifdef __ANDROID__
-wxWindow *g_Window;
-#endif
-
-
 extern wxString myVColour[5];
 
 #define frcurrents_TOOL_POSITION \
