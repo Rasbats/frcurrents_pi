@@ -82,33 +82,31 @@ frcurrentsOverlayFactory::frcurrentsOverlayFactory(frcurrentsUIDialog &dlg)
 
 frcurrentsOverlayFactory::~frcurrentsOverlayFactory() {}
 
-bool frcurrentsOverlayFactory::RenderOverlay(piDC &dc, PlugIn_ViewPort &vp) {
-  m_dc = &dc;
+bool frcurrentsOverlayFactory::RenderOverlay(PlugIn_ViewPort &vp) {
+#ifdef ocpnUSE_GL
+  /* determine color and width */
+  wxPenStyle style = wxPENSTYLE_SOLID;
+  int width = 4;
 
-  if (!dc.GetDC()) {
-    if (!glQueried) {
-      glQueried = true;
-    }
-#ifndef USE_GLSL
-    glPushAttrib(GL_LINE_BIT | GL_ENABLE_BIT | GL_HINT_BIT);  // Save state
+  int j = 0;
+  wxPoint r;
 
-    //      Enable anti-aliased lines, at best quality
-    glEnable(GL_LINE_SMOOTH);
-    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+  wxFont *font = GetOCPNScaledFont_PlugIn(wxS("CurrentValue"), 0);
 
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  g_pDC->SetFont(*font);
+  g_pDC->SetPen(*wxThePenList->FindOrCreatePen("RED", width, style));
+  g_pDC->SetBrush(
+      *wxTheBrushList->FindOrCreateBrush("RED", wxBRUSHSTYLE_TRANSPARENT));
+  g_pDC->SetGLStipple();
+
+  DrawAllCurrentsInViewPort(&g_VP);
+
 #endif
-    glEnable(GL_BLEND);
-  }
-
-  wxFont *font = GetOCPNScaledFont_PlugIn(_("CurrentValue"), 0);
-  m_dc->SetFont(*font);
 
   wxColour myColour = wxColour("RED");
 
-  RenderMyArrows(&vp);
-
   return true;
+
 }
 
 void frcurrentsOverlayFactory::GetArrowStyle(int my_style) {
@@ -231,8 +229,8 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     p_basic[ip].x = 100 + x2;
     p_basic[ip].y = 100 + y2;
 
-    if (m_dc) {
-      m_dc->DrawLine(x1 + x, y1 + y, x2 + x, y2 + y);
+    if (g_pDC) {
+      g_pDC->DrawLine(x1 + x, y1 + y, x2 + x, y2 + y);
     }
 
     p[ip].x = x2 + x;
@@ -269,10 +267,10 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     // polyPoints[4] = p[8];
 
     brush.SetStyle(wxBRUSHSTYLE_SOLID);
-    m_dc->SetBrush(brush);
+    g_pDC->SetBrush(brush);
 
-    m_dc->DrawPolygonTessellated(3, polyPoints);
-    m_dc->DrawPolygonTessellated(4, rectPoints);
+    g_pDC->DrawPolygonTessellated(3, polyPoints);
+    g_pDC->DrawPolygonTessellated(4, rectPoints);
   }
   return true;
 }
@@ -409,7 +407,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
         char sbuf[20];
         if (m_bShowRate) {
           snprintf(sbuf, 19, "%3.1f", myCurrent);
-          m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y);
+          g_pDC->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y);
           if (!m_bHighResolution) {
             shift = 13;
           } else {
@@ -419,7 +417,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
 
         if (m_bShowDirection) {
           snprintf(sbuf, 19, "%03.0f", dir);
-          m_dc->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y + shift);
+          g_pDC->DrawText(wxString(sbuf, wxConvUTF8), p.x, p.y + shift);
         }  // end scaled current
       }
     }  // end if

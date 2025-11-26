@@ -36,6 +36,9 @@
 
 #include "frcurrents_pi.h"
 
+piDC *g_pDC;
+PlugIn_ViewPort g_VP;
+
 wxString myVColour[] = {"rgb(127, 0, 255)", "rgb(0, 166, 80)",
                         "rgb(253, 184, 19)", "rgb(248, 128, 64)",
                         "rgb(248, 0, 0)"};
@@ -409,31 +412,29 @@ void frcurrents_pi::OnfrcurrentsDialogClose() {
   RequestRefresh(m_parent_window);  // refresh mainn window
 }
 
-bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
-  my_chart_scale = vp->view_scale_ppm;
+bool frcurrents_pi::RenderOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp) {
   if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
       !m_pfrcurrentsOverlayFactory)
     return false;
-  m_pfrcurrentsDialog->SetViewPort(vp);
-  piDC pidc(dc);
-  m_pfrcurrentsOverlayFactory->RenderOverlay(pidc, *vp);
-  return true;
+
+  return RenderGLOverlay(pcontext, vp);
 }
 
 bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
                                     PlugIn_ViewPort *vp) {
-  my_chart_scale = vp->view_scale_ppm;
   if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
       !m_pfrcurrentsOverlayFactory)
     return false;
 
-  m_pfrcurrentsDialog->SetViewPort(vp);
-  piDC piDC;
-  glEnable(GL_BLEND);
-  piDC.SetVP(vp);
+  g_VP = *vp;
 
-  m_pfrcurrentsOverlayFactory->RenderOverlay(piDC, *vp);
-  return true;
+  g_pDC = new piDC(pcontext);
+  g_pDC->SetVP(vp);
+  m_pfrcurrentsOverlayFactory->RenderOverlay(*vp);
+
+  delete g_pDC;
+
+  return TRUE;
 }
 
 bool frcurrents_pi::LoadConfig(void) {

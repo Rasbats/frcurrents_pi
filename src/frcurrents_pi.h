@@ -41,6 +41,8 @@
 #include "wx/string.h"
 #include <wx/window.h>
 #include <wx/font.h>
+#include "pidc.h"
+#include "globals.h"
 
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn Class Definition
@@ -72,7 +74,7 @@ public:
   wxString GetLongDescription();
 
   //    The override PlugIn Methods
-  bool RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp);
+  bool RenderOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
   bool RenderGLOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp);
   void SetDefaults(void);
   int GetToolbarToolCount(void);
