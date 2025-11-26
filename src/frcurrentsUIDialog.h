@@ -136,6 +136,8 @@ public:
   frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi);
   ~frcurrentsUIDialog();
 
+
+  wxString m_FolderSelected;
   void OpenFile(bool newestFile = false);
   void LoadTCMFile();
   void LoadHarmonics();

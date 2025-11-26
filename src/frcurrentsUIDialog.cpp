@@ -52,6 +52,11 @@
 #include <cstdio>
 #include <fstream>
 #include <iostream>
+
+#ifdef __WXMSW__
+#include <windows.h>
+#endif
+
 #include <memory.h>
 #include <memory>
 #include <stdexcept>
