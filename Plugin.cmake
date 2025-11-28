@@ -32,7 +32,7 @@ set(OCPN_RELEASE_REPO
 # -------  Plugin setup --------
 #
 set(PKG_NAME frcurrents_pi)
-set(PKG_VERSION  1.15.17)
+set(PKG_VERSION  1.15.20)
 set(PKG_PRERELEASE "")  # Empty, or a tag like 'beta'
 
 set(DISPLAY_NAME frcurrents)    # Dialogs, installer artifacts, ...
@@ -89,9 +89,6 @@ set(SRC
         src/georef.cpp
         src/georef.h
         src/folder.xpm
-        src/globals.h
-        src/ODPlatform.cpp
-        src/ODPlatform.h
 )
 
 set(PKG_API_LIB api-18)  #  A dir in opencpn-libs/ e. g., api-17 or api-16
