@@ -36,9 +36,6 @@
 
 #include "frcurrents_pi.h"
 
-piDC *g_pDC;
-PlugIn_ViewPort g_VP;
-
 wxString myVColour[] = {"rgb(127, 0, 255)", "rgb(0, 166, 80)",
                         "rgb(253, 184, 19)", "rgb(248, 128, 64)",
                         "rgb(248, 0, 0)"};
@@ -181,6 +178,7 @@ int frcurrents_pi::GetPlugInVersionMajor() { return PLUGIN_VERSION_MAJOR; }
 int frcurrents_pi::GetPlugInVersionMinor() { return PLUGIN_VERSION_MINOR; }
 
 int GetPlugInVersionPatch() { return PLUGIN_VERSION_PATCH; }
+
 int GetPlugInVersionPost() { return PLUGIN_VERSION_TWEAK; }
 const char *GetPlugInVersionPre() { return PKG_PRERELEASE; }
 const char *GetPlugInVersionBuild() { return PKG_BUILD_INFO; }
@@ -225,12 +223,14 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
   Pref->m_cStyle->SetSelection(m_CopyArrowStyle);
 
   if (Pref->ShowModal() == wxID_OK) {
-    // bool copyFillColour = true;
+// bool copyFillColour = true;
+#ifndef __ANDROID__
     myVColour[0] = Pref->myColourPicker0->GetColour().GetAsString();
     myVColour[1] = Pref->myColourPicker1->GetColour().GetAsString();
     myVColour[2] = Pref->myColourPicker2->GetColour().GetAsString();
     myVColour[3] = Pref->myColourPicker3->GetColour().GetAsString();
     myVColour[4] = Pref->myColourPicker4->GetColour().GetAsString();
+#endif
 
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
@@ -372,22 +372,18 @@ m_pfrcurrentsDialog->m_staticText211->SetFont(f);         \
   RequestRefresh(m_parent_window);  // refresh main window
 }
 
-int frcurrents_pi::VerifyTimeZoneID(int id) {
-  if (id <= 0 || id > 1) return 0;  // only 0 or 1 supported; 0 always valid
+int frcurrents_pi::VerifyTimeZoneID( int id) {
+  if (id <= 0 || id > 1) return 0; // only 0 or 1 supported; 0 always valid
   wxTimeSpan diff = wxDateTime::Now().Subtract(wxDateTime::Now().ToGMT());
-  int diffs =
-      wxDateTime::Now().IsDST() ? diff.GetMinutes() - 60 : diff.GetMinutes();
-  if (abs(diffs) > 60 ||
-      abs(diffs) < 0) {  //  only UTC and UTC+1 time zones supported
+  int diffs = wxDateTime::Now().IsDST() ? diff.GetMinutes() - 60 : diff.GetMinutes();
+  if (abs(diffs) > 60 || abs(diffs) < 0) {    //  only UTC and UTC+1 time zones supported
     wxString s = _("The Time Zone UTC");
     s << ((diffs > 0) ? _T(" +") : _T(" -"));
     int h = abs(diffs / 60);
     int h1 = abs(diffs % 60);
     s << wxString::Format("%01d", h);
-    if (h1 != 0) s << wxString::Format(":%01d", h1);
-    s << (" ")
-      << _("set on your device is not supported!\nTime will be displayed in "
-           "UTC");
+    if(h1 != 0) s << wxString::Format(":%01d", h1);
+    s << (" ") << _("set on your device is not supported!\nTime will be displayed in UTC");
     wxMessageBox(s, _("Warning"));
     return 0;
   }
@@ -413,29 +409,31 @@ void frcurrents_pi::OnfrcurrentsDialogClose() {
   RequestRefresh(m_parent_window);  // refresh mainn window
 }
 
-bool frcurrents_pi::RenderOverlay(wxGLContext *pcontext, PlugIn_ViewPort *vp) {
+bool frcurrents_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp) {
+  my_chart_scale = vp->view_scale_ppm;
   if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
       !m_pfrcurrentsOverlayFactory)
     return false;
-
-  return RenderGLOverlay(pcontext, vp);
+  m_pfrcurrentsDialog->SetViewPort(vp);
+  piDC pidc(dc);
+  m_pfrcurrentsOverlayFactory->RenderOverlay(pidc, *vp);
+  return true;
 }
 
 bool frcurrents_pi::RenderGLOverlay(wxGLContext *pcontext,
                                     PlugIn_ViewPort *vp) {
+  my_chart_scale = vp->view_scale_ppm;
   if (!m_pfrcurrentsDialog || !m_pfrcurrentsDialog->IsShown() ||
       !m_pfrcurrentsOverlayFactory)
     return false;
 
-  g_VP = *vp;
+  m_pfrcurrentsDialog->SetViewPort(vp);
+  piDC piDC;
+  glEnable(GL_BLEND);
+  piDC.SetVP(vp);
 
-  g_pDC = new piDC(pcontext);
-  g_pDC->SetVP(vp);
-  m_pfrcurrentsOverlayFactory->RenderOverlay(*vp);
-
-  delete g_pDC;
-
-  return TRUE;
+  m_pfrcurrentsOverlayFactory->RenderOverlay(piDC, *vp);
+  return true;
 }
 
 bool frcurrents_pi::LoadConfig(void) {
@@ -455,7 +453,7 @@ bool frcurrents_pi::LoadConfig(void) {
   my_IconsScaleFactor = pConf->Read("frcurrentsIconscalefactor", 1.);
   my_FontpointSizeFactor = pConf->Read("frcurrentsFontpointsizefactor", 0.);
   int idx = pConf->Read("frcurrentsTimeZoneID", 0.);  // 0 = UTC; 1 = Local TZ
-  m_bTimeZoneID = VerifyTimeZoneID(idx);              // verify validity
+  m_bTimeZoneID = VerifyTimeZoneID(idx); // verify validity
   m_CopyFolderSelected = pConf->Read("frcurrentsFolder", "");
 
   m_frcurrents_dialog_sx = pConf->Read("frcurrentsDialogSizeX", 300L);
@@ -546,7 +544,7 @@ void frcurrentsPreferencesDialog::OnFontSlidersChange(wxCommandEvent &event) {
   }
 }
 
-void frcurrentsPreferencesDialog::OnTimeZoneChange(wxCommandEvent &event) {
+void frcurrentsPreferencesDialog::OnTimeZoneChange(wxCommandEvent& event) {
   if (g_pi) {
     int id = g_pi->GetTZoptionID();
     int idx = g_pi->VerifyTimeZoneID(m_rTimeZoneOptions->GetSelection());
@@ -554,34 +552,30 @@ void frcurrentsPreferencesDialog::OnTimeZoneChange(wxCommandEvent &event) {
     if (id != idx) {
       m_rTimeZoneOptions->SetSelection(idx);
       if (g_pi->m_pfrcurrentsDialog)
-        g_pi->m_pfrcurrentsDialog->SetNow(
-            false);  // force returning to now to activate new TZ chosen
+        g_pi->m_pfrcurrentsDialog->SetNow(false); // force returning to now to activate new TZ chosen
     }
   }
 }
 
-void frcurrentsPreferencesDialog::OnSelectData(wxCommandEvent &event) {
+void frcurrentsPreferencesDialog::OnSelectData(wxCommandEvent& event) {
   wxString m_HarmonicsSelected = m_dirPicker1->GetValue();
 #ifndef __ANDROID__
-  wxDirDialog *d = new wxDirDialog(this, _("Choose Harmonics Directory"), "", 0,
-                                   wxDefaultPosition);
+  wxDirDialog* d =
+    new wxDirDialog(this, _("Choose Harmonics Directory"), "", 0, wxDefaultPosition);
   if (d->ShowModal() == wxID_OK) {
     m_HarmonicsSelected = d->GetPath();
   }
 #else
   wxString dir_spec;
-  if (g_pi->m_pfrcurrentsDialog) {
-    int response = PlatformDirSelectorDialog(
-        g_pi->m_pfrcurrentsDialog->g_Window, &dir_spec,
-        _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
-    if (response == wxID_OK) {
-      m_HarmonicsSelected = dir_spec;
-    }
+  int response = PlatformDirSelectorDialog(
+    g_Window, &dir_spec, _("Choose Harmonics Directory"), m_dirPicker1->GetValue());
+  if (response == wxID_OK) {
+    m_HarmonicsSelected = dir_spec;
   }
 #endif
   m_dirPicker1->SetValue(m_HarmonicsSelected);
   if (g_pi) {
-    if (g_pi->m_CopyFolderSelected != m_HarmonicsSelected) {
+    if(g_pi->m_CopyFolderSelected != m_HarmonicsSelected){
       g_pi->m_CopyFolderSelected = m_HarmonicsSelected;
       if (g_pi->m_pfrcurrentsDialog) {
         g_pi->m_pfrcurrentsDialog->LoadTCMFile();
@@ -594,7 +588,7 @@ void frcurrentsPreferencesDialog::OnSelectData(wxCommandEvent &event) {
   }
 }
 
-void frcurrentsPreferencesDialog::OnShowInformation(wxCommandEvent &event) {
+void frcurrentsPreferencesDialog::OnShowInformation(wxCommandEvent& event) {
   wxString s = wxFileName::GetPathSeparator();
   wxString infolocation = GetPluginDataDir("frcurrents_pi") + s + "data" + s +
                           "Information" + s + "frcurrentsInformation.html";

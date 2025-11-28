@@ -32,8 +32,6 @@
 #include <wx/brush.h>
 #include <wx/gdicmn.h>
 
-#include "globals.h"
-
 #if defined(__ANDROID__) || defined(__OCPN__ANDROID__)
 #include <qopengl.h>
 #include "GL/gl_private.h"
@@ -45,7 +43,6 @@
 #include "GL/glu.h"
 #include "GL/glext.h"
 #endif
-
 
 using namespace std;
 
@@ -61,20 +58,20 @@ class frcurrentsOverlay {
 public:
   frcurrentsOverlay(void) {
     m_iTexture = 0;
-    g_pDCBitmap = NULL, m_pRGBA = NULL;
+    m_pDCBitmap = NULL, m_pRGBA = NULL;
   }
 
   ~frcurrentsOverlay(void)
 
   {
-    delete g_pDCBitmap, delete[] m_pRGBA;
+    delete m_pDCBitmap, delete[] m_pRGBA;
   }
 
   double m_latoff, m_lonoff;
 
   unsigned int m_iTexture; /* opengl mode */
 
-  wxBitmap *g_pDCBitmap; /* dc mode */
+  wxBitmap *m_pDCBitmap; /* dc mode */
   unsigned char *m_pRGBA;
 
   int m_width;
@@ -99,7 +96,7 @@ public:
     m_ParentSize.SetWidth(w);
     m_ParentSize.SetHeight(h);
   }
-  bool RenderOverlay(PlugIn_ViewPort &piVP);
+  bool RenderOverlay(piDC &dc, PlugIn_ViewPort &vp);
 
   bool m_bShowRate;
   bool m_bShowDirection;

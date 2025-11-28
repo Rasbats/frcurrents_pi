@@ -63,8 +63,6 @@
 #include <wx/event.h>
 #include "ocpn_plugin.h"
 
-
-
 enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
 
 
@@ -138,8 +136,6 @@ public:
   frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi);
   ~frcurrentsUIDialog();
 
-
-  wxString m_FolderSelected;
   void OpenFile(bool newestFile = false);
   void LoadTCMFile();
   void LoadHarmonics();
@@ -194,8 +190,6 @@ public:
 
   
 #ifdef __ANDROID__
-  wxWindow* g_Window;
-
   void OnContextMenu(wxContextMenuEvent& event);
   void OnContextMenuSelect(wxCommandEvent& event);
 

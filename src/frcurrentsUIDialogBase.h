@@ -34,7 +34,6 @@
 #include <wx/event.h>
 #include <wx/slider.h>
 #include <wx/radiobox.h>
-#include "ODPlatform.h"
 ///////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -122,11 +121,11 @@ public:
   wxCheckBox* m_cbUseDirection;
   wxCheckBox* m_cbFillColour;
   wxCheckBox* m_cbUseHighRes;
-  ODColourPickerCtrl* myColourPicker0;
-  ODColourPickerCtrl* myColourPicker1;
-  ODColourPickerCtrl* myColourPicker2;
-  ODColourPickerCtrl* myColourPicker3;
-  ODColourPickerCtrl* myColourPicker4;
+  wxColourPickerCtrl* myColourPicker0;
+  wxColourPickerCtrl* myColourPicker1;
+  wxColourPickerCtrl* myColourPicker2;
+  wxColourPickerCtrl* myColourPicker3;
+  wxColourPickerCtrl* myColourPicker4;
   wxTextCtrl* m_dirPicker1;
   wxChoice* m_cStyle;
   wxSlider* m_sIconSizeFactor;
