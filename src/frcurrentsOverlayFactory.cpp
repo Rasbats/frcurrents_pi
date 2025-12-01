@@ -337,7 +337,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   m_dc->SetPen(pen);
 
   //wxFont font(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL,
-              wxFONTWEIGHT_BOLD);
+             // wxFONTWEIGHT_BOLD);
 
   wxFont *font = GetOCPNScaledFont_PlugIn("CurrentValue", 0);
   m_dc->SetFont(*font);
