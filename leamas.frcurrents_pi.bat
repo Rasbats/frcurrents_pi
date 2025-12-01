@@ -7,8 +7,8 @@ mkdir build && cd build
 set SCRIPTDIR=D:\Documents\Github\frcurrents_pi
 set CONFIGURATION=RelWithDebInfo
 
-set wxWidgets_ROOT_DIR=D:\Documents\Github\frcurrents_pi\cache\wxWidgets-3.2.2.1
-set wxWidgets_LIB_DIR=D:\Documents\Github\frcurrents_pi\cache\wxWidgets-3.2.2.1\lib\vc14x_dll
+set wxWidgets_ROOT_DIR=D:\Documents\Github\frcurrents_pi\cache\wxWidgets
+set wxWidgets_LIB_DIR=D:\Documents\Github\frcurrents_pi\cache\wxWidgets\lib\vc_dll
 
 
 echo USING wxWidgets_LIB_DIR: %wxWidgets_LIB_DIR%
