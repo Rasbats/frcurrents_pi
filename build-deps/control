@@ -1,6 +1,6 @@
 Source: opencpn
 Build-Depends: debhelper (>= 9),
-libarchive-dev (>= 3.7.4) | libunarr-dev,
+ libarchive-dev (>= 3.7.4) | libunarr-dev,
  git,
  libcurl-dev,
  libgtk2.0-dev,
