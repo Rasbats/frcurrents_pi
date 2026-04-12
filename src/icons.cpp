@@ -10,7 +10,10 @@
 wxBitmap *_xpm_frcurrents_pi;
 
 #ifdef ocpnUSE_SVG
+
+#include <cstdint>
 #include "ocpn_plugin.h"
+
 wxString _svg_frcurrents;
 wxString _svg_frcurrents_rollover;
 wxString _svg_frcurrents_toggled;
