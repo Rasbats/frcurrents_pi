@@ -34,6 +34,7 @@
 #include <wx/glcanvas.h>
 #endif  // precompiled headers
 
+#include <cstdint>
 #include "ocpn_plugin.h"
 #include "frcurrentsOverlayFactory.h"
 #include "frcurrentsUIDialog.h"

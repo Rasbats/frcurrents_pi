@@ -40,13 +40,14 @@
 #include <list>
 #include <vector>
 #include <wx/progdlg.h>
-
+#include <cstdint>
 #include "ocpn_plugin.h"
 #include "tcmgr.h"
 #include "wx/dateevt.h"
 #include "wx/process.h"
 #include "wx/stattext.h"
 #include "wx/utils.h"
+
 
 #include <array>
 #include <cmath>
@@ -61,7 +62,6 @@
 #include <wx/wfstream.h>
 #include <wx/statbox.h>
 #include <wx/event.h>
-#include "ocpn_plugin.h"
 
 enum { ID_DASH_PREFS = 999, ID_DASH_RESIZE };
 
