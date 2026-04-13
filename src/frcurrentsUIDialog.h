@@ -110,6 +110,13 @@ public:
   Position *prev, *next; /* doubly linked circular list of positions */
 };
 
+class PixPosition {
+public:
+wxPoint position;
+double curSpeed;
+double curDirection;
+};
+
 class PositionSHOM {
 public:
   double latD, lonD;
@@ -144,9 +151,17 @@ public:
   void SetScaledBitmaps(double scalefactor);
 
   void SetViewPort(PlugIn_ViewPort* vp);
+  void SetCursorLatLon(double lat, double lon);
+
+  vector<PixPosition> my_PixPosition;
+  wxPoint maxPoint;
+  wxPoint minPoint;
+  wxTimer m_tCursorTrackTimer;
+  bool IsTrackingReady;
 
   bool m_bUseRate;
   bool m_bUseDirection;
+  bool m_bUseCursorTracking;
   bool m_bUseHighRes;
   bool m_bUseFillColour;
   int m_UseArrowStyle;
@@ -210,6 +225,7 @@ private:
   void OnMove(wxMoveEvent& event);
   void OnStartSetupHW();
   void OnNow(wxCommandEvent& event) { SetNow(false); }
+  void OnCursorTrackingData(wxTimerEvent& event);
 
   void CalcHW(int PortCode);
   double CalcRange_Brest();
@@ -266,6 +282,7 @@ private:
   wxString label_array[13];
   wxString label_lw[13];
   float tcv[26];
+  wxPoint m_pCursorPixPos;
 
   wxDateTime m_SelectedDate; //  to store the current selected date
   wxString euTC[8][4];  // Date.Time, Height, Units, HW.LW

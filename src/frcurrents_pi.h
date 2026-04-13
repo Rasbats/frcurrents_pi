@@ -83,6 +83,7 @@ public:
 #endif
   void OnToolbarToolCallback(int id);
   int VerifyTimeZoneID(int id);
+  void SetCursorLatLon(double lat, double lon);
 
   // Other public methods
   void SetfrcurrentsDialogX(int x) { m_frcurrents_dialog_x = x; };
@@ -107,6 +108,7 @@ public:
   }
 
   wxString m_CopyFolderSelected;
+  bool m_bUseCursorTrackingData;
 
   int m_frcurrents_dialog_x, m_frcurrents_dialog_y;
   int m_frcurrents_dialog_sx, m_frcurrents_dialog_sy;
@@ -169,6 +171,7 @@ public:
   ~frcurrentsPreferencesDialog() {}
 
 private:
+  void OnUseCursorTrackingChange(wxCommandEvent& event);
   void OnIconsSlidersChange(wxCommandEvent &event);
   void OnFontSlidersChange(wxCommandEvent &event);
   void OnTimeZoneChange(wxCommandEvent& event);

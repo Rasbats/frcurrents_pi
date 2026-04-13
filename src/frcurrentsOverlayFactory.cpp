@@ -44,6 +44,7 @@
 using namespace std;
 
 class Position;
+class PixPosition;
 class StandardPort;
 class frcurrentsUIDialog;
 class PlugIn_ViewPort;
@@ -179,7 +180,8 @@ wxColour frcurrentsOverlayFactory::GetSpeedColour(double my_speed) {
 
 bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
                                                 double scale, double rate,
-                                                double vp_rotate_angle) {
+                                                double vp_rotate_angle,
+                                                wxPoint* arrows_center) {
   double m_rate = fabs(rate);
 
   GetArrowStyle(m_ShowArrowStyle);
@@ -266,7 +268,11 @@ bool frcurrentsOverlayFactory::drawCurrentArrow(int x, int y, double rot_angle,
     rectPoints[2] = p[6];
     rectPoints[3] = p[7];
 
-    // polyPoints[4] = p[8];
+    //  get the center's position of the arrows
+    int centerX = (p[0].x + p[4].x) / 2;
+    int centerY = (p[0].y + p[4].y) / 2;
+    *arrows_center = wxPoint(centerX, centerY);
+    //
 
     brush.SetStyle(wxBRUSHSTYLE_SOLID);
     m_dc->SetBrush(brush);
@@ -291,6 +297,10 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   myX = 50;
   myY = 0;
   vector<Position> m_new = m_dlg.my_positions;
+  PixPosition temp_pos;
+  int minx = 100000, miny = 100000, maxx = 0, maxy = 0;
+  m_dlg.my_PixPosition.clear();
+
 
   double value, decValue;
   double decValue1;
@@ -401,8 +411,21 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
 
       wxRect my_rectangle = vp->rv_rect;
       if (my_rectangle.Contains(p.x, p.y) && (myCurrent > 0.09)) {
+        wxPoint arrow_center;
         bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent,
-                                  vp->rotation);
+                                  vp->rotation, &arrow_center);
+
+        //	Store center arrows position and data for later use in tracking cursor
+        temp_pos.position = arrow_center;
+        temp_pos.curSpeed = myCurrent;
+        temp_pos.curDirection = dir;
+        m_dlg.my_PixPosition.push_back(temp_pos);
+        // get the tide zone's limits
+        maxx = wxMax(maxx, p.x);
+        maxy = wxMax(maxy, p.y);
+        minx = wxMin(minx, p.x);
+        miny = wxMin(miny, p.y);
+        //
 
         int shift = 0;
 
@@ -424,4 +447,9 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       }
     }  // end if
   }  // end for
+  /* extand a bit the zone limits to avoid missing some side arrows and
+  * store for later use in tracking cursor position */
+  m_dlg.maxPoint = wxPoint(wxMin(vp->pix_width, maxx + 50), wxMin(vp->pix_height, maxy + 50));
+  m_dlg.minPoint = wxPoint(wxMax(0, minx - 50), wxMax(0, miny - 50));
+  m_dlg.IsTrackingReady = true;  // start tracking cursor
 }

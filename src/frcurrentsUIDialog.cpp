@@ -150,6 +150,7 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 
     pConf->Read("frcurrentsUseRate", &m_bUseRate);
     pConf->Read("frcurrentsUseDirection", &m_bUseDirection);
+    pConf->Read("frcurrentsUseCursorTracking", &m_bUseCursorTracking);
     pConf->Read("frcurrentsUseFillColour", &m_bUseFillColour);
     pConf->Read("frcurrentsUseHighResolution", &m_bUseHighRes);
 
@@ -183,6 +184,12 @@ frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
 }
 
 frcurrentsUIDialog::~frcurrentsUIDialog() {
+  // Stop the timer and disconnect it.
+  m_tCursorTrackTimer.Stop();
+  m_tCursorTrackTimer.Disconnect(
+  wxEVT_TIMER, wxTimerEventHandler(frcurrentsUIDialog::OnCursorTrackingData),
+    nullptr, this);
+  //
   wxFileConfig* pConf = GetOCPNConfigObject();
   ;
 
@@ -470,6 +477,15 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   m_choice1->SetSelection(id);
 
   SetNow();
+
+  // Init timer for cursor tracking
+  IsTrackingReady = false;
+  m_staticText3->Show(m_bUseCursorTracking);
+  Fit();
+  m_tCursorTrackTimer.Connect(
+    wxEVT_TIMER, wxTimerEventHandler(frcurrentsUIDialog::OnCursorTrackingData),
+    nullptr, this);
+  //
 }
 
 void frcurrentsUIDialog::SetNow(bool m_acenter) {
@@ -784,6 +800,66 @@ bool frcurrentsUIDialog::SetDateForNowButton(bool m_bcenter) {
   }
   m_IsNotShowable = true;
   return false;
+}
+
+void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
+  if (m_vp->chart_scale > 1000000) {
+    m_staticText3->SetLabel(_("Zoom In to Show Current Data!"));
+    return;
+  }
+  // Check if the cursor is within the tide zone's area
+  GetCanvasPixLL(m_vp, &m_pCursorPixPos, lat, lon);
+  wxRect r(minPoint, maxPoint);
+  if (r.Contains(m_pCursorPixPos)) {
+    if (!m_tCursorTrackTimer.IsRunning()) {
+      m_tCursorTrackTimer.Start(50, wxTIMER_ONE_SHOT);
+    }
+  }
+  else {
+    m_staticText3->SetLabel(_("Out of Tide Area"));
+  }
+}
+void frcurrentsUIDialog::OnCursorTrackingData(wxTimerEvent & event) {
+  vector<PixPosition> temp_pos;
+  wxString s = _("Current");
+  wxString deg = wxString::Format(("%c"), 0x00B0);
+  char sbuf[20];
+  /* first find all arrow's center points within a 120x120 box
+  * centered around the cursor */
+  int w = 120;
+  int x = m_pCursorPixPos.x - 60;
+  int y = m_pCursorPixPos.y - 60;
+  wxRect r = (wxRect(x, y, w, w));
+  for (std::vector<PixPosition>::iterator it = my_PixPosition.begin();
+    it != my_PixPosition.end(); it++) {
+    if (r.Contains((*it).position)) {
+      temp_pos.push_back((*it));
+    }
+  }
+  if (temp_pos.size() == 0) {
+    /* the cursor is in the tide area but too far from any arrow position  */
+    m_staticText3->SetLabel(s << (":  ---- ") << _("kt") << ("  -  ----") << deg);
+    return;
+  }
+  /* then find the closest arrow position to the cursor and show its data */
+  for (int i = 10; i < 70; i += 10) {
+   w = i * 2;
+   r = (wxRect(m_pCursorPixPos.x - i, m_pCursorPixPos.y - i, w, w));
+    for (std::vector<PixPosition>::iterator itx = temp_pos.begin();
+      itx != temp_pos.end(); itx++) {
+      if (r.Contains((*itx).position)) {
+        if (((*itx).curSpeed) > 9.9)
+           snprintf(sbuf, 19, ":%5.1f ", (*itx).curSpeed);
+        else
+           snprintf(sbuf, 19, ":%6.1f ", (*itx).curSpeed);
+        s << wxString(sbuf, wxConvUTF8) << _("kt");
+        snprintf(sbuf, 19, "  -  %003.0f", (*itx).curDirection);
+        s << wxString(sbuf, wxConvUTF8) << deg;
+        m_staticText3->SetLabel(s);
+        return;
+      }
+    }
+  }
 }
 
 StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName) {

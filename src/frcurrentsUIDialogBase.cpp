@@ -117,6 +117,10 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 
 	sbSizerControls->Add(fbSizerCTRL, 0, wxALL, 5);
 
+	m_staticText3 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, "Current", wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText3->Wrap(-1);
+	sbSizerControls->Add(m_staticText3, 0, wxEXPAND, 5);
+
 	wxBoxSizer* bSizer4;
 	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -250,6 +254,9 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 
 	m_cbUseDirection = new wxCheckBox( this, wxID_ANY, _("Display tidal direction"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizerCheckboxes->Add( m_cbUseDirection, 0, wxALL, 5 );
+
+	m_cbUseCursorTracking = new wxCheckBox(this, wxID_ANY, _("Display Data at cursor"), wxDefaultPosition, wxDefaultSize, 0);
+	bSizerCheckboxes->Add(m_cbUseCursorTracking, 0, wxALL, 5);
 
 	m_cbFillColour = new wxCheckBox( this, wxID_ANY, _("Fill Colour"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizerCheckboxes->Add( m_cbFillColour, 0, wxALL, 5 );
@@ -412,6 +419,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 	this->Centre( wxBOTH );
 
 	// Connect Events
+	m_cbUseCursorTracking->Connect(wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnUseCursorTrackingChange), NULL, this);
 	m_cStyle->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsPreferencesDialogBase::OnChoice ), NULL, this );
 	m_sIconSizeFactor->Connect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnIconsSlidersChange), NULL, this);
 	m_sFontSizeFactor->Connect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnFontSlidersChange), NULL, this);
@@ -423,6 +431,7 @@ frcurrentsPreferencesDialogBase::frcurrentsPreferencesDialogBase( wxWindow* pare
 frcurrentsPreferencesDialogBase::~frcurrentsPreferencesDialogBase()
 {
 	// Disconnect Events
+	m_cbUseCursorTracking->Disconnect(wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnUseCursorTrackingChange), NULL, this);
 	m_cStyle->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( frcurrentsPreferencesDialogBase::OnChoice ), NULL, this );
 	m_sIconSizeFactor->Disconnect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnIconsSlidersChange), NULL, this);
 	m_sFontSizeFactor->Disconnect(wxEVT_SLIDER, wxCommandEventHandler(frcurrentsPreferencesDialogBase::OnFontSlidersChange), NULL, this);

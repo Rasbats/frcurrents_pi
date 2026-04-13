@@ -79,6 +79,7 @@ public:
   wxStaticText* m_staticText2;
   wxStaticText* m_staticText211;
   wxStaticText* m_staticText1;
+  wxStaticText* m_staticText3;
 
   frcurrentsUIDialogBase(wxWindow* parent, wxWindowID id = wxID_ANY,
                          const wxString& title = _("French Tidal Streams"),
@@ -116,9 +117,11 @@ protected:
   virtual void OnTimeZoneChange(wxCommandEvent& event) { event.Skip(); }
   virtual void OnSelectData(wxCommandEvent& event) { event.Skip(); }
   virtual void OnShowInformation(wxCommandEvent& event) { event.Skip(); }
+  virtual void OnUseCursorTrackingChange(wxCommandEvent& event) { event.Skip(); }
 public:
   wxCheckBox* m_cbUseRate;
   wxCheckBox* m_cbUseDirection;
+  wxCheckBox* m_cbUseCursorTracking;
   wxCheckBox* m_cbFillColour;
   wxCheckBox* m_cbUseHighRes;
   wxColourPickerCtrl* myColourPicker0;

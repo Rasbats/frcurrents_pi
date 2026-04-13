@@ -198,6 +198,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
 
   Pref->m_cbUseRate->SetValue(m_bCopyUseRate);
   Pref->m_cbUseDirection->SetValue(m_bCopyUseDirection);
+  Pref->m_cbUseCursorTracking->SetValue(m_bUseCursorTrackingData);
   Pref->m_cbFillColour->SetValue(m_bCopyUseFillColour);
   Pref->m_cbUseHighRes->SetValue(m_bCopyUseHighRes);
   Pref->m_sIconSizeFactor->SetValue(my_IconsScaleFactor);
@@ -234,6 +235,7 @@ void frcurrents_pi::ShowPreferencesDialog(wxWindow *parent) {
 
     bool copyrate = Pref->m_cbUseRate->GetValue();
     bool copydirection = Pref->m_cbUseDirection->GetValue();
+    m_bUseCursorTrackingData = Pref->m_cbUseCursorTracking->GetValue();
     bool copyresolution = Pref->m_cbUseHighRes->GetValue();
     bool copyFillColour = Pref->m_cbFillColour->GetValue();
 
@@ -304,6 +306,15 @@ void frcurrents_pi::SetDialogFont(wxWindow *dialog, wxFont *font) {
   }
 }
 #endif
+
+void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
+  if (NULL == m_pfrcurrentsDialog)  return;
+  if (!m_pfrcurrentsDialog->IsShown()) return;
+  if (!m_bUseCursorTrackingData) return; // cursor tracking not in use  
+  if (m_pfrcurrentsDialog->IsTrackingReady) // wait until at least one overlay has been displayed
+    m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
+}
+
 void frcurrents_pi::OnToolbarToolCallback(int id) {
   //  get icons scale factor
   double scalefactor = GetOCPNGUIToolScaleFactor_PlugIn();
@@ -445,6 +456,7 @@ bool frcurrents_pi::LoadConfig(void) {
 
   m_bCopyUseRate = pConf->Read("frcurrentsUseRate", 1);
   m_bCopyUseDirection = pConf->Read("frcurrentsUseDirection", 1);
+  m_bUseCursorTrackingData = pConf->ReadBool("frcurrentsUseCursorTracking", false);
   m_bCopyUseHighRes = pConf->Read("frcurrentsUseHighResolution", 1);
   m_bCopyUseFillColour = pConf->Read("frcurrentsUseFillColour", 1);
 
@@ -482,6 +494,7 @@ bool frcurrents_pi::SaveConfig(void) {
     pConf->SetPath("/PlugIns/frcurrents");
     pConf->Write("frcurrentsUseRate", m_bCopyUseRate);
     pConf->Write("frcurrentsUseDirection", m_bCopyUseDirection);
+    pConf->Write("frcurrentsUseCursorTracking", m_bUseCursorTrackingData);
     pConf->Write("frcurrentsUseHighResolution", m_bCopyUseHighRes);
     pConf->Write("frcurrentsUseFillColour", m_bCopyUseFillColour);
 
@@ -517,6 +530,19 @@ void frcurrents_pi::SetColorScheme(PI_ColorScheme cs) {
 // ------------------------------------------------------------------------
 //                 Preferences Dialog Implementation
 // ------------------------------------------------------------------------
+
+void frcurrentsPreferencesDialog::OnUseCursorTrackingChange(wxCommandEvent& event) {
+  bool use = m_cbUseCursorTracking->IsChecked();
+  if (g_pi) {
+    g_pi->m_bUseCursorTrackingData = use;
+    if (g_pi->m_pfrcurrentsDialog) {
+      g_pi->m_pfrcurrentsDialog->m_bUseCursorTracking = use;
+      g_pi->m_pfrcurrentsDialog->m_staticText3->Show(use);
+      g_pi->m_pfrcurrentsDialog->Fit();
+    }
+  }
+}
+
 void frcurrentsPreferencesDialog::OnIconsSlidersChange(wxCommandEvent &event) {
   if (g_pi) {
     g_pi->my_IconsScaleFactor = (double)event.GetInt();
