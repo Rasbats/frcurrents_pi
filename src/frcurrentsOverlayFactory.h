@@ -125,7 +125,7 @@ private:
   wxColour GetSpeedColour(double my_speed);
 
   bool drawCurrentArrow(int x, int y, double rot_angle, double scale,
-    double rate, double vp_rotate_angle);
+    double rate, double vp_rotate_angle, wxPoint* arrow_center);
 
   double m_last_vp_scale;
 
