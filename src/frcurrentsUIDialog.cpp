@@ -638,7 +638,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   m_choice2->Clear();
 
   int m = m_choice1->GetCurrentSelection();
-  wxString s = m_choice1->GetString(m);
+  wxString s = GetOrinalString(m);
 
   int i = FindPortIDUsingChoice(s);
 
@@ -690,7 +690,7 @@ bool frcurrentsUIDialog::SetDateForNowButton(bool m_bcenter) {
   wxString sa = m_Areas[ma];
 
   int m = m_choice1->GetSelection();
-  wxString string = m_choice1->GetString(m);
+  wxString string = GetOrinalString(m);
   m_portXML = FindPortXMLUsingChoice(string);
 
   if (m_portXML == "") {
@@ -862,103 +862,52 @@ void frcurrentsUIDialog::OnCursorTrackingData(wxTimerEvent & event) {
   }
 }
 
-StandardPort frcurrentsUIDialog::PopulatePortTides(wxString PortName) {
-  StandardPort myCPort;
-  int m = m_choice1->GetSelection();
-  wxString s = m_choice1->GetString(m);
-
-  int i = 0;
-  for (std::vector<StandardPort>::iterator it = my_ports.begin();
-       it != my_ports.end(); it++) {
-    myCPort.PORT_NUMBER = (*it).PORT_NUMBER;
-    myCPort.PORT_NAME = (*it).PORT_NAME;
-
-    myCPort.BMME = (*it).BMME;
-    myCPort.BMVE = (*it).BMVE;
-    myCPort.PMME = (*it).PMME;
-    myCPort.PMVE = (*it).PMVE;
-
-    myCPort.LAT = (*it).LAT;
-    myCPort.LON = (*it).LON;
-
-    double value, dBMME, dBMVE, dPMME, dPMVE;
-    myCPort.BMME.ToDouble(&value);
-    dBMME = value;
-
-    myCPort.BMVE.ToDouble(&value);
-    dBMVE = value;
-
-    myCPort.PMME.ToDouble(&value);
-    dPMME = value;
-
-    myCPort.PMVE.ToDouble(&value);
-    dPMVE = value;
-
-    myCPort.spRange = dPMVE - dBMVE;
-    myCPort.npRange = dPMME - dBMME;
-
-    if (myCPort.PORT_NAME == s) {
-      wxString getvalue;
-      double value;
-
-      getvalue = myCPort.LAT;
-      getvalue.ToDouble(&value);
-      m_jumpLat = value;
-
-      getvalue = myCPort.LON;
-      getvalue.ToDouble(&value);
-      m_jumpLon = value;
-      return myCPort;
-    }
-    i++;
-  }
-  return myCPort;
-}
-
 void frcurrentsUIDialog::OnPreferences(wxCommandEvent& event) {
   pPlugIn->ShowPreferencesDialog(pParent);
 }
-
 wxString frcurrentsUIDialog::FindPortXMLUsingChoice(wxString inPortName) {
   PortTides myPortTides;
-
   wxString s = inPortName;
-
-  int i = 0;
   for (std::vector<StandardPort>::iterator it = my_ports.begin();
        it != my_ports.end(); it++) {
-    myPortTides.m_portID = (*it).PORT_NUMBER;
     myPortTides.m_portName = (*it).PORT_NAME;
     myPortTides.m_IDX = (*it).IDX;
 
     if (myPortTides.m_portName == s) {
       return myPortTides.m_IDX;
     }
-
-    i++;
   }
 
   return "";
 }
 
+wxString frcurrentsUIDialog::GetOrinalString(int Id) {
+  wxString r = m_choice1->GetString(Id);
+  r.MakeUpper();
+  r << (", France");
+  /* Fix this port's problem of mixing Lower and upper letters case */ 
+  if (r == ("ILE DE GROIX (PORT TUDY), France")) r = ("ILE de GROIX (Port Tudy), France");
+  return r;
+}
+
 int frcurrentsUIDialog::FindTidePortUsingChoice(wxString inAreaNumber) {
-  int i;
+  /*  Populate the choice1 list with the ports included in this area */
   wxString s = inAreaNumber;
   PortTides myPortTides;
 
   m_choice1->Clear();
-
-  i = 0;
   for (std::vector<StandardPort>::iterator it = my_ports.begin();
        it != my_ports.end(); it++) {
     myPortTides.m_portID = (*it).PORT_NUMBER;
     myPortTides.m_portName = (*it).PORT_NAME;
-    myPortTides.m_IDX = (*it).IDX;
 
     if (myPortTides.m_portID == s) {
-      m_choice1->Append(myPortTides.m_portName);
+      /*  Use a shorter name in the choice list, without the ", France" unuseful part, 
+      * and capitalized to gain space in the dialog */
+      wxString r = myPortTides.m_portName.BeforeLast(',');
+      r.MakeCapitalized();
+      m_choice1->Append(r);
     }
-    i++;
   }
   m_choice1->Fit();
   return 0;
@@ -989,22 +938,16 @@ int frcurrentsUIDialog::FindPortIDUsingChoice(wxString inPortName) {
   int i;
   wxString s = inPortName;
   PortTides myPortTides;
-  // wxMessageBox(inPortName);
   i = 0;
   for (std::vector<StandardPort>::iterator it = my_ports.begin();
        it != my_ports.end(); it++) {
-    myPortTides.m_portID = (*it).PORT_NUMBER;
     myPortTides.m_portName = (*it).PORT_NAME;
-    myPortTides.m_portLat = (*it).LAT;
-    myPortTides.m_portLon = (*it).LON;
 
-    myPortTides.m_IDX = (*it).IDX;
     if (myPortTides.m_portName == s) {
       i = FindPortID(myPortTides.m_portName);
       return i;
     }
   }
-
   return 0;
 }
 
@@ -1615,7 +1558,7 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
   int linenum = 0;
 
   int p = m_choice1->GetCurrentSelection();  // Get the port selected
-  wxString s = m_choice1->GetString(p);
+  wxString s = GetOrinalString(p);
 
   int t = 0;
   wxString token[2];
@@ -1886,7 +1829,7 @@ void frcurrentsUIDialog::OnChooseTideButton(wxCommandEvent& event) {
   m_staticText211->SetLabel("");
 
   int m = m_choice1->GetSelection();
-  wxString s = m_choice1->GetString(m);
+  wxString s = GetOrinalString(m);
   m_portXML = FindPortXMLUsingChoice(s);
 
   if (m_portXML == "") {
@@ -1955,7 +1898,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
   wxString sa = m_Areas[ma];
 
   int p = m_choice1->GetSelection();  // Get the port selected
-  wxString s = m_choice1->GetString(p);
+  wxString s = GetOrinalString(p);
   m_portXML = FindPortXMLUsingChoice(s);
 
   int f = FindPortIDUsingChoice(s);
@@ -2018,7 +1961,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
   int ma = m_choiceArea->GetCurrentSelection();
   wxString sa = m_Areas[ma];
   int p = m_choice1->GetSelection();  // Get the port selected
-  wxString s = m_choice1->GetString(p);
+  wxString s = GetOrinalString(p);
 
   int f = FindPortIDUsingChoice(s);
   if (f == 0) return;

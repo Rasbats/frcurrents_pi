@@ -317,12 +317,6 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   double latF, lonF;
   int n = 0;
   int m_len;
-
-  int m = m_dlg.m_choice1->GetSelection();
-  wxString s = m_dlg.m_choice1->GetString(m);
-
-  StandardPort myPortTides;
-  myPortTides = m_dlg.PopulatePortTides(s);
   double myCurrent;
 
   for (std::vector<Position>::iterator it = m_new.begin(); it != m_new.end();

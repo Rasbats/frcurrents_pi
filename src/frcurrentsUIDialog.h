@@ -87,14 +87,6 @@ class wxFileConfig;
 class frcurrents_pi;
 class wxGraphicsContext;
 
-class SHOMport {
-public:
-  wxString name;
-  wxString lat, lon;
-  wxString PMVE, BMVE, PMME, BMME;
-  wxArrayString PMVEew, PMVEns, PMMEew, PMMEns, BMVEew, BMVEns, BMMEew, BMMEns;
-};
-
 class Position {
 public:
   double latD, lonD;
@@ -115,12 +107,6 @@ public:
 wxPoint position;
 double curSpeed;
 double curDirection;
-};
-
-class PositionSHOM {
-public:
-  double latD, lonD;
-  wxString lat, lon;
 };
 
 class PortTides {
@@ -173,8 +159,6 @@ public:
   wxString wxPortName[100][5];
   wxString selectedPort;
 
-  SHOMport myPort;
-
   vector<Position> my_points;
   vector<Position> OnRecord();
   void SetFromHW(int fromHW);
@@ -183,7 +167,6 @@ public:
   wxString m_portXML;
   double myRange;
   double BrestRange;
-  StandardPort PopulatePortTides(wxString PortName);
   double CalcCurrent(double VE, double ME, double spRate, double npRate,
                      double coefficient);
   wxString CalcCoefficient();
@@ -195,7 +178,6 @@ public:
   int m_AreaIDSelected;
   wxArrayString TideCurrentDataSet;
   wxString* pTC_Dir;
-  vector<SHOMport> portLines;
   wxString g_SData_Locn;
   TCMgr* ptcmgr;
   double m_coeff;
@@ -236,6 +218,7 @@ private:
 
   void OnPreferences(wxCommandEvent& event);
   wxString FindPortXMLUsingChoice(wxString inPortName);
+  wxString GetOrinalString(int Id);
 
   int FindPortIDUsingChoice(wxString inPortName);
   int FindTidePortUsingChoice(wxString inAreaNumber);
