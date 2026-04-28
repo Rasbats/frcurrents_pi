@@ -143,8 +143,7 @@ public:
   wxPoint maxPoint;
   wxPoint minPoint;
   wxTimer m_tCursorTrackTimer;
-  bool IsTrackingReady;
-
+  double m_LLmaxmin[4];
   bool m_bUseRate;
   bool m_bUseDirection;
   bool m_bUseCursorTracking;

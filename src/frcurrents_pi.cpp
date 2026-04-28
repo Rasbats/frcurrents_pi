@@ -311,7 +311,7 @@ void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
   if (NULL == m_pfrcurrentsDialog)  return;
   if (!m_pfrcurrentsDialog->IsShown()) return;
   if (!m_bUseCursorTrackingData) return; // cursor tracking not in use  
-  if (m_pfrcurrentsDialog->IsTrackingReady) // wait until at least one overlay has been displayed
+
     m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
 }
 

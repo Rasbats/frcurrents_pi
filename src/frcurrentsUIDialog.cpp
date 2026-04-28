@@ -479,7 +479,6 @@ void frcurrentsUIDialog::OnStartSetupHW() {
   SetNow();
 
   // Init timer for cursor tracking
-  IsTrackingReady = false;
   m_staticText3->Show(m_bUseCursorTracking);
   Fit();
   m_tCursorTrackTimer.Connect(
@@ -803,6 +802,10 @@ bool frcurrentsUIDialog::SetDateForNowButton(bool m_bcenter) {
 }
 
 void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
+  /* Avoid a possible crash because the "SetCursorLatLon()" is done at start while
+   * the viewport is not yet set by the first call of "RenderOverlay()" function */
+  if (!m_vp) return;
+
   if (m_vp->chart_scale > 1000000) {
     m_staticText3->SetLabel(_("Zoom In to Show Current Data!"));
     return;
@@ -816,12 +819,19 @@ void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
     }
   }
   else {
-    m_staticText3->SetLabel(_("Out of Tide Area"));
+    if (lat < m_LLmaxmin[0] || lon < m_LLmaxmin[1] ||
+      lat > m_LLmaxmin[2] || lon > m_LLmaxmin[3])
+      m_staticText3->SetLabel(_("Out of Tide Area"));
+    else {
+      wxString t = _("At Cursor") + (":  ---- ") + _("kt") + ("  -  ----");
+      m_staticText3->SetLabel(t << wxString::Format(("%c"), 0x00B0));
+    }
   }
 }
+
 void frcurrentsUIDialog::OnCursorTrackingData(wxTimerEvent & event) {
   vector<PixPosition> temp_pos;
-  wxString s = _("Current");
+  wxString s = _("At Cursor");
   wxString deg = wxString::Format(("%c"), 0x00B0);
   char sbuf[20];
   /* first find all arrow's center points within a 120x120 box
