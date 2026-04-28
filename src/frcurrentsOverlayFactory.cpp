@@ -298,7 +298,8 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   myY = 0;
   vector<Position> m_new = m_dlg.my_positions;
   PixPosition temp_pos;
-  int minx = 100000, miny = 100000, maxx = 0, maxy = 0;
+  double LLmaxmin[]{ 90., 180., -90., -180. };
+  int Pminx = 100000, Pminxy = 100000, Pmaxx = 0, Pmaxy = 0;
   m_dlg.my_PixPosition.clear();
 
 
@@ -320,7 +321,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
   double myCurrent;
 
   for (std::vector<Position>::iterator it = m_new.begin(); it != m_new.end();
-       it++) {
+    it++) {
     mLat = (*it).lat;
     mBitLat = mLat.Mid(0, 2);
     mDecLat = mLat.Mid(2);
@@ -358,7 +359,12 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
     } else {
       lonF = (decValue1 + value / 60);
     }
-
+    // get the tide zone's lat-lon limits
+    LLmaxmin[0] = wxMin(LLmaxmin[0], latF);
+    LLmaxmin[1] = wxMin(LLmaxmin[1], lonF);
+    LLmaxmin[2] = wxMax(LLmaxmin[2], latF);
+    LLmaxmin[3] = wxMax(LLmaxmin[3], lonF);
+    // 
     GetCanvasPixLL(vp, &p, latF, lonF);
     wxRect myRect = vp->rv_rect;
 
@@ -388,7 +394,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       double coefficient = m_dlg.m_coeff;
 
       myCurrent = m_dlg.CalcCurrent(95, 45, m_spdSpring / 10, m_spdNeap / 10,
-                                    coefficient);
+        coefficient);
       if (isnan(myCurrent)) myCurrent = 0.0;
       if (myCurrent == 0 || myCurrent < 0) myCurrent = 00.001;
 
@@ -396,7 +402,7 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
 
       double a1 = myCurrent * 10;  // fabs( tcvalue ) * 10.;
       a1 = wxMax(1.0, a1);         // Current values less than 0.1 knot
-                                   // will be displayed as 0
+      // will be displayed as 0
       double a2 = log10(a1);
 
       double scale = current_draw_scaler * a2;
@@ -407,18 +413,18 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       if (my_rectangle.Contains(p.x, p.y) && (myCurrent > 0.09)) {
         wxPoint arrow_center;
         bool d = drawCurrentArrow(p.x, p.y, dir - 90, scale / 100, myCurrent,
-                                  vp->rotation, &arrow_center);
+          vp->rotation, &arrow_center);
 
         //	Store center arrows position and data for later use in tracking cursor
         temp_pos.position = arrow_center;
         temp_pos.curSpeed = myCurrent;
         temp_pos.curDirection = dir;
         m_dlg.my_PixPosition.push_back(temp_pos);
-        // get the tide zone's limits
-        maxx = wxMax(maxx, p.x);
-        maxy = wxMax(maxy, p.y);
-        minx = wxMin(minx, p.x);
-        miny = wxMin(miny, p.y);
+        // get the tide zone's pix limits
+        Pmaxx = wxMax(Pmaxx, p.x);
+        Pmaxy = wxMax(Pmaxy, p.y);
+        Pminx = wxMin(Pminx, p.x);
+        Pminxy = wxMin(Pminxy, p.y);
         //
 
         int shift = 0;
@@ -441,9 +447,10 @@ void frcurrentsOverlayFactory::RenderMyArrows(PlugIn_ViewPort *vp) {
       }
     }  // end if
   }  // end for
-  /* extand a bit the zone limits to avoid missing some side arrows and
+  /* extend a bit the zone limits to avoid missing some side arrows and
   * store for later use in tracking cursor position */
-  m_dlg.maxPoint = wxPoint(wxMin(vp->pix_width, maxx + 50), wxMin(vp->pix_height, maxy + 50));
-  m_dlg.minPoint = wxPoint(wxMax(0, minx - 50), wxMax(0, miny - 50));
-  m_dlg.IsTrackingReady = true;  // start tracking cursor
+  m_dlg.maxPoint = wxPoint(Pmaxx + 50, Pmaxy + 50);
+  m_dlg.minPoint = wxPoint(Pminx - 50, Pminxy - 50);
+  for (int i = 0; i < 4; i++)
+    m_dlg.m_LLmaxmin[i] = LLmaxmin[i];
 }
