@@ -838,7 +838,7 @@ void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
     if (!m_staticText3->IsShown()) {
       m_staticText3->Show();
       Fit();
-   }
+    }
     m_staticText3->SetForegroundColour(*wxRED);
     m_staticText3->SetLabel(_("Zoom In to Show Data!"));
     return;
@@ -850,22 +850,19 @@ void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
     }
     return;
   }
-
-  // Check if the cursor is within the tide zone's area
+  // Check if the cursor is within the entire tide zone area
+  if (lat < m_LLmaxmin[0] || lon < m_LLmaxmin[1] ||
+    lat > m_LLmaxmin[2] || lon > m_LLmaxmin[3]) {
+    m_staticText3->SetLabel(_("Cursor out of Tide Area"));
+    m_tCursorTrackTimer.Stop();
+    return;
+  }
+  // Check if the cursor is within the displayed tide zone's area
   GetCanvasPixLL(m_vp, &m_pCursorPixPos, lat, lon);
   wxRect r(minPoint, maxPoint);
   if (r.Contains(m_pCursorPixPos)) {
     if (!m_tCursorTrackTimer.IsRunning()) {
       m_tCursorTrackTimer.Start(50, wxTIMER_ONE_SHOT);
-    }
-  }
-  else {
-    if (lat < m_LLmaxmin[0] || lon < m_LLmaxmin[1] ||
-      lat > m_LLmaxmin[2] || lon > m_LLmaxmin[3])
-      m_staticText3->SetLabel(_("Cursor out Tide Area"));
-    else {
-      wxString t = _("At Cursor") + (":  ---- ") + _("kt") + ("  -  ----");
-      m_staticText3->SetLabel(t << wxString::Format(("%c"), 0x00B0));
     }
   }
 }
