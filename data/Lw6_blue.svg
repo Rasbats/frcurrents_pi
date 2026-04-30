@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="8.4666662mm"
+   height="8.4666662mm"
+   viewBox="0 0 8.4666661 8.4666662"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="LW6.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="8.3205134"
+     inkscape:cx="15.984591"
+     inkscape:cy="18.388288"
+     inkscape:window-width="1920"
+     inkscape:window-height="1156"
+     inkscape:window-x="-12"
+     inkscape:window-y="-12"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1"
+     showguides="false" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="swatch7"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ac9d93;stop-opacity:1;"
+         offset="0"
+         id="stop8" />
+    </linearGradient>
+  </defs>
+  <g
+     id="g3">
+    <g
+       id="g2">
+      <rect
+         style="fill:#b3b3b3;fill-opacity:1;fill-rule:evenodd;stroke-width:0.216032"
+         id="rect2"
+         width="8.4666662"
+         height="8.4666662"
+         x="0"
+         y="0" />
+    </g>
+    <g
+       id="g1">
+      <path
+         d="M 1.9222454,5.1398735 V 2.0948439 h 0.619896 v 2.5277515 h 1.541363 v 0.5172781 z m 2.8020975,0 L 3.9913577,2.069713 H 4.6259134 L 5.0887412,4.1786159 5.6499983,2.069713 H 6.3871719 L 6.9253924,4.214218 7.3965972,2.069713 H 8.0206816 L 7.2751311,5.1398735 H 6.6175387 L 6.0060197,2.844583 5.3965949,5.1398735 Z"
+         id="text1"
+         style="font-weight:bold;font-size:4.28901px;line-height:4.02097px;font-family:Arial;-inkscape-font-specification:'Arial, Bold';text-align:end;direction:rtl;text-anchor:end;fill:#0038ff;stroke:#002575;stroke-width:0.0986846;paint-order:stroke fill markers"
+         transform="scale(0.85152619,1.174362)"
+         aria-label="LW" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer1"
+       inkscape:label="Layer 1" />
+  </g>
+</svg>

@@ -16,147 +16,139 @@ frcurrentsUIDialogBase::frcurrentsUIDialogBase( wxWindow* parent, wxWindowID id,
 	wxBoxSizer* bSizerMain;
 	bSizerMain = new wxBoxSizer( wxVERTICAL );
 
-	wxStaticBoxSizer* sbSizer71;
-	sbSizer71 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tidal Area") ), wxHORIZONTAL );
+	wxBoxSizer* sbSizer71;
+	sbSizer71 = new wxBoxSizer(wxVERTICAL);
+
+	wxStaticText * m_staticText710;
+	m_staticText710 = new wxStaticText(this, wxID_ANY, "Tidal Area", wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText710->Wrap(-1);
+	sbSizer71->Add(m_staticText710, 0, wxEXPAND, 5);
 
 	wxString m_choiceAreaChoices[] = { _("Strait of Dover"), _("English Channel"),
-		_("Fecamp to La Hague"), _("La Hague to Hx-de-Brehat"),
-		_("Hx-de-Brehat to Brignogan"), _("Tip of Brittany"),
+		_("Fecamp to La Hague"), _("La Hague to Hx-Brehat"),
+		_("Hx-Brehat to Brignogan"), _("Tip of Brittany"),
 		_("South Brittany"), _("Vendee-Gironde"), _("Bay of Biscay") };
 
 	int m_choiceAreaNChoices = sizeof( m_choiceAreaChoices ) / sizeof( wxString );
-	m_choiceArea = new wxChoice( sbSizer71->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceAreaNChoices, m_choiceAreaChoices, 0 );
+	m_choiceArea = new wxChoice(this, wxID_FIND, wxDefaultPosition, wxDefaultSize, m_choiceAreaNChoices, m_choiceAreaChoices, 0);
 	m_choiceArea->SetSelection( 0 );
 	m_choiceArea->SetToolTip( _("Select tidal area") );
-	sbSizer71->Add( m_choiceArea, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+	sbSizer71->Add(m_choiceArea, 0, wxEXPAND, 5);
 
-	sbSizer71->Add( 0, 0, 1, wxEXPAND, 5 );
-
-	m_button8 = new wxBitmapButton(sbSizer71->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
-	m_button8->SetToolTip(_("Preferences"));
-	sbSizer71->Add(m_button8, 0, wxALIGN_RIGHT | wxALL, 5);
-
-	bSizerMain->Add( sbSizer71, 0, wxEXPAND, 5 );
-
-	wxStaticBoxSizer* sbSizer6;
-	sbSizer6 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Standard Port") ), wxVERTICAL );
+	wxStaticText* m_staticText711;
+	m_staticText711 = new wxStaticText(this, wxID_ANY, "Standard Port", wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText711->Wrap(-1);
+	sbSizer71->Add(m_staticText711, 0, wxEXPAND, 5);
 
 	wxArrayString m_choice1Choices;
-	m_choice1 = new wxChoice( sbSizer6->GetStaticBox(), wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice1Choices, 0 );
+	m_choice1 = new wxChoice(this, wxID_FIND, wxDefaultPosition, wxDefaultSize, m_choice1Choices, 0);
 	m_choice1->SetToolTip(_("Select Port"));
 	m_choice1->SetSelection( 0 );
-	sbSizer6->Add( m_choice1, 0, wxEXPAND|wxALL, 5 );
+	sbSizer71->Add(m_choice1, 0, wxEXPAND, 5);
 
-	bSizerMain->Add( sbSizer6, 0, wxEXPAND, 5 );
+	bSizerMain->Add(sbSizer71, 0, wxEXPAND | wxLEFT, 5);
 
-	wxStaticBoxSizer* sbSizerDateTime;
-	sbSizerDateTime = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Tide Date") ), wxHORIZONTAL );
+	wxBoxSizer* sbSizerDateTime;
+	sbSizerDateTime = new wxBoxSizer(wxVERTICAL);
 
-	m_datePicker1 = new wxDatePickerCtrl( sbSizerDateTime->GetStaticBox(), wxID_ANY, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DEFAULT );
+	wxBoxSizer* sbSizer73;
+	sbSizer73 = new wxBoxSizer(wxHORIZONTAL);
+
+	wxStaticText* m_staticText0;
+	m_staticText0 = new wxStaticText(this, wxID_ANY, _("Date-Time"), wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText0->Wrap(-1);
+	sbSizer73->Add(m_staticText0, 0, wxEXPAND, 5);
+
+	m_staticText1 = new wxStaticText(this, wxID_FIND, "TZ", wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText1->Wrap(-1);
+	m_staticText1->SetToolTip(_("'LocTZ' means Local Time Zone set on your device"));
+	sbSizer73->Add(m_staticText1, 0, wxALIGN_CENTER_HORIZONTAL | wxLEFT, 10);
+
+	sbSizerDateTime->Add(sbSizer73, 0, wxEXPAND, 5);
+
+	wxBoxSizer* sbSizer74;
+	sbSizer74 = new wxBoxSizer(wxHORIZONTAL);
+
+	m_datePicker1 = new wxDatePickerCtrl(this, wxID_FIND, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxDP_DEFAULT);
 	m_datePicker1->SetToolTip(_("Select Date"));
-	sbSizerDateTime->Add( m_datePicker1, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	sbSizer74->Add(m_datePicker1, 0, wxTOP | wxRIGHT, 3);
 
-	sbSizerDateTime->Add( 0, 0, 1, wxEXPAND, 5 );
-
-	m_textCtrlCoefficient = new wxTextCtrl( sbSizerDateTime->GetStaticBox(), wxID_ANY, "   Coeff", wxDefaultPosition, wxDefaultSize, wxTE_BESTWRAP );
-	m_textCtrlCoefficient->SetFont( wxFont( 10, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Arial") ) );
-
-	sbSizerDateTime->Add( m_textCtrlCoefficient, 0, wxALIGN_CENTER_VERTICAL, 5 );
-
-	sbSizerDateTime->Add( 0, 0, 1, wxEXPAND, 5 );
-
-	bSizerMain->Add( sbSizerDateTime, 0, wxEXPAND, 5 );
-
-	wxBoxSizer* bSizerHWLW = new wxBoxSizer(wxVERTICAL);
-
-	m_staticTextHW = new wxStaticText(this, wxID_ANY, "High Water", wxDefaultPosition, wxDefaultSize, 0);
-	m_staticTextHW->Wrap( -1 );
-	bSizerHWLW->Add(m_staticTextHW, 0, wxALL, 5);
+	m_textCoefficient = new wxStaticText(this, wxID_FIND, " Coeff", wxDefaultPosition, wxDefaultSize, 0);
+	m_textCoefficient->SetFont(wxFont(10, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Arial")));
+	sbSizer74->Add(m_textCoefficient, 0, wxEXPAND | wxTOP | wxLEFT, 3);
+	
+	sbSizerDateTime->Add(sbSizer74, 0, wxEXPAND, 5);
 
 	wxArrayString m_choice2Choices;
-	m_choice2 = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choice2Choices, 0 );
+	m_choice2 = new wxChoice(this, wxID_FIND, wxDefaultPosition, wxDefaultSize, m_choice2Choices, 0 );
 	m_choice2->SetSelection( 0 );
-	bSizerHWLW->Add( m_choice2, 0, wxALL|wxEXPAND, 5 );
+	sbSizerDateTime->Add(m_choice2, 0, wxEXPAND | wxTOP, 3);
 
-	bSizerMain->Add(bSizerHWLW, 0, wxEXPAND, 5 );
+	bSizerMain->Add(sbSizerDateTime, 0, wxEXPAND | wxLEFT, 5);
 
 	wxStaticBoxSizer* sbSizerControls;
 	sbSizerControls = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, _("Display Controls")), wxVERTICAL );
 
-	wxFlexGridSizer* fbSizerCTRL = new wxFlexGridSizer(1, 6, 0, 0);
-	fbSizerCTRL->AddGrowableCol(2);
-
-	m_bpNow = new wxBitmapButton( sbSizerControls->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW|0 );
-	m_bpNow->SetToolTip( _("Now") );
-	fbSizerCTRL->Add(m_bpNow, 0, wxALIGN_CENTER | wxALL, 5);
-
-	fbSizerCTRL->Add(1, 0, 1, wxEXPAND, 5);
-
-	wxFlexGridSizer* fbSizerDT = new wxFlexGridSizer(2, 1, 0, 0);
-	fbSizerDT->AddGrowableCol(0);
-
-	m_staticText2 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, "Display date/time", wxDefaultPosition, wxDefaultSize, 0);
-	m_staticText2->Wrap(-1);
-	fbSizerDT->Add(m_staticText2, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
-
-	m_staticText211 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, "High Water +-", wxDefaultPosition, wxDefaultSize, 0);
-	m_staticText211->Wrap(-1);
-	fbSizerDT->Add(m_staticText211, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
-
-	fbSizerCTRL->Add(fbSizerDT, 0, wxEXPAND, 0);
-
-	fbSizerCTRL->Add(1, 0, 1, wxEXPAND, 5);
+	wxBoxSizer* sbSizerCTRL = new wxBoxSizer(wxHORIZONTAL);
 
 	m_bpPrev = new wxBitmapButton(sbSizerControls->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize(-1, -1), wxBU_AUTODRAW | 0);
 	m_bpPrev->SetToolTip(_("Previous"));
-	fbSizerCTRL->Add(m_bpPrev, 0, wxALIGN_CENTER | wxALL, 5);
+	sbSizerCTRL->Add(m_bpPrev, 0, wxALIGN_CENTER_VERTICAL, 5);
+
+	sbSizerCTRL->Add(0, 0, 1, wxEXPAND, 5);  // spacer
+
+	wxBoxSizer* sbSizerDT = new wxBoxSizer(wxVERTICAL);
+
+	m_staticText2 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, "Display date/time", wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText2->Wrap(-1);
+	sbSizerDT->Add(m_staticText2, 0, wxALIGN_CENTER_HORIZONTAL, 5);
+
+
+	m_staticText211 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, "High Water +-", wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText211->Wrap(-1);
+	sbSizerDT->Add(m_staticText211, 0, wxALIGN_CENTER_HORIZONTAL, 5);
+
+	sbSizerCTRL->Add(sbSizerDT, 0, wxEXPAND, 0);
+
+	sbSizerCTRL->Add(0, 0, 1, wxEXPAND, 5);  // spacer
 
 	m_bpNext = new wxBitmapButton(sbSizerControls->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition, wxSize(-1, -1), wxBU_AUTODRAW | 0);
 	m_bpNext->SetToolTip(_("Next"));
-	fbSizerCTRL->Add(m_bpNext, 0, wxALIGN_CENTER | wxALL, 5);
+	sbSizerCTRL->Add(m_bpNext, 0, wxALIGN_CENTER_VERTICAL, 5);
 
-	sbSizerControls->Add(fbSizerCTRL, 0, wxALL, 5);
+	sbSizerControls->Add(sbSizerCTRL, 0, wxEXPAND, 5);
 
-	m_staticText3 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, "Current", wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText3 = new wxStaticText(sbSizerControls->GetStaticBox(), wxID_FIND, _("At Cursor"), wxDefaultPosition, wxDefaultSize, 0);
 	m_staticText3->Wrap(-1);
-	sbSizerControls->Add(m_staticText3, 0, wxEXPAND, 5);
+	sbSizerControls->Add(m_staticText3, 0, wxEXPAND | wxLEFT, 5);
 
 	wxBoxSizer* bSizer4;
 	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
 
-	bSizer4->Add( 0, 0, 1, wxEXPAND, 5 );
+	m_bpNow = new wxBitmapButton(sbSizerControls->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
+	m_bpNow->SetToolTip(_("Now"));
+	bSizer4->Add(m_bpNow, 0, 0, 5);
 
-	m_button4 = new wxButton(sbSizerControls->GetStaticBox(), 0, _("HW-6"), wxDefaultPosition, wxDefaultSize, 0);
-	bSizer4->Add(m_button4, 0, wxALL, 5);
+	bSizer4->Add(0, 0, 1, wxEXPAND, 5);  // spacer
 
-	bSizer4->Add(0, 0, 1, wxEXPAND, 5);
+	m_button4 = new wxBitmapButton(sbSizerControls->GetStaticBox(), 0, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
+	bSizer4->Add(m_button4, 0, wxRIGHT, 5);
 
-	m_button5 = new wxButton(sbSizerControls->GetStaticBox(), 6, _("HW"), wxDefaultPosition, wxDefaultSize, 0);
-	bSizer4->Add(m_button5, 0, wxALL, 5);
+	m_button5 = new wxBitmapButton(sbSizerControls->GetStaticBox(), 6, wxNullBitmap, wxDefaultPosition, wxSize(-1, -1), wxBU_AUTODRAW | 0);
+	bSizer4->Add(m_button5, 0, 0, 5);
 
-	bSizer4->Add( 0, 0, 1, wxEXPAND, 5 );
+	m_button6 = new wxBitmapButton(sbSizerControls->GetStaticBox(), 12, wxNullBitmap, wxDefaultPosition, wxSize(-1, -1), wxBU_AUTODRAW | 0);
+	bSizer4->Add(m_button6, 0, wxLEFT | wxRIGHT, 5);
 
-	m_button6 = new wxButton(sbSizerControls->GetStaticBox(), 12, _("HW+6"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer4->Add( m_button6, 0, wxALL, 5 );
+	bSizer4->Add(0, 0, 1, wxEXPAND, 5);  // spacer
 
-	bSizer4->Add( 0, 0, 1, wxEXPAND, 5 );
+	m_button8 = new wxBitmapButton(sbSizerControls->GetStaticBox(), wxID_ANY, wxNullBitmap, wxDefaultPosition, wxDefaultSize, wxBU_AUTODRAW | 0);
+	m_button8->SetToolTip(_("Preferences"));
+	bSizer4->Add(m_button8, 0, wxLEFT, 5);
 
 	sbSizerControls->Add(bSizer4, 0, wxEXPAND, 5);
 
 	bSizerMain->Add(sbSizerControls, 0, wxEXPAND, 5);
-
-	wxBoxSizer* bSizer5;
-	bSizer5 = new wxBoxSizer(wxVERTICAL);
-
-	m_staticText1 = new wxStaticText(this, wxID_FIND, "Time Zone", wxDefaultPosition, wxDefaultSize, 0);
-	m_staticText1->Wrap(-1);
-	m_staticText1->SetToolTip(_("'Local TZ' means Time Zone set on your device"));
-	bSizer5->Add(m_staticText1, 0, wxEXPAND|wxALL, 5);
-
-	wxStaticLine* m_staticline1 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
-	bSizer5->Add(m_staticline1, 0, wxEXPAND | wxALL, 5 );
-
-	bSizerMain->Add( bSizer5, 0, wxEXPAND, 5 );
 
 	this->SetSizer( bSizerMain );
 	this->Layout();

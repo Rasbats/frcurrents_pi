@@ -44,14 +44,13 @@ private:
 protected:
   wxBitmapButton* m_button8;
   wxDatePickerCtrl* m_datePicker1;
-  wxStaticText* m_staticTextHW;
   wxChoice* m_choice2;
   wxBitmapButton* m_bpNow;
   wxBitmapButton* m_bpPrev;
   wxBitmapButton* m_bpNext;
-  wxButton* m_button5;
-  wxButton* m_button4;
-  wxButton* m_button6;
+  wxBitmapButton* m_button5;
+  wxBitmapButton * m_button4;
+  wxBitmapButton * m_button6;
 
   // Virtual event handlers, override them in your derived class
   virtual void OnClose(wxCloseEvent& event) { event.Skip(); }
@@ -73,7 +72,7 @@ protected:
 public:
   wxChoice* m_choiceArea;
   wxChoice* m_choice1;
-  wxTextCtrl* m_textCtrlCoefficient;
+  wxStaticText* m_textCoefficient;
   wxStaticBoxSizer* sbSizerFolder;
   wxTextCtrl* m_dirPicker1;
   wxStaticText* m_staticText2;

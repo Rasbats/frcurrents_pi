@@ -116,6 +116,7 @@ public:
   bool SaveConfig(void);
 
   frcurrentsUIDialog *m_pfrcurrentsDialog;
+  double m_globalIconScaleFactor;
   double my_IconsScaleFactor;
   int my_FontpointSizeFactor;
   float my_chart_scale;

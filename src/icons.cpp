@@ -21,6 +21,10 @@ wxString _svg_frcurrents_prefs;
 wxString _svg_frcurrents_now;
 wxString _svg_frcurrents_next;
 wxString _svg_frcurrents_prev;
+wxString _svg_frcurrents_hw0;
+wxString _svg_frcurrents_hw6;
+wxString _svg_frcurrents_lw6;
+wxString _svg_frcurrents_hw12;
 #endif
 
 
@@ -60,6 +64,14 @@ void initialize_images(void)
 	_svg_frcurrents_prev = fn.GetFullPath();
 	fn.SetFullName("now_blue.svg");
 	_svg_frcurrents_now = fn.GetFullPath();
+	fn.SetFullName("Hw0_blue.svg");
+	_svg_frcurrents_hw0 = fn.GetFullPath();
+	fn.SetFullName("Hw6_blue.svg");
+	_svg_frcurrents_hw6 = fn.GetFullPath();
+	fn.SetFullName("Lw6_blue.svg");
+	_svg_frcurrents_lw6 = fn.GetFullPath();
+	fn.SetFullName("Hw12_blue.svg");
+	_svg_frcurrents_hw12 = fn.GetFullPath();
 
 	_xpm_frcurrents_pi = NULL;
 #else

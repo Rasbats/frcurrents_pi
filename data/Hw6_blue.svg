@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="8.4666662mm"
+   height="8.4666662mm"
+   viewBox="0 0 8.4666661 8.4666662"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="HW6.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="15.125001"
+     inkscape:cx="15.999999"
+     inkscape:cy="18.314049"
+     inkscape:window-width="1920"
+     inkscape:window-height="1156"
+     inkscape:window-x="-12"
+     inkscape:window-y="-12"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1"
+     showguides="false" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="swatch7"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ac9d93;stop-opacity:1;"
+         offset="0"
+         id="stop8" />
+    </linearGradient>
+  </defs>
+  <g
+     id="g3">
+    <g
+       id="g2">
+      <rect
+         style="fill:#b3b3b3;fill-opacity:1;fill-rule:evenodd;stroke-width:0.216032"
+         id="rect2"
+         width="8.4666662"
+         height="8.4666662"
+         x="0"
+         y="0" />
+    </g>
+    <g
+       id="g1">
+      <path
+         d="M 1.5737171,5.115593 V 2.0017603 H 2.202431 V 3.2273275 H 3.4343702 V 2.0017603 H 4.063084 V 5.115593 H 3.4343702 V 3.7540877 H 2.202431 V 5.115593 Z m 3.5811201,0 -0.7434116,-3.1138327 h 0.643582 L 5.5244189,4.1406617 6.0936598,2.0017603 h 0.7476597 l 0.5458765,2.17501 0.4779075,-2.17501 H 8.4980654 L 7.7419096,5.115593 H 7.0749632 L 6.4547455,2.7876526 5.8366518,5.115593 Z"
+         id="text3"
+         style="font-weight:bold;font-size:4.35002px;line-height:4.18691px;font-family:Arial;-inkscape-font-specification:'Arial, Bold';text-align:end;direction:rtl;text-anchor:end;fill:#0043ff;stroke-width:0.304161;paint-order:stroke fill markers"
+         inkscape:highlight-color="#3b6aee"
+         inkscape:label="text3"
+         transform="scale(0.84063178,1.1895815)"
+         aria-label="HW" />
+      <g
+         inkscape:groupmode="layer"
+         id="layer1"
+         inkscape:label="Layer 1" />
+    </g>
+  </g>
+</svg>
