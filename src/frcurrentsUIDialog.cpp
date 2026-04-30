@@ -118,9 +118,9 @@ using namespace std;
 
 frcurrentsUIDialog::frcurrentsUIDialog(wxWindow* parent, frcurrents_pi* ppi)
     : frcurrentsUIDialogBase(parent) {
-  this->Fit();
   pParent = parent;
   pPlugIn = ppi;
+  m_vp = NULL;
 
   //  Set date picker's limits from 1st January 1980 to 31th December 2037
   //  to prevent crashes beyong time_t 32 bits capacity overtake during jan
@@ -369,35 +369,63 @@ wxDateTime frcurrentsUIDialog::GetNow() {
     return wxDateTime::Now();
 }
 
-void frcurrentsUIDialog::SetScaledBitmaps(double scalefactor) {
+void frcurrentsUIDialog::SetScaledBitmaps(bool allBitmaps) {
   //  Round to the nearest "quarter", to avoid rendering artifacts
-  double myscaledFactor = wxRound(scalefactor * 4.0) / 4.0;
+  double myscaledFactor = wxRound(pPlugIn->m_globalIconScaleFactor * 4.0) / 4.0;
   int w, h;
-  w = 32 * scalefactor;  // 32x32 is the standard bitmap's size
-  h = 32 * scalefactor;
+  w = 32 * myscaledFactor;  // 32x32 is the standard original bitmap's size
+  h = 32 * myscaledFactor;
 
 #ifdef ocpnUSE_SVG
-  wxBitmap bitmap = GetBitmapFromSVGFile(_svg_frcurrents_prefs, w, h);
-  m_button8->SetBitmap(bitmap);
-  bitmap = GetBitmapFromSVGFile(_svg_frcurrents_next, w, h);
-  m_bpNext->SetBitmap(bitmap);
-  bitmap = GetBitmapFromSVGFile(_svg_frcurrents_prev, w, h);
-  m_bpPrev->SetBitmap(bitmap);
-  bitmap = GetBitmapFromSVGFile(_svg_frcurrents_now, w, h);
-  m_bpNow->SetBitmap(bitmap);
+  wxBitmap bitmap;
+  if (allBitmaps) {
+    bitmap = GetBitmapFromSVGFile(_svg_frcurrents_prefs, w, h);
+    m_button8->SetBitmap(bitmap);
+    bitmap = GetBitmapFromSVGFile(_svg_frcurrents_next, w, h);
+    m_bpNext->SetBitmap(bitmap);
+    bitmap = GetBitmapFromSVGFile(_svg_frcurrents_prev, w, h);
+    m_bpPrev->SetBitmap(bitmap);
+    bitmap = GetBitmapFromSVGFile(_svg_frcurrents_now, w, h);
+    m_bpNow->SetBitmap(bitmap);
+    bitmap = GetBitmapFromSVGFile(_svg_frcurrents_hw0, w, h);
+    m_button4->SetBitmap(bitmap);
+    bitmap = GetBitmapFromSVGFile(_svg_frcurrents_hw12, w, h);
+    m_button6->SetBitmap(bitmap);
+  }
+  if (m_bUseBM) {
+    bitmap = GetBitmapFromSVGFile(_svg_frcurrents_lw6, w, h);
+  }
+  else {
+    bitmap = GetBitmapFromSVGFile(_svg_frcurrents_hw6, w, h);
+  }
+  m_button5->SetBitmap(bitmap);
 #else
-  wxImage im0 =
+  if (allBitmaps) {
+    wxImage im0 =
       wxBitmap(prev_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
-  m_bpPrev->SetBitmap(wxBitmap(im0));
-  wxImage im1 =
+    m_bpPrev->SetBitmap(wxBitmap(im0));
+    wxImage im1 =
       wxBitmap(next_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
-  m_bpNext->SetBitmap(wxBitmap(im1));
-  wxImage im2 =
-      wxBitmap(info_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
-  m_button8->SetBitmap(wxBitmap(im2));
-  wxImage im3 =
+    wxBitmap(info_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+    m_bpNext->SetBitmap(wxBitmap(im1));
+    wxImage im2 =
+      wxBitmap(prefs_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+    m_button8->SetBitmap(wxBitmap(im2));
+    wxImage im3 =
       wxBitmap(now_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
-  m_bpNow->SetBitmap(wxBitmap(im3));
+    m_bpNow->SetBitmap(wxBitmap(im3));
+    wxImage im4 =
+      wxBitmap(Hw0_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+    m_button4->SetBitmap(wxBitmap(im4));
+    wxImage im6 =
+      wxBitmap(Hw12_blue).ConvertToImage().Scale(w, h, wxIMAGE_QUALITY_HIGH);
+    m_button6->SetBitmap(wxBitmap(im6));
+  }
+  wxImage im5 =
+    (m_bUseBM? wxBitmap(Lw6_blue): wxBitmap(Hw6_blue)).ConvertToImage()
+     .Scale(w, h, wxIMAGE_QUALITY_HIGH);
+  m_button5->SetBitmap(wxBitmap(im5));
+}
 #endif
 
   this->Refresh();
@@ -492,7 +520,7 @@ void frcurrentsUIDialog::SetNow(bool m_acenter) {
 
   // calc coefficient
   BrestRange = CalcRange_Brest();
-  m_textCtrlCoefficient->SetValue(CalcCoefficient());
+  m_textCoefficient->SetLabel(CalcCoefficient());
 
   button_id = 6 + CalcHoursFromHWNow();
 
@@ -649,7 +677,7 @@ void frcurrentsUIDialog::OnDateSelChanged(wxDateEvent& event) {
   CalcHW(i);
 
   BrestRange = CalcRange_Brest();
-  m_textCtrlCoefficient->SetValue(CalcCoefficient());
+  m_textCoefficient->SetLabel(CalcCoefficient());
 
   button_id = 6;  //  in another days as today, set to HW/LW
 
@@ -807,7 +835,7 @@ void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
   if (!m_vp) return;
 
   if (m_vp->chart_scale > 1000000) {
-    m_staticText3->SetLabel(_("Zoom In to Show Current Data!"));
+    m_staticText3->SetLabel(_("Zoom In to Show Data!"));
     return;
   }
   // Check if the cursor is within the tide zone's area
@@ -821,7 +849,7 @@ void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
   else {
     if (lat < m_LLmaxmin[0] || lon < m_LLmaxmin[1] ||
       lat > m_LLmaxmin[2] || lon > m_LLmaxmin[3])
-      m_staticText3->SetLabel(_("Out of Tide Area"));
+      m_staticText3->SetLabel(_("Cursor out Tide Area"));
     else {
       wxString t = _("At Cursor") + (":  ---- ") + _("kt") + ("  -  ----");
       m_staticText3->SetLabel(t << wxString::Format(("%c"), 0x00B0));
@@ -1171,16 +1199,16 @@ double frcurrentsUIDialog::CalcRange_Brest() {
 
           (wt) ? sHWLW = "HW" : sHWLW = "LW";  // write HW or LT
           // Fill the array with tide data
-          euTC[array_index][3] = sHWLW;
+          euTC[array_index][1] = sHWLW;
 
-          if (euTC[array_index][3] == "LW") {
+          if (euTC[array_index][1] == "LW") {
             myLW = tcvalue;
             if (gotHW) {                 // We use the BM after PM
               BrestRange = myHW - myLW;  // Used for
                                          // CalcCoefficient
             }
           }
-          if (euTC[array_index][3] == "HW") {
+          if (euTC[array_index][1] == "HW") {
             gotHW = true;
             myHW = tcvalue;
             list_index++;
@@ -1211,21 +1239,20 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   wxString useHWorLW = m_bUseBM ? "LW" : "HW";
 
   // Get and display timezones
-  m_stz = _("Time in UTC");
+  m_stz = (" ") + _("UTC");
   int diffloc = m_diff_mins;
   if (pPlugIn->GetTZoptionID() == 0) {
-    m_stz << ("  (") + _("Local TZ");
+    m_stz << _T(" (") + _("LocTZ");
     diffloc = -diffloc;
   }
   if (diffloc != 0) {
-    m_stz << (diffloc < 0 ? _T(" -") : _T(" +"));
+    m_stz << (diffloc < 0 ? _T("-") : _T("+"));
     int h = abs(diffloc / 60);
     int h1 = abs(diffloc % 60);
     m_stz << wxString::Format("%01d", h);
     if (h1 != 0) m_stz << wxString::Format(":%02d", h1);
   }
-  m_stz << (pPlugIn->GetTZoptionID() == 0 ? _T(")")
-                                          : _T("  (") + _("Local TZ") + _(")"));
+  m_stz << (pPlugIn->GetTZoptionID() == 0 ? (")"): ("  (") + _("LocTZ") + (")"));
   m_staticText1->SetLabel(m_stz);
   //
   float dir;
@@ -1242,6 +1269,7 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
   wxDateTime euDT[8];
   float tcv[26];
   time_t tt_tcv[26];
+  wxString m_tideText;
 
   // The tide/current modules calculate values based on PC local time
   // We need  either UTC or local device time, so adjust accordingly
@@ -1289,20 +1317,18 @@ void frcurrentsUIDialog::CalcHW(int PortCode) {
             tcd.Set(tctime - (m_diff_mins * 60));
           else
             tcd.Set(tctime);  // Local TZ
-          s = tcd.Format("%a %d %b %Y  %H:%M  ");
-          s1.Printf("%05.2f ", tcvalue);  // write value
+          s = tcd.Format(": %H:%M   ");
+          s1.Printf(" %05.2f ", tcvalue);  // write value
           pmsd = pIDX->pref_sta_data;     // write unit
           if (pmsd) s1.Append(wxString(pmsd->units_abbrv, wxConvUTF8));
 
           (wt) ? sHWLW = "HW" : sHWLW = "LW";  // write HW or LT
           // Fill the array with tide data
-          euTC[array_index][0] = s + s1;
-          euTC[array_index][1] = s1;
-          euTC[array_index][2] = wxString(pmsd->units_abbrv, wxConvUTF8);
-          euTC[array_index][3] = sHWLW;
+          euTC[array_index][0] = sHWLW + s + ("  ") + s1;
+          euTC[array_index][1] = sHWLW;
           euDT[array_index] = tcd;
 
-          if (euTC[array_index][3] == useHWorLW) {
+          if (euTC[array_index][1] == useHWorLW) {
             m_choice2->Insert(euTC[array_index][0], list_index);
             m_choice2_dt.push_back(euDT[array_index]);
             list_index++;
@@ -1348,7 +1374,7 @@ wxString frcurrentsUIDialog::CalcCoefficient() {
   m_coeff = 100 * (BrestRange) / U;
 
   wxString cf = _("Coeff:");
-  cf.Append(wxString::Format("  %3.0f", m_coeff));
+  cf.Append(wxString::Format(" %3.0f", m_coeff));
   return cf;
 }
 
@@ -1592,19 +1618,19 @@ void frcurrentsUIDialog::GetCurrents(wxString dirname, wxString filename) {
     tidePort = "LA_ROCHELLE_BM";
     m_bUseBM = true;
   }
-  if (m_bUseBM) {
-    m_button5->SetLabel(_("LW"));
-    m_staticTextHW->SetLabel(_("Low Water"));
-    m_button4->SetLabel(_("LW-6"));
-    m_button6->SetLabel(_("LW+6"));
-    m_choice2->SetToolTip("Select Low Water");
-  } else {
-    m_button5->SetLabel(_("HW"));
-    m_staticTextHW->SetLabel(_("High Water"));
-    m_button4->SetLabel(_("HW-6"));
-    m_button6->SetLabel(_("HW+6"));
-    m_choice2->SetToolTip("Select High Water");
-  }
+  wxString tooltip = m_bUseBM ? _("Low Water Time (LW) and Water level") :
+                                _("Hight Water Time (HW) and Water level");
+  tooltip << _("\n(Above the French Nautical Chart depths)");
+  m_choice2->SetToolTip(tooltip);
+  // Update the button bitmap according to the use of BM or not
+  SetScaledBitmaps(false);
+  // Update the buttons tooltips according to the use of BM or not
+  tooltip = (m_bUseBM ? _("LW - 6") : _("HW - 6"));
+  m_button4->SetToolTip(tooltip);
+  tooltip = (m_bUseBM ? _("LW") : _("HW"));
+  m_button5->SetToolTip(tooltip);
+  tooltip = (m_bUseBM ? _("LW + 6") : _("HW + 6"));
+  m_button6->SetToolTip(tooltip);
 
   wxString filePort;
 
@@ -1935,7 +1961,7 @@ void frcurrentsUIDialog::OnPrev(wxCommandEvent& event) {
       CalcHW(f);
 
       BrestRange = CalcRange_Brest();
-      m_textCtrlCoefficient->SetValue(CalcCoefficient());
+      m_textCoefficient->SetLabel(CalcCoefficient());
 
       c = m_choice2->GetCount();
       if (c == 0) return;
@@ -1997,7 +2023,7 @@ void frcurrentsUIDialog::OnNext(wxCommandEvent& event) {
       CalcHW(f);
 
       BrestRange = CalcRange_Brest();
-      m_textCtrlCoefficient->SetValue(CalcCoefficient());
+      m_textCoefficient->SetLabel(CalcCoefficient());
 
       c = m_choice2->GetCount();
       if (c == 0) return;

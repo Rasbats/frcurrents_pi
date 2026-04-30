@@ -316,10 +316,10 @@ void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
 }
 
 void frcurrents_pi::OnToolbarToolCallback(int id) {
-  //  get icons scale factor
-  double scalefactor = GetOCPNGUIToolScaleFactor_PlugIn();
-  scalefactor *=
-      OCPN_GetWinDIPScaleFactor() * (1. + (my_IconsScaleFactor / 10.));
+  //  calc global icons scale factor
+  m_globalIconScaleFactor = GetOCPNGUIToolScaleFactor_PlugIn();
+  m_globalIconScaleFactor *=
+    +OCPN_GetWinDIPScaleFactor() * (1. + (my_IconsScaleFactor / 10.));
   //  get font scale factor
   wxFont f = *OCPNGetFont(_("Dialog"), 10);
   f.SetPointSize(f.GetPointSize() + my_FontpointSizeFactor);
@@ -327,9 +327,9 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
   if (NULL == m_pfrcurrentsDialog) {
     m_pfrcurrentsDialog = new frcurrentsUIDialog(m_parent_window, this);
     wxPoint p = wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y);
-    m_pfrcurrentsDialog->Move(p);
+ /*   m_pfrcurrentsDialog->Move(p);
     m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
-                                 m_frcurrents_dialog_sy);
+                                 m_frcurrents_dialog_sy); */
 
     // Create the drawing factory
     m_pfrcurrentsOverlayFactory =
@@ -343,7 +343,7 @@ void frcurrents_pi::OnToolbarToolCallback(int id) {
 
   //    Toggle dialog?
   if (m_bShowfrcurrents) {
-    m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
+    m_pfrcurrentsDialog->SetScaledBitmaps();
 
 #ifdef __WXMSW__
     wxFont f = *OCPNGetFont(_("Dialog"), 10);
@@ -361,9 +361,10 @@ m_pfrcurrentsDialog->m_staticText211->SetFont(f);         \
 
     m_pfrcurrentsDialog->Move(
         wxPoint(m_frcurrents_dialog_x, m_frcurrents_dialog_y));
-    m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
-                                 m_frcurrents_dialog_sy);
+   /*  m_pfrcurrentsDialog->SetSize(m_frcurrents_dialog_sx,
+                                 m_frcurrents_dialog_sy); */
     m_pfrcurrentsDialog->Show();
+    m_pfrcurrentsDialog->Fit();
   } else {
     m_pfrcurrentsDialog->Hide();
   }
@@ -547,10 +548,10 @@ void frcurrentsPreferencesDialog::OnIconsSlidersChange(wxCommandEvent &event) {
   if (g_pi) {
     g_pi->my_IconsScaleFactor = (double)event.GetInt();
     if (g_pi->m_pfrcurrentsDialog) {
-      double scalefactor = GetOCPNGUIToolScaleFactor_PlugIn() *
+      g_pi->m_globalIconScaleFactor = GetOCPNGUIToolScaleFactor_PlugIn() *
                            OCPN_GetWinDIPScaleFactor() *
                            (1. + ((double)event.GetInt() / 10.));
-      g_pi->m_pfrcurrentsDialog->SetScaledBitmaps(scalefactor);
+      g_pi->m_pfrcurrentsDialog->SetScaledBitmaps();
       g_pi->m_pfrcurrentsDialog->Fit();
     }
   }

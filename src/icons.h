@@ -21,7 +21,10 @@ extern wxString _svg_frcurrents_prefs;
 extern wxString _svg_frcurrents_now;
 extern wxString _svg_frcurrents_prev;
 extern wxString _svg_frcurrents_next;
+extern wxString _svg_frcurrents_hw0;
+extern wxString _svg_frcurrents_hw6;
+extern wxString _svg_frcurrents_lw6;
+extern wxString _svg_frcurrents_hw12;
 #endif
-
 
 #endif /* ICONS_H */

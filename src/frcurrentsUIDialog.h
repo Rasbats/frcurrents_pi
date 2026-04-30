@@ -134,7 +134,7 @@ public:
   void LoadHarmonics();
   wxDateTime GetNow();
   void SetNow(bool m_acenter = true);
-  void SetScaledBitmaps(double scalefactor);
+  void SetScaledBitmaps(bool allBitmaps = true);
 
   void SetViewPort(PlugIn_ViewPort* vp);
   void SetCursorLatLon(double lat, double lon);
@@ -267,7 +267,7 @@ private:
   wxPoint m_pCursorPixPos;
 
   wxDateTime m_SelectedDate; //  to store the current selected date
-  wxString euTC[8][4];  // Date.Time, Height, Units, HW.LW
+  wxString euTC[8][2];  // Date.Time, Height, Units, HW.LW
   wxDateTime m_dt;
   vector<wxDateTime> m_choice2_dt;
   wxDateTime back_dt;
