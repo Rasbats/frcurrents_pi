@@ -310,9 +310,7 @@ void frcurrents_pi::SetDialogFont(wxWindow *dialog, wxFont *font) {
 void frcurrents_pi::SetCursorLatLon(double lat, double lon) {
   if (NULL == m_pfrcurrentsDialog)  return;
   if (!m_pfrcurrentsDialog->IsShown()) return;
-  if (!m_bUseCursorTrackingData) return; // cursor tracking not in use  
-
-    m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
+  m_pfrcurrentsDialog->SetCursorLatLon(lat, lon);
 }
 
 void frcurrents_pi::OnToolbarToolCallback(int id) {
