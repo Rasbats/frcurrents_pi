@@ -835,9 +835,22 @@ void frcurrentsUIDialog::SetCursorLatLon(double lat, double lon) {
   if (!m_vp) return;
 
   if (m_vp->chart_scale > 1000000) {
+    if (!m_staticText3->IsShown()) {
+      m_staticText3->Show();
+      Fit();
+   }
+    m_staticText3->SetForegroundColour(*wxRED);
     m_staticText3->SetLabel(_("Zoom In to Show Data!"));
     return;
   }
+  if (!pPlugIn->m_bUseCursorTrackingData) { // cursor tracking not in use
+    if (m_staticText3->IsShown()) {
+      m_staticText3->Show(false);
+      Fit();
+    }
+    return;
+  }
+
   // Check if the cursor is within the tide zone's area
   GetCanvasPixLL(m_vp, &m_pCursorPixPos, lat, lon);
   wxRect r(minPoint, maxPoint);
@@ -874,6 +887,7 @@ void frcurrentsUIDialog::OnCursorTrackingData(wxTimerEvent & event) {
       temp_pos.push_back((*it));
     }
   }
+  m_staticText3->SetForegroundColour(*wxBLACK);
   if (temp_pos.size() == 0) {
     /* the cursor is in the tide area but too far from any arrow position  */
     m_staticText3->SetLabel(s << (":  ---- ") << _("kt") << ("  -  ----") << deg);
