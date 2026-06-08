@@ -89,7 +89,7 @@ frcurrents_pi *g_pi;
 //
 //---------------------------------------------------------------------------------------------------------
 
-frcurrents_pi::frcurrents_pi(void *ppimgr) : opencpn_plugin_118(ppimgr) {
+frcurrents_pi::frcurrents_pi(void *ppimgr) : opencpn_plugin_120(ppimgr) {
   // Create the PlugIn icons
   initialize_images();
 

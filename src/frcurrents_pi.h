@@ -54,7 +54,7 @@ extern wxString myVColour[5];
 #define frcurrents_TOOL_POSITION \
   -1  // Request default positioning of toolbar tool
 
-class frcurrents_pi : public opencpn_plugin_118 {
+class frcurrents_pi : public opencpn_plugin_120 {
 public:
   frcurrents_pi(void *ppimgr);
   ~frcurrents_pi(void);
